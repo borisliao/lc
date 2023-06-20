@@ -1,26 +1,40 @@
 from typing import List
 
-class Solution:
+class Naive:
     def containsDuplicate(self, nums: List[int]) -> bool:
-        return True
+        nums.sort()
+        for i in range(len(nums)-1):
+            if nums[i] == nums[i+1]:
+                return True
+        return False
+
+# Next Solution
+class Solution2:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        pass
+
 
 # Examples
-solution = Solution()
+solutions = [Naive()]
+
+def assert_solutions(nums, output):
+    for solution in solutions: 
+        assert solution.containsDuplicate(nums) == output
 
 def test_example_1():
     nums = [1,2,3,1]
     output = True
 
-    assert solution.containsDuplicate(nums) == output
+    assert_solutions(nums, output)
 
 def test_example_2():
     nums = [1,2,3,4]
     output = False
     
-    assert solution.containsDuplicate(nums) == output
+    assert_solutions(nums, output)
 
 def test_example_3():
     nums = [1,1,1,3,3,4,3,2,4,2]
     output = True
-    
-    assert solution.containsDuplicate(nums) == output
+
+    assert_solutions(nums, output)
