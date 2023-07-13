@@ -12,8 +12,14 @@ class Naive:
                 return True
         return False
 
-# Next Solution
+# Sorting Solution
 class Solution2:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        pass
+
+
+# Hash Set Solution
+class Solution3:
     def containsDuplicate(self, nums: List[int]) -> bool:
         pass
 
