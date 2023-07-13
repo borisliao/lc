@@ -1,5 +1,9 @@
 from typing import List
 
+"""
+Time Complexity: O(n^2)
+Space Complexity: O(1) (no memory needed)
+"""
 class Naive:
     def containsDuplicate(self, nums: List[int]) -> bool:
         nums.sort()
