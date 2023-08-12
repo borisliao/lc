@@ -15,5 +15,7 @@ def encode_decode(func_name):
         # write your code here
         pass
 
-    if func_name == 'encode': return encode
-    if func_name == 'decode': return decode
+    if func_name == 'encode':
+        return encode
+    if func_name == 'decode':
+        return decode
