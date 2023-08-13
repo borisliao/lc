@@ -1,21 +1,70 @@
-# def encode_decode(func_name):
-#     """
-#     @param: strs: a list of strings
-#     @return: encodes a list of strings to a single string.
-#     """
-#     def encode(strs):
-#         # write your code here
-#         pass
+from typing import List
 
-#     """
-#     @param: str: A string
-#     @return: decodes a single string to a list of strings
-#     """
-#     def decode(str):
-#         # write your code here
-#         pass
 
-#     if func_name == 'encode':
-#         return encode
-#     if func_name == 'decode':
-#         return decode
+def naive(func_name):
+    def encode(strs: List[str]) -> str:
+        delimitter = '+'
+
+        return delimitter.join(strs)
+
+    def decode(str: str) -> List[str]:
+        delimitter = '+'
+
+        return str.split(delimitter)
+
+    if func_name == 'encode':
+        return encode
+    if func_name == 'decode':
+        return decode
+
+
+def literal_eval(func_name):
+    def encode(strs: List[str]) -> str:
+        return str(strs)
+
+    def decode(str: str) -> List[str]:
+        return eval(str)
+
+    if func_name == 'encode':
+        return encode
+    if func_name == 'decode':
+        return decode
+
+
+def numberDesc(func_name):
+    def encode(strs: List[str]) -> str:
+        numString = ''
+        for s in strs:
+            numString += str(len(s)) + '#' + s
+
+        return numString
+
+    def decode(str: str) -> List[str]:
+        stringNum = []
+
+        word = ''
+        ignoreDelimitter = False
+        amountOfChar = 0
+
+        for i in range(len(str)):
+            if ignoreDelimitter:
+                ignoreDelimitter = False
+            elif amountOfChar > 0:
+                word += str[i]
+                amountOfChar -= 1
+                if amountOfChar == 0:
+                    stringNum.append(word)
+                    word = ''
+            # might break because we are looking i+1
+            elif str[i].isnumeric() and str[i+1] == '#':
+                amountOfChar = int(str[i])
+                ignoreDelimitter = True
+            else:
+                raise ValueError('str is malformed')
+
+        return stringNum
+
+    if func_name == 'encode':
+        return encode
+    if func_name == 'decode':
+        return decode
