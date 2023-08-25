@@ -1,24 +1,24 @@
 from collections import defaultdict
 from typing import List
 
+# Takes a long time, but works
+# def longestConsecutive(nums: List[int]) -> int:
+#     n = set(nums)
 
-def longestConsecutive(nums: List[int]) -> int:
-    n = set(nums)
+#     count = 0
+#     for num in nums:
+#         if num-1 not in nums:
+#             search_value = num
 
-    count = 0
-    for num in nums:
-        if num-1 not in nums:
-            search_value = num
+#             running_total = 0
 
-            running_total = 0
+#             while search_value in n:
+#                 running_total += 1
+#                 if running_total > count:
+#                     count += 1
+#                 search_value += 1
 
-            while search_value in n:
-                running_total += 1
-                if running_total > count:
-                    count += 1
-                search_value += 1
-
-    return count
+#     return count
 
 
 def online_solution_abdullayevakbar0101(nums: List[int]) -> int:
