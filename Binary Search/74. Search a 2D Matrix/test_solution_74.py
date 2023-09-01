@@ -19,3 +19,13 @@ def test_example_2(f):
     output = False
 
     assert f(matrix, target) == output
+
+
+@pytest.mark.timeout(3)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_74, predicate=inspect.isfunction)])
+def test_lc_15(f):
+    matrix = [[1], [3]]
+    target = 2
+    output = False
+
+    assert f(matrix, target) == output
