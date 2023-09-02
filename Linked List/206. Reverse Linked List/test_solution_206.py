@@ -33,3 +33,11 @@ def test_example_3(f):
     output = ln([])
 
     assert str(f(head)) == str(output)
+
+
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_206, predicate=inspect.isfunction)])
+def test_lc_25(f):
+    head = ln([0, 1, 4, -2])
+    output = ln([-2, 4, 1, 0])
+
+    assert str(f(head)) == str(output)
