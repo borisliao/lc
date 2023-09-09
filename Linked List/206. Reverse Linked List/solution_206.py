@@ -25,7 +25,11 @@ class ListNode:
         return str(self) == str(__value)
 
 
-def reverseListIterativelyNewListNode(head: Optional[ListNode]) -> Optional[ListNode]:
+def attempt1(head: Optional[ListNode]) -> Optional[ListNode]:
+    """
+    Done by creating a new ListNode. Not very space efficent.
+    1-1-23
+    """
     if head and head.val != None:
         result = ListNode(val=head.val)
         head = head.next
@@ -39,7 +43,12 @@ def reverseListIterativelyNewListNode(head: Optional[ListNode]) -> Optional[List
         return head
 
 
-def reverseListIteratively(head: Optional[ListNode]) -> Optional[ListNode]:
+def attempt2(head: Optional[ListNode]) -> Optional[ListNode]:
+    """
+    Done without using extra space complexity and iteratively.
+    Same as how NeetCode did it
+    1-1-23
+    """
     prev, curr = None, head
 
     while curr:
