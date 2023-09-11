@@ -51,3 +51,26 @@ class ListNode:
 #     else:
 #         head.next = None
 #     return original_head
+
+def two_pointers(head: Optional[ListNode], n: int) -> Optional[ListNode]:
+    """
+    Hint from Neetcode
+    https://www.youtube.com/watch?v=XVuQxVej6y8
+    """
+    dummy = ListNode(val=None, next=head)
+    l, r = dummy, head
+
+    while n:  # note: we are guaranteed that r.next will exist with `1 <= n <= sz` constraint
+        r = r.next  # [2,3,4,5], [3,4,5]
+        n -= 1  # 1, 0
+
+    # if n:  # note: we are guaranteed that n = 0 with `1 <= n <= sz` constraint
+    #     return head
+
+    while r:  # [3,4,5]
+        r = r.next
+        l = l.next
+
+    l.next = l.next.next
+
+    return dummy.next
