@@ -55,3 +55,39 @@ class ListNode:
 #     f(result,str(calc)[::-1])
 
 #     return result
+
+
+def addTwoNumbers(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+    result = ListNode()
+    head = result
+    carry = 0
+
+    while l1 or l2 or carry:
+        if l1:
+            n1 = l1.val
+            l1 = l1.next
+        else:
+            n1 = 0
+
+        if l2:
+            n2 = l2.val
+            l2 = l2.next
+        else:
+            n2 = 0
+
+        if carry:
+            c = carry
+            carry = 0
+        else:
+            c = 0
+
+        nodeResult = n1 + n2 + c
+
+        if nodeResult > 9:
+            carry = nodeResult // 10
+            nodeResult -= 10
+
+        result.next = ListNode(nodeResult, None)
+        result = result.next
+
+    return head.next
