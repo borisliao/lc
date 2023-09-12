@@ -34,4 +34,17 @@ class Node:
 
 
 def copyRandomList(head: Optional[Node]) -> Optional[Node]:
-    pass
+    headDict = {None: None}
+
+    cur = head
+    while cur:
+        headDict[cur] = Node(cur.val)
+        cur = cur.next
+
+    cur = head
+    while cur:
+        headDict[cur].next = headDict[cur.next]
+        headDict[cur].random = headDict[cur.random]
+        cur = cur.next
+
+    return headDict[head]
