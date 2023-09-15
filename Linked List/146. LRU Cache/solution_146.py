@@ -38,15 +38,16 @@ def attempt1(capacity: int):
 
             putNode = Node(key, value, self.data['end'], None)
             self.data['end'].next = putNode
+            self.data['end'] = putNode
             self.data[key] = putNode
             self.data['length'] += 1
 
             if self.data['length'] > self.data['capacity']:
                 evictedNode = self.data['start'].next
 
-                evictedNode.prev.next = evictedNode.next
+                self.data['start'].next = evictedNode.next
 
-                del self.data[evictedNode.value]
+                del self.data[evictedNode.key]
 
                 self.data['length'] -= 1
 
