@@ -45,4 +45,14 @@ class TreeNode:
 
 
 def invertTree(root: Optional[TreeNode]) -> Optional[TreeNode]:
-    pass
+    if not root:
+        return root
+    if root.left or root.right:
+        leftSide = root.left
+        root.left = root.right
+        root.right = leftSide
+
+        invertTree(root.left)
+        invertTree(root.right)
+
+    return root
