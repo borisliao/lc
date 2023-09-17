@@ -60,3 +60,28 @@ def isBalanced(root: Optional[TreeNode]) -> bool:
         return {"unbalanced": balanced_state, "length": 1 + max(left['length'], right['length'])}
 
     return dfs(root)['unbalanced']
+
+
+def globalVar(root: Optional[TreeNode]) -> bool:
+    """
+    Solution from neetcode: https://www.youtube.com/watch?v=QfJsau0ItOY
+    """
+    isUnbalanced = False
+
+    def dfs(tn: Optional[TreeNode]):
+        nonlocal isUnbalanced
+        if tn is None:
+            isUnbalanced = True
+            return 0
+
+        left, right = dfs(tn.left), dfs(tn.right)
+        weight_difference = abs(left - right)
+
+        balanced_state = weight_difference < 1
+        if balanced_state:
+            isUnbalanced = True
+
+        return 1 + max(left, right)
+
+    dfs(root)
+    return isUnbalanced
