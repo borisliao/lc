@@ -46,4 +46,17 @@ class TreeNode:
 
 
 def isBalanced(root: Optional[TreeNode]) -> bool:
-    pass
+    """
+    Solution from neetcode: https://www.youtube.com/watch?v=QfJsau0ItOY
+    """
+    def dfs(tn: Optional[TreeNode]):
+        if tn is None:
+            return {"unbalanced": True, "length": 0}
+
+        left, right = dfs(tn.left), dfs(tn.right)
+        weight_difference = abs(left['length'] - right['length'])
+
+        balanced_state = weight_difference <= 1 and left['unbalanced'] and right['unbalanced']
+        return {"unbalanced": balanced_state, "length": 1 + max(left['length'], right['length'])}
+
+    return dfs(root)['unbalanced']
