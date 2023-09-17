@@ -64,24 +64,28 @@ def isBalanced(root: Optional[TreeNode]) -> bool:
 
 def globalVar(root: Optional[TreeNode]) -> bool:
     """
-    Solution from neetcode: https://www.youtube.com/watch?v=QfJsau0ItOY
-    """
-    isUnbalanced = False
+    Hint from:
+     [![@gregoryvan9474](https://yt3.ggpht.com/ytc/AOPolaRUzeM-N91T2Xj8qb5MAoaAveQ1sC_dc1VrUWKt=s48-c-k-c0x00ffffff-no-rj)](https://www.youtube.com/channel/UCXKpafMwrdlABcch9razbtA) 
 
-    def dfs(tn: Optional[TreeNode]):
-        nonlocal isUnbalanced
-        if tn is None:
-            isUnbalanced = True
+    ### [@gregoryvan9474](https://www.youtube.com/channel/UCXKpafMwrdlABcch9razbtA)
+
+    [1 year ago (edited)](https://www.youtube.com/watch?v=QfJsau0ItOY&lc=Ugz4wcM_A6q6RPd-Pel4AaABAg)
+
+    I found it makes it a little easier to write the code if you just use a global variable like in the "Diameter of a Binary Tree" problem you solved. Then you can just update the global variable and not have to return two variables in the dfs function.
+    """
+    unbalanced = False
+
+    def dfs(tn: Optional[TreeNode]) -> int:
+        nonlocal unbalanced
+        if unbalanced or tn is None:
             return 0
 
         left, right = dfs(tn.left), dfs(tn.right)
-        weight_difference = abs(left - right)
 
-        balanced_state = weight_difference < 1
-        if balanced_state:
-            isUnbalanced = True
+        if abs(left - right) > 1:
+            unbalanced = True
 
         return 1 + max(left, right)
 
     dfs(root)
-    return isUnbalanced
+    return True if not unbalanced else False
