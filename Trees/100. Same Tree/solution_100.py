@@ -1,0 +1,114 @@
+# Definition for a binary tree node.
+from collections import deque
+from typing import Deque, Optional
+
+
+class TreeNode:
+    def __init__(self, val=0, left: Optional['TreeNode'] = None, right: Optional['TreeNode'] = None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+    def __str__(self):
+        """
+        Source: https://stackoverflow.com/questions/37495634/python-list-from-python-binary-tree
+        """
+        items = []
+        queue = [self]
+
+        while queue:
+            copy = queue[:]
+            queue = []
+
+            for item in copy:
+                if item is None:
+                    items.append(None)
+                    queue.append(None)
+                    queue.append(None)
+                else:
+                    items.append(item.val)
+                    queue.append(item.left)
+                    queue.append(item.right)
+
+            if all((x is None for x in queue)):
+                break
+
+        return str(items)
+
+    def __repr__(self):
+        return f"{self}"
+
+    def __eq__(self, __value: object) -> bool:
+        return str(self) == str(__value)
+
+    def __hash__(self):
+        return id(self)
+
+
+def attempt1(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+    """Recrusive dfs"""
+    same_values = True
+    p_left = p.left if p and p.left else None
+    q_left = q.left if q and q.left else None
+    if p_left or q_left:
+        if attempt1(p_left, q_left) is False:
+            same_values = False
+
+    p_right = p.right if p and p.right else None
+    q_right = q.right if q and q.right else None
+    if p_right or q_right:
+        if attempt1(p_right, q_right) is False:
+            same_values = False
+
+    if not (same_values and (p == q or (p != None and q != None) and (p.val == q.val))):
+        same_values = False
+
+    return same_values
+
+
+# def attempt2(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+#     """itterative bfs"""
+#     pq: Deque['TreeNode'] = deque()
+#     qq: Deque['TreeNode'] = deque()
+
+#     pq.append(p)
+#     qq.append(q)
+
+#     while pq and qq:
+#         p_res, q_res = pq.pop(), qq.pop()
+
+#         if not p and not q:
+#             return True
+#         if p_res.val != q_res.val:
+#             return False
+#         if p_res.left:
+#             pq.append(p_res.left)
+#         if p_res.right:
+#             pq.append(p_res.right)
+#         if q_res.left:
+#             qq.append(q_res.left)
+#         if q_res.right:
+#             qq.append(q_res.right)
+
+#     return True
+
+# def solution_lc_BFS(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+#     """
+#     itterative bfs
+#     https://leetcode.com/problems/same-tree/solutions/361737/python3-recursively-and-bfs-and-dfs-iteratively/
+#     """
+#     pq: Deque['TreeNode'] = deque()
+#     qq: Deque['TreeNode'] = deque()
+
+#     while pq and qq:
+#         p, q = pq.popleft(), qq.popleft()
+#         if not p and not q:
+#             continue
+#         elif (not p or not q) or (p.val != q.val):
+#             return False
+#         pq.append(p.left)
+#         pq.append(p.right)
+#         qq.append(q.left)
+#         qq.append(q.right)
+
+#     return True
