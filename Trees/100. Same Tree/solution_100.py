@@ -66,6 +66,18 @@ def attempt1(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
     return same_values
 
 
+def leetCode_572(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+    """
+    This solution comes from neetcode, from problem 572
+    https://www.youtube.com/watch?v=E36O5SWp-LE
+    """
+    if p == None and q == None:
+        return True
+    if p and q and (p.val == q.val):
+        return (leetCode_572(p.left, q.left) and leetCode_572(p.right, q.right))
+    return False
+
+
 # def attempt2(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
 #     """itterative bfs"""
 #     pq: Deque['TreeNode'] = deque()

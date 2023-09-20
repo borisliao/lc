@@ -44,4 +44,19 @@ class TreeNode:
 
 
 def isSubtree(root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-    pass
+    """Solved with neetcode: https://www.youtube.com/watch?v=E36O5SWp-LE"""
+    def isSameTree(a: Optional[TreeNode], b: Optional[TreeNode]) -> bool:
+        if a == None and b == None:
+            return True
+        if a and b and (a.val == b.val):
+            return (isSameTree(a.left, b.left) and isSameTree(a.right, b.right))
+        return False
+
+    if root and subRoot == None:
+        return True
+    if root == None and subRoot:
+        return False
+    if root.val == subRoot.val:
+        if isSameTree(root, subRoot):
+            return True
+    return isSubtree(root.left, subRoot) or isSubtree(root.right, subRoot)

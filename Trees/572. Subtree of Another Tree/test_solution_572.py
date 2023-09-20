@@ -29,8 +29,8 @@ def tn(items: list[int]) -> solution_572.TreeNode:
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_572, predicate=inspect.isfunction)])
 def test_example_1(f):
     """![https://assets.leetcode.com/uploads/2021/04/28/subtree1-tree.jpg](https://assets.leetcode.com/uploads/2021/04/28/subtree1-tree.jpg)"""
-    root = [3, 4, 5, 1, 2]
-    subRoot = [4, 1, 2]
+    root = tn([3, 4, 5, 1, 2])
+    subRoot = tn([4, 1, 2])
     output = True
 
     assert f(root, subRoot) == output
@@ -42,8 +42,21 @@ def test_example_2(f):
     """
     ![https://assets.leetcode.com/uploads/2021/04/28/subtree2-tree.jpg](https://assets.leetcode.com/uploads/2021/04/28/subtree2-tree.jpg)
     """
-    root = [3, 4, 5, 1, 2, None, None, None, None, 0]
-    subRoot = [4, 1, 2]
+    root = tn([3, 4, 5, 1, 2, None, None, None, None, 0])
+    subRoot = tn([4, 1, 2])
     output = False
+
+    assert f(root, subRoot) == output
+
+
+@pytest.mark.timeout(3)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_572, predicate=inspect.isfunction)])
+def test_lc_166(f):
+    """
+    ![https://assets.leetcode.com/uploads/2021/04/28/subtree2-tree.jpg](https://assets.leetcode.com/uploads/2021/04/28/subtree2-tree.jpg)
+    """
+    root = tn([1, 1])
+    subRoot = tn([1])
+    output = True
 
     assert f(root, subRoot) == output
