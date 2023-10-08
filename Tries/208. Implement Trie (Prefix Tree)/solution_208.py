@@ -1,16 +1,33 @@
-def attempt1():
-    class Trie:
+from typing import Dict
 
-        def __init__(self):
-            pass
 
-        def insert(self, word: str) -> None:
-            pass
+# def attempt1():
+#     class LinkedList:
+#         def __init__(self, val: str, next: {}) -> None:
+#             self.val = val
+#             self.next = next
 
-        def search(self, word: str) -> bool:
-            pass
+#     class Trie:
 
-        def startsWith(self, prefix: str) -> bool:
-            pass
+#         def __init__(self):
+#             nodes: Dict[str, LinkedList] = {}
 
-    return Trie()
+#         def insert(self, word: str) -> None:
+#             lastChar = None
+#             lastNode = None
+
+#             for char in word:
+#                 if char not in self.nodes:
+#                     self.nodes[char] = LinkedList(char)
+#                     lastChar = None
+#                 else:
+#                     lastNode = self.nodes[char]
+#                     lastNode.
+
+#         def search(self, word: str) -> bool:
+#             pass
+
+#         def startsWith(self, prefix: str) -> bool:
+#             pass
+
+#     return Trie()
