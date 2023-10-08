@@ -10,15 +10,15 @@ A subtree of a binary tree `tree` is a tree that consists of a node in `tree` an
 
 ![](https://assets.leetcode.com/uploads/2021/04/28/subtree1-tree.jpg)
 
-**Input:** root = \[3,4,5,1,2\], subRoot = \[4,1,2\]
-**Output:** true
+> **Input:** root = \[3,4,5,1,2\], subRoot = \[4,1,2\]  
+> **Output:** true
 
 **Example 2:**
 
 ![](https://assets.leetcode.com/uploads/2021/04/28/subtree2-tree.jpg)
 
-**Input:** root = \[3,4,5,1,2,null,null,null,null,0\], subRoot = \[4,1,2\]
-**Output:** false
+> **Input:** root = \[3,4,5,1,2,null,null,null,null,0\], subRoot = \[4,1,2\]  
+> **Output:** false
 
 **Constraints:**
 

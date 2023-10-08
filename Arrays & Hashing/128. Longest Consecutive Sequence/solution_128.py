@@ -44,12 +44,12 @@ def online_solution_abdullayevakbar0101(nums: List[int]) -> int:
 
         a. `if (bl[i]) { continue; }`  
             If the current element `i` has already been visited, skip it and continue to the next iteration of the loop.  
-        
+
         b. `bl[i] = true;`  
             Mark the current element `i` as visited by setting its corresponding value in the `bl` map to `true`.  
-        
+
         c. Initialize `l` and `r` to the current element `i`, representing the left and right endpoints of the current interval.
-        
+
         d. Check if there is an interval with the right endpoint `i + 1` in the `mp` map using `mp.find(i + 1)`. If such an interval exists, update the right endpoint `r` to the right endpoint of that interval.
 
         e. Similarly, check if there is an interval with the right endpoint `i - 1` in the `mp` map using `mp.find(i - 1)`. If such an interval exists, update the left endpoint `l` to the left endpoint of that interval.  
@@ -57,26 +57,26 @@ def online_solution_abdullayevakbar0101(nums: List[int]) -> int:
         f. Update the `mp` map:  
             Set `mp[r]` to a pair `(r, l)`, indicating the interval with right endpoint `r` and left endpoint l.  
             Set `mp[l]` to the same pair `(r, l)`.  
-        
+
         g. Calculate the length of the current consecutive sequence as `r - l + 1` and update the maximum length `mx` if this length is greater than the current maximum.
-        
+
     5. Finally, return the maximum length mx, which represents the length of the longest consecutive sequence found in the input array.
 
     Explanation from chatgpt. The solution is from me 😇.
     """
-    mp=defaultdict(list)
-    bl=defaultdict(bool)
-    mx=0
+    mp = defaultdict(list)
+    bl = defaultdict(bool)
+    mx = 0
     for i in nums:
         if bl[i]:
-            continue 
-        bl[i]=True
-        l,r=i,i
+            continue
+        bl[i] = True
+        l, r = i, i
         if mp[i+1]:
-            r=mp[i+1][0]
+            r = mp[i+1][0]
         if mp[i-1]:
-            l=mp[i-1][1]
-        mp[r]=[r,l]
-        mp[l]=[r,l]
-        mx=max(mx,r-l+1)
+            l = mp[i-1][1]
+        mp[r] = [r, l]
+        mp[l] = [r, l]
+        mx = max(mx, r-l+1)
     return mx

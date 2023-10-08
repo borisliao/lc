@@ -6,22 +6,16 @@ strings.
 
 Please implement `encode` and `decode`
 
-Example
+## Example
 
 **Example1**
 
-```
-Input: ["leet","code","love","you"]
-Output: ["leet","code","love","you"]
-Explanation:
-One possible encode method is: "leet:;code:;love:;you"
-```
+> **Input:** ["leet","code","love","you"]  
+> **Output:** ["leet","code","love","you"]  
+> **Explanation:** One possible encode method is: "leet:;code:;love:;you"
 
 **Example2**
 
-```
-Input: ["we", "say", ":", "yes"]
-Output: ["we", "say", ":", "yes"]
-Explanation:
-One possible encode method is: "we:;say:;:::;yes"
-```
+> **Input:** ["we", "say", ":", "yes"]  
+> **Output:** ["we", "say", ":", "yes"]  
+> **Explanation:** One possible encode method is: "we:;say:;:::;yes"
