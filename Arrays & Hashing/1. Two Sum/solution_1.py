@@ -41,3 +41,15 @@ def twoSum(nums: List[int], target: int) -> List[int]:
             if i != indexArray[ideal_number]:
                 return [i, indexArray[ideal_number]]
         indexArray[nums[i]] = i
+
+
+def review1(nums: List[int], target: int) -> List[int]:
+    """Anki Review 10/11/23"""
+    history = {}
+
+    for i, n in enumerate(nums):
+        complement = target - n
+        if complement in history:
+            return [i, history[complement]]
+        else:
+            history[n] = i
