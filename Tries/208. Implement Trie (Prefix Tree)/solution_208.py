@@ -31,3 +31,53 @@ from typing import Dict
 #             pass
 
 #     return Trie()
+
+def neetcode():
+    """
+    https://www.youtube.com/watch?v=oobqoCJlHA0
+    All 3 functions use the same way of traversing through the list
+    """
+    class TreeNode:
+        def __init__(self):
+            self.children = {}
+            self.isWord = False
+
+    class Trie:
+
+        def __init__(self):
+            self.nodes = TreeNode()
+
+        def insert(self, word: str) -> None:
+            current = self.nodes
+
+            for c in word:
+                if c not in current.children:
+                    current.children[c] = TreeNode()
+                current = current.children[c]
+
+            current.isWord = True
+
+        def search(self, word: str) -> bool:
+            current = self.nodes
+
+            for c in word:
+                if c not in current.children:
+                    return False
+                current = current.children[c]
+
+            if current.isWord:
+                return True
+
+            return False
+
+        def startsWith(self, prefix: str) -> bool:
+            current = self.nodes
+
+            for c in prefix:
+                if c not in current.children:
+                    return False
+                current = current.children[c]
+
+            return True
+
+    return Trie()
