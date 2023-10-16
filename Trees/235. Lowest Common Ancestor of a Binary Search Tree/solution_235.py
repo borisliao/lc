@@ -44,4 +44,21 @@ class TreeNode:
 
 
 def lowestCommonAncestor(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
-    pass
+    """
+    https://www.youtube.com/watch?v=gs2LMfuOR9k
+    Use the binary tree structure to inform if the current node is the lowest common ancestor (LCA)
+    If the root node value is both greater then p and q, then the LCA is in the left subtree
+    If the root node value is both less then p and q, then the LCA is in the right subtree
+    If the root node value is equal to any one of p or q, then the LCA has to be the root node
+    If only one value is greator or less than p or q (aka subtree diverges), then the LCA has to be the root node
+    """
+    while root:
+        if root.val < p.val and root.val < q.val:
+            root = root.right
+        elif root.val > p.val and root.val > q.val:
+            root = root.left
+        else:
+            # covers the root.val == p.val or root.val == q.val case
+            # and the root.val > p.val and root.val < q.val case
+            # and the root.val < p.val and root.val > q.val case
+            return root
