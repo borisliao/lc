@@ -1,3 +1,4 @@
+from collections import defaultdict
 from typing import List
 
 
@@ -10,36 +11,41 @@ from typing import List
 #                 sudoku_num = board[row][col]
 #                 if sudoku_num != '.':
 #                     hori_count = hori[row][int(sudoku_num)]
-#                     if(hori_count >= 1): return False 
+#                     if(hori_count >= 1): return False
 #                     # update internal hori count
 #                     hori[row][int(sudoku_num)] +=1
 
 #                     vert_count = vert[col][int(sudoku_num)]
-#                     if(vert_count >= 1): return False 
+#                     if(vert_count >= 1): return False
 #                     # update internal veri count
 #                     vert[col][int(sudoku_num)] +=1
 
 #         return True
 
- 
+
 def bruteForceHashMap(board: List[List[str]]) -> bool:
-    vert = { i: {sudoku_num: 0 for sudoku_num in range(1,10)} for i in range(9)}
-    hori = { i: {sudoku_num: 0 for sudoku_num in range(1,10)} for i in range(9)}
-    cube = { i: {sudoku_num: 0 for sudoku_num in range(1,10)} for i in range(9)}
+    vert = {i: {sudoku_num: 0 for sudoku_num in range(
+        1, 10)} for i in range(9)}
+    hori = {i: {sudoku_num: 0 for sudoku_num in range(
+        1, 10)} for i in range(9)}
+    cube = {i: {sudoku_num: 0 for sudoku_num in range(
+        1, 10)} for i in range(9)}
 
     for row in range(9):
         for col in range(9):
             sudoku_num = board[row][col]
             if sudoku_num != '.':
                 hori_count = hori[row][int(sudoku_num)]
-                if(hori_count >= 1): return False 
+                if (hori_count >= 1):
+                    return False
                 # update internal hori count
-                hori[row][int(sudoku_num)] +=1
+                hori[row][int(sudoku_num)] += 1
 
                 vert_count = vert[col][int(sudoku_num)]
-                if(vert_count >= 1): return False 
+                if (vert_count >= 1):
+                    return False
                 # update internal veri count
-                vert[col][int(sudoku_num)] +=1
+                vert[col][int(sudoku_num)] += 1
 
                 quad = 100
                 if row < 3:
@@ -49,7 +55,7 @@ def bruteForceHashMap(board: List[List[str]]) -> bool:
                         quad = 1
                     else:
                         quad = 2
-                elif row >=3 and row < 6:
+                elif row >= 3 and row < 6:
                     if col < 3:
                         quad = 3
                     elif col >= 3 and col < 6:
@@ -65,9 +71,39 @@ def bruteForceHashMap(board: List[List[str]]) -> bool:
                         quad = 8
 
                 cube_count = cube[quad][int(sudoku_num)]
-                if(cube_count >= 1): return False 
+                if (cube_count >= 1):
+                    return False
                 # update internal veri count
-                cube[quad][int(sudoku_num)] +=1
+                cube[quad][int(sudoku_num)] += 1
 
     return True
 
+
+def review1(board: List[List[str]]) -> bool:
+    """
+    Neetcode soluton
+    https://www.youtube.com/watch?v=TjFXEUCMqI8
+    Anki review 10/16/23
+
+    Use a hashmap with the corresponding key to look up if the number already exists
+    """
+    row = defaultdict(set)  # length of 9 (rows)
+    col = defaultdict(set)  # length of 9 (cols)
+    cube = defaultdict(set)  # length of 9 (cubes)
+
+    for r in range(9):
+        for c in range(9):
+            if board[r][c] == ".":
+                continue
+            if board[r][c] in row[r]:
+                return False
+            if board[r][c] in col[c]:
+                return False
+            if board[r][c] in cube[(r//3, c//3)]:
+                return False
+
+            row[r].add(board[r][c])
+            col[c].add(board[r][c])
+            cube[(r//3, c//3)].add(board[r][c])
+
+    return True
