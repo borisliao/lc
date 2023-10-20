@@ -43,5 +43,23 @@ class TreeNode:
         return id(self)
 
 
-def levelOrder(root: Optional[TreeNode]) -> List[List[int]]:
-    pass
+def rightSideView(root: Optional[TreeNode]) -> List[int]:
+    """
+    Uses BFS to traverse all the nodes, and pick the right most node
+    """
+    if not root:
+        return []
+
+    stack = [root]
+    result = []
+    while stack:
+        result.append(stack[-1].val)
+        new_stack = []
+        for node in stack:
+            if node.left:
+                new_stack.append(node.left)
+            if node.right:
+                new_stack.append(node.right)
+        stack = new_stack
+
+    return result
