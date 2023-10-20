@@ -44,4 +44,21 @@ class TreeNode:
 
 
 def levelOrder(root: Optional[TreeNode]) -> List[List[int]]:
-    pass
+    if not root:
+        return []
+
+    level_nodes = [root]
+    node_values = []
+    while level_nodes:
+        new_level_nodes = []
+        new_node_values = []
+        for node in level_nodes:
+            new_node_values.append(node.val)
+            if node.left:
+                new_level_nodes.append(node.left)
+            if node.right:
+                new_level_nodes.append(node.right)
+        level_nodes = new_level_nodes
+        node_values.append(new_node_values)
+
+    return node_values
