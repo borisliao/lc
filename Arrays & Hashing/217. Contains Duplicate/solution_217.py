@@ -29,3 +29,16 @@ def naive(nums: List[int]) -> bool:
 # Hash Set Solution
 # def hashset(nums: List[int]) -> bool:
 #     pass
+
+def review1(nums):
+    """
+    https://www.youtube.com/watch?v=3OamzN90kPg
+    Anki review 10/19/23
+    """
+    nums_set = set()
+    for n in nums:
+        if n in nums_set:
+            return True
+        else:
+            nums_set.add(n)
+    return False
