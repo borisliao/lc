@@ -80,3 +80,24 @@ def online_solution_abdullayevakbar0101(nums: List[int]) -> int:
         mp[l] = [r, l]
         mx = max(mx, r-l+1)
     return mx
+
+
+def review1(nums: List[int]) -> int:
+    """
+    Anki review 10/18/23
+    https://www.youtube.com/watch?v=P6RZZMu_maU
+    """
+
+    numshash = set(nums)
+
+    leng = 0
+
+    for num in numshash:
+        if num-1 not in numshash:
+            running_total = 0
+
+            while running_total+num in numshash:
+                running_total += 1
+            leng = max(running_total, leng)
+
+    return leng

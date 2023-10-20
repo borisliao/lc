@@ -5,7 +5,7 @@ import solution_128
 
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_128, predicate=inspect.isfunction)])
 def test_example_1(f):
-    nums = [100,4,200,1,3,2]
+    nums = [100, 4, 200, 1, 3, 2]
     output = 4
 
     assert f(nums) == output
@@ -13,7 +13,7 @@ def test_example_1(f):
 
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_128, predicate=inspect.isfunction)])
 def test_example_2(f):
-    nums = [0,3,7,2,5,8,4,6,0,1]
+    nums = [0, 3, 7, 2, 5, 8, 4, 6, 0, 1]
     output = 9
 
     assert f(nums) == output
@@ -21,12 +21,13 @@ def test_example_2(f):
 
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_128, predicate=inspect.isfunction)])
 def test_example_3(f):
-    nums = [1,1,1,3,3,4,3,2,4,2]
+    nums = [1, 1, 1, 3, 3, 4, 3, 2, 4, 2]
     output = 4
 
     assert f(nums) == output
 
 
+@pytest.mark.timeout(3)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_128, predicate=inspect.isfunction)])
 def test_lc_69(f):
     nums = [62670,
