@@ -7,18 +7,18 @@ def productExceptSelf(nums: List[int]) -> List[int]:
     Time Complexity: O(n)
     Space Complexity: O(1)
     """
-    pre = 1
-    post = 1
     output = []
 
+    pre = 1
     for i in range(len(nums)):
         output.append(pre)
-        if pre != 0 or pre != len(nums):
+        if pre != len(nums):
             pre *= nums[i]
 
+    post = 1
     for i in reversed(range(len(nums))):
         output[i] *= post
-        if post != 0 or post != len(nums):
+        if post != 0:
             post *= nums[i]
 
     return output
@@ -44,3 +44,38 @@ def productExceptSelf(nums: List[int]) -> List[int]:
 #         arr.append(product)
 
 #     return arr
+
+def review1(nums: List[int]) -> List[int]:
+    """
+    Time Complexity: O(n)
+    Space Complexity: O(n)
+    Anki review 10/22/23
+    """
+    left = {}
+    product = 1
+    for i, n in enumerate(nums):
+        product *= n
+        left[i] = product
+
+    right = {}
+    product = 1
+    i = 0
+    for n in nums[::-1]:
+        product *= n
+        right[i] = product
+        i += 1
+
+    l = 0
+    r = len(nums) - 2
+    result = []
+    while len(result) < len(nums):
+        product = 1
+        if r > -1:
+            product *= right[r]
+            r -= 1
+        if len(result) > 0:
+            product *= left[l]
+            l += 1
+        result.append(product)
+
+    return result
