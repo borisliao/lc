@@ -53,3 +53,18 @@ def review1(nums: List[int], target: int) -> List[int]:
             return [i, history[complement]]
         else:
             history[n] = i
+
+def review2(nums: List[int], target: int) -> List[int]:
+    """Anki Review 10/27/23"""
+
+    # key: number in nums
+    # value: index
+    previous_nums: dict[int, int] = {}
+
+    for i, n in enumerate(nums):
+        complement = target - n
+
+        if complement in previous_nums:
+            return [previous_nums[complement], i]
+
+        previous_nums[n] = i
