@@ -79,3 +79,19 @@ def review1(nums: List[int]) -> List[int]:
         result.append(product)
 
     return result
+
+def review2(nums: List[int]) -> List[int]:
+    """Anki Reviewed 10/28/23"""
+    result = []
+
+    pre = 1
+    for i in range(len(nums)):
+        result.append(pre)
+        pre *= nums[i]
+
+    post = 1
+    for i in reversed(range(len(nums))):
+        result[i] *= post
+        post *= nums[i]
+
+    return result
