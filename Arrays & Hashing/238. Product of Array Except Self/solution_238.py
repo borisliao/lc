@@ -95,3 +95,21 @@ def review2(nums: List[int]) -> List[int]:
         post *= nums[i]
 
     return result
+
+def review3(nums: List[int]) -> List[int]:
+    """Anki Reviewed 10/29/23"""
+    result = []
+    
+    left_products = 1
+    for n in nums:
+        result.append(left_products)
+        left_products *= n
+
+    index = -1
+    right_products = 1
+    for n in reversed(nums):
+        result[index] *= right_products
+        right_products *= n
+        index -= 1
+    
+    return result
