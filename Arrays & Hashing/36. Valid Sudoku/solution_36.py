@@ -107,3 +107,22 @@ def review1(board: List[List[str]]) -> bool:
             cube[(r//3, c//3)].add(board[r][c])
 
     return True
+
+def review2(board: List[List[str]]) -> bool:
+    """Anki Reviewed 10/29/23"""
+    row = defaultdict(set)
+    col = defaultdict(set)
+    box = defaultdict(set)
+
+    for i, r in enumerate(board):
+        for j, c in enumerate(r):
+            if c == ".": continue
+            if c in row[i]: return False
+            if c in col[j]: return False
+            if c in box[(i//3,j//3)]: return False
+
+            row[i].add(c)
+            col[j].add(c)
+            box[(i//3,j//3)].add(c)
+    
+    return True
