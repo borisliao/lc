@@ -28,6 +28,9 @@ def tn(items: list[int]) -> solution_98.TreeNode:
 @pytest.mark.timeout(3)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_98, predicate=inspect.isfunction)])
 def test_example_1(f):
+    """
+    ![](https://assets.leetcode.com/uploads/2020/12/01/tree1.jpg)
+    """
     root = tn([2, 1, 3])
     output = True
 
@@ -37,6 +40,8 @@ def test_example_1(f):
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_98, predicate=inspect.isfunction)])
 def test_example_2(f):
     """
+    ![](https://assets.leetcode.com/uploads/2020/12/01/tree2.jpg)
+
     Explanation: The root node's value is 5 but its right child's value is 4.
     """
     root = tn([5, 1, 4, None, None, 3, 6])

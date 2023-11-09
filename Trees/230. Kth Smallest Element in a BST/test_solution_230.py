@@ -28,6 +28,9 @@ def tn(items: list[int]) -> solution_230.TreeNode:
 @pytest.mark.timeout(3)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_230, predicate=inspect.isfunction)])
 def test_example_1(f):
+    """
+    ![](https://assets.leetcode.com/uploads/2021/01/28/kthtree1.jpg)
+    """
     root = tn([3, 1, 4, None, 2])
     k = 1
     output = 1
@@ -37,6 +40,9 @@ def test_example_1(f):
 
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_230, predicate=inspect.isfunction)])
 def test_example_2(f):
+    """
+    ![](https://assets.leetcode.com/uploads/2021/01/28/kthtree2.jpg)
+    """
     root = tn([5, 3, 6, 2, 4, None, None, 1])
     k = 3
     output = False

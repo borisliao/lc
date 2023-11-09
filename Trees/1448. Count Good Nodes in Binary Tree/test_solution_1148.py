@@ -29,6 +29,8 @@ def tn(items: list[int]) -> solution_1148.TreeNode:
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_1148, predicate=inspect.isfunction)])
 def test_example_1(f):
     """
+    ![](https://assets.leetcode.com/uploads/2020/04/02/test_sample_1.png)
+
     Explanation:  Nodes in blue are good.
 
     Root Node (3) is always a good node.
@@ -36,7 +38,7 @@ def test_example_1(f):
     Node 4 -> (3,4) is the maximum value in the path starting from the root.
 
     Node 5 -> (3,4,5) is the maximum value in the path
-    
+
     Node 3 -> (3,1,3) is the maximum value in the path.
     """
     root = tn([3, 1, 4, 3, None, 1, 5])
@@ -49,6 +51,8 @@ def test_example_1(f):
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_1148, predicate=inspect.isfunction)])
 def test_example_2(f):
     """
+    ![](https://assets.leetcode.com/uploads/2020/04/02/test_sample_2.png)
+
     Explanation: Node 2 -> (3, 3, 2) is not good, because "3" is higher than it.
     """
     root = tn([3, 3, None, 4, 2])
