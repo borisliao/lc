@@ -80,6 +80,7 @@ def review1(nums: List[int]) -> List[int]:
 
     return result
 
+
 def review2(nums: List[int]) -> List[int]:
     """Anki Reviewed 10/28/23"""
     result = []
@@ -96,10 +97,11 @@ def review2(nums: List[int]) -> List[int]:
 
     return result
 
+
 def review3(nums: List[int]) -> List[int]:
     """Anki Reviewed 10/29/23"""
     result = []
-    
+
     left_products = 1
     for n in nums:
         result.append(left_products)
@@ -111,5 +113,35 @@ def review3(nums: List[int]) -> List[int]:
         result[index] *= right_products
         right_products *= n
         index -= 1
-    
+
+    return result
+
+
+def review4(nums: List[int]) -> List[int]:
+    """
+    Anki 11-12-23
+    Used: Whiteboard, Debugger (2)
+    """
+    l_sums = []
+    sum = 1
+    for n in nums:
+        sum *= n
+        l_sums.append(sum)
+    l_sums = l_sums[:-1]
+
+    r_sums = []
+    sum = 1
+    for n in reversed(nums):
+        sum *= n
+        r_sums.append(sum)
+    r_sums = r_sums[:-1]
+
+    result = r_sums[::-1]
+    result.append(1)
+
+    i = 1
+    for s in l_sums:
+        result[i] *= s
+        i += 1
+
     return result
