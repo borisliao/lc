@@ -1,4 +1,5 @@
 from collections import defaultdict
+from typing import List
 
 
 def groupAnagrams(strs):
@@ -55,3 +56,19 @@ def review3(strs):
         else:
             groups[''.join(sorted(word))] = [word]
     return groups.values()
+
+
+def review4(strs: List[str]) -> List[List[str]]:
+    """
+    Anki 11-12-23
+    Time: 20 min
+    """
+    anagrams = defaultdict(list)
+
+    for s in strs:
+        hash = [0] * 26
+        for c in s:
+            hash[ord(c) - ord('a')] += 1
+        anagrams[tuple(hash)].append(s)
+
+    return anagrams.values()
