@@ -145,3 +145,25 @@ def review4(nums: List[int]) -> List[int]:
         i += 1
 
     return result
+
+
+def review5(nums: List[int]) -> List[int]:
+    """
+    Anki 11-12-23
+    Solution recalled from memory
+    """
+    result = []
+
+    l_sum = 1
+    for n in nums:
+        result.append(l_sum)
+        l_sum *= n
+
+    r_sum = 1
+    i = -1
+    for n in reversed(nums):
+        result[i] *= r_sum
+        r_sum *= n
+        i -= 1
+
+    return result
