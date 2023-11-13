@@ -2,7 +2,7 @@ import pytest
 import inspect
 import solution_128
 
-
+@pytest.mark.timeout(3)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_128, predicate=inspect.isfunction)])
 def test_example_1(f):
     nums = [100, 4, 200, 1, 3, 2]
@@ -10,7 +10,7 @@ def test_example_1(f):
 
     assert f(nums) == output
 
-
+@pytest.mark.timeout(3)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_128, predicate=inspect.isfunction)])
 def test_example_2(f):
     nums = [0, 3, 7, 2, 5, 8, 4, 6, 0, 1]
@@ -19,6 +19,7 @@ def test_example_2(f):
     assert f(nums) == output
 
 
+@pytest.mark.timeout(3)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_128, predicate=inspect.isfunction)])
 def test_example_3(f):
     nums = [1, 1, 1, 3, 3, 4, 3, 2, 4, 2]

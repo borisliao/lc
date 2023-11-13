@@ -1,25 +1,6 @@
 from collections import defaultdict
 from typing import List
 
-# Takes a long time, but works
-# def longestConsecutive(nums: List[int]) -> int:
-#     n = set(nums)
-
-#     count = 0
-#     for num in nums:
-#         if num-1 not in nums:
-#             search_value = num
-
-#             running_total = 0
-
-#             while search_value in n:
-#                 running_total += 1
-#                 if running_total > count:
-#                     count += 1
-#                 search_value += 1
-
-#     return count
-
 
 def online_solution_abdullayevakbar0101(nums: List[int]) -> int:
     """
@@ -101,3 +82,23 @@ def review1(nums: List[int]) -> int:
             leng = max(running_total, leng)
 
     return leng
+
+
+def review2(nums: List[int]) -> int:
+    """
+    Anki 11-12-23
+    Debug after running (1)
+    Time: 30 min
+    """
+    num_set = set(nums)
+
+    l = 0
+    for n in nums:
+        if n-1 not in num_set:  # check if number is start of the sequence
+            n_sequence_length = 0
+
+            while n + n_sequence_length in num_set:
+                n_sequence_length += 1
+            l = max(l, n_sequence_length)
+
+    return l
