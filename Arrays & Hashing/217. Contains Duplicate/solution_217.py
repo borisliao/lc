@@ -42,3 +42,17 @@ def review1(nums):
         else:
             nums_set.add(n)
     return False
+
+
+def review2(nums: List[int]) -> bool:
+    """
+    Anki 11-13-23
+    """
+    nums_set = set()
+
+    for n in nums:
+        if n in nums_set:
+            return True
+        nums_set.add(n)
+
+    return False
