@@ -51,7 +51,7 @@ def kthSmallest(root: Optional[TreeNode], k: int) -> int:
         while c:
             stack.append(c)
             c = c.left
-    
+
         c = stack.pop()
         k -= 1
         if k == 0:

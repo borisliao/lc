@@ -45,6 +45,6 @@ def test_example_2(f):
     """
     root = tn([5, 3, 6, 2, 4, None, None, 1])
     k = 3
-    output = False
+    output = 3
 
     assert f(root, k) == output
