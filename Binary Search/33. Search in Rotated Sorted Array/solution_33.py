@@ -22,3 +22,42 @@ def search(nums: List[int], target: int) -> bool:
                 l = m + 1
 
     return -1
+
+
+def review1(nums: List[int], target: int) -> bool:
+    """
+    Anki 11-13-23
+    Used: Solution on [Youtube Comment](https://www.youtube.com/channel/UCark0s3kcaj3T05U7iy1Z1w)
+    """
+    l = 0
+    r = len(nums) - 1
+
+    while l <= r:
+        mid = (l + r) // 2
+
+        if nums[mid] == target:
+            return mid
+
+        # left sorted portion
+        elif nums[mid] >= nums[l]:
+            if nums[l] <= target <= nums[mid]:
+                r = mid - 1
+            else:
+                l = mid + 1
+
+        # right sorted portion
+        else:
+            if nums[mid] <= target <= nums[r]:
+                l = mid + 1
+            else:
+                r = mid - 1
+
+    return -1
+
+
+def review2(nums: List[int], target: int) -> bool:
+    """
+    Review
+    Use 2 binary searches to find the pivot
+    """
+    pass
