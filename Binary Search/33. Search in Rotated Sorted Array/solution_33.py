@@ -116,3 +116,34 @@ def lc_TrentonO(nums: List[int], target: int) -> bool:
         nums, target, **{'lo' if target <= nums[-1] else 'hi': rotation})
 
     return idx if nums[idx] == target else -1
+
+
+def review3(nums: List[int], target: int) -> bool:
+    """
+    Anki 11-14-23
+    Used: Debugging (5), Review solution
+    """
+    l = 0
+    r = len(nums) - 1
+
+    while l <= r:
+        m = (r + l) // 2
+
+        if nums[m] == target:
+            return m
+
+        side = 'right' if nums[m] < nums[-1] else 'left'
+
+        if side == 'left':
+            if nums[l] <= target < nums[m]:
+                r = m - 1
+            else:
+                l = m + 1
+
+        if side == 'right':
+            if nums[m] < target <= nums[r]:
+                l = m + 1
+            else:
+                r = m - 1
+
+    return -1
