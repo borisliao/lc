@@ -1,3 +1,4 @@
+from bisect import bisect_left
 from typing import List
 
 
@@ -27,7 +28,7 @@ def search(nums: List[int], target: int) -> bool:
 def review1(nums: List[int], target: int) -> bool:
     """
     Anki 11-13-23
-    Used: Solution on [Youtube Comment](https://www.youtube.com/channel/UCark0s3kcaj3T05U7iy1Z1w)
+    Used: Solution on [Youtube Comment](https://www.youtube.com/watch?v=U8XENwh8Oy8&lc=UgzE25qbCIdDk9JtL0B4AaABAg)
     """
     l = 0
     r = len(nums) - 1
@@ -55,9 +56,63 @@ def review1(nums: List[int], target: int) -> bool:
     return -1
 
 
-def review2(nums: List[int], target: int) -> bool:
+# def review2(nums: List[int], target: int) -> bool:
+#     """
+#     Review 11-13-23
+#     Use 2 binary searches to find the pivot
+#     Used: Peek at previous solution, [youtube comment](https://www.youtube.com/watch?v=U8XENwh8Oy8&lc=UgwnptiTyyTTP8Irovt4AaABAg.9JU-7X6GVtm9aKxL_x_m5w)
+#     """
+#     l = 0
+#     r = len(nums) - 1
+
+#     while l <= r:
+#         m = (r - l) // 2
+
+#         if nums[m] < nums[0]:
+#             # pivot on the left
+#             l += 1
+#         else:
+#             # pivot on the right
+#             r -= 1
+
+#     l_pivot = nums[r]
+#     r_pivot = nums[l]
+
+#     if nums[0] <= target <= l_pivot:
+#         l = 0
+#         r = l_pivot
+#     else:
+#         l = r_pivot
+#         r = len(nums) - 1
+
+#     while l <= r:
+#         m = (r-l) // 2
+#         if nums[m] == target:
+#             return m
+
+#         if nums[m] > target:
+#             l += 1
+#         else:
+#             r -= 1
+
+#     return -1
+
+def lc_TrentonO(nums: List[int], target: int) -> bool:
     """
-    Review
-    Use 2 binary searches to find the pivot
+    # [Three Lines of Python](https://leetcode.com/problems/search-in-rotated-sorted-array/solutions/3879735/three-lines-of-python/)
+
+    If I were writing real code, then for the sake of clarity I would (at the very least) expand the second line into an if-else block. But it's still fun to solve in as few lines as possible.
+
+    # Complexity
+
+    - Time complexity: O(log(n))
+
+    - Space complexity: O(1) additional space.
+
+    [bisect docs](https://docs.python.org/3/library/bisect.html)
     """
-    pass
+    rotation = bisect_left(nums[:-1], True, key=lambda n: n < nums[-1])
+    idx = bisect_left(
+        nums, target, **{'lo' if target <= nums[-1] else 'hi': rotation})
+
+    return idx if nums[idx] == target else -1
