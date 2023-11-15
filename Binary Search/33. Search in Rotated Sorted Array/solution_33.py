@@ -2,7 +2,7 @@ from bisect import bisect_left
 from typing import List
 
 
-def search(nums: List[int], target: int) -> bool:
+def search(nums: List[int], target: int) -> int:
     l, r = 0, len(nums) - 1
 
     while l <= r:
@@ -25,7 +25,7 @@ def search(nums: List[int], target: int) -> bool:
     return -1
 
 
-def review1(nums: List[int], target: int) -> bool:
+def review1(nums: List[int], target: int) -> int:
     """
     Anki 11-13-23
     Used: Solution on [Youtube Comment](https://www.youtube.com/watch?v=U8XENwh8Oy8&lc=UgzE25qbCIdDk9JtL0B4AaABAg)
@@ -56,7 +56,7 @@ def review1(nums: List[int], target: int) -> bool:
     return -1
 
 
-# def review2(nums: List[int], target: int) -> bool:
+# def review2(nums: List[int], target: int) -> int:
 #     """
 #     Review 11-13-23
 #     Use 2 binary searches to find the pivot
@@ -97,7 +97,7 @@ def review1(nums: List[int], target: int) -> bool:
 
 #     return -1
 
-def lc_TrentonO(nums: List[int], target: int) -> bool:
+def lc_TrentonO(nums: List[int], target: int) -> int:
     """
     # [Three Lines of Python](https://leetcode.com/problems/search-in-rotated-sorted-array/solutions/3879735/three-lines-of-python/)
 
@@ -118,7 +118,7 @@ def lc_TrentonO(nums: List[int], target: int) -> bool:
     return idx if nums[idx] == target else -1
 
 
-def review3(nums: List[int], target: int) -> bool:
+def review3(nums: List[int], target: int) -> int:
     """
     Anki 11-14-23
     Used: Debugging (5), Review solution
@@ -141,6 +141,44 @@ def review3(nums: List[int], target: int) -> bool:
                 l = m + 1
 
         if side == 'right':
+            if nums[m] < target <= nums[r]:
+                l = m + 1
+            else:
+                r = m - 1
+
+    return -1
+
+
+def review4(nums: List[int], target: int) -> int:
+    """
+    Anki 11-14-23
+    Used: debugger (1)
+    Time: 26 min
+    """
+    l = 0
+    r = len(nums) - 1
+
+    while l <= r:
+        m = (l + r) // 2
+
+        if nums[m] == target:
+            return m
+
+        side = 'right' if nums[m] < nums[0] else 'left'  # debugger (1)
+
+        if side == 'left':
+            # everything on the left side is lower.
+            # we can safely check everything on the
+            # left side without hitting a pivot
+            if nums[l] <= target < nums[m]:
+                r = m - 1
+            else:
+                l = m + 1
+
+        if side == 'right':
+            # everything on the right side is higher.
+            # we can safely check everything on the
+            # right side without hitting a pivot
             if nums[m] < target <= nums[r]:
                 l = m + 1
             else:
