@@ -55,3 +55,26 @@ def review2(nums: List[int], k: int) -> List[int]:
         heapq.heappush(values, (f, n))
 
     return [n for f, n in heapq.nlargest(k, values, lambda x: x[0])]
+
+
+def review3(nums: List[int], k: int) -> List[int]:
+    """
+    Anki 12-14-23
+    Used: debugger (1)
+    Time: 29 min
+    """
+    nums_dict = defaultdict(lambda: 0)
+    for n in nums:
+        nums_dict[n] += 1
+
+    bucket = [[] for _ in range(len(nums) + 1)]  # debugger (1)
+    for number, frequency in nums_dict.items():
+        bucket[frequency].append(number)
+
+    i = -1
+    result = []
+    while len(result) < k:
+        if bucket[i]:
+            result.append(bucket[i].pop())
+        i -= 1
+    return result
