@@ -30,3 +30,12 @@ def test_lc_34(f):
     output = False
 
     assert f(s=s, t=t) == output
+
+
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_242, predicate=inspect.isfunction)])
+def test_lc_40(f):
+    s = "a"
+    t = "ab"
+    output = False
+
+    assert f(s=s, t=t) == output
