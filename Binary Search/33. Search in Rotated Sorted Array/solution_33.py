@@ -185,3 +185,35 @@ def review4(nums: List[int], target: int) -> int:
                 r = m - 1
 
     return -1
+
+
+def review5(nums: List[int], target: int) -> int:
+    """
+    Anki 11-14-23
+    Used: debugger (2), peek solution (1)
+    Time: 20 min
+    """
+    l = 0
+    r = len(nums) - 1  # debugger (1)
+
+    while l <= r:  # peek solution (1)
+        m = (l + r) // 2  # int overflow safe version is m = r + (l-r)//2;
+
+        if nums[m] == target:
+            return m
+
+        side = 'right' if nums[m] < nums[-1] else 'left'  # debugger (2)
+
+        if side == 'left':
+            if nums[l] <= target < nums[m]:
+                r = m - 1
+            else:
+                l = m + 1
+
+        if side == 'right':
+            if nums[m] < target <= nums[r]:
+                l = m + 1
+            else:
+                r = m - 1
+
+    return -1
