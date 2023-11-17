@@ -167,3 +167,26 @@ def review5(nums: List[int]) -> List[int]:
         i -= 1
 
     return result
+
+
+def review6(nums: List[int]) -> List[int]:
+    """
+    Anki 11-16-23
+    Used: debugger (1)
+    Time: 6m 10s
+    """
+    result = []
+
+    left = 1
+    for n in nums:
+        result.append(left)
+        left *= n
+
+    index = -1
+    right = 1
+    for n in reversed(nums):
+        result[index] *= right
+        right *= n
+        index -= 1  # debugger (1)
+
+    return result
