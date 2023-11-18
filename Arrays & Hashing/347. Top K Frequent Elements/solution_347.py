@@ -78,3 +78,26 @@ def review3(nums: List[int], k: int) -> List[int]:
             result.append(bucket[i].pop())
         i -= 1
     return result
+
+
+def review4(nums: List[int], k: int) -> List[int]:
+    """
+    Anki 11-17-23
+    Used: peak at solution (2), debugger (2)
+    Time: 30 min
+    """
+    count = defaultdict(lambda: 0)
+    for n in nums:
+        count[n] += 1  # peak at solution (2)
+
+    freq = [[] for _ in range(len(nums) + 1)]
+    for n, f in count.items():
+        freq[f].append(n)
+
+    result = []
+    i = -1
+    while len(result) < k:  # debugger (1)
+        if freq[i]:  # peak at solution (1)
+            result.append(freq[i].pop())  # debugger (2)
+        i -= 1
+    return result
