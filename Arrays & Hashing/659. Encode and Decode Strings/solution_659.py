@@ -138,3 +138,65 @@ def review1(func_name):
         return encode
     if func_name == 'decode':
         return decode
+
+
+def review2(func_name):
+    """
+    Anki 11-18-23
+    Time: ~20 min
+    """
+    def encode(strs: List[str]) -> str:
+        result = ''
+        for s in strs:
+            result += str(len(s)) + '#' + s
+        return result
+
+    def decode(str: str) -> List[str]:
+        result = []
+        i = 0
+        start = 0
+        while i < len(str):
+            if str[i] == '#':
+                amount = int(str[start:i])
+                word_beginning = i + 1
+                word_end = word_beginning + amount
+                result.append(str[word_beginning: word_end])
+                i = word_end
+                start = word_end
+            else:
+                i += 1
+        return result
+
+    if func_name == 'encode':
+        return encode
+    if func_name == 'decode':
+        return decode
+
+
+def neetcode_solution(func_name):
+    """
+    https://www.youtube.com/watch?v=B1k_sxOSgv8
+    """
+    def encode(strs):
+        return ''.join(map(lambda s: f"{len(s)}#{s}", strs))
+
+    def decode(s):
+        res = []
+        i = 0
+
+        while i < len(s):
+            j = i
+            while s[j] != '#':
+                j += 1
+            length = int(s[i:j])
+            i = j + 1
+            j = i + length
+            res.append(s[i:j])
+            i = j
+
+        return res
+
+    if func_name == 'encode':
+        return encode
+    if func_name == 'decode':
+        return decode
