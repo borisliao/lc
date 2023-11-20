@@ -217,3 +217,35 @@ def review5(nums: List[int], target: int) -> int:
                 r = m - 1
 
     return -1
+
+
+def review6(nums: List[int], target: int) -> int:
+    """
+    Anki 11-19-23
+    Used: debugger (1)
+    Time: 6m46s
+    """
+    l = 0
+    r = len(nums) - 1
+
+    while l <= r:  # debugger (1)
+        m = (l + r) // 2
+
+        if nums[m] == target:
+            return m
+
+        side = 'right' if nums[m] < nums[-1] else 'left'  # ex. 3 4 5 1 2
+
+        if side == 'left':
+            if nums[l] <= target < nums[m]:
+                r = m - 1
+            else:
+                l = m + 1
+
+        if side == 'right':
+            if nums[m] < target <= nums[r]:
+                l = m + 1
+            else:
+                r = m - 1
+
+    return -1
