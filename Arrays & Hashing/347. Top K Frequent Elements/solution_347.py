@@ -60,7 +60,7 @@ def review2(nums: List[int], k: int) -> List[int]:
 def review3(nums: List[int], k: int) -> List[int]:
     """
     Anki 12-14-23
-    Used: debugger (1)
+    Used: debugger (2)
     Time: 29 min
     """
     nums_dict = defaultdict(lambda: 0)
@@ -76,14 +76,15 @@ def review3(nums: List[int], k: int) -> List[int]:
     while len(result) < k:
         if bucket[i]:
             result.append(bucket[i].pop())
-        i -= 1
+        else:  # debugger (2)
+            i -= 1
     return result
 
 
 def review4(nums: List[int], k: int) -> List[int]:
     """
     Anki 11-17-23
-    Used: peak at solution (2), debugger (2)
+    Used: peak at solution (2), debugger (3)
     Time: 30 min
     """
     count = defaultdict(lambda: 0)
@@ -99,5 +100,31 @@ def review4(nums: List[int], k: int) -> List[int]:
     while len(result) < k:  # debugger (1)
         if freq[i]:  # peak at solution (1)
             result.append(freq[i].pop())  # debugger (2)
-        i -= 1
+        else:  # debugger (3)
+            i -= 1
+    return result
+
+
+def review5(nums: List[int], k: int) -> List[int]:
+    """
+    Anki 11-20-23
+    Used: debugger (1)
+    Time: 20m15s, whiteboarded
+    """
+    freq = defaultdict(lambda: 0)
+    for n in nums:
+        freq[n] += 1
+
+    freq_count = [[] for _ in range(len(nums) + 1)]  # debugger (1)
+    for n, count in freq.items():
+        freq_count[count].append(n)
+
+    i = -1
+    result = []
+    while len(result) < k:
+        if freq_count[i]:
+            result.append(freq_count[i].pop())
+        else:
+            i -= 1
+
     return result

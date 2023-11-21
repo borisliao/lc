@@ -1,6 +1,10 @@
+import unittest
 import pytest
 import inspect
 import solution_347
+
+import unittest
+case = unittest.TestCase()
 
 
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_347, predicate=inspect.isfunction)])
@@ -9,7 +13,7 @@ def test_example_1(f):
     k = 2
     output = [1, 2]
 
-    assert f(nums, k) == output
+    case.assertCountEqual(f(nums, k), output)
 
 
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_347, predicate=inspect.isfunction)])
@@ -18,4 +22,13 @@ def test_example_2(f):
     k = 1
     output = [1]
 
-    assert f(nums, k) == output
+    case.assertCountEqual(f(nums, k), output)
+
+
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_347, predicate=inspect.isfunction)])
+def test_example_3(f):
+    nums = [1, 2]
+    k = 2
+    output = [1, 2]
+
+    case.assertCountEqual(f(nums, k), output)
