@@ -40,3 +40,29 @@ def youtubeCommentOptimization(nums: List[int]) -> int:
             l = m + 1
 
     return lowest
+
+
+def review1(nums: List[int]) -> int:
+    """
+    Anki 11-20-23
+    Used: debugger (2) (for edge cases)
+    Time: 37m02s, whiteboard
+    """
+    l = 0
+    r = len(nums) - 1
+
+    if len(nums) == 1:  # debugger (1)
+        return nums[0]
+
+    while l <= r:
+        m = (l + r) // 2
+
+        side = 'right' if nums[m] <= nums[-1] else 'left'  # debugger (2)
+
+        if side is 'left':
+            l = m + 1
+
+        if side is 'right':
+            r = m - 1
+
+    return nums[r + 1]
