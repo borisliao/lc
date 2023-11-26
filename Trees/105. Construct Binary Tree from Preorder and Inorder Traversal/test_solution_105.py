@@ -31,8 +31,8 @@ def test_example_1(f):
     """
     ![https://assets.leetcode.com/uploads/2021/02/19/tree.jpg](https://assets.leetcode.com/uploads/2021/02/19/tree.jpg)
     """
-    preorder = tn([3, 9, 20, 15, 7])
-    inorder = tn([9, 3, 15, 20, 7])
+    preorder = [3, 9, 20, 15, 7]
+    inorder = [9, 3, 15, 20, 7]
     output = tn([3, 9, 20, None, None, 15, 7])
 
     assert f(preorder, inorder) == output
@@ -40,8 +40,8 @@ def test_example_1(f):
 
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_105, predicate=inspect.isfunction)])
 def test_example_2(f):
-    preorder = tn([-1])
-    inorder = tn([-1])
+    preorder = [-1]
+    inorder = [-1]
     output = tn([-1])
 
     assert f(preorder, inorder) == output
