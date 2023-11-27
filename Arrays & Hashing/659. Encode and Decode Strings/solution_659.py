@@ -200,3 +200,35 @@ def neetcode_solution(func_name):
         return encode
     if func_name == 'decode':
         return decode
+
+
+def review3(func_name):
+    """
+    Review 11-27-23
+    Used: debugger (1)
+    """
+    def encode(strs: List[str]) -> str:
+        result = ''
+        for s in strs:
+            result += str(len(s)) + '#' + s  # 1d
+
+        return result
+
+    def decode(str: str) -> List[str]:
+        result = []
+        i = 0
+        while i < len(str):
+            num = ''
+            while str[i] != '#':
+                num += str[i]
+                i += 1
+
+            result.append(str[i + 1: i + 1 + int(num)])
+            i += 1 + int(num)
+
+        return result
+
+    if func_name == 'encode':
+        return encode
+    if func_name == 'decode':
+        return decode
