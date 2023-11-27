@@ -65,3 +65,41 @@ def review1(matrix: List[List[int]], target: int) -> bool:
             r -= 1
 
     return False
+
+
+def review2(matrix: List[List[int]], target: int) -> bool:
+    """
+    Anki 11-27-23
+    Time: 27:28
+    """
+    l = 0
+    r = len(matrix) - 1
+    target_row = None
+    while l <= r:
+        m = (r + l) // 2
+        if matrix[m][0] <= target <= matrix[m][-1]:
+            target_row = m
+            break
+
+        if target > matrix[m][-1]:
+            l += 1
+        else:
+            r -= 1
+
+    if target_row == None:
+        return False
+
+    l = 0
+    r = len(matrix[target_row]) - 1
+
+    while l <= r:
+        m = (r+l) // 2
+        if matrix[target_row][m] == target:
+            return True
+
+        if matrix[target_row][m] < target:
+            l += 1
+        else:
+            r -= 1
+
+    return False
