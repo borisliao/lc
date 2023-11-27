@@ -190,3 +190,26 @@ def review6(nums: List[int]) -> List[int]:
         index -= 1  # debugger (1)
 
     return result
+
+
+def review7(nums: List[int]) -> List[int]:
+    """
+    Anki 11-16-23
+    Used: debugger (1)
+    Time: 3:47
+    """
+    result = []
+
+    left_product = 1
+    for n in nums:
+        result.append(left_product)
+        left_product *= n
+
+    right_product = 1
+    i = -1
+    for n in reversed(nums):
+        result[i] *= right_product
+        right_product *= n  # 1d
+        i -= 1
+
+    return result
