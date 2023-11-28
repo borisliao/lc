@@ -56,3 +56,25 @@ def search(nums: List[int], target: int) -> int:
             return m
 
     return -1
+
+
+def review1(nums: List[int], target: int) -> int:
+    """
+    Review 11-27-23
+    Time: 6:05
+    """
+    l = 0
+    r = len(nums) - 1
+
+    while l <= r:
+        m = (l + r) // 2
+
+        if target == nums[m]:
+            return m
+
+        if target < nums[m]:
+            r -= 1
+        else:
+            l += 1
+
+    return -1
