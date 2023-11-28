@@ -108,6 +108,7 @@ def review1(board: List[List[str]]) -> bool:
 
     return True
 
+
 def review2(board: List[List[str]]) -> bool:
     """Anki Reviewed 10/29/23"""
     row = defaultdict(set)
@@ -116,13 +117,41 @@ def review2(board: List[List[str]]) -> bool:
 
     for i, r in enumerate(board):
         for j, c in enumerate(r):
-            if c == ".": continue
-            if c in row[i]: return False
-            if c in col[j]: return False
-            if c in box[(i//3,j//3)]: return False
+            if c == ".":
+                continue
+            if c in row[i]:
+                return False
+            if c in col[j]:
+                return False
+            if c in box[(i//3, j//3)]:
+                return False
 
             row[i].add(c)
             col[j].add(c)
-            box[(i//3,j//3)].add(c)
-    
+            box[(i//3, j//3)].add(c)
+
+    return True
+
+
+def review3(board: List[List[str]]) -> bool:
+    """
+    Anki 11-27-23
+    Used: debugger (1)
+    Time: 28:55
+    """
+
+    row = [set() for _ in range(9)]
+    col = [set() for _ in range(9)]
+    sqr = [[set() for _ in range(3)] for _ in range(3)]
+
+    for i in range(9):
+        for j in range(9):
+            if board[i][j] == '.':  # 1d
+                continue
+            if board[i][j] in row[i] or board[i][j] in col[j] or board[i][j] in sqr[i//3][j//3]:
+                return False
+            row[i].add(board[i][j])
+            col[j].add(board[i][j])
+            sqr[i//3][j//3].add(board[i][j])
+
     return True
