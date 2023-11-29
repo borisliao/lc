@@ -102,3 +102,23 @@ def review2(nums: List[int]) -> int:
             l = max(l, n_sequence_length)
 
     return l
+
+
+def review3(nums: List[int]) -> int:
+    """
+    Anki 11-28-23
+    Time: 13:49
+    """
+    nums = set(nums)
+
+    longest_sequence = 0
+    for n in nums:
+        if n-1 not in nums:
+            current_sequence = 0
+            c = n
+            while c in nums:
+                current_sequence += 1
+                longest_sequence = max(longest_sequence, current_sequence)
+                c += 1
+
+    return longest_sequence
