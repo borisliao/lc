@@ -45,6 +45,16 @@ def test_lc_4(f):
 
 @pytest.mark.timeout(3)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_875, predicate=inspect.isfunction)])
+def test_lc_18(f):
+    piles = [312884470]
+    h = 968709470
+    output = 1
+
+    assert f(piles, h) == output
+
+
+@pytest.mark.timeout(3)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_875, predicate=inspect.isfunction)])
 def test_lc_107(f):
     piles = [80553579,
              933088004,

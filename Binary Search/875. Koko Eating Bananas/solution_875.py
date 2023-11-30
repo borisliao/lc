@@ -55,3 +55,25 @@ def review1(piles: List[int], h: int) -> int:
             r = m - 1
 
     return result
+
+
+def review2(piles: List[int], h: int) -> int:
+    """
+    Anki 11-30-23
+    Used: debugger (2)
+    Time: 20:43
+    """
+    l = 1  # d1 (needs to be 0, not min(piles) because we are trying to find the minimum k, not just a valid k pile), d2 (needs to be 1 because 0 will always fail)
+    r = max(piles)
+    lowest_k = r
+
+    while l <= r:
+        k = (l + r) // 2
+        hours = sum([math.ceil(p/k) for p in piles])
+        if hours > h:
+            l = k + 1
+        else:
+            lowest_k = min(lowest_k, k)
+            r = k - 1
+
+    return lowest_k
