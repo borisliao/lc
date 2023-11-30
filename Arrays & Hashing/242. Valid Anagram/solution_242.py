@@ -80,3 +80,22 @@ def review2(s: str, t: str) -> bool:
             del s_set[c]
 
     return True if len(s_set) == 0 else False
+
+
+def review3(s: str, t: str) -> bool:
+    """
+    Anki 11-29-23
+    Time: 19:59
+    """
+    s_count = defaultdict(lambda: 0)
+
+    for c in s:
+        s_count[c] += 1
+
+    for c in t:
+        if s_count[c] == 1:
+            del s_count[c]
+        else:
+            s_count[c] -= 1
+
+    return True if len(s_count) == 0 else False
