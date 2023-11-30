@@ -33,3 +33,25 @@ def neetcode(piles: List[int], h: int) -> int:
             l = k + 1
 
     return res
+
+
+def review1(piles: List[int], h: int) -> int:
+    """
+    Anki 11-29-23
+    Used: Hint (binary search section, optimal solution o(nlogn)), solution
+    Time: 1:03:01
+    """
+    l = 1
+    r = max(piles)
+    result = r
+
+    while l <= r:
+        m = (l + r) // 2
+        hours_to_finish = sum([math.ceil(p/m) for p in piles])
+        if hours_to_finish > h:
+            l = m + 1
+        else:
+            result = min(result, m)
+            r = m - 1
+
+    return result
