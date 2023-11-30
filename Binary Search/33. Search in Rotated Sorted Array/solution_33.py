@@ -249,3 +249,41 @@ def review6(nums: List[int], target: int) -> int:
                 r = m - 1
 
     return -1
+
+
+def review7(nums: List[int], target: int) -> int:
+    """
+    Anki 11-29-23
+    Used: debugger (1)
+    Time: 9:32
+    """
+    l = 0
+    r = len(nums) - 1  # 1d
+
+    while l <= r:
+        m = (l + r) // 2
+
+        if nums[m] == target:
+            return m
+
+        side = 'right' if nums[m] < nums[-1] else 'left'
+
+        if side == 'right':
+            # everything on the right side is higher.
+            # we can safely check everything on the
+            # right side without hitting a pivot
+            if nums[m] < target <= nums[-1]:
+                l = m + 1
+            else:
+                r = m - 1
+
+        if side == 'left':
+            # everything on the left side is lower.
+            # we can safely check everything on the
+            # left side without hitting a pivot
+            if nums[0] <= target < nums[m]:
+                r = m - 1
+            else:
+                l = m + 1
+
+    return -1
