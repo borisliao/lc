@@ -1,6 +1,6 @@
 import heapq
 from typing import List
-from collections import defaultdict
+from collections import Counter, defaultdict
 
 
 def topKFrequent(nums: List[int], k: int) -> List[int]:
@@ -59,7 +59,7 @@ def review2(nums: List[int], k: int) -> List[int]:
 
 def review3(nums: List[int], k: int) -> List[int]:
     """
-    Anki 12-14-23
+    Anki 11-14-23
     Used: debugger (2)
     Time: 29 min
     """
@@ -124,6 +124,31 @@ def review5(nums: List[int], k: int) -> List[int]:
     while len(result) < k:
         if freq_count[i]:
             result.append(freq_count[i].pop())
+        else:
+            i -= 1
+
+    return result
+
+
+def review6(nums: List[int], k: int) -> List[int]:
+    """
+    Anki 11-30-23
+    Used: debugger (1), solution (1)
+    Time: 14:15
+    """
+    number_counts = Counter(nums)
+
+    frequency = [[] for _ in range(len(nums) + 1)]
+
+    for number, count in number_counts.items():
+        frequency[count].append(number)
+
+    result = []
+    i = -1
+    while len(result) < k:
+        if frequency[i]:  # d1
+            # s2 (frequency[i].pop not frequency.pop)
+            result.append(frequency[i].pop())
         else:
             i -= 1
 
