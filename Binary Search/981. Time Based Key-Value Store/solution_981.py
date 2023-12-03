@@ -190,3 +190,36 @@ def review1():
             return result
 
     return TimeMap()
+
+
+def review2():
+    """
+    Anki 12-3-23
+    Used: Debugger (1) 
+    Time: 18:00
+    """
+    class TimeMap:
+        def __init__(self):
+            self.values_of = defaultdict(lambda: [])
+
+        def set(self, key: str, value: str, timestamp: int) -> None:
+            self.values_of[key].append([timestamp, value])
+
+        def get(self, key: str, timestamp: int) -> str:
+            key_values = self.values_of[key]
+            result = ""
+
+            l = 0
+            r = len(key_values) - 1
+
+            while l <= r:
+                m = (l + r) // 2
+                if timestamp >= key_values[m][0]:  # d1
+                    result = key_values[m][1]
+                    l = m + 1
+                else:
+                    r = m - 1
+
+            return result
+
+    return TimeMap()
