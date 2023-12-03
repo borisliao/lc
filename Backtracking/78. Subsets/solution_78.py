@@ -44,3 +44,28 @@ def review1(nums: List[int]) -> List[List[int]]:
 
     dfs(0)
     return result
+
+
+def review2(nums: List[int]) -> List[List[int]]:
+    """
+    Anki 1-3-23
+    Used: [Subsets - Backtracking - Leetcode 78](https://www.youtube.com/watch?v=REOH22Xwdkk), solution (2)
+    Time: 8:48
+    """
+    result = []
+    subset = []
+
+    def dfs(i):
+        if i >= len(nums):
+            result.append(subset.copy())  # s2
+            return
+
+        subset.append(nums[i])
+        dfs(i+1)
+
+        # traverse in right part of decision tree
+        subset.pop()
+        dfs(i+1)
+
+    dfs(0)  # s1
+    return result
