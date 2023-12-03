@@ -101,6 +101,9 @@
 
 #     return TimeMap()
 
+from collections import defaultdict
+
+
 def neetCode():
     """
     https://www.youtube.com/watch?v=fu2cD_6E8Hw
@@ -154,3 +157,36 @@ def neetCode():
 #             return res
 
 #     return TimeMap()
+
+def review1():
+    """
+    Anki 12-3-23
+    Used: Peak at solution (2)
+    Time: 43:12
+    """
+    class TimeMap:
+        def __init__(self):
+            self.keyStore = defaultdict(lambda: [])  # s1
+
+        def set(self, key: str, value: str, timestamp: int) -> None:
+            self.keyStore[key].append([timestamp, value])
+
+        def get(self, key: str, timestamp: int) -> str:
+            values = self.keyStore[key]
+            result = ""  # s3
+
+            l = 0
+            r = len(values) - 1
+
+            while l <= r:
+                m = (l + r) // 2
+
+                if values[m][0] <= timestamp:
+                    result = values[m][1]  # s2, s4
+                    l = m + 1  # s3
+                else:
+                    r = m - 1  # s3
+
+            return result
+
+    return TimeMap()
