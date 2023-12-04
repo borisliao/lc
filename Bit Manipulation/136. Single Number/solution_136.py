@@ -1,3 +1,4 @@
+from collections import Counter, defaultdict
 from typing import List
 
 
@@ -62,3 +63,47 @@ def singleNumber(nums: List[int]) -> int:
         ans ^= num
 
     return ans
+
+
+def review1(nums: List[int]) -> int:
+    """
+    Anki 12-4-23
+    Used: previous solution
+    Time: 10m
+    """
+    ans = 0
+    for n in nums:
+        ans ^= n
+
+    return ans
+
+
+def review2(nums: List[int]) -> int:
+    """
+    Anki 12-4-23
+    Does not use constant space
+    Time: 1 min
+    """
+    n_counter = Counter(nums)
+
+    for n, i in n_counter.items():
+        if i == 1:
+            return n
+
+
+def review3(nums: List[int]) -> int:
+    """
+    Anki 12-4-23
+    Does not use constant space
+    Time: 1 min
+    """
+    n_count = defaultdict(lambda: 0)
+
+    for n in nums:
+        n_count[n] += 1
+        if n_count[n] == 2:
+            del (n_count[n])
+
+    for n, i in n_count.items():
+        if i == 1:
+            return n
