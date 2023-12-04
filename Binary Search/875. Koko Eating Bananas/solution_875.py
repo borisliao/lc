@@ -77,3 +77,29 @@ def review2(piles: List[int], h: int) -> int:
             r = k - 1
 
     return lowest_k
+
+
+def review3(piles: List[int], h: int) -> int:
+    """
+    Anki 12-4-23
+    Time: 16:36
+    """
+    l = 1
+    r = max(piles)
+
+    result = None
+
+    while l <= r:
+        k = (l+r)//2
+
+        hours = 0
+        for p in piles:
+            hours += math.ceil(p/k)
+
+        if hours <= h:
+            result = k
+            r = k - 1
+        else:
+            l = k + 1
+
+    return result
