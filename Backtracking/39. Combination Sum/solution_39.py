@@ -44,3 +44,27 @@ def review1(candidates: List[int], target: int) -> List[List[int]]:
             combination.pop()  # d6
 
     return result
+
+
+def review2(candidates: List[int], target: int) -> List[List[int]]:
+    """
+    12-4-23
+    Used: solution (1), [Combination Sum - Backtracking - Leetcode 39 - Python](https://www.youtube.com/watch?v=GBKI9VSKdGg)
+    """
+    result = []
+    current = []
+
+    def dfs(i):
+        if sum(current) == target:
+            result.append(current.copy())
+            return
+        if sum(current) > target or i >= len(candidates):  # s1
+            return
+
+        current.append(candidates[i])
+        dfs(i)
+        current.pop()
+        dfs(i+1)
+
+    dfs(0)
+    return result
