@@ -1,3 +1,4 @@
+from collections import defaultdict
 from typing import List
 
 
@@ -54,6 +55,7 @@ def review1(nums: List[int], target: int) -> List[int]:
         else:
             history[n] = i
 
+
 def review2(nums: List[int], target: int) -> List[int]:
     """Anki Review 10/27/23"""
 
@@ -68,3 +70,22 @@ def review2(nums: List[int], target: int) -> List[int]:
             return [previous_nums[complement], i]
 
         previous_nums[n] = i
+
+
+def review3(nums: List[int], target: int) -> List[int]:
+    """
+    Anki 12-3-23
+    Time: 21:27
+    """
+    nums_dict = defaultdict(lambda: [])
+
+    for i, n in enumerate(nums):
+        nums_dict[n].append(i)
+
+    for i, n in enumerate(nums):
+        complement = target - n
+
+        if complement in nums_dict:
+            for c_index in nums_dict[complement]:
+                if c_index != i:
+                    return [i, c_index]
