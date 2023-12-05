@@ -22,7 +22,7 @@ def permute(nums: list[int]) -> list[list[int]]:
     return result
 
 
-def neetcode(self, nums: list[int]) -> list[list[int]]:
+def neetcode(nums: list[int]) -> list[list[int]]:
     """[Backtracking: Permutations - Leetcode 46 - Python](https://www.youtube.com/watch?v=s7AvT7cGdSo)"""
     res = []
 
@@ -32,7 +32,7 @@ def neetcode(self, nums: list[int]) -> list[list[int]]:
 
     for i in range(len(nums)):
         n = nums.pop(0)
-        perms = self.permute(nums)
+        perms = neetcode(nums)
 
         for perm in perms:
             perm.append(n)
