@@ -43,3 +43,29 @@ def neetcode_2(n: int) -> int:
         n &= n - 1  # n & (n-1)
         res += 1
     return res
+
+
+def review2(n: int) -> int:
+    """
+    Anki 12-5-23
+    Time: 2 min
+    """
+    count = 0
+    while n:
+        n = n & (n - 1)
+        count += 1
+
+    return count
+
+
+def review3(n: int) -> int:
+    """
+    Anki 12-5-23
+    Time: 2 min
+    """
+    count = 0
+    while n:
+        count += n & 1
+        n = n >> 1
+
+    return count
