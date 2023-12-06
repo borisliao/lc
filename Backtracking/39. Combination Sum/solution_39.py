@@ -68,3 +68,28 @@ def review2(candidates: List[int], target: int) -> List[List[int]]:
 
     dfs(0)
     return result
+
+
+def review3(candidates: List[int], target: int) -> List[List[int]]:
+    """
+    Anki 12-4-23
+    Used: debugger (1)
+    Time: 14:06
+    """
+    result = []
+    combination = []
+
+    def dfs(i):
+        if sum(combination) == target:
+            result.append(combination.copy())
+            return
+        if sum(combination) > target or i > len(candidates) - 1:  # d1 forgot i > len(candidates) - 1
+            return
+
+        combination.append(candidates[i])
+        dfs(i)
+        combination.pop()
+        dfs(i+1)
+
+    dfs(0)
+    return result
