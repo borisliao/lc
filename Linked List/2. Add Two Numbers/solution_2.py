@@ -95,7 +95,7 @@ def addTwoNumbers(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[Li
 
 def review1(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
     """
-    Anki 2-6-23
+    Anki 12-6-23
     Used: Debugger (5)
     Time: 15:02
     Against the spirit of the problem, solved using string manipulation
@@ -119,3 +119,31 @@ def review1(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode
         result_node = result_node.next  # d4
 
     return result_start.next
+
+
+def review2(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+    """
+    Anki 12-6-23
+    Time: 34 min
+    Used: debugger (5)
+    """
+
+    node = ListNode()
+    result = node
+
+    carry = 0
+
+    while l1 != None or l2 != None or carry:
+        v1 = l1.val if l1 and l1.val != None else 0  # d2 "l1 and"
+        v2 = l2.val if l2 and l2.val != None else 0  # d2 "l2 and"
+        l1 = l1.next if l1 else None  # d1, d3
+        l2 = l2.next if l2 else None  # d1, d3, d4 used l1 instead of l2
+
+        sum = v1 + v2
+        value = (sum + carry) % 10  # d5 (sum + carry)
+        carry = (sum + carry) // 10  # d5 (sum + carry)
+
+        node.next = ListNode(val=value)
+        node = node.next
+
+    return result.next

@@ -11,6 +11,7 @@ def ln(list):
         return None
 
 
+@pytest.mark.timeout(2)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_2, predicate=inspect.isfunction)])
 def test_example_1(f):
 
@@ -21,6 +22,7 @@ def test_example_1(f):
     assert str(f(l1, l2)) == str(output)
 
 
+@pytest.mark.timeout(2)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_2, predicate=inspect.isfunction)])
 def test_example_2(f):
     l1 = ln([0])
@@ -30,6 +32,7 @@ def test_example_2(f):
     assert str(f(l1, l2)) == str(output)
 
 
+@pytest.mark.timeout(2)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_2, predicate=inspect.isfunction)])
 def test_example_3(f):
     l1 = ln([9, 9, 9, 9, 9, 9, 9])
