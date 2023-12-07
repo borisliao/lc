@@ -45,7 +45,6 @@ def test_lc_23(f):
                   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
     target = 27
-    output = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-               1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
+    output = []
 
     assert same_elements(f(candidates, target), output)
