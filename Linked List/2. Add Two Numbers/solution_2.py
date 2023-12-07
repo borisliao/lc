@@ -91,3 +91,31 @@ def addTwoNumbers(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[Li
         result = result.next
 
     return head.next
+
+
+def review1(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+    """
+    Anki 2-6-23
+    Used: Debugger (5)
+    Time: 15:02
+    Against the spirit of the problem, solved using string manipulation
+    """
+    l1_num = ''
+    while l1 and l1.val != None:  # d1
+        l1_num += str(l1.val)
+        l1 = l1.next
+
+    l2_num = ''
+    while l2 and l2.val != None:  # d1, d2
+        l2_num += str(l2.val)  # d3
+        l2 = l2.next
+
+    result = str(int(l1_num[::-1]) + int(l2_num[::-1]))[::-1]  # d4
+
+    result_node = ListNode()
+    result_start = result_node
+    for r in result:
+        result_node.next = ListNode(val=int(r))  # d4, # d5
+        result_node = result_node.next  # d4
+
+    return result_start.next
