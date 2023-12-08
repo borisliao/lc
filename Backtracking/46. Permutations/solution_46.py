@@ -39,3 +39,31 @@ def neetcode(nums: list[int]) -> list[list[int]]:
         res.extend(perms)
         nums.append(n)
     return res
+
+
+def review1(nums: list[int]) -> list[list[int]]:
+    """
+    Anki 12-8-23
+    Time: 35:31
+    Used: debugger (3)
+    """
+    result = []
+    subset = []
+
+    def dfs(choices: list):
+        if len(subset) == len(nums):
+            result.append(subset.copy())
+            return
+
+        if not choices:  # d2
+            return
+
+        for c in choices:  # d1
+            subset.append(c)
+            new_choice = choices.copy()  # d3
+            new_choice.remove(c)  # d3
+            dfs(new_choice)  # d1, d3
+            subset.pop()
+
+    dfs(nums)
+    return result
