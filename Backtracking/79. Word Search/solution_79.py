@@ -1,0 +1,78 @@
+# def exist(board: list[list[str]], word: str) -> bool:
+#     w = ['']
+#     visited = set()
+
+#     def dfs(i, j):
+#         w[0] += board[i][j]
+#         visited.add((i, j))  # d4
+
+#         if len(w[0]) > len(word) or word[len(w[0]) - 1] != w[0][len(w[0]) - 1] or (i, j) in visited:  # d2, d3, d4, d5
+#             w[0] = w[0][:-1]
+#             visited.remove((i, j))  # d5
+#             return False
+
+#         if w[0] == word:
+#             return True
+
+#         if i - 1 > 0:
+#             if dfs(i - 1, j):
+#                 return True
+#         if i + 1 < len(board) - 1:
+#             if dfs(i + 1, j):
+#                 return True
+#         if j - 1 < 0:
+#             if dfs(i, j - 1):
+#                 return True
+#         if j + 1 < len(board[i]) - 1:
+#             if dfs(i, j + 1):
+#                 return True
+
+#     for i in range(len(board)):  # d1
+#         for j in range(len(board[i])):  # d1
+#             if dfs(i, j):
+#                 return True
+
+#     return False
+
+from collections import Counter, defaultdict
+
+
+def neetcode(board: list[list[str]], word: str) -> bool:
+    """
+    https://www.youtube.com/watch?v=pfiQ_PS1g8E
+    O(n * m * 4^n)
+    """
+    ROWS, COLS = len(board), len(board[0])
+    path = set()
+
+    def dfs(r, c, i):
+        if i == len(word):
+            return True
+        if (
+            min(r, c) < 0
+            or r >= ROWS
+            or c >= COLS
+            or word[i] != board[r][c]
+            or (r, c) in path
+        ):
+            return False
+        path.add((r, c))
+        res = (
+            dfs(r + 1, c, i + 1)
+            or dfs(r - 1, c, i + 1)
+            or dfs(r, c + 1, i + 1)
+            or dfs(r, c - 1, i + 1)
+        )
+        path.remove((r, c))
+        return res
+
+    # To prevent TLE,reverse the word if frequency of the first letter is more than the last letter's
+    count = defaultdict(int, sum(map(Counter, board), Counter()))
+    if count[word[0]] > count[word[-1]]:
+        word = word[::-1]
+
+    for r in range(ROWS):
+        for c in range(COLS):
+            if dfs(r, c, 0):
+                return True
+    return False
