@@ -68,6 +68,7 @@ def neetcode(board: list[list[str]], word: str) -> bool:
 
     # To prevent TLE,reverse the word if frequency of the first letter is more than the last letter's
     count = defaultdict(int, sum(map(Counter, board), Counter()))
+
     if count[word[0]] > count[word[-1]]:
         word = word[::-1]
 
@@ -76,3 +77,38 @@ def neetcode(board: list[list[str]], word: str) -> bool:
             if dfs(r, c, 0):
                 return True
     return False
+
+
+def review1(board: list[list[str]], word: str) -> bool:
+    """
+    Anki 12-8-23
+    Time: 34:56
+    Used: debugger (3), solution (1)
+    """
+    visited = set()
+
+    def dfs(r, c, i):
+        if (i >= len(word) or
+                r < 0 or r >= len(board) or
+                c < 0 or c >= len(board[r]) or
+                word[i] != board[r][c] or
+                (r, c) in visited):
+            return False
+
+        if i == len(word) - 1:  # s2
+            return True
+
+        visited.add((r, c))
+        result = (dfs(r-1, c, i+1) or
+                  dfs(r+1, c, i+1) or
+                  dfs(r, c-1, i+1) or
+                  dfs(r, c+1, i+1))
+        visited.remove((r, c))  # d1
+        return result
+
+    for r in range(len(board)):  # d3
+        for c in range(len(board[r])):  # d3
+            if dfs(r, c, 0):  # d3, d4
+                return True  # d3
+
+    return False  # d3
