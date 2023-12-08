@@ -102,3 +102,30 @@ def review2(candidates: list[int], target: int) -> list[list[int]]:
 
     dfs(0)
     return result
+
+
+def review3(candidates: list[int], target: int) -> list[list[int]]:
+    """
+    12-7-23
+    Uses passed param and copy macro
+    """
+    candidates.sort()
+    result = []
+
+    def dfs(i: int, combination: list):
+        if sum(combination) == target:
+            result.append(combination[::])
+            return
+
+        if i > len(candidates) - 1 or sum(combination) > target:
+            return
+
+        combination.append(candidates[i])
+        dfs(i+1, combination)
+        combination.pop()
+        while i + 1 < len(candidates) and candidates[i] == candidates[i + 1]:
+            i += 1
+        dfs(i+1, combination)
+
+    dfs(0, [])
+    return result
