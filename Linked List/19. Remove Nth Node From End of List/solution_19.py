@@ -74,3 +74,24 @@ def two_pointers(head: Optional[ListNode], n: int) -> Optional[ListNode]:
     l.next = l.next.next
 
     return dummy.next
+
+
+def review1(head: Optional[ListNode], n: int) -> Optional[ListNode]:
+    """
+    Anki 12-8-23
+    Used: Solution (3), debugger (4)
+    Time: 26:40
+    """
+    dummy = ListNode(val=None, next=head)  # s6
+    node = head
+    nth = dummy  # d4, #s7
+    for _ in range(n):  # d2, d3, d5
+        node = node.next
+
+    while node:
+        nth = nth.next
+        node = node.next
+
+    nth.next = nth.next.next
+
+    return dummy.next  # s6
