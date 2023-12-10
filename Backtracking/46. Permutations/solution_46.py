@@ -67,3 +67,27 @@ def review1(nums: list[int]) -> list[list[int]]:
 
     dfs(nums)
     return result
+
+
+def review2(nums: list[int]) -> list[list[int]]:
+    """
+    Anki 12-10-23
+    Used: Solution (2)
+    Time: 12:09
+    """
+    result = []
+    subset = []
+
+    def dfs(choices: list):
+        if not choices:
+            result.append(subset.copy())
+
+        for i, c in enumerate(choices):
+            subset.append(c)
+            new_choices = choices.copy()
+            del new_choices[i]
+            dfs(new_choices)
+            subset.pop()
+
+    dfs(nums)  # s2
+    return result
