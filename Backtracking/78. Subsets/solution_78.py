@@ -23,7 +23,7 @@ def neetcode(nums: List[int]) -> List[List[int]]:
 
 def review1(nums: List[int]) -> List[List[int]]:
     """
-    Anki 1-3-23
+    Anki 12-3-23
     Used: Peak at solution (2)
     Time: 13:50
     [The Backtracking Blueprint: The Legendary 3 Keys To Backtracking Algorithms](https://www.youtube.com/watch?v=Zq4upTEaQyM)
@@ -48,9 +48,10 @@ def review1(nums: List[int]) -> List[List[int]]:
 
 def review2(nums: List[int]) -> List[List[int]]:
     """
-    Anki 1-3-23
+    Anki 12-3-23
     Used: [Subsets - Backtracking - Leetcode 78](https://www.youtube.com/watch?v=REOH22Xwdkk), solution (2)
     Time: 8:48
+    This is a binary decision tree to include or exclude
     """
     result = []
     subset = []
@@ -68,4 +69,34 @@ def review2(nums: List[int]) -> List[List[int]]:
         dfs(i+1)
 
     dfs(0)  # s1
+    return result
+
+
+def review3(nums: List[int]) -> List[List[int]]:
+    """
+    Anki 12-9-23
+    Used: debugger (2)
+    Time: 30 min
+    This decision tree traverses through all nums itterations
+    """
+    result = []
+    subset = []
+
+    def dfs(i):
+        if i >= len(nums):
+            return
+
+        subset.append(nums[i])
+        result.append(subset.copy())
+
+        for n in range(i + 1, len(nums)):  # d1
+            dfs(n)
+            subset.pop()
+
+    result.append([])  # d2
+
+    for n in range(len(nums)):
+        dfs(n)
+        subset.pop()
+
     return result
