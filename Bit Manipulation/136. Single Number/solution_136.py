@@ -107,3 +107,16 @@ def review3(nums: List[int]) -> int:
     for n, i in n_count.items():
         if i == 1:
             return n
+
+
+def review4(nums: List[int]) -> int:
+    """
+    Anki 12-10-23
+    Time: 3:43
+    """
+    result = 0
+
+    for n in nums:
+        result ^= n
+
+    return result
