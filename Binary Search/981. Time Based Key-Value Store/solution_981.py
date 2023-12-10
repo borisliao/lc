@@ -223,3 +223,41 @@ def review2():
             return result
 
     return TimeMap()
+
+
+def review2():
+    """
+    Anki 12-3-23
+    Time: 12:04
+    """
+    class TimeMap:
+        def __init__(self):
+            self.key_store = defaultdict(lambda: [])
+
+        def set(self, key: str, value: str, timestamp: int) -> None:
+            self.key_store[key].append(
+                {"timestamp": timestamp, "value": value})
+
+        def get(self, key: str, timestamp: int) -> str:
+            li = self.key_store[key]
+
+            l = 0
+            r = len(li) - 1
+
+            closest_timestamp = ''
+
+            while l <= r:
+                m = (l + r) // 2
+
+                if li[m]["timestamp"] == timestamp:
+                    return li[m]["value"]
+
+                if li[m]["timestamp"] < timestamp:
+                    closest_timestamp = li[m]["value"]
+                    l = m + 1
+                else:
+                    r = m - 1
+
+            return closest_timestamp
+
+    return TimeMap()
