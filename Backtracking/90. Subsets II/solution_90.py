@@ -47,3 +47,41 @@ def setAsResult(nums: list[int]) -> list[list[int]]:
 
     dfs(0)  # d5
     return [list(x) for x in result]
+
+
+def review1(nums: list[int]) -> list[list[int]]:
+    """
+    Anki 12-10-23
+    Time: 28:08
+    Used: Debugger (3)
+    """
+    nums.sort()
+
+    result = []
+    subset = []
+
+    def dfs(i):
+        if i >= len(nums):
+            return
+
+        subset.append(nums[i])
+        result.append(subset.copy())
+        prev_p = None
+
+        for p in range(i + 1, len(nums)):
+            if nums[p] == prev_p:  # d1 nums[p]
+                continue
+            prev_p = nums[p]  # d1 nums[p]
+            dfs(p)
+            subset.pop()
+
+    result.append([])
+
+    prev_i = None  # d2
+    for i in range(len(nums)):
+        if nums[i] == prev_i:  # d3 nums[i]
+            continue
+        dfs(i)
+        prev_i = subset.pop()  # d2
+
+    return result
