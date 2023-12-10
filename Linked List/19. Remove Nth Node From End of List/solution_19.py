@@ -95,3 +95,24 @@ def review1(head: Optional[ListNode], n: int) -> Optional[ListNode]:
     nth.next = nth.next.next
 
     return dummy.next  # s6
+
+
+def review2(head: Optional[ListNode], n: int) -> Optional[ListNode]:
+    """
+    Anki 12-9-23
+    Time: 3 min
+    """
+    dummy_node = ListNode(val=None, next=head)
+    l = dummy_node
+    r = head
+
+    for _ in range(n):
+        r = r.next
+
+    while r:
+        l = l.next
+        r = r.next
+
+    l.next = l.next.next
+
+    return dummy_node.next
