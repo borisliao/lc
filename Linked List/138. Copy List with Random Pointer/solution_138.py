@@ -8,29 +8,33 @@ class Node:
         self.random = random
 
     def __str__(self):
-        list = []
-        random_list = []
+        li: list[list] = []
+        node_placement = {None: None}
 
-        def addToList(ln: Node, list: List):
-            list.append(ln.val)
-            if (ln.next):
-                addToList(ln.next, list)
+        n = self
+        i = 0
+        while n:
+            li.append([n.val])
+            node_placement[n] = i
+            n = n.next
+            i += 1
 
-        addToList(self, list)
+        n = self
 
-        def randomAddToList(ln: Node, list: List):
-            list.append(ln.val)
-            if (ln.random):
-                addToList(ln.random, list)
-        randomAddToList(self, random_list)
+        for l in li:
+            l.append(node_placement[n.random])
+            n = n.next
 
-        return str(list) + str(random_list)
+        return str(li)
 
     def __repr__(self):
-        return f"({self.val}, {self.next}, {self.random})"
+        return f"{self.val}"
 
     def __eq__(self, __value: object) -> bool:
         return str(self) == str(__value)
+
+    def __hash__(self):
+        return id(self)
 
 
 def copyRandomList(head: Optional[Node]) -> Optional[Node]:
