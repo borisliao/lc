@@ -129,3 +129,33 @@ def review3(candidates: list[int], target: int) -> list[list[int]]:
 
     dfs(0, [])
     return result
+
+
+def review4(candidates: list[int], target: int) -> list[list[int]]:
+    """
+    Anki 12-7-23
+    Used: Solution (3)
+    Time: 16:38
+    """
+    candidates.sort()
+    result = []
+    subset = []
+
+    def dfs(i):
+        if sum(subset) == target:
+            result.append(subset.copy())
+            return
+
+        if i >= len(candidates) or sum(subset) > target:  # s1
+            return
+
+        subset.append(candidates[i])
+        dfs(i+1)
+        subset.pop()
+        # s2, s3
+        while i + 1 < len(candidates) and candidates[i] == candidates[i+1]:
+            i += 1
+        dfs(i+1)
+
+    dfs(0)
+    return result
