@@ -52,3 +52,38 @@ def copyRandomList(head: Optional[Node]) -> Optional[Node]:
         cur = cur.next
 
     return headDict[head]
+
+
+def review1(head: Optional[Node]) -> Optional[Node]:
+    """
+    Anki 12-11-23
+    Time: 1:36:57
+    Used: Debugger (3)
+    """
+    node_map = {}
+
+    new_head = Node(-1)  # dummy node
+
+    node = head
+    new_node = new_head
+
+    while node:
+        new_next_node = Node(node.val)
+        node_map[node] = [node.random, new_next_node]  # d1
+        new_node.next = new_next_node
+        node = node.next
+        new_node = new_node.next
+
+    node = head
+    new_node = new_head.next  # d2, d3
+
+    while node:
+        random_node = node_map[node][0]
+        new_random_node = node_map[random_node][1] if random_node else None
+
+        new_node.random = new_random_node
+
+        node = node.next
+        new_node = new_node.next
+
+    return new_head.next
