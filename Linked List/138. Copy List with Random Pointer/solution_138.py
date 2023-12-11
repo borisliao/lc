@@ -87,3 +87,25 @@ def review1(head: Optional[Node]) -> Optional[Node]:
         new_node = new_node.next
 
     return new_head.next
+
+
+def review2(head: Optional[Node]) -> Optional[Node]:
+    """
+    Anki 12-11-23
+    Time: 9 min
+    Used: Solution (1)
+    """
+    new_head: dict[Node, Node] = {None: None}
+
+    n = head
+    while n:
+        new_head[n] = Node(n.val)
+        n = n.next
+
+    n = head
+    while n:
+        new_head[n].next = new_head[n.next]  # s1
+        new_head[n].random = new_head[n.random]
+        n = n.next
+
+    return new_head[head]
