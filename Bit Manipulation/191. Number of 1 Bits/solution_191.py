@@ -69,3 +69,29 @@ def review3(n: int) -> int:
         n = n >> 1
 
     return count
+
+
+def review4(n: int) -> int:
+    """
+    Anki 12-10-23
+    Used: Solution (1)
+    Time: 2 min
+    """
+    result = 0
+    while n:
+        result += n & 1
+        n >>= n  # s1 subtracted instead of bitshifted
+    return result
+
+
+def review5(n: int) -> int:
+    """
+    Anki 12-10-23
+    Time: 2 min
+    Used: Solution (1)
+    """
+    result = 0
+    while n:
+        n = n & (n-1)  # s1 - instead of &
+        result += 1
+    return result
