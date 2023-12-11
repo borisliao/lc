@@ -232,3 +232,37 @@ def review3(func_name):
         return encode
     if func_name == 'decode':
         return decode
+
+
+def review4(func_name):
+    """
+    Anki 12-10-23
+    Used: debugger (2)
+    Time: 24:55
+    """
+    def encode(strs: List[str]) -> str:
+        result = ''
+        for s in strs:
+            result += f'{len(s)}#{s}'
+        return result
+
+    def decode(str: str) -> List[str]:
+        result = []
+
+        i = 0
+        while i < len(str):
+            num = ''
+
+            while str[i] != '#':
+                num += str[i]
+                i += 1
+
+            result.append(str[i + 1:i + 1 + int(num)])  # d2
+            i += 1 + int(num)  # d1
+
+        return result
+
+    if func_name == 'encode':
+        return encode
+    if func_name == 'decode':
+        return decode
