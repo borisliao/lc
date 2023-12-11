@@ -93,3 +93,48 @@ def review3(candidates: List[int], target: int) -> List[List[int]]:
 
     dfs(0)
     return result
+
+
+def neetcode(candidates: List[int], target: int) -> List[List[int]]:
+    res = []
+
+    def dfs(i: int, cur: list, total: int):
+        if total == target:
+            res.append(cur.copy())
+            return
+        if i >= len(candidates) or total > target:
+            return
+
+        cur.append(candidates[i])
+        dfs(i, cur, total + candidates[i])
+        cur.pop()
+        dfs(i + 1, cur, total)
+
+    dfs(0, [], 0)
+    return res
+
+
+def review4(candidates: List[int], target: int) -> List[List[int]]:
+    """
+    Anki 12-11-23
+    Misunderstood question: "The same number may be chosen from candidates an unlimited number of times."
+    Used: debugger 3, solution 1
+    Time: 25:41
+    """
+    result = []
+    subset = []
+
+    def dfs(i):
+        if sum(subset) == target:
+            result.append(subset.copy())
+            return
+        if i >= len(candidates) or sum(subset) > target:
+            return
+
+        subset.append(candidates[i])
+        dfs(i)
+        subset.pop()
+        dfs(i+1)
+
+    dfs(0)  # d1, d3
+    return result
