@@ -19,6 +19,9 @@ class ListNode:
 
         return str(list)
 
+    def __repr__(self) -> str:
+        return f"{self}"
+
     def __eq__(self, __value: object) -> bool:
         return str(self) == str(__value)
 
@@ -147,3 +150,27 @@ def review2(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode
         node = node.next
 
     return result.next
+
+
+def review3(l1: ListNode, l2: ListNode) -> ListNode:
+    """
+    Anki 12-11-23
+    Time: 29:30
+    Used: Debugger (2)
+    """
+    dummy = ListNode()
+    node = dummy
+    carry = 0
+
+    while l1 or l2 or carry:  # d2
+        v1 = l1.val if l1 else 0  # d1
+        v2 = l2.val if l2 else 0  # d1
+
+        sum = (v1 + v2 + carry) % 10
+        carry = (v1 + v2 + carry) // 10
+        node.next = ListNode(sum)
+        node = node.next
+        l1 = l1.next if l1 else None  # d1
+        l2 = l2.next if l2 else None  # d1
+
+    return dummy.next
