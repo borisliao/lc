@@ -64,3 +64,26 @@ def floyds(head: Optional[ListNode]) -> bool:
             return True
 
     return False
+
+
+def review1(head: ListNode | None) -> bool:
+    """
+    Anki 12-12-23
+    Used: Debugger (1)
+    Time: 18:30
+    """
+    slow = head
+    fast = head
+
+    while slow and fast:
+        if slow:
+            slow = slow.next
+
+        for _ in range(2):
+            if fast:
+                fast = fast.next
+
+        if slow == fast and slow != None:  # d1 slow != None for single node case
+            return True
+
+    return False
