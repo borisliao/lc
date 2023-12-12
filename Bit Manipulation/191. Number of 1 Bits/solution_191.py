@@ -80,7 +80,7 @@ def review4(n: int) -> int:
     result = 0
     while n:
         result += n & 1
-        n >>= n  # s1 subtracted instead of bitshifted
+        n >>= 1  # s1 subtracted instead of bitshifted
     return result
 
 
