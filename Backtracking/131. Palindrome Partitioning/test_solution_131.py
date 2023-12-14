@@ -29,6 +29,14 @@ def test_example_2(f):
 
 @pytest.mark.timeout(3)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_131, predicate=inspect.isfunction)])
+def test_lc_18(f):
+    s = "aab"
+    output = [["a", "a", "b"], ["aa", "b"]]
+    assert same_elements(f(s), output)
+
+
+@pytest.mark.timeout(3)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_131, predicate=inspect.isfunction)])
 def test_lc_24(f):
     s = "efe"
     output = [["e", "f", "e"], ["efe"]]

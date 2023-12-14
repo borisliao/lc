@@ -57,3 +57,32 @@ def neetcode(s: str) -> list[list[str]]:
 
     dfs(0)
     return res
+
+
+def review1(s: str) -> list[list[str]]:
+    """
+    Anki 12-13-23
+    Used: Debugger 2
+    Time: 11:55
+    """
+    result = []
+    subset = [s[0]]  # d2
+
+    def dfs(i):
+        if i == len(s):
+            if subset:
+                for substring in subset:
+                    if substring != substring[::-1]:
+                        return
+                result.append(subset.copy())
+            return
+
+        subset[-1] += s[i]  # d1
+        dfs(i+1)
+        subset[-1] = subset[-1][:-1]
+        subset.append(s[i])
+        dfs(i+1)
+        subset.pop()
+
+    dfs(1)  # d2
+    return result
