@@ -112,3 +112,38 @@ def review1(board: list[list[str]], word: str) -> bool:
                 return True  # d3
 
     return False  # d3
+
+
+# def review2(board: list[list[str]], word: str) -> bool:
+#     """
+#     Anki 12-8-23
+#     """
+#     subset = ['']
+#     visited = set()  # s1
+
+#     def dfs(i, j):
+#         if subset[0] == word:
+#             return True
+#         if i < 0 or j < 0 or i >= len(board) or j >= len(board[i]) or (i, j) in visited:
+#             subset[0] = subset[0][:-1]
+#             return False
+#         if board[i][j] == word[len(subset[0])-1]:
+#             subset[0] += word[len(subset[0])-1]
+#             visited.add((i, j))  # s1
+#         else:
+#             return False
+
+#         return dfs(i-1, j) or dfs(i+1, j) or dfs(i, j-1) or dfs(i+1, j-1)
+
+#     for i in range(len(board)):
+#         for j in range(len(board[i])):
+#             if dfs(i, j):
+#                 return True
+
+#     return False
+
+# def review3(board: list[list[str]], word: str) -> bool:
+#     """
+#     Anki
+#     """
+#     pass
