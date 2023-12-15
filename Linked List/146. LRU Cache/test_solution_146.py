@@ -33,3 +33,30 @@ def test_lc_4(f):
     assert lRUCache.get(1) == -1
     assert lRUCache.get(3) == 3
     assert lRUCache.get(4) == 4
+
+
+@pytest.mark.timeout(3)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_146, predicate=inspect.isfunction)])
+def test_lc_6(f):
+    lRUCache = f(1)
+
+    lRUCache.put(2, 1)
+    assert lRUCache.get(2) == 1
+    lRUCache.put(3, 2)
+    assert lRUCache.get(2) == -1
+    assert lRUCache.get(3) == 2
+
+
+@pytest.mark.timeout(3)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_146, predicate=inspect.isfunction)])
+def test_lc_11(f):
+    lRUCache = f(2)
+
+    lRUCache.put(2, 1)
+    lRUCache.put(3, 2)
+    assert lRUCache.get(3) == 2
+    assert lRUCache.get(2) == 1
+    lRUCache.put(4, 3)
+    assert lRUCache.get(2) == 1
+    assert lRUCache.get(3) == -1
+    assert lRUCache.get(4) == 3

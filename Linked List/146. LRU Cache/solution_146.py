@@ -1,54 +1,174 @@
-def attempt1(capacity: int):
-    class Node:
-        def __init__(self, key, value, prev, next):
-            self.key = key
-            self.value = value
-            self.prev = prev
-            self.next = next
+# def attempt1(capacity: int):
+#     class Node:
+#         def __init__(self, key, value, prev, next):
+#             self.key = key
+#             self.value = value
+#             self.prev = prev
+#             self.next = next
 
-    class LRUCache:
-        def __init__(self, capacity: int):
-            startNode = Node(None, None, None, None)
-            self.data = {'capacity': capacity,
-                         'length': 0,
-                         'start': startNode,
-                         'end': startNode}
+#     class LRUCache:
+#         def __init__(self, capacity: int):
+#             startNode = Node(None, None, None, None)
+#             self.data = {'capacity': capacity,
+#                          'length': 0,
+#                          'start': startNode,
+#                          'end': startNode}
 
-        def get(self, key: int) -> int:
-            if key in self.data:
-                keyNode = self.data[key]
+#         def get(self, key: int) -> int:
+#             if key in self.data:
+#                 keyNode = self.data[key]
 
-                keyNode.prev.next = keyNode.next
+#                 keyNode.prev.next = keyNode.next
 
-                keyNode.prev = self.data['end']
-                keyNode.next = None
+#                 keyNode.prev = self.data['end']
+#                 keyNode.next = None
 
-                self.data['end'].next = keyNode
-                self.data['end'] = keyNode
+#                 self.data['end'].next = keyNode
+#                 self.data['end'] = keyNode
 
-                return keyNode.value
-            else:
-                return -1
+#                 return keyNode.value
+#             else:
+#                 return -1
 
-        def put(self, key: int, value: int) -> None:
-            if key in self.data:
-                self.data[key].prev = self.data[key].next
-                del self.data[key]
-                self.data['length'] -= 1
+#         def put(self, key: int, value: int) -> None:
+#             if key in self.data:
+#                 self.data[key].prev = self.data[key].next
+#                 del self.data[key]
+#                 self.data['length'] -= 1
 
-            putNode = Node(key, value, self.data['end'], None)
-            self.data['end'].next = putNode
-            self.data['end'] = putNode
-            self.data[key] = putNode
-            self.data['length'] += 1
+#             putNode = Node(key, value, self.data['end'], None)
+#             self.data['end'].next = putNode
+#             self.data['end'] = putNode
+#             self.data[key] = putNode
+#             self.data['length'] += 1
 
-            if self.data['length'] > self.data['capacity']:
-                evictedNode = self.data['start'].next
+#             if self.data['length'] > self.data['capacity']:
+#                 evictedNode = self.data['start'].next
 
-                self.data['start'].next = evictedNode.next
+#                 self.data['start'].next = evictedNode.next
 
-                del self.data[evictedNode.key]
+#                 del self.data[evictedNode.key]
 
-                self.data['length'] -= 1
+#                 self.data['length'] -= 1
 
-    return LRUCache(capacity)
+#     return LRUCache(capacity)
+
+
+# def review1(capacity: int):
+#     """
+#     Anki 12-15-23
+#     """
+
+#     class Node:
+#         def __init__(self, key: int = None, value: int = None, next: "Node" = None, prev: "Node" = None):
+#             self.key = key
+#             self.value = value
+#             self.next = next
+#             self.prev = prev
+
+#         def __str__(self):
+#             list = []
+
+#             def addToList(ln: Node, list: list):
+#                 list.append(ln.value)
+#                 if (ln.next):
+#                     addToList(ln.next, list)
+
+#             addToList(self, list)
+
+#             return str(list)
+
+#         def __repr__(self):
+#             return f"({self.value}, {self.next})"
+
+#     class LRUCache:
+
+#         def __init__(self, capacity: int):
+#             """Initialize the LRU cache with positive size capacity."""
+#             self.capacity = capacity
+
+#             self.node: dict[int, Node] = {}
+#             self.last_node = Node()
+#             self.first_node = self.last_node
+
+#         def get(self, key: int) -> int:
+#             """
+#             Return the value of the key if the key exists, otherwise return -1.
+#             Runs in O(1) average time complexity
+#             """
+#             if key not in self.node:  # d4 if not self.node[key]
+#                 return -1
+
+#             node = self.node[key]
+
+#             if len(self.node) == 1:
+#                 return node.value
+
+#             node.prev.next = node.next  # s1
+
+#             node.prev = self.first_node  # s1
+#             node.next = None
+
+#             self.first_node.next = node  # s1 # error here with the swap
+#             self.first_node = node  # s1
+
+#             # self.first_node.next = node
+#             # node.prev.next = node.next
+#             # node.prev = self.first_node
+#             # self.first_node.prev =
+#             # node.next = None
+
+#             return node.value
+
+#         def put(self, key: int, value: int) -> None:
+#             """
+#             Update the value of the key if the key exists.
+#             Otherwise, add the key-value pair to the cache.
+#             If the number of keys exceeds the capacity from this operation, evict the least recently used key.
+#             Runs in O(1) average time complexity
+#             """
+#             if key in self.node:
+#                 self.node[key].value = value
+#                 self.get(key)
+#                 return
+
+#             new_node = Node(key=key, value=value, prev=self.first_node)
+#             self.first_node.next = new_node  # s3
+#             self.first_node = new_node
+#             self.node[key] = new_node
+
+#             if len(self.node) > self.capacity:
+#                 to_be_deleted_node = self.last_node.next
+#                 self.last_node.next = to_be_deleted_node.next  # s2
+#                 # d5 to_be_deleted_node.value
+#                 del self.node[to_be_deleted_node.key]
+
+#     return LRUCache(capacity)
+
+# def review(capacity: int):
+#     """
+#     Anki
+#     """
+#     class LRUCache:
+
+#         def __init__(self, capacity: int):
+#             """Initialize the LRU cache with positive size capacity."""
+#             pass
+
+#         def get(self, key: int) -> int:
+#             """
+#             Return the value of the key if the key exists, otherwise return -1.
+#             Runs in O(1) average time complexity
+#             """
+#             pass
+
+#         def put(self, key: int, value: int) -> None:
+#             """
+#             Update the value of the key if the key exists.
+#             Otherwise, add the key-value pair to the cache.
+#             If the number of keys exceeds the capacity from this operation, evict the least recently used key.
+#             Runs in O(1) average time complexity
+#             """
+#             pass
+
+#     return LRUCache(capacity)
