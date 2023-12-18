@@ -145,8 +145,118 @@
 
 #     return LRUCache(capacity)
 
+def neetcode(capacity: int):
+    """https://www.youtube.com/watch?v=7ABFKPK2hD4"""
+    class Node:
+        def __init__(self, key, val):
+            self.key, self.val = key, val
+            self.prev: Node = None
+            self.next: Node = None
+
+    class LRUCache:
+        def __init__(self, capacity: int):
+            self.cap = capacity
+            self.cache = {}  # map key to node
+
+            self.left, self.right = Node(0, 0), Node(0, 0)
+            self.left.next, self.right.prev = self.right, self.left
+
+        # remove node from list
+        def remove(self, node: Node):
+            prev, nxt = node.prev, node.next
+            prev.next, nxt.prev = nxt, prev
+
+        # insert node at right
+        def insert(self, node: Node):
+            prev, nxt = self.right.prev, self.right
+            prev.next = nxt.prev = node
+            node.next, node.prev = nxt, prev
+
+        def get(self, key: int) -> int:
+            if key in self.cache:
+                self.remove(self.cache[key])
+                self.insert(self.cache[key])
+                return self.cache[key].val
+            return -1
+
+        def put(self, key: int, value: int) -> None:
+            if key in self.cache:
+                self.remove(self.cache[key])
+            self.cache[key] = Node(key, value)
+            self.insert(self.cache[key])
+
+            if len(self.cache) > self.cap:
+                # remove from the list and delete the LRU from hashmap
+                lru = self.left.next
+                self.remove(lru)
+                del self.cache[lru.key]
+
+    return LRUCache(capacity)
+
+
+# def review2(capacity: int):
+#     """
+#     Anki 12-17-23
+#     """
+
+#     class Node:
+#         def __init__(self, prev: "Node" = None, next: "Node" = None, value: int = None) -> None:
+#             self.prev = prev
+#             self.next = next
+#             self.value = value
+
+#     class LRUCache:
+
+#         def __init__(self, capacity: int):
+#             """Initialize the LRU cache with positive size capacity."""
+#             self.node: dict[int, Node] = {}
+#             self.head = Node()
+#             self.tail = self.head
+#             self.capacity = capacity
+
+#         def get(self, key: int) -> int:
+#             """
+#             Return the value of the key if the key exists, otherwise return -1.
+#             Runs in O(1) average time complexity
+#             """
+#             if key not in self.node:
+#                 return -1
+
+#             WN = self.node[key]
+
+#             # Remove refrences from working node
+#             WN.prev.next = WN.next
+#             WN.next.prev = WN.prev
+
+#             # Move the working node to the head
+#             prev_head = self.head
+#             self.head = WN
+#             WN.prev = prev_head
+#             WN.next = None
+
+#             return WN.value
+
+#         def put(self, key: int, value: int) -> None:
+#             """
+#             Update the value of the key if the key exists.
+#             Otherwise, add the key-value pair to the cache.
+#             If the number of keys exceeds the capacity from this operation, evict the least recently used key.
+#             Runs in O(1) average time complexity
+#             """
+#             if key in self.node:
+#                 return
+
+#             new_node = Node(prev=self.head, next=None, value=value)
+#             self.head.next = new_node
+#             self.head = new_node
+
+#             self.node[key] = new_node
+
+#     return LRUCache(capacity)
+
 # def review(capacity: int):
 #     """
+#     NOTE: Study https://www.youtube.com/watch?v=7ABFKPK2hD4 before attempting
 #     Anki
 #     """
 #     class LRUCache:
