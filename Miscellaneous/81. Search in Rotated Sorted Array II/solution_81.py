@@ -74,7 +74,7 @@ def review1(nums: List[int], target: int) -> bool:
 
 def review2(nums: List[int], target: int) -> bool:
     """
-    Anki 12-15-23
+    Anki 12-17-23
     Time: 11 min
     Used: Solution (1)
     """
@@ -105,5 +105,40 @@ def review2(nums: List[int], target: int) -> bool:
                 l = m + 1
         else:
             l += 1
+
+    return False
+
+
+def review3(nums: List[int], target: int) -> bool:
+    """
+    Anki 12-18-23
+    Time: 20 min
+    Right side algorithm
+    Used: Debugger 1
+    """
+    l = 0
+    r = len(nums) - 1
+
+    while l <= r:
+        m = (l+r) // 2
+
+        if nums[m] == target:
+            return True
+
+        if nums[m] < nums[r]:  # right side
+            if nums[m] < target <= nums[r]:  # d1 nums[-1]
+                l = m + 1
+            else:
+                r = m - 1
+        elif nums[m] > nums[r]:  # left side
+            if nums[l] <= target < nums[m]:
+                r = m - 1
+            else:
+                l = m + 1
+        else:  # unknown side
+            # since we know nums[r] is equal to nums[m] (above)
+            # we can eliminate that value since we checked (above above)
+            # that it is not the target
+            r -= 1
 
     return False
