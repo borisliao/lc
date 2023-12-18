@@ -23,20 +23,23 @@ def permute(nums: list[int]) -> list[list[int]]:
 
 
 def neetcode(nums: list[int]) -> list[list[int]]:
-    """[Backtracking: Permutations - Leetcode 46 - Python](https://www.youtube.com/watch?v=s7AvT7cGdSo)"""
+    """
+    [Backtracking: Permutations - Leetcode 46 - Python](https://www.youtube.com/watch?v=s7AvT7cGdSo)
+    Note: This solution is not particularly good
+    """
     res = []
 
     # base case
     if len(nums) == 1:
-        return [nums[:]]  # nums[:] is a deep copy
+        return [nums.copy()]
 
-    for i in range(len(nums)):
+    for _ in range(len(nums)):
         n = nums.pop(0)
         perms = neetcode(nums)
 
         for perm in perms:
             perm.append(n)
-        res.extend(perms)
+        res += perms
         nums.append(n)
     return res
 
@@ -90,4 +93,32 @@ def review2(nums: list[int]) -> list[list[int]]:
             subset.pop()
 
     dfs(nums)  # s2
+    return result
+
+
+def review3(nums: list[int]) -> list[list[int]]:
+    """
+    Anki 12-18-23
+    Used: Solution 1
+    Time: 10:13
+    """
+    result = []
+    subset = []
+
+    def dfs(values: list):
+        if len(values) == 0:
+            result.append(subset.copy())
+            return
+
+        for i in range(len(values)):
+            subset.append(values[i])
+
+            new_values = values.copy()
+            del new_values[i]
+
+            dfs(new_values)
+
+            subset.pop()  # s1
+
+    dfs(nums)
     return result
