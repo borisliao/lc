@@ -142,8 +142,38 @@ def review1(board: list[list[str]], word: str) -> bool:
 
 #     return False
 
-# def review3(board: list[list[str]], word: str) -> bool:
-#     """
-#     Anki
-#     """
-#     pass
+def review3(board: list[list[str]], word: str) -> bool:
+    """
+    Anki 12-18-23
+    Time: 33:06
+    Used: solution 6, debugger 1
+    """
+    visited = set()
+
+    def dfs(r, c, i):
+        # s3 replaced subset=[''] with i check and len(word) instead of len(board)
+        if i == len(word):  # s7 len(word)-1 instead of len(word)
+            return True
+
+        if ((r, c) in visited or
+                r < 0 or c < 0 or
+                r >= len(board) or
+                c >= len(board[r]) or
+                word[i] != board[r][c] or  # s6
+                i >= len(word)):  # s4
+            return False
+
+        visited.add((r, c))
+        has_word = (dfs(r-1, c, i+1) or
+                    dfs(r+1, c, i+1) or
+                    dfs(r, c-1, i+1) or  # d2 ',' instead of 'or'
+                    dfs(r, c+1, i+1))
+        visited.remove((r, c))
+        return has_word  # s5 removed visited before returning
+
+    for r in range(len(board)):  # s1 should itterate through the board
+        for c in range(len(board[r])):
+            found_word = dfs(r, c, 0)
+            if found_word:
+                return True
+    return False
