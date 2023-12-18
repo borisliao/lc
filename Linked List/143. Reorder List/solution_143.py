@@ -190,3 +190,82 @@ def review2(head: ListNode) -> None:
         first_half, second_half = temp1, temp2  # s1
 
     return head
+
+
+def review3(head: ListNode) -> None:
+    """
+    Anki 12-18-23
+    Used: Solution 4
+    Time: 32:54
+    """
+    # find midpoint #s1
+    fast = head
+    slow = head
+    while fast and fast.next:
+        fast = fast.next.next
+        slow = slow.next
+
+    # Reverse midpoint
+    second_half = slow.next
+
+    slow.next = None
+    node = second_half
+    prev = None
+    while node:
+        temp_node = node.next
+        node.next = prev
+        prev = node  # s2
+        node = temp_node
+
+    # Merge lists
+    l1 = head
+    l2 = prev  # s4 next to prev
+
+    while l2:
+        temp1, temp2 = l1.next, l2.next  # s3
+        l1.next = l2  # s3
+        l2.next = temp1  # s3
+
+        l1, l2 = temp1, temp2  # s3
+
+    return head
+
+
+def review4(head: ListNode) -> None:
+    """
+    Anki 12-18-23
+    Walk through review
+    """
+    # Find Midpoint
+    fast = head
+    slow = head
+    while fast and fast.next:
+        fast = fast.next.next
+        slow = slow.next
+
+    # Reverse Second Half
+    second_half = slow.next
+
+    slow.next = None  # break link
+
+    node = second_half
+    prev_node = None
+
+    while node:
+        temp_node = node.next
+        node.next = prev_node
+        prev_node = node
+        node = temp_node
+
+    # Merge Lists
+    l1 = head
+    l2 = prev_node
+
+    while l2:
+        temp1, temp2 = l1.next, l2.next
+        l1.next = l2
+        l2.next = temp1
+
+        l1, l2 = temp1, temp2
+
+    return head
