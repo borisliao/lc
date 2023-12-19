@@ -86,3 +86,58 @@ def review1(s: str) -> list[list[str]]:
 
     dfs(1)  # d2
     return result
+
+
+def review2(s: str) -> list[list[str]]:
+    """
+    Anki 12-18-23
+    Time: 8:57
+    Used: solution 1, debugger 1
+    Original solution O(2^n)
+    """
+    result = []
+    subset = [s[0]]  # s1 'a' instead of s[0]
+
+    def dfs(i):
+        if i >= len(s):
+            for word in subset:  # d2 used s instead of word
+                if word != word[::-1]:  # d2 s collision with global s
+                    return
+            result.append(subset.copy())
+            return
+
+        subset.append(s[i])
+        dfs(i+1)
+        subset.pop()
+        subset[-1] += s[i]
+        dfs(i+1)
+        subset[-1] = subset[-1][:-1]
+
+    dfs(1)
+    return result
+
+
+def review3(s: str) -> list[list[str]]:
+    """
+    12-18-23
+    Neetcode solution O(n^n)
+    Time: 26:53
+    """
+    result = []
+    subset = []
+
+    def dfs(i):
+        if i >= len(s):
+            result.append(subset.copy())
+            return
+
+        for j in range(i, len(s)):  # s1 range(i+1,len(s))
+            word = s[i:j+1]  # s1 s[i:j]
+            if word != word[::-1]:
+                continue
+            subset.append(s[i:j+1])  # s1 s[i:j]
+            dfs(j+1)  # s2 i+1
+            subset.pop()
+
+    dfs(0)
+    return result
