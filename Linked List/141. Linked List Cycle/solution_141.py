@@ -2,7 +2,7 @@ from typing import List, Optional
 
 
 class ListNode:
-    def __init__(self, val=0, next=None):
+    def __init__(self, val=0, next: "ListNode" = None):
         self.val = val
         self.next = next
         self._nodes = set()
@@ -84,6 +84,23 @@ def review1(head: ListNode | None) -> bool:
                 fast = fast.next
 
         if slow == fast and slow != None:  # d1 slow != None for single node case
+            return True
+
+    return False
+
+
+def review2(head: ListNode | None) -> bool:
+    """
+    Anki 12-18-23
+    Time: 4:07
+    """
+    fast = head
+    slow = head
+
+    while fast and fast.next:
+        fast = fast.next.next
+        slow = slow.next
+        if fast == slow:
             return True
 
     return False
