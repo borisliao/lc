@@ -95,3 +95,29 @@ def review5(n: int) -> int:
         n = n & (n-1)  # s1 - instead of &
         result += 1
     return result
+
+
+def review6(n: int) -> int:
+    """
+    Anki 12-18-23
+    Time: 2 min
+    """
+    count = 0
+    while n:
+        count += 1
+        n = n & (n-1)
+
+    return count
+
+
+def review7(n: int) -> int:
+    """
+    12-18-23
+    Time: 1 min
+    """
+    count = 0
+    while n:
+        count += n & 1
+        n >>= 1
+
+    return count
