@@ -100,3 +100,25 @@ def review3(nums: List[int]) -> List[List[int]]:
         subset.pop()
 
     return result
+
+
+def review4(nums: List[int]) -> List[List[int]]:
+    """
+    Anki 12-18-23
+    Time: 1:59
+    """
+    result = []
+    subset = []
+
+    def dfs(i):
+        if i >= len(nums):
+            result.append(subset.copy())
+            return
+
+        subset.append(nums[i])
+        dfs(i+1)
+        subset.pop()
+        dfs(i+1)
+
+    dfs(0)
+    return result
