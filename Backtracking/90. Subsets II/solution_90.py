@@ -85,3 +85,30 @@ def review1(nums: list[int]) -> list[list[int]]:
         prev_i = subset.pop()  # d2
 
     return result
+
+
+def review2(nums: list[int]) -> list[list[int]]:
+    """
+    Anki 12-18-23
+    Time: 18:16
+    Used: Debugger 1
+    """
+    nums.sort()
+
+    result = []
+    subset = []
+
+    def dfs(i):
+        if i >= len(nums):
+            result.append(subset.copy())
+            return
+
+        subset.append(nums[i])
+        dfs(i+1)
+        value = subset.pop()
+        while i+1 < len(nums) and nums[i+1] == value:  # d1 nums[i+1] != value
+            i += 1
+        dfs(i+1)
+
+    dfs(0)
+    return result
