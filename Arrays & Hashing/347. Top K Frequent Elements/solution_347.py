@@ -153,3 +153,27 @@ def review6(nums: List[int], k: int) -> List[int]:
             i -= 1
 
     return result
+
+
+def review6(nums: List[int], k: int) -> List[int]:
+    """
+    Anki 12-19-23
+    Time: 14:51
+    Used: Debugger 1
+    """
+    count = defaultdict(lambda: 0)
+    for n in nums:
+        count[n] += 1
+
+    numbers_for_count = defaultdict(lambda: [])
+    for n, c in count.items():
+        numbers_for_count[c].append(n)
+
+    result = []
+    for c in reversed(range(len(nums)+1)):  # d1 range(len(nums)) 0th indexed
+        for n in numbers_for_count[c]:
+            result.append(n)
+            if len(result) == k:
+                return result
+
+    return result
