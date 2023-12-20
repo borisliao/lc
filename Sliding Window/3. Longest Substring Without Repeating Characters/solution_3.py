@@ -73,3 +73,22 @@ def review1(s: str) -> int:
         size = max(size, r-l+1)
 
     return size
+
+
+def review2(s: str) -> int:
+    """
+    Anki 12-19-23
+    Time: 12 min
+    """
+    l = 0
+    chars = set()
+    result = 0
+
+    for r in range(len(s)):
+        while s[r] in chars:
+            chars.remove(s[l])
+            l += 1
+        chars.add(s[r])
+        result = max(len(chars), result)
+
+    return result
