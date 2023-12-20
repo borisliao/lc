@@ -103,3 +103,27 @@ def review3(piles: List[int], h: int) -> int:
             l = k + 1
 
     return result
+
+
+def review4(piles: List[int], h: int) -> int:
+    """
+    Anki 12-20-23
+    Used: Solution 5
+    Time: 29:12
+    """
+    l = 1  # s5 (needs to be 1 because 0 will always fail)
+    r = max(piles)
+    minK = r  # s4 minK = 0
+
+    while l <= r:
+        k = (l+r) // 2
+
+        hours = sum([math.ceil(p/k) for p in piles])
+
+        if hours > h:
+            l = k + 1  # s2 l+=1
+        elif hours <= h:
+            minK = min(minK, k)  # s1 put in wrong if statement, s3 maxK
+            r = k - 1  # s2 r+=1
+
+    return minK
