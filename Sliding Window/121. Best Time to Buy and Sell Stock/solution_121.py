@@ -18,3 +18,30 @@ def maxProfit(prices: List[int]) -> int:
             maxProfit = max-min
 
     return maxProfit
+
+
+def review1(prices: List[int]) -> int:
+    """
+    Anki 12-20-23
+    Used: Solution 4
+    Time: 29:19
+    """
+    l = 0  # buy
+    r = 1  # sell
+    profit = 0
+
+    while r < len(prices):  # s1 <=
+        # are we profitable?
+        if prices[l] < prices[r]:
+            # s2 l-r, s3 r-l, s4 profit[r]-profit[l]
+            profit = max(prices[r]-prices[l], profit)
+        else:
+            l = r
+        r += 1
+    return profit
+
+
+def review2(prices: List[int]) -> int:
+    """
+    Anki 12-20-23
+    """
