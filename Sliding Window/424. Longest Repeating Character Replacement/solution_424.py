@@ -90,7 +90,25 @@ def review2(s: str, k: int) -> int:
     return length
 
 
-# def review3(s: str, k: int) -> int:
-#     """
-#     Anki
-#     """
+def review3(s: str, k: int) -> int:
+    """
+    Anki 12-21-23
+    Time: 30 min
+    Used: debugger 3
+    """
+    l = 0
+    count = {}
+
+    max_window_size = 0
+    for r in range(len(s)):  # d2 len(s)+1
+        count[s[r]] = count.get(s[r], 0) + 1
+
+        window_size = len(s[l:r+1])  # d2 len(s[l:r])
+        if window_size - max(count.values()) > k:  # d1 len(window_size)
+            count[s[l]] -= 1
+            l += 1
+            window_size -= 1  # d3
+
+        max_window_size = max(max_window_size, window_size)
+
+    return max_window_size
