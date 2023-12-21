@@ -269,3 +269,45 @@ def review4(head: ListNode) -> None:
         l1, l2 = temp1, temp2
 
     return head
+
+
+def review5(head: ListNode) -> None:
+    """
+    Anki 12-18-23
+    Time: 27:47
+    Used: debugger 2
+    """
+    # find midpoint
+    slow = head
+    fast = head
+    while fast and fast.next:
+        fast = fast.next.next
+        slow = slow.next
+
+    # reverse second list
+    midpoint = slow.next
+    slow.next = None
+
+    prev = None
+    node = midpoint  # d2 head -> node (name conflict)
+    while node:
+        temp1 = node.next
+        node.next = prev
+        prev = node  # d1
+        node = temp1
+
+    # merge two lists
+    l1 = head
+    l2 = prev
+
+    while l2:
+        t1 = l1.next
+        t2 = l2.next
+
+        l1.next = l2
+        l2.next = t1
+
+        l1 = t1
+        l2 = t2
+
+    return head
