@@ -44,4 +44,17 @@ def review1(prices: List[int]) -> int:
 def review2(prices: List[int]) -> int:
     """
     Anki 12-20-23
+    Time: 13 min
     """
+    l = 0
+    r = 1
+
+    profit = 0
+
+    while r < len(prices):
+        if prices[l] < prices[r]:
+            profit = max(prices[r] - prices[l], profit)
+        else:
+            l = r
+        r += 1
+    return profit
