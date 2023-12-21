@@ -174,3 +174,28 @@ def review3(l1: ListNode, l2: ListNode) -> ListNode:
         l2 = l2.next if l2 else None  # d1
 
     return dummy.next
+
+
+def review4(l1: ListNode, l2: ListNode) -> ListNode:
+    """
+    Anki 12-21-23
+    Used: debugger 1
+    Time: 13:08
+    """
+
+    head = ListNode()  # d1
+    dummy = head
+    carry = 0
+    while l1 or l2 or carry:
+        v1 = l1.val if l1 else 0
+        v2 = l2.val if l2 else 0
+        sum = v1+v2+carry
+        remainder = sum % 10
+        carry = sum // 10
+
+        l1 = l1.next if l1 else None
+        l2 = l2.next if l2 else None
+        dummy.next = ListNode(remainder)
+        dummy = dummy.next
+
+    return head.next  # d1
