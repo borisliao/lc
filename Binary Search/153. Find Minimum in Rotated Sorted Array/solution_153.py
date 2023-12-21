@@ -66,3 +66,28 @@ def review1(nums: List[int]) -> int:
             r = m - 1
 
     return nums[r + 1]
+
+
+def review1(nums: List[int]) -> int:
+    """
+    Anki 12-20-23
+    Time: 17:11
+    Used: Debugger 1
+    """
+    l = 0
+    r = len(nums) - 1
+    minimum = float('inf')
+
+    while l <= r:
+        m = (l+r) // 2
+
+        minimum = min(minimum, nums[m])
+        # d1 nums[m] > nums[l]
+        side = 'right' if nums[m] <= nums[r] else 'left'
+
+        if side == 'left':
+            l = m + 1
+        else:
+            r = m - 1
+
+    return minimum
