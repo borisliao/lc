@@ -100,3 +100,23 @@ def review2(nums: List[int], target: int) -> int:
             r = m - 1
 
     return -1
+
+
+def review2(nums: List[int], target: int) -> int:
+    """
+    Anki 12-22-23
+    Time: 3:16
+    """
+    l = 0
+    r = len(nums) - 1
+
+    while l <= r:
+        m = (l+r) // 2
+        if nums[m] == target:
+            return m
+        if nums[m] < target:
+            l += 1
+        else:
+            r -= 1
+
+    return -1
