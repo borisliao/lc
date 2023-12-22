@@ -47,3 +47,28 @@ def review1(s1: str, s2: str) -> bool:
         l += 1
         r += 1
     return False
+
+
+def review2(s1: str, s2: str) -> bool:
+    """
+    Anki 12-22-23
+    Time: 4 min
+    Used: Debugger 1
+    """
+    c1 = {}
+    for s in s1:
+        c1[s] = c1.get(s, 0) + 1
+
+    l = 0
+    r = len(s1)
+
+    while r <= len(s2):
+        c2 = {}
+        for s in s2[l:r]:  # d1 for s in s2:
+            c2[s] = c2.get(s, 0) + 1
+
+        if c1 == c2:
+            return True
+        l += 1
+        r += 1
+    return False
