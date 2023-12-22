@@ -112,3 +112,28 @@ def review3(s: str, k: int) -> int:
         max_window_size = max(max_window_size, window_size)
 
     return max_window_size
+
+
+def review4(s: str, k: int) -> int:
+    """
+    Anki 12-21-23
+    Time: 14 min
+    Used: Debugger 1
+    """
+    count = {}
+    length = 0
+    l = 0
+    maxF = 0
+
+    for r in range(len(s)):
+        count[s[r]] = count.get(s[r], 0) + 1
+
+        maxF = max(maxF, max(count.values()))
+
+        if r+1-l - maxF > k:
+            count[s[l]] -= 1
+            l += 1  # d1 l -= 1
+
+        length = max(length, r+1-l)
+
+    return length
