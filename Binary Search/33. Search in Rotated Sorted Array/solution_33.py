@@ -287,3 +287,34 @@ def review7(nums: List[int], target: int) -> int:
                 l = m + 1
 
     return -1
+
+
+def review8(nums: List[int], target: int) -> int:
+    """
+    Anki 12-22-23
+    Time: 18:33
+    Used: Debugger 1
+    """
+    l = 0
+    r = len(nums) - 1
+
+    while l <= r:
+        m = (l+r) // 2
+        if nums[m] == target:
+            return m
+
+        # d1 < edge case [3,1]
+        side = 'left' if nums[l] <= nums[m] else 'right'
+
+        if side == 'left':
+            if nums[l] <= target < nums[m]:
+                r = m - 1
+            else:
+                l = m + 1
+        else:
+            if nums[m] < target <= nums[r]:
+                l = m + 1
+            else:
+                r = m - 1
+
+    return -1
