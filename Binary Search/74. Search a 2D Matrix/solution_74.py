@@ -103,3 +103,44 @@ def review2(matrix: List[List[int]], target: int) -> bool:
             r -= 1
 
     return False
+
+
+def review3(matrix: List[List[int]], target: int) -> bool:
+    """
+    Anki 12-21-23
+    Time: 18:13
+    Used: Debugger 1
+    """
+    l = 0
+    r = len(matrix)
+
+    row = None
+    while l <= r:
+        m = (l+r) // 2
+
+        if matrix[m][0] <= target <= matrix[m][-1]:
+            row = m
+            break
+
+        if matrix[m][-1] < target:
+            l += 1
+        else:
+            r -= 1
+
+    if row == None:
+        return False
+
+    l = 0
+    r = len(matrix[row])
+
+    while l <= r:
+        m = (l+r)//2
+        if matrix[row][m] == target:  # d1 matrix[m]
+            return True
+
+        if matrix[row][m] > target:  # d1 matrix[m]
+            r = m - 1
+        else:
+            l = m + 1
+
+    return False
