@@ -177,3 +177,38 @@ def review3(board: list[list[str]], word: str) -> bool:
             if found_word:
                 return True
     return False
+
+
+def review4(board: list[list[str]], word: str) -> bool:
+    """
+    Anki 12-21-23
+    Time: 38:46
+    Used: Debugger 3
+    """
+    visited = set()
+
+    def dfs(r, c, i):
+        if i == len(word):
+            return True
+
+        if (r < 0 or c < 0 or
+            r >= len(board) or
+            c >= len(board[r]) or  # d2 r >=
+            board[r][c] != word[i] or
+                (r, c) in visited):  # d3 visited
+            return False
+
+        visited.add((r, c))
+        has_character = (dfs(r-1, c, i+1) or
+                         dfs(r+1, c, i+1) or
+                         dfs(r, c-1, i+1) or
+                         dfs(r, c+1, i+1))
+        visited.remove((r, c))
+        return has_character
+
+    for r in range(len(board)):  # d1 range(len
+        for c in range(len(board[r])):  # d1 range(len
+            if dfs(r, c, 0):
+                return True
+
+    return False
