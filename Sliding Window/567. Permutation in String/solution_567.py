@@ -72,3 +72,139 @@ def review2(s1: str, s2: str) -> bool:
         l += 1
         r += 1
     return False
+
+
+# def review3(s1: str, s2: str) -> bool:
+#     """
+#     Anki 12-22-23
+#     Time: 30 min
+#     """
+#     l = 0
+#     r = len(s1) - 1
+
+#     c1 = Counter(s1)
+#     c2 = Counter(s2[l:r+1])
+#     match = 26
+#     for s, c in c1.items():  # d1 values
+#         if s not in c2:
+#             match -= 1
+#         else:
+#             match -= abs(c2[s] - c)
+
+#     while r < len(s2):
+#         if match == 26:
+#             return True
+
+#         if s2[r] in c1:
+#             match += 1
+#         else:
+#             match -= 1
+#         r += 1  # d2
+
+#         if s2[l] in c1:
+#             match += 1
+#         else:
+#             match -= 1
+#         l += 1
+
+#     return False
+
+
+def review3(s1: str, s2: str) -> bool:
+    """
+    Anki 12-22-23
+    Time: 3 min
+    Brute force solution
+    """
+    c1 = Counter(s1)
+    l = 0
+    r = len(s1)
+
+    while r <= len(s2):
+        c2 = Counter(s2[l:r])
+        if c1 == c2:
+            return True
+        l += 1
+        r += 1
+
+    return False
+
+
+def review4(s1: str, s2: str) -> bool:
+    """
+    12-22-23
+    Used: https://leetcode.com/problems/permutation-in-string/solutions/3138544/python-3-7-lines-counters-w-explanation-example-t-m-64-97
+    O(26 * N)
+    """
+    c1 = Counter(s1)
+    l = 0
+    r = len(s1)
+    c2 = Counter(s2[l:r])
+
+    if c1 == c2:
+        return True
+
+    while r < len(s2):
+        c2[s2[l]] -= 1
+        c2[s2[r]] += 1
+
+        l += 1
+        r += 1
+
+        if c1 == c2:
+            return True
+
+    return False
+
+
+def leetcode_artod(s1: str, s2: str) -> bool:
+    """
+    12-22-23
+    https://leetcode.com/problems/permutation-in-string/solutions/1761953/python3-sliding-window-optimized-explained
+    """
+    cntr, w = Counter(s1), len(s1)
+
+    for i in range(len(s2)):
+        if s2[i] in cntr:
+            cntr[s2[i]] -= 1
+        if i >= w and s2[i-w] in cntr:
+            cntr[s2[i-w]] += 1
+
+        if all([cntr[i] == 0 for i in cntr]):  # see optimized code below
+            return True
+
+    return False
+
+
+def leetcode_artod_optimized(s1: str, s2: str) -> bool:
+    """
+    12-22-23
+    https://leetcode.com/problems/permutation-in-string/solutions/1761953/python3-sliding-window-optimized-explained
+    """
+    cntr, w, match = Counter(s1), len(s1), 0
+
+    for i in range(len(s2)):
+        if s2[i] in cntr:
+            if not cntr[s2[i]]:
+                match -= 1
+            cntr[s2[i]] -= 1
+            if not cntr[s2[i]]:
+                match += 1
+
+        if i >= w and s2[i-w] in cntr:
+            if not cntr[s2[i-w]]:
+                match -= 1
+            cntr[s2[i-w]] += 1
+            if not cntr[s2[i-w]]:
+                match += 1
+
+        if match == len(cntr):
+            return True
+
+    return False
+
+
+# def review5(s1: str, s2: str) -> bool:
+#     """
+#     """
+#     pass
