@@ -1,3 +1,6 @@
+from collections import Counter
+
+
 def naive(s1: str, s2: str) -> bool:
     S1 = {}
 
@@ -23,4 +26,24 @@ def naive(s1: str, s2: str) -> bool:
         L += 1
         R += 1
 
+    return False
+
+
+def review1(s1: str, s2: str) -> bool:
+    """
+    Anki 12-22-23
+    Time: 21:19
+    Used: [Permutation in String - Leetcode 567 - Python](https://www.youtube.com/watch?v=UbyhOgBN834)
+    """
+    l = 0
+    r = len(s1)
+
+    count1 = Counter(s1)
+
+    while r <= len(s2):
+        count2 = Counter(s2[l:r])
+        if count1 == count2:
+            return True
+        l += 1
+        r += 1
     return False

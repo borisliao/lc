@@ -31,3 +31,14 @@ def test_lc_90(f):
     output = False
 
     assert f(s1, s2) == output
+
+
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_567, predicate=inspect.isfunction)])
+def test_lc_comment_1(f):
+    """https://leetcode.com/problems/permutation-in-string/description/comments/1958564"""
+    s1 = "adc"
+    s2 = "dcda"
+
+    output = True
+
+    assert f(s1, s2) == output
