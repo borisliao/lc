@@ -103,3 +103,31 @@ def review2(list1: ListNode | None, list2: ListNode | None) -> ListNode | None:
             break  # d2
 
     return head.next  # d4
+
+
+def review3(list1: ListNode | None, list2: ListNode | None) -> ListNode | None:
+    """
+    Anki 12-21-23
+    Time: 10:13
+    Used: solution 1
+    """
+    head = ListNode()
+    dummy = head
+
+    while list1 or list2:
+        if list1 and list2:
+            if list1.val < list2.val:  # s1 >
+                dummy.next = list1
+                list1 = list1.next
+            else:
+                dummy.next = list2
+                list2 = list2.next
+            dummy = dummy.next
+        elif list1:
+            dummy.next = list1
+            break
+        else:
+            dummy.next = list2
+            break
+
+    return head.next
