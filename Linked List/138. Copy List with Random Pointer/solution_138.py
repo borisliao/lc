@@ -109,3 +109,53 @@ def review2(head: Optional[Node]) -> Optional[Node]:
         n = n.next
 
     return new_head[head]
+
+
+def review3(head: Optional[Node]) -> Optional[Node]:
+    """
+    Anki 12-22-23
+    Time: 18:34
+    Used: Debugger 1
+    """
+    new_head = Node(-1)
+    dummy = new_head
+    h = head
+
+    new_node: dict[Node: Node] = {None: None}  # d1 forgot None: None
+
+    while h:
+        new_node[h] = Node(h.val)
+        dummy.next = new_node[h]
+        dummy = dummy.next
+        h = h.next
+
+    h = head
+    dummy = new_head.next
+    while h:
+        dummy.random = new_node[h.random]
+        dummy = dummy.next
+        h = h.next
+
+    return new_head.next
+
+
+def review4(head: Optional[Node]) -> Optional[Node]:
+    """
+    12-22-23
+    Time: 11:46
+    Used: Debugger 3
+    """
+
+    new_node: dict[Node, Node] = {None: None}
+    h = head  # d1
+    while h:
+        new_node[h] = Node(h.val)
+        h = h.next  # d1
+
+    h = head
+    while h:
+        new_node[h].random = new_node[h.random]  # d3
+        new_node[h].next = new_node[h.next]  # d2
+        h = h.next
+
+    return new_node[head]
