@@ -151,3 +151,26 @@ def review5(piles: List[int], h: int) -> int:
             l = k + 1
 
     return minimum_k
+
+
+def review5(piles: List[int], h: int) -> int:
+    """
+    Anki 12-22-23
+    Time: 18:32
+    """
+    l = 1
+    r = max(piles)
+    minK = r
+
+    while l <= r:
+        k = (l+r) // 2
+
+        hours = sum([math.ceil(p/k) for p in piles])
+
+        if hours > h:
+            l = k + 1
+        else:
+            minK = min(k, minK)
+            r = k - 1
+
+    return minK
