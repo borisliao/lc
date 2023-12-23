@@ -204,7 +204,88 @@ def leetcode_artod_optimized(s1: str, s2: str) -> bool:
     return False
 
 
-# def review5(s1: str, s2: str) -> bool:
+def review5(s1: str, s2: str) -> bool:
+    """
+    Anki 12-23-23
+    Time: 20 min
+    O(26 * n)
+    """
+    c1 = Counter(s1)
+    c2 = Counter(s2[0:len(s1)])
+    l = 0
+
+    if c1 == c2:
+        return True
+
+    for r in range(len(s1), len(s2)):
+        c2[s2[l]] -= 1
+        l += 1
+
+        c2[s2[r]] += 1
+
+        if c1 == c2:
+            return True
+
+    return False
+
+
+def review6(s1: str, s2: str) -> bool:
+    """
+    Anki 12-23-23
+    Time: 20 min
+    O(26 * n)
+    """
+    c1 = Counter(s1)
+    c2 = Counter(s2[0:len(s1)])
+    l = 0
+
+    if c1 == c2:
+        return True
+
+    for r in range(len(s1), len(s2)):
+        c2[s2[l]] -= 1
+        l += 1
+
+        c2[s2[r]] += 1
+
+        if c1 == c2:
+            return True
+
+    return False
+
+
+# def review7(s1: str, s2: str) -> bool:
 #     """
+#     12-23-23
 #     """
-#     pass
+#     c1 = Counter(s1)
+#     c2 = Counter(s2[0:len(s1)])
+
+#     differences = 0
+#     for character, occurances in c2.items():
+#         if character in c1 and c1[character] == occurances:
+#             break
+#         else:
+#             differences += abs(c1[character]-occurances)
+#     l = 0
+
+#     if differences == 0:
+#         return True
+
+#     for r in range(len(s1), len(s2)):
+
+#         if c1[l] == c2[l]:
+#             differences -= 1
+#         elif c1[l] - 1 == c2[l]:
+#             differences += 1
+#         l += 1
+
+#         if c1[r] == c2[r]:
+#             differences -= 1
+#         elif c1[r] + 1 == c2[r]:
+#             differences += 1
+
+#         if differences == 0:
+#             return True
+
+#     return False
