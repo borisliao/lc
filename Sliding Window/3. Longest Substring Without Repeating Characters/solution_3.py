@@ -22,6 +22,9 @@
 
 #     return length
 
+from collections import Counter
+
+
 def lengthOfLongestSubstring(s: str) -> int:
     seen = set()
     length = 0
@@ -92,3 +95,26 @@ def review2(s: str) -> int:
         result = max(len(chars), result)
 
     return result
+
+
+def review2(s: str) -> int:
+    """
+    Anki 12-24-23
+    Used: debugger 1, insight 1
+    Time: 12 min
+    """
+    l = 0
+    characters = Counter()
+    max_length = 0  # d2 float('inf')
+
+    for r in range(len(s)):
+        characters[s[r]] += 1
+
+        while characters[s[r]] > 1:
+            characters[s[l]] -= 1
+            l += 1
+
+        max_length = max(max_length, r+1-l)  # i1
+        # max_length = max(max_length, characters.total())  # i1 characters.total(), but it's slower
+
+    return max_length
