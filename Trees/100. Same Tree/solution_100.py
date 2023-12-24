@@ -124,3 +124,18 @@ def leetCode_572(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
 #         qq.append(q.right)
 
 #     return True
+
+def review1(p: TreeNode | None, q: TreeNode | None) -> bool:
+    """
+    Anki 12-23-23
+    Time: 10 min
+    """
+    def dfs(p: TreeNode | None, q: TreeNode | None):
+        if p == None and q == None:
+            return True
+        elif p and q and p.val == q.val:
+            return dfs(p.left, q.left) and dfs(p.right, q.right)
+        else:
+            return False
+
+    return dfs(p, q)
