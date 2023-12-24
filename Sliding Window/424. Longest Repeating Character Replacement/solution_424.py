@@ -137,3 +137,24 @@ def review4(s: str, k: int) -> int:
         length = max(length, r+1-l)
 
     return length
+
+
+def review4(s: str, k: int) -> int:
+    """
+    Anki 12-24-23
+    Time: 8 min
+    Used: debugger 2
+    O(26 * n)
+    """
+    l = 0
+    count = Counter()
+    max_length = 0
+
+    for r in range(len(s)):
+        count[s[r]] += 1
+        if r+1-l - max(count.values()) > k:  # d1
+            count[s[l]] -= 1  # d2
+            l += 1
+        max_length = max(max_length, r+1-l)
+
+    return max_length
