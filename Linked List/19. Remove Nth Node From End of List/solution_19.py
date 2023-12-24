@@ -2,7 +2,7 @@ from typing import List, Optional
 
 
 class ListNode:
-    def __init__(self, val=0, next=None):
+    def __init__(self, val=0, next: 'ListNode' = None):
         self.val = val
         self.next = next
 
@@ -116,3 +116,25 @@ def review2(head: Optional[ListNode], n: int) -> Optional[ListNode]:
     l.next = l.next.next
 
     return dummy_node.next
+
+
+def review3(head: Optional[ListNode], n: int) -> Optional[ListNode]:
+    """
+    Anki 12-24-23
+    Time: 12 min
+    Used: Debugger 1
+    """
+    dummy = ListNode(next=head)
+    l = dummy
+    r = dummy
+
+    for _ in range(n+1):
+        r = r.next
+
+    while r:
+        l = l.next
+        r = r.next
+
+    l.next = l.next.next
+
+    return dummy.next  # d1 head
