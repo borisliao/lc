@@ -1,3 +1,4 @@
+from collections import deque
 from typing import List, Optional
 
 
@@ -62,3 +63,31 @@ def levelOrder(root: Optional[TreeNode]) -> List[List[int]]:
         node_values.append(new_node_values)
 
     return node_values
+
+
+def review1(root: TreeNode | None) -> list[list[int]]:
+    """
+    Anki 12-24-23
+    Time: 18 min
+    Used: Debugger 2
+    """
+    result = []
+    stack: deque[TreeNode] = deque()  # d2 used deque for o(n) pop
+
+    if root:
+        stack.append(root)
+
+    while stack:
+        layer = []
+        for _ in range(len(stack)):
+            value = stack.popleft()  # d2 used deque for o(n) pop
+            # d1 value instead of value.val (did not read question)
+            layer.append(value.val)
+            if value.left:
+                stack.append(value.left)
+            if value.right:
+                stack.append(value.right)
+
+        result.append(layer)
+
+    return result
