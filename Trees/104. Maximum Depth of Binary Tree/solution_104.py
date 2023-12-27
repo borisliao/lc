@@ -123,3 +123,25 @@ def review2(root: TreeNode | None) -> int:
     right_depth = 1 + review2(root.right)
 
     return max(left_depth, right_depth)  # s1
+
+
+def review3(root: TreeNode | None) -> int:
+    """
+    Anki 12-27-23
+    Itterative solution
+    Used: [Maximum Depth of Binary Tree - 3 Solutions - Leetcode 104 - Python](https://www.youtube.com/watch?v=hTM3phVI6YQ)
+    Time: 9:27
+    """
+    stack: list[list[TreeNode, int] | list] = [[root, 1]] if root else []
+
+    max_depth = 0
+    while stack:
+        n, depth = stack.pop()
+
+        if not n:
+            max_depth = max(max_depth, depth-1)
+            continue
+
+        stack.append([n.left, depth + 1])
+        stack.append([n.right, depth + 1])
+    return max_depth
