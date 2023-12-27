@@ -58,3 +58,21 @@ def review2(prices: List[int]) -> int:
             l = r
         r += 1
     return profit
+
+
+def review3(prices: list[int]) -> int:
+    """
+    Anki 12-25-23
+    Time: 21 min
+    Used: debugger 1
+    """
+    l = 0  # buy
+    r = 0  # sell
+    max_profit = 0
+    while r < len(prices):
+        if prices[r] < prices[l]:
+            l = r
+            continue  # d1 break
+        max_profit = max(max_profit, prices[r]-prices[l])
+        r += 1
+    return max_profit
