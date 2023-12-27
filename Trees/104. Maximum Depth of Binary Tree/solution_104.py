@@ -109,3 +109,17 @@ def review1(root: TreeNode | None) -> int:
         nodes = new_nodes
 
     return level
+
+
+def review2(root: TreeNode | None) -> int:
+    """
+    Anki 12-27-23
+    Time: 3 min
+    Used: solution 1
+    """
+    if root == None:
+        return 0
+    left_depth = 1 + review2(root.left)
+    right_depth = 1 + review2(root.right)
+
+    return max(left_depth, right_depth)  # s1
