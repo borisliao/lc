@@ -87,3 +87,25 @@ def BFS(root: Optional[TreeNode]) -> int:
         count += 1
 
     return count
+
+
+def review1(root: TreeNode | None) -> int:
+    """
+    Anki 12-26-23
+    Time: 25:31
+    Used: debugger 2
+    """
+    level = 0
+    nodes = [root] if root else None  # d2
+
+    while nodes:
+        level += 1
+        new_nodes = []
+        for n in nodes:  # d1
+            if n.left:
+                new_nodes.append(n.left)
+            if n.right:
+                new_nodes.append(n.right)
+        nodes = new_nodes
+
+    return level

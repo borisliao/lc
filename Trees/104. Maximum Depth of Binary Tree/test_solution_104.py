@@ -42,3 +42,12 @@ def test_example_2(f):
     output = 2
 
     assert f(root) == output
+
+
+@pytest.mark.timeout(3)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_104, predicate=inspect.isfunction)])
+def test_lc_2(f):
+    root = tn([])
+    output = 0
+
+    assert f(root) == output
