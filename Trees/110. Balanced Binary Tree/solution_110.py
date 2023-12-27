@@ -89,3 +89,33 @@ def globalVar(root: Optional[TreeNode]) -> bool:
 
     dfs(root)
     return True if not unbalanced else False
+
+
+def review1(root: TreeNode | None) -> bool:
+    """
+    Anki 12-27-23
+    Time: 20 min
+    DFS solution
+    Used: debugger 2
+    """
+    if root == None:  # d1
+        return True  # d1
+
+    def dfs(n: TreeNode | None):
+        if n == None:
+            return 0
+        left_node = 1 + dfs(n.left)  # d2 1 +
+        right_node = 1 + dfs(n.right)  # d2 1 +
+
+        return max(left_node, right_node)
+
+    l = dfs(root.left)
+    r = dfs(root.right)
+
+    return False if abs(r-l) > 1 else True
+
+
+# def review2(root: TreeNode | None) -> bool:
+#     """
+#     Anki 12-27-23
+#     """
