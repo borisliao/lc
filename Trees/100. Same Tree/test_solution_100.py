@@ -66,6 +66,16 @@ def test_example_3(f):
 
 @pytest.mark.timeout(3)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_100, predicate=inspect.isfunction)])
+def test_lc_3(f):
+    p = tn([])
+    q = tn([])
+    output = True
+
+    assert f(p, q) == output
+
+
+@pytest.mark.timeout(3)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_100, predicate=inspect.isfunction)])
 def test_lc_19(f):
     p = tn([5, None, 5, None, -3])
     q = tn([5, -3, None, 9])

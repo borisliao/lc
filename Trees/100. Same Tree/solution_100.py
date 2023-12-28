@@ -139,3 +139,19 @@ def review1(p: TreeNode | None, q: TreeNode | None) -> bool:
             return False
 
     return dfs(p, q)
+
+
+def review2(p: TreeNode | None, q: TreeNode | None) -> bool:
+    """
+    Anki 12-23-23
+    Time: 15 min
+    Used: solution
+    """
+    def dfs(p: TreeNode | None, q: TreeNode | None) -> bool:
+        if p == None and q == None:
+            return True
+        elif p and q and p.val == q.val:
+            return dfs(p.left, q.left) and dfs(p.right, q.right)
+        return False
+
+    return dfs(p, q)
