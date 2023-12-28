@@ -52,10 +52,16 @@ def test_example_2(f):
 @pytest.mark.timeout(3)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_110, predicate=inspect.isfunction)])
 def test_example_3(f):
-    """
-    ![https://assets.leetcode.com/uploads/2020/10/06/balance_2.jpg](https://assets.leetcode.com/uploads/2020/10/06/balance_2.jpg)
-    """
     root = tn([])
     output = True
+
+    assert f(root) == output
+
+
+@pytest.mark.timeout(3)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_110, predicate=inspect.isfunction)])
+def test_lc_203(f):
+    root = tn([1, 2, 2, 3, None, None, 3, 4, None, None, 4])
+    output = False
 
     assert f(root) == output

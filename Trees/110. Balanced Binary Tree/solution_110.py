@@ -94,28 +94,49 @@ def globalVar(root: Optional[TreeNode]) -> bool:
 def review1(root: TreeNode | None) -> bool:
     """
     Anki 12-27-23
-    Time: 20 min
+    Time: 30 min
     DFS solution
-    Used: debugger 2
+    Used: debugger 2, solution 1
     """
-    if root == None:  # d1
-        return True  # d1
+    unbalanced = False
 
     def dfs(n: TreeNode | None):
-        if n == None:
+        nonlocal unbalanced  # s3
+        if unbalanced or n == None:  # s3
             return 0
+
         left_node = 1 + dfs(n.left)  # d2 1 +
         right_node = 1 + dfs(n.right)  # d2 1 +
 
+        if abs(left_node - right_node) > 1:  # s3
+            unbalanced = True  # s3
+
         return max(left_node, right_node)
 
-    l = dfs(root.left)
-    r = dfs(root.right)
-
-    return False if abs(r-l) > 1 else True
+    dfs(root)
+    return False if unbalanced else True  # s3 unbalanced
 
 
-# def review2(root: TreeNode | None) -> bool:
-#     """
-#     Anki 12-27-23
-#     """
+def review2(root: TreeNode | None) -> bool:
+    """
+    Anki 12-28-23
+    Time: 8 min
+    Used: debugger 1
+    """
+    state = {"balanced": True}  # d1 flipped state bool
+
+    def dfs(node: TreeNode | None) -> bool:
+        if not state['balanced'] or node == None:
+            return 0
+
+        l = dfs(node.left)
+        r = dfs(node.right)
+
+        if abs(r-l) > 1:
+            state['balanced'] = False
+
+        depth = 1 + max(l, r)
+        return depth
+
+    dfs(root)
+    return state['balanced']
