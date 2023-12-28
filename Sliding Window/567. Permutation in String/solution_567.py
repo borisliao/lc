@@ -289,3 +289,65 @@ def review6(s1: str, s2: str) -> bool:
 #             return True
 
 #     return False
+
+
+def review8(s1: str, s2: str) -> bool:
+    """
+    Anki 12-28-23
+    Time: 8 min
+    """
+    c1 = {}
+    for c in s1:
+        if c in c1:
+            c1[c] += 1
+        else:
+            c1[c] = 1
+
+    r = len(s1)
+
+    while r <= len(s2):
+        c2 = {}
+        for c in s2[r-len(s1):r]:
+            if c in c2:
+                c2[c] += 1
+            else:
+                c2[c] = 1
+
+        if c1 == c2:
+            return True
+
+        r += 1
+
+    return False
+
+
+# def review9(s1: str, s2: str) -> bool:
+#     """
+#     12-28-23
+#     Time: 40 min
+#     """
+#     non_matches = 0
+
+#     c1 = Counter(s1)
+#     c2 = Counter(s2[0:len(s1)])  # d1
+#     for c in c1:
+#         non_matches += abs(c1[c] - c2[c])
+
+#     l = 0
+#     r = len(s1) - 1  # d2 - 1
+
+#     while r < len(s2) - 1:  # d2 <=, d3 - 1
+#         if non_matches == 0:
+#             return True
+
+#         if s2[l] in c1:  # d2 s1
+#             non_matches -= 1
+#         l += 1
+
+#         r += 1
+#         if s2[r] in c1:  # d2 s1
+#             non_matches -= 1
+#         else:
+#             non_matches += 1
+
+#     return False
