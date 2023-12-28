@@ -10,7 +10,7 @@ def same_elements(x, y):
     return sorted_x == sorted_y
 
 
-@pytest.mark.timeout(3)
+@pytest.mark.timeout(1)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_15, predicate=inspect.isfunction)])
 def test_example_1(f):
     """
@@ -27,7 +27,7 @@ def test_example_1(f):
     assert same_elements(f(nums), output)
 
 
-@pytest.mark.timeout(3)
+@pytest.mark.timeout(1)
 @ pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_15, predicate=inspect.isfunction)])
 def test_example_2(f):
     """
@@ -39,7 +39,7 @@ def test_example_2(f):
     assert f(nums) == output
 
 
-@pytest.mark.timeout(3)
+@pytest.mark.timeout(1)
 @ pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_15, predicate=inspect.isfunction)])
 def test_example_3(f):
     """
@@ -51,7 +51,7 @@ def test_example_3(f):
     assert f(nums) == output
 
 
-@pytest.mark.timeout(3)
+@pytest.mark.timeout(1)
 @ pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_15, predicate=inspect.isfunction)])
 def test_lc_56(f):
     nums = [0, 0, 0, 0]
@@ -60,7 +60,7 @@ def test_lc_56(f):
     assert f(nums) == output
 
 
-@pytest.mark.timeout(3)
+@pytest.mark.timeout(1)
 @ pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_15, predicate=inspect.isfunction)])
 def test_lc_83(f):
     nums = [-1, 0, 1, 2, -1, -4]

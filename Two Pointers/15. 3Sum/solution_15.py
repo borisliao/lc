@@ -32,3 +32,32 @@ def threeSum(nums: list[int]) -> list[list[int]]:
                 l += 1
 
     return result
+
+
+def review1(nums: list[int]) -> list[list[int]]:
+    """
+    Anki 12-27-23
+    Used: debugger 3, solution 1
+    Time: 53 min
+    """
+    nums.sort()
+    result = []
+    for i, n in enumerate(nums):  # d4 n, i
+        if i > 0 and nums[i] == nums[i-1]:  # d2
+            continue  # d2
+        l = i + 1  # s3 + 1
+        r = len(nums) - 1
+        while l < r:
+            total = n + nums[l] + nums[r]
+            if total > 0:
+                r -= 1
+            elif total < 0:
+                l += 1
+            elif total == 0:
+                result.append([n, nums[l], nums[r]])
+                l += 1  # s3
+                r -= 1  # s3
+                while nums[l] == nums[l - 1] and l < r:  # s3
+                    l += 1  # s3
+
+    return result
