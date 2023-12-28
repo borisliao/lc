@@ -36,7 +36,7 @@ def threeSum(nums: list[int]) -> list[list[int]]:
 
 def review1(nums: list[int]) -> list[list[int]]:
     """
-    Anki 12-27-23
+    Anki 12-28-23
     Used: debugger 3, solution 1
     Time: 53 min
     """
@@ -60,4 +60,34 @@ def review1(nums: list[int]) -> list[list[int]]:
                 while nums[l] == nums[l - 1] and l < r:  # s3
                     l += 1  # s3
 
+    return result
+
+
+def review2(nums: list[int]) -> list[list[int]]:
+    """
+    Anki 12-28-23
+    Used: solution 2, [3Sum - Leetcode 15 - Python](https://www.youtube.com/watch?v=jzZsG8n2R9A)
+    """
+    nums.sort()
+    result = []
+
+    for i in len(range(nums)):
+        l = i+1
+        r = len(nums) - 1
+
+        if i > 0 and nums[i] == nums[i-1]:  # s2
+            continue  # s2
+
+        while l < r:
+            total = nums[i] + nums[l] + nums[r]
+            if total > 0:
+                r -= 1
+            elif total < 0:
+                l += 1
+            else:
+                result.append([nums[i], nums[l], nums[r]])
+                l += 1
+                r -= 1
+                while nums[l] == nums[l - 1] and l < r:  # s1
+                    l += 1  # s1
     return result
