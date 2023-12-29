@@ -90,8 +90,24 @@ def review1(root: TreeNode | None) -> list[int]:
     return right_nodes
 
 
-# def review2(root: TreeNode | None) -> list[int]:
-#     """
-#     12-29-23
-#     """
-#     pass
+def review2(root: TreeNode | None) -> list[int]:
+    """
+    Anki 12-29-23
+    Time: 15 min
+    Used: [Binary Tree Right Side View - Breadth First Search - Leetcode 199](https://www.youtube.com/watch?v=d4zLyf32e3I)
+    """
+    stack = deque([root])  # d1 [root]
+    result = []
+    while stack:
+        last_node = None
+        next_layer = deque()  # d2
+        for n in stack:
+            last_node = n
+            if n:  # s3 n
+                next_layer.append(n.left)
+                next_layer.append(n.right)
+        if last_node:  # s3
+            result.append(last_node.val)  # s3
+
+        stack = next_layer  # d2
+    return result
