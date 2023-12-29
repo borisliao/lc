@@ -155,3 +155,28 @@ def review3(board: List[List[str]]) -> bool:
             sqr[i//3][j//3].add(board[i][j])
 
     return True
+
+
+def review4(board: List[List[str]]) -> bool:
+    """
+    Anki 12-29-23
+    Time: 30 min
+    Used: debugger 4, solution 1
+    """
+    row = [set() for _ in range(9)]
+    col = [set() for _ in range(9)]
+    sqr = {(i//3, i % 3): set() for i in range(9)}
+
+    for r in range(9):  # s4 3
+        for c in range(9):  # s4 3
+            if board[r][c] == '.':  # d4
+                continue  # d4
+            # d5 sqr[(r, c)]
+            if board[r][c] in row[r] or board[r][c] in col[c] or board[r][c] in sqr[(r//3, c//3)]:
+                return False
+            row[r].add(board[r][c])  # d1 .add
+            col[c].add(board[r][c])  # d1 .add
+            # d1 .add, i2 //, d3 board[r][c]
+            sqr[(r // 3, c // 3)].add(board[r][c])
+
+    return True
