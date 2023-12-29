@@ -155,3 +155,19 @@ def review2(p: TreeNode | None, q: TreeNode | None) -> bool:
         return False
 
     return dfs(p, q)
+
+
+def review3(p: TreeNode | None, q: TreeNode | None) -> bool:
+    """
+    Anki 12-28-23
+    Used: Debugger 1
+    """
+    def dfs(p, q):
+        if p == None and q == None:
+            return True
+        elif p and q and p.val == q.val:  # d1 p.vap
+            return dfs(p.left, q.left) and dfs(p.right, q.right)
+        else:
+            return False
+
+    return dfs(p, q)
