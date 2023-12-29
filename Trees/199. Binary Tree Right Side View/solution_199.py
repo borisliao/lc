@@ -1,3 +1,4 @@
+from collections import deque
 from typing import List, Optional
 
 
@@ -63,3 +64,34 @@ def rightSideView(root: Optional[TreeNode]) -> List[int]:
         stack = new_stack
 
     return result
+
+
+def review1(root: TreeNode | None) -> list[int]:
+    """
+    Anki 12-29-23
+    Used: Solution, debugger 2
+    Time: 20 min
+    """
+    stack = deque([root]) if root else None
+    right_nodes = [root.val] if root else []
+
+    new_stack = []
+    while stack or new_stack:
+        if not stack and new_stack:
+            right_nodes.append(new_stack[-1].val)
+            stack.extend(new_stack)  # d1 append
+            new_stack = []  # d2
+        n = stack.popleft()
+        if n.left:
+            new_stack.append(n.left)
+        if n.right:
+            new_stack.append(n.right)
+
+    return right_nodes
+
+
+# def review2(root: TreeNode | None) -> list[int]:
+#     """
+#     12-29-23
+#     """
+#     pass
