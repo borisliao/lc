@@ -111,3 +111,24 @@ def review2(root: TreeNode | None) -> list[int]:
 
         stack = next_layer  # d2
     return result
+
+
+def review3(root: TreeNode | None) -> list[int]:
+    """
+    Anki 12-29-23
+    """
+    stack = deque([root])
+    result = []
+    while stack:
+        next_layer = deque()
+        last_node = None
+        for n in stack:
+            if n:
+                last_node = n
+                next_layer.append(n.left)
+                next_layer.append(n.right)
+        if last_node:
+            result.append(last_node.val)  # d1 .val
+        stack = next_layer
+
+    return result
