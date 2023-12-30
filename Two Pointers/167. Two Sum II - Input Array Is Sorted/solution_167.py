@@ -60,3 +60,23 @@ def review2(numbers: list[int], target: int) -> list[int]:
             r -= 1
         else:
             l += 1  # d2 l-=1
+
+
+def review3(numbers: list[int], target: int) -> list[int]:
+    """
+    Anki 12-29-23
+    Time: 9:49
+    Used: solution 1, debugger 1
+    """
+    l = 0
+    r = len(numbers) - 1
+
+    while l < r:
+        total = numbers[l] + numbers[r]
+        if target == total:
+            # s1 "indices of the two numbers, index1 and index2, added by one as an integer array"
+            return [l+1, r+1]
+        elif target < total:
+            r -= 1
+        else:
+            l += 1  # d2 l-=1
