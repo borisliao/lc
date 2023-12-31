@@ -112,7 +112,7 @@ def review3(nums: List[int]) -> int:
 def review4(nums: List[int]) -> int:
     """
     Anki 12-10-23
-    Time: 3:43
+    Time: 3:43 
     """
     result = 0
 
@@ -120,3 +120,24 @@ def review4(nums: List[int]) -> int:
         result ^= n
 
     return result
+
+
+def review5(nums: list[int]) -> int:
+    """
+    Anki 12-31-23
+    Time: 2 min
+    """
+    a = 0
+
+    for b in nums:
+        a = a ^ b
+        """
+        a | b | a ^ b (xor)
+        --|---|------
+        0 | 0 | 0
+        0 | 1 | 1
+        1 | 0 | 1
+        1 | 1 | 0
+        """
+
+    return a
