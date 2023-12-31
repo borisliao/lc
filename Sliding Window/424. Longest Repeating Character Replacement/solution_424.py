@@ -158,3 +158,47 @@ def review4(s: str, k: int) -> int:
         max_length = max(max_length, r+1-l)
 
     return max_length
+
+
+# def review5(s: str, k: int) -> int:
+#     """
+#     Anki 12-31-23
+#     """
+#     l = 0
+#     r = 0
+#     count = defaultdict(lambda: 0)
+#     longest = 0
+
+#     while r <= len(s):
+#         occurances = max(count.values() if count else [0])
+#         if occurances + k >= r-l:
+#             longest = r-l
+#             r += 1
+#             if r < len(s):
+#                 count[s[r]] += 1
+#         else:
+#             count[s[l]] -= 1
+#             l += 1
+
+#     return longest
+
+def review6(s: str, k: int) -> int:
+    """
+    Anki 12-31-23
+    Used: Solution
+    Time: 50 min
+    """
+    count = {}
+    l = 0
+    largest = 0
+
+    for r in range(len(s)):
+        count[s[r]] = count.get(s[r], 0) + 1
+
+        if r+1-l - max(count.values()) > k:
+            count[s[l]] -= 1
+            l += 1  # d1 l -= 1
+
+        largest = max(largest, r+1-l)
+
+    return largest
