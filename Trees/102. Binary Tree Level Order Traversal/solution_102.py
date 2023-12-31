@@ -91,3 +91,29 @@ def review1(root: TreeNode | None) -> list[list[int]]:
         result.append(layer)
 
     return result
+
+
+def review2(root: TreeNode | None) -> list[list[int]]:
+    """
+    Anki 12-31-23
+    Time: 15 min
+    Used: debugger 1
+    """
+    stack = [root] if root else []
+    result = []  # d1 redundent [root.val] in init
+
+    while stack:
+        n_stack = []
+        n_result = []
+
+        for n in stack:
+            if n.left:
+                n_stack.append(n.left)
+            if n.right:
+                n_stack.append(n.right)
+            n_result.append(n.val)
+
+        result.append(n_result)
+        stack = n_stack
+
+    return result
