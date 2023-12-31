@@ -65,7 +65,33 @@ def review1(digits: str) -> list[str]:
     return result
 
 
-# def review2(digits: str) -> list[str]:
-#     """
-#     Anki
-#     """
+def review2(digits: str) -> list[str]:
+    """
+    Anki 12-31-23
+    Time: 13 min
+    """
+    result = []
+    subset = ''
+    letters = {'2': 'abc',
+               '3': 'def',
+               '4': 'ghi',
+               '5': 'jkl',
+               '6': 'mno',
+               '7': 'pqrs',
+               '8': 'tuv',
+               '9': 'wxyz'}
+
+    def dfs(i):
+        nonlocal subset
+        if i >= len(digits):
+            if subset != '':
+                result.append(subset)
+            return
+
+        for c in letters[digits[i]]:
+            subset += c
+            dfs(i+1)
+            subset = subset[:-1]
+
+    dfs(0)
+    return result
