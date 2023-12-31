@@ -124,3 +124,33 @@ def review3(nums: list[int]) -> list[list[int]]:
                 l += 1
 
     return result
+
+
+def review4(nums: list[int]) -> list[list[int]]:
+    """
+    Anki 12-31-23
+    Time: 15 min
+    Used: solution 1, gpt 1
+    """
+    nums.sort()
+    result = []
+
+    for i in range(len(nums)):  # s1 range(nums)
+        j = i + 1
+        k = len(nums) - 1
+
+        if i > 0 and nums[i] == nums[i - 1]:  # s1
+            continue  # s1
+
+        while j < k:
+            if nums[i] + nums[j] + nums[k] == 0:  # gpt2 nums[i] + nums[k] + nums[k]
+                result.append([nums[i], nums[j], nums[k]])
+                j += 1
+                while j < k and nums[j] == nums[j - 1]:
+                    j += 1
+            elif nums[i] + nums[k] + nums[k] > 0:
+                k -= 1
+            else:
+                j += 1
+
+    return result
