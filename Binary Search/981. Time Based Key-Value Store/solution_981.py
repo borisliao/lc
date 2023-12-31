@@ -261,3 +261,82 @@ def review2():
             return closest_timestamp
 
     return TimeMap()
+
+
+def review3():
+    """
+    Anki 12-31-23
+    Time: 20 min
+    Basic itteration version (no binary search)
+    """
+    class TimeMap:
+        def __init__(self):
+            self.store = defaultdict(lambda: {})
+
+        def set(self, key: str, value: str, timestamp: int) -> None:
+            self.store[key][timestamp] = value
+
+        def get(self, key: str, timestamp: int) -> str:
+            if key in self.store:
+                if timestamp in self.store[key]:
+                    return self.store[key][timestamp]
+                for time, value in reversed(self.store[key].items()):
+                    if time > timestamp:
+                        continue
+                    return value
+            return ''
+
+    return TimeMap()
+
+
+# def review4():
+#     """
+#     Anki 12-31-23
+#     Due to the nested dictionary instead of list, the time complexity is o(n) instead of o(log(n))
+#     Used: debugger 4
+#     Time: 35 min
+#     """
+#     class TimeMap:
+#         def __init__(self):
+#             self.store = defaultdict(lambda: {})
+
+#         def set(self, key: str, value: str, timestamp: int) -> None:
+#             self.store[key][timestamp] = value
+
+#         def get(self, key: str, timestamp: int) -> str:
+#             if key in self.store:
+#                 if timestamp in self.store[key]:
+#                     return self.store[key][timestamp]
+
+#             kv = list(self.store[key].items())  # d2, d4 conversion is slow
+#             l = 0  # d1 indent out of "if key"
+#             r = len(kv) - 1
+#             largest = None
+#             while l <= r:
+#                 m = (l+r)//2
+#                 # d2 self.store, d3 m in self.store[key]
+#                 if kv[m][0] < timestamp:
+#                     largest = kv[m][1]
+#                     l = m + 1  # d2 l = t
+#                 else:
+#                     r = m - 1
+
+#             return largest if largest else ''
+
+#     return TimeMap()
+
+# def review5():
+#     """
+#     Anki
+#     """
+#     class TimeMap:
+#         def __init__(self):
+#             pass
+
+#         def set(self, key: str, value: str, timestamp: int) -> None:
+#             pass
+
+#         def get(self, key: str, timestamp: int) -> str:
+#             pass
+
+#     return TimeMap()
