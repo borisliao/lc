@@ -154,3 +154,34 @@ def review4(nums: list[int]) -> list[list[int]]:
                 j += 1
 
     return result
+
+
+def review5(nums: list[int]) -> list[list[int]]:
+    """
+    Anki 12-31-23
+    Time: 30 min
+    Used: Solution 2
+    """
+    nums.sort()
+    result = []
+
+    for i in range(len(nums)):
+        if i > 0 and nums[i] == nums[i-1]:  # s2 while i < 0
+            continue
+
+        l = i + 1  # s1 + 1
+        r = len(nums) - 1
+
+        while l < r:
+            if nums[i] + nums[l] + nums[r] == 0:
+                result.append([nums[i], nums[l], nums[r]])
+                l += 1
+                r -= 1
+                while l < r and nums[l] == nums[l-1]:
+                    l += 1
+            elif nums[i] + nums[l] + nums[r] > 0:
+                r -= 1
+            else:
+                l += 1
+
+    return result
