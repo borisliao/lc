@@ -56,3 +56,19 @@ def invertTree(root: Optional[TreeNode]) -> Optional[TreeNode]:
         invertTree(root.right)
 
     return root
+
+
+def review1(root: TreeNode | None) -> TreeNode | None:
+    """
+    Anki 1-1-24
+    Time: 13 min
+    """
+    def dfs(node: TreeNode | None):
+        if node == None:
+            return
+        dfs(node.left)
+        dfs(node.right)
+        node.left, node.right = node.right, node.left
+
+    dfs(root)
+    return root
