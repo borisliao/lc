@@ -161,8 +161,25 @@ def review4(nums: list[int]) -> list[list[int]]:
     return result
 
 
-# def review5(nums: list[int]) -> list[list[int]]:
-#     """
-#     Anki 1-1-24
-#     """
-#     pass
+def review5(nums: list[int]) -> list[list[int]]:
+    """
+    Anki 1-1-24
+    Time: 8 min
+    """
+    result = []
+    subset = []
+
+    def dfs(n: list):
+        if len(n) <= 0:
+            result.append(subset.copy())
+            return
+
+        for i, val in enumerate(n):
+            new_list = n.copy()
+            subset.append(val)
+            del new_list[i]
+            dfs(new_list)
+            subset.pop()
+
+    dfs(nums)
+    return result
