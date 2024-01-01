@@ -141,3 +141,29 @@ def review3(s: str) -> list[list[str]]:
 
     dfs(0)
     return result
+
+
+def review4(s: str) -> list[list[str]]:
+    """
+    Anki 1-1-24
+    """
+    result = []
+    subset = [s[0]]
+
+    def dfs(i):
+        if i == len(s):  # s2 swapped
+            for word in subset:  # s3
+                if word != word[::-1]:  # s3
+                    return  # s3
+            result.append(subset.copy())
+            return
+
+        subset.append(s[i])
+        dfs(i+1)
+        subset.pop()  # s3
+        subset[-1] += s[i]
+        dfs(i+1)
+        subset[-1] = subset[-1][:-1]  # d1 subset instead of subset[-1]
+
+    dfs(1)
+    return result
