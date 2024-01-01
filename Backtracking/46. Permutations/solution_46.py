@@ -122,3 +122,47 @@ def review3(nums: list[int]) -> list[list[int]]:
 
     dfs(nums)
     return result
+
+
+def review4(nums: list[int]) -> list[list[int]]:
+    """
+    Anki 1-1-24
+    Time: 30 min
+    Used: [solution comment](https://www.youtube.com/watch?v=s7AvT7cGdSo&lc=UgxL_-PwA_fneENImIp4AaABAg)
+    ### [@danielsun716](https://www.youtube.com/channel/UC6YblD-4Xfux7SFTscc9Hlw) [1 year ago](https://www.youtube.com/watch?v=s7AvT7cGdSo&lc=UgxL_-PwA_fneENImIp4AaABAg)
+    My thought is initially the same with Neetcode. I draw a decision tree from an empty list. So I write this code for a straight forward understanding. 
+    ```
+    def permute(self, nums: list:[int]) -> list[list[int]]:
+        res = []
+        def backtrack(nums, perm):
+            if not nums:
+                res.append(perm)
+                return
+            for i in range(len(nums)):
+                backtrack(nums[: i] + nums[i + 1:], perm + [nums[i]])
+        backtrack(nums, [])
+        return res
+    ```
+    """
+    result = []
+    subset = []
+
+    def dfs(options: list):
+        if len(subset) == len(nums):  # d2 <
+            result.append(subset.copy())
+            return
+
+        for i in range(len(options)):
+            subset.append(options[i])  # s1
+            dfs(options[:i] + options[i+1:])  # s1
+            subset.pop()
+
+    dfs(nums)
+    return result
+
+
+# def review5(nums: list[int]) -> list[list[int]]:
+#     """
+#     Anki 1-1-24
+#     """
+#     pass
