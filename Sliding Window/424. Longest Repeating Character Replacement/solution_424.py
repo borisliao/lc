@@ -202,3 +202,45 @@ def review6(s: str, k: int) -> int:
         largest = max(largest, r+1-l)
 
     return largest
+
+
+# def review6(s: str, k: int) -> int:
+#     """
+#     Anki 12-31-23
+#     Time: 4 min
+#     """
+#     count = {}
+#     l = 0
+#     longest = 0
+
+#     for r in range(len(s)):
+#         count[s[r]] = count.get(s[r], 0) + 1
+
+#         if max(count.values()) + k <= r+1-l: # you need to fix the l-r window range first before computing the longest
+#             longest = max(longest, r+1-l)
+#         else:
+#             count[s[l]] -= 1
+#             l += 1
+
+#     return longest
+
+
+def review7(s: str, k: int) -> int:
+    """
+    Anki 12-31-23
+    Time: 7 min
+    Used: Solution 1
+    """
+    count = {}
+    l = 0
+    longest = 0
+
+    for r in range(len(s)):
+        count[s[r]] = count.get(s[r], 0) + 1
+
+        if r+1-l - max(count.values()) > k:
+            count[s[l]] -= 1  # s1
+            l += 1
+        longest = max(longest, r+1-l)
+
+    return longest
