@@ -185,3 +185,34 @@ def review5(nums: list[int]) -> list[list[int]]:
                 l += 1
 
     return result
+
+
+def review6(nums: list[int]) -> list[list[int]]:
+    """
+    Anki 1-1-24
+    Used: Debugger 2, gpt 1 
+    Time: 20 min
+    """
+    nums.sort()
+    result = []
+
+    for i in range(len(nums)):
+        if i > 0 and nums[i] == nums[i-1]:  # gpt3 nums[i] < nums[i-1]
+            continue
+
+        l = i + 1
+        r = len(nums) - 1
+
+        while l < r:
+            three_numbers = [nums[i], nums[l], nums[r]]
+            if sum(three_numbers) > 0:
+                r -= 1  # d2 swapped
+            elif sum(three_numbers) < 0:
+                l += 1  # d2 swapped
+            else:
+                result.append(three_numbers)
+                l += 1
+                while l < r and nums[l] == nums[l-1]:
+                    l += 1
+
+    return result  # d1
