@@ -145,3 +145,16 @@ def review3(root: TreeNode | None) -> int:
         stack.append([n.left, depth + 1])
         stack.append([n.right, depth + 1])
     return max_depth
+
+
+def review4(root: TreeNode | None) -> int:
+    """
+    Anki 12-31-23
+    Time: 4 min
+    """
+    def dfs(node):
+        if node == None:
+            return 0
+        return 1 + max(dfs(node.left), dfs(node.right))
+
+    return dfs(root)
