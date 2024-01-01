@@ -213,3 +213,25 @@ def review7(nums: List[int]) -> List[int]:
         i -= 1
 
     return result
+
+
+def review7(nums: List[int]) -> List[int]:
+    """
+    Anki 1-1-24
+    Time: 30 min
+    Used: debugger 3
+    """
+    result = []
+    product = 1
+    for n in nums:
+        result.append(product)
+        product *= n  # d1 nums product *= nums
+
+    product = 1
+    i = len(result) - 1  # d2 i = 0
+    for n in reversed(nums):  # d3 result instead of nums
+        result[i] *= product
+        product *= n
+        i -= 1  # d2 i +=1
+
+    return result
