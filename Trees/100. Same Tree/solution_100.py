@@ -171,3 +171,46 @@ def review3(p: TreeNode | None, q: TreeNode | None) -> bool:
             return False
 
     return dfs(p, q)
+
+
+# def review3(p: TreeNode | None, q: TreeNode | None) -> bool:
+#     """
+#     Anki 12-31-23
+#     Did not whiteboard, and got overengineered solution
+#     """
+#     same_tree = True
+
+#     def dfs(p, q):
+#         nonlocal same_tree
+#         if not same_tree or p and q and p.val != q.val:
+#             same_tree = False
+#             return False
+
+#         if p == None and q == None:
+#             return True
+
+#         if p and q and p.val == q.val:
+#             return dfs(p.left, q.left) and dfs(p.right, q.right)
+
+#     dfs(p, q)
+#     return same_tree
+
+
+def review4(p: TreeNode | None, q: TreeNode | None) -> bool:
+    """
+    Anki 12-31-23
+    Time: 11 min
+    Used: Solution 2
+    Note: Whiteboard the solution first.
+    """
+
+    def dfs(p, q):
+        if p == None and q == None:
+            return True
+
+        if p and q and p.val == q.val:  # s1 p.val != q.val
+            return dfs(p.left, q.left) and dfs(p.right, q.right)  # d1
+        else:
+            return False  # s1 return false if p or q doesnt exist
+
+    return dfs(p, q)
