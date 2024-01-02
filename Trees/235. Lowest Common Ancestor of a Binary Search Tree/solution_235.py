@@ -105,9 +105,16 @@ def review1(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
     return lowest_node
 
 
-# def review2(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
-#     """
-#     Anki
-#     NOTE: use the fact that the data structure is a binary search tree, not a binary tree
-#     A binary search tree puts the lowest values on the left nodes
-#     """
+def review2(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+    """
+    Anki 1-2-23
+    NOTE: use the fact that the data structure is a binary search tree, not a binary tree
+    A binary search tree puts the lowest values on the left nodes
+    """
+    while root:
+        if root.val > p.val and root.val > q.val:
+            root = root.left
+        elif root.val < p.val and root.val < q.val:
+            root = root.right
+        else:
+            return root
