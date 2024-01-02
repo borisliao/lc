@@ -244,3 +244,23 @@ def review7(s: str, k: int) -> int:
         longest = max(longest, r+1-l)
 
     return longest
+
+
+def review8(s: str, k: int) -> int:
+    """
+    Anki 1-1-24
+    Time: 20 min
+    """
+    count = {}
+    l = 0
+    longest = 0
+
+    for r in range(len(s)):
+        count[s[r]] = count.get(s[r], 0) + 1
+
+        if max(count.values()) + k < r+1-l:
+            count[s[l]] -= 1
+            l += 1
+        longest = max(longest, r+1-l)
+
+    return longest
