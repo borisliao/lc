@@ -167,3 +167,31 @@ def review4(s: str) -> list[list[str]]:
 
     dfs(1)
     return result
+
+
+def review5(s: str) -> list[list[str]]:
+    """
+    Anki 1-1-24
+    Time: 10 min
+    """
+    result = []
+    subset = [s[0]]
+
+    def dfs(i):
+        if i >= len(s):
+            for word in subset:
+                if word != word[::-1]:
+                    return
+            result.append(subset.copy())
+            return
+
+        subset[-1] += s[i]
+        dfs(i+1)
+        subset[-1] = subset[-1][:-1]  # s1 [::-1]
+
+        subset.append(s[i])
+        dfs(i+1)
+        subset.pop()
+
+    dfs(1)
+    return result
