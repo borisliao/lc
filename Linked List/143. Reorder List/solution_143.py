@@ -311,3 +311,43 @@ def review5(head: ListNode) -> None:
         l2 = t2
 
     return head
+
+
+def review5(head: ListNode) -> None:
+    """
+    Anki 1-1-24
+    Time: 20 min
+    """
+    # find midpoint
+    slow = head
+    fast = head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+
+    # reverse midpoint
+    mid = slow.next
+    slow.next = None
+
+    prev = None
+    node = mid
+    while node:
+        next_node = node.next
+        node.next = prev
+
+        prev = node
+        node = next_node
+
+    # merge lists
+    first = head
+    second = prev
+    while second:
+        next_first = first.next
+        first.next = second
+
+        first = next_first
+
+        next_second = second.next
+        second.next = first
+
+        second = next_second
