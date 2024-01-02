@@ -132,3 +132,29 @@ def review3(root: TreeNode | None) -> list[int]:
         stack = next_layer
 
     return result
+
+
+def review4(root: TreeNode | None) -> list[int]:
+    """
+    Anki 1-1-24
+    Time: 8 min
+    Used: debugger 1
+    """
+    stack = [root] if root else []
+    result = [root.val] if root else []  # d1
+
+    new_stack = []
+    while stack:
+        for n in stack:
+            if n.left:
+                new_stack.append(n.left)
+            if n.right:
+                new_stack.append(n.right)
+
+        if new_stack:
+            result.append(new_stack[-1].val)
+
+        stack = new_stack
+        new_stack = []
+
+    return result
