@@ -32,8 +32,8 @@ def test_example_1(f):
     ![https://assets.leetcode.com/uploads/2018/12/14/binarysearchtree_improved.png](https://assets.leetcode.com/uploads/2018/12/14/binarysearchtree_improved.png)
     """
     root = tn([6, 2, 8, 0, 4, 7, 9, None, None, 3, 5])
-    p = tn([2])
-    q = tn([8])
+    p = root.left  # 2
+    q = root.right  # 8
     output = 6
     """Explanation: The LCA of nodes 2 and 8 is 6."""
 
@@ -47,8 +47,8 @@ def test_example_2(f):
     ![https://assets.leetcode.com/uploads/2021/04/28/subtree2-tree.jpg](https://assets.leetcode.com/uploads/2021/04/28/subtree2-tree.jpg)
     """
     root = tn([6, 2, 8, 0, 4, 7, 9, None, None, 3, 5])
-    p = tn([2])
-    q = tn([4])
+    p = root.left  # 2
+    q = root.left.right  # 4
     output = 2
     """Explanation: The LCA of nodes 2 and 4 is 2, since a node can be a descendant of itself according to the LCA definition."""
 
@@ -62,8 +62,8 @@ def test_lc_166(f):
     ![https://assets.leetcode.com/uploads/2021/04/28/subtree2-tree.jpg](https://assets.leetcode.com/uploads/2021/04/28/subtree2-tree.jpg)
     """
     root = tn([2, 1])
-    p = tn([2])
-    q = tn([1])
+    p = root  # 2
+    q = root.left  # 1
     output = 2
 
     assert f(root, p, q).val == output

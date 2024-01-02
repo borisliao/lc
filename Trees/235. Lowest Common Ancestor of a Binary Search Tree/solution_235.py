@@ -62,3 +62,52 @@ def lowestCommonAncestor(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
             # and the root.val > p.val and root.val < q.val case
             # and the root.val < p.val and root.val > q.val case
             return root
+
+
+def review1(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+    """
+    Anki 1-2-24
+    Used: debugger 2
+    Time: 28 min
+    """
+    p_path = []
+    q_path = []
+
+    path = []
+
+    def dfs(node: TreeNode):
+        nonlocal p_path, q_path
+
+        path.append(node)
+        if node.val == p.val:
+            p_path = path.copy()
+            # d1 returned
+        if node.val == q.val:
+            q_path = path.copy()
+            # d1 returned
+
+        if node.left:  # d2 popped when empty
+            dfs(node.left)
+            path.pop()
+        if node.right:  # d2 popped when empty
+
+            dfs(node.right)
+            path.pop()
+
+    dfs(root)
+
+    lowest_node = None
+    q_path = set(q_path)
+    for p in p_path:
+        if p in q_path:
+            lowest_node = p
+
+    return lowest_node
+
+
+# def review2(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+#     """
+#     Anki
+#     NOTE: use the fact that the data structure is a binary search tree, not a binary tree
+#     A binary search tree puts the lowest values on the left nodes
+#     """
