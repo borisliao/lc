@@ -100,3 +100,17 @@ def review4(n: int) -> int:
         two = temp
 
     return one
+
+
+def review5(n: int) -> int:
+    """
+    Anki 1-1-24
+    Time: 4 min
+    Used: debugger 1
+    """
+    one, two = 1, 0
+
+    for _ in range(n):  # d1 len(n)
+        one, two = one + two, one
+
+    return one
