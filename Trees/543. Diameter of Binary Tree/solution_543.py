@@ -133,3 +133,26 @@ def diameterOfBinaryTree(root: Optional[TreeNode]) -> int:
 
     dfs(root)
     return res
+
+
+def review1(root: TreeNode | None) -> int:
+    """
+    Anki 1-3-24
+    Used: Solution 1
+    Time: 15 min
+    """
+    largest = 0
+
+    def dfs(node: TreeNode | None):
+        nonlocal largest
+        if node == None:
+            return 0
+
+        left_depth = dfs(node.left)  # s1 1 + dfs(node.left)
+        right_depth = dfs(node.right)  # s1 1 + dfs(node.left)
+
+        largest = max(left_depth + right_depth, largest)
+        return 1 + max(left_depth, right_depth)  # s1 missing 1 +
+
+    dfs(root)
+    return largest
