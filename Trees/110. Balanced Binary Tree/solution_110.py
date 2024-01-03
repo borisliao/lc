@@ -140,3 +140,27 @@ def review2(root: TreeNode | None) -> bool:
 
     dfs(root)
     return state['balanced']
+
+
+def review3(root: TreeNode | None) -> bool:
+    """
+    Anki 1-2-24
+    Used: debugger 1
+    Time: 9 min
+    """
+    balanced = True
+
+    def dfs(node: TreeNode | None):
+        nonlocal balanced  # d1
+        if node == None or balanced == False:
+            return 0
+        left_depth = 1 + dfs(node.left)
+        right_depth = 1 + dfs(node.right)
+
+        if abs(left_depth-right_depth) > 1:
+            balanced = False
+
+        return max(left_depth, right_depth)
+
+    dfs(root)
+    return balanced
