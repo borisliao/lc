@@ -80,3 +80,22 @@ def review3(numbers: list[int], target: int) -> list[int]:
             r -= 1
         else:
             l += 1  # d2 l-=1
+
+
+def review3(numbers: list[int], target: int) -> list[int]:
+    """
+    Anki 1-2-24
+    Time: 7 min
+    Used: solution 1
+    """
+    l = 0
+    r = len(numbers) - 1
+
+    while l < r:
+        total = numbers[l] + numbers[r]
+        if total == target:
+            return [l+1, r+1]
+        elif total > target:  # s1 0 instead of total
+            r -= 1
+        else:
+            l += 1
