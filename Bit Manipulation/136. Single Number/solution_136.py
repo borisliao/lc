@@ -141,3 +141,23 @@ def review5(nums: list[int]) -> int:
         """
 
     return a
+
+
+def review6(nums: list[int]) -> int:
+    """
+    Anki 1-1-24
+    Time: 2 min
+    """
+    result = 0
+
+    for n in nums:
+        result ^= n
+
+    return result
+
+
+# def review7(nums: list[int]) -> int:
+#     """
+#     Anki
+#     """
+#     pass
