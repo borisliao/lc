@@ -195,3 +195,67 @@ def review5(s: str) -> list[list[str]]:
 
     dfs(1)
     return result
+
+
+def review6(s: str) -> list[list[str]]:
+    """
+    Anki 1-3-24
+    Used: debugger 3
+    Time: 23 min
+    """
+    result = []
+    subset = [s[0]]
+
+    def dfs(i):
+        if i >= len(s):  # d2 >
+            for word in subset:  # d3
+                if word != word[::-1]:  # d3
+                    return  # d3
+            result.append(subset.copy())
+            return
+
+        if subset[-1] != subset[-1][::-1]:
+            return
+        subset.append(s[i])
+        dfs(i+1)
+        subset.pop()
+
+        subset[-1] += s[i]
+        dfs(i+1)
+        subset[-1] = subset[-1][:-1]
+
+    dfs(1)  # d1
+    return result
+
+
+def review7(s: str) -> list[list[str]]:
+    """
+    1-3-24
+    """
+    result = []
+    subset = [s[0]]
+
+    def dfs(i):
+        if i >= len(s):
+            if subset[-1] != subset[-1][::-1]:
+                return
+            result.append(subset.copy())
+            return
+
+        if subset[-1] == subset[-1][::-1]:
+            subset.append(s[i])
+            dfs(i+1)
+            subset.pop()
+
+        subset[-1] += s[i]
+        dfs(i+1)
+        subset[-1] = subset[-1][:-1]
+
+    dfs(1)
+    return result
+
+# def review8(s: str) -> list[list[str]]:
+#     """
+#     Anki
+#     """
+#     pass
