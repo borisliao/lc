@@ -171,3 +171,33 @@ def review4(nums: List[int], target: int) -> bool:
             l += 1
 
     return False
+
+
+def review5(nums: list[int], target: int) -> bool:
+    """
+    Anki 1-3-24
+    Time: 12 min
+    Used: Solution 1
+    """
+    l = 0
+    r = len(nums) - 1
+
+    while l <= r:
+        m = (l+r)//2
+        if nums[m] == target:
+            return True
+
+        if nums[l] < nums[m]:
+            if nums[l] <= target < nums[m]:
+                r = m - 1
+            else:
+                l = m + 1
+        elif nums[l] > nums[m]:
+            if nums[m] < target <= nums[r]:  # s1 nums[m] <= target
+                l = m + 1
+            else:
+                r = m - 1  # s1 +
+        else:
+            l += 1
+
+    return False

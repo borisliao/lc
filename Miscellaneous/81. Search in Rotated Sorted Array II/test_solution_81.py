@@ -3,7 +3,7 @@ import inspect
 import solution_81
 
 
-@pytest.mark.timeout(3)
+@pytest.mark.timeout(1)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_81, predicate=inspect.isfunction)])
 def test_example_1(f):
     nums = [2, 5, 6, 0, 0, 1, 2]
@@ -13,7 +13,7 @@ def test_example_1(f):
     assert f(nums, target) == output
 
 
-@pytest.mark.timeout(3)
+@pytest.mark.timeout(1)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_81, predicate=inspect.isfunction)])
 def test_example_2(f):
     nums = [2, 5, 6, 0, 0, 1, 2]
@@ -23,7 +23,7 @@ def test_example_2(f):
     assert f(nums, target) == output
 
 
-@pytest.mark.timeout(3)
+@pytest.mark.timeout(1)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_81, predicate=inspect.isfunction)])
 def test_lc_2(f):
     nums = [1]
@@ -33,7 +33,7 @@ def test_lc_2(f):
     assert f(nums, target) == output
 
 
-@pytest.mark.timeout(3)
+@pytest.mark.timeout(1)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_81, predicate=inspect.isfunction)])
 def test_lc_215(f):
     nums = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1]
@@ -43,7 +43,7 @@ def test_lc_215(f):
     assert f(nums, target) == output
 
 
-@pytest.mark.timeout(3)
+@pytest.mark.timeout(1)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_81, predicate=inspect.isfunction)])
 def test_lc_233(f):
     nums = [1, 1, 1, 1, 1, 1, 1, 1, 1, 13, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
