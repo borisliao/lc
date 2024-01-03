@@ -112,3 +112,38 @@ def review2(nums: list[int]) -> list[list[int]]:
 
     dfs(0)
     return result
+
+
+def review3(nums: list[int]) -> list[list[int]]:
+    """
+    Anki 1-3-24
+    Time: 12 min
+    Used: Debugger 3
+    """
+    nums.sort()
+    result = []
+    subset = []
+
+    def dfs(i):
+        if i >= len(nums):  # d4 i > len(nums)
+            result.append(subset.copy())
+            return
+
+        subset.append(nums[i])
+        dfs(i+1)
+        subset.pop()
+        i += 1
+        # d1 i <= len(nums), d3 nums[i] != nums[i-1]
+        while i < len(nums) and nums[i] == nums[i-1]:
+            i += 1
+        dfs(i)
+
+    dfs(0)  # d2 dfs(nums)
+    return result
+
+
+# def review4(nums: list[int]) -> list[list[int]]:
+#     """
+#     Anki
+#     """
+#     pass
