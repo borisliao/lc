@@ -60,3 +60,29 @@ def isSubtree(root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
         if isSameTree(root, subRoot):
             return True
     return isSubtree(root.left, subRoot) or isSubtree(root.right, subRoot)
+
+
+def review1(root: TreeNode | None, subRoot: TreeNode | None) -> bool:
+    """
+    Anki 1-4-24
+    Used: [Subtree of Another Tree - Leetcode 572 - Python](https://www.youtube.com/watch?v=E36O5SWp-LE)
+    """
+    def sameTree(a, b):
+        if a == None and b == None:
+            return True
+        elif a and b and a.val == b.val:
+            return sameTree(a.left, b.left) and sameTree(a.right, b.right)
+        else:
+            return False
+
+    def dfs(r, st):
+        if r == None and st == None:
+            return True
+        elif r == None and st:
+            return False
+        elif r and st and r.val == st.val:
+            if sameTree(r, st):
+                return True
+        return dfs(r.left, st) or dfs(r.right, st)
+
+    return dfs(root, subRoot)
