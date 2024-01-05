@@ -254,16 +254,87 @@ def neetcode(capacity: int):
 
 #     return LRUCache(capacity)
 
-# def review(capacity: int):
+def review3(capacity: int):
+    """
+    NOTE: Study https://www.youtube.com/watch?v=7ABFKPK2hD4 before attempting
+    Anki 1-5-24
+    """
+
+    class Node:
+        def __init__(self, k: int = None, v: int = None, p: "Node" = None, n: "Node" = None):
+            self.key = k
+            self.val = v
+            self.prev = p
+            self.next = n
+
+    class LRUCache:
+
+        def __init__(self, capacity: int):
+            """Initialize the LRU cache with positive size capacity."""
+            self.capacity = capacity
+            self.node = {}
+            self.left, self.right = Node(), Node()
+            self.left.next, self.right.prev = self.right, self.left
+
+        def get(self, key: int) -> int:
+            """
+            Return the value of the key if the key exists, otherwise return -1.
+            Runs in O(1) average time complexity
+            """
+            if key in self.node:
+                self.remove(self.node[key])
+                self.insert(self.node[key])
+                return self.node[key].val  # s1 .val
+            return -1
+
+        def put(self, key: int, value: int) -> None:
+            """
+            Update the value of the key if the key exists.
+            Otherwise, add the key-value pair to the cache.
+            If the number of keys exceeds the capacity from this operation, evict the least recently used key.
+            Runs in O(1) average time complexity
+            """
+            if key in self.node:
+                self.remove(self.node[key])
+
+            self.node[key] = Node(key, value)  # s1
+            self.insert(self.node[key])
+
+            if len(self.node) > capacity:
+                self.remove(self.left.next)
+                del self.node[self.left.next.key]
+
+        def remove(self, n: Node):
+            prev, nxt = n.prev, n.next  # s1 n.prev = n.next
+            prev.next, nxt.prev = nxt, prev  # s1
+
+        def insert(self, n: Node):
+            prev, nxt = self.right.prev, self.right  # s1
+            prev.next = nxt.prev = n  # s1
+            n.next, n.prev = nxt, prev  # s1
+
+    return LRUCache(capacity)
+
+
+# def review4(capacity: int):
 #     """
-#     NOTE: Study https://www.youtube.com/watch?v=7ABFKPK2hD4 before attempting
-#     Anki
+#     Anki 1-5-24
 #     """
+
+#     class Node:
+#         def __init__(self, k: int = None, v: int = None):
+#             self.key = k
+#             self.val = v
+#             self.prev = self.next = None
+
 #     class LRUCache:
 
 #         def __init__(self, capacity: int):
 #             """Initialize the LRU cache with positive size capacity."""
-#             pass
+#             self.capacity = capacity
+#             self.node = {}
+#             self.left, self.right = Node(), Node()
+#             self.left.next, self.right.prev = self.right, self.left
 
 #         def get(self, key: int) -> int:
 #             """
@@ -279,6 +350,12 @@ def neetcode(capacity: int):
 #             If the number of keys exceeds the capacity from this operation, evict the least recently used key.
 #             Runs in O(1) average time complexity
 #             """
+#             pass
+
+#         def remove(self, n: Node):
+#             pass
+
+#         def insert(self, n: Node):
 #             pass
 
 #     return LRUCache(capacity)
