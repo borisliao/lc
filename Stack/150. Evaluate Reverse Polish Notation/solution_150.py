@@ -25,5 +25,25 @@ def evalRPN(tokens: list[str]) -> int:
     return stack[0]  # s1 result
 
 
-# def review1(tokens: list[str]) -> int:
-#     pass
+def review1(tokens: list[str]) -> int:
+    """
+    Anki 1-5-23
+    Time: 5 min
+    Used: debugger 1, insight 1
+    """
+    s = []
+    for t in tokens:
+        if t == '+':
+            s.append(s.pop() + s.pop())
+        elif t == '-':  # d1 if
+            l, r = s.pop(), s.pop()
+            s.append(r - l)
+        elif t == '*':  # d1 if
+            s.append(s.pop() * s.pop())
+        elif t == '/':  # d1 if
+            l, r = s.pop(), s.pop()
+            s.append(int(r/l))  # i1 l/r
+        else:
+            s.append(int(t))
+
+    return s[0]
