@@ -300,9 +300,10 @@ def review3(capacity: int):
             self.node[key] = Node(key, value)  # s1
             self.insert(self.node[key])
 
-            if len(self.node) > capacity:
-                self.remove(self.left.next)
-                del self.node[self.left.next.key]
+            if len(self.node) > self.capacity:  # gpt2 capacity
+                lru = self.left.next  # s3
+                self.remove(lru)
+                del self.node[lru.key]
 
         def remove(self, n: Node):
             prev, nxt = n.prev, n.next  # s1 n.prev = n.next
@@ -316,25 +317,78 @@ def review3(capacity: int):
     return LRUCache(capacity)
 
 
-# def review4(capacity: int):
-#     """
-#     Anki 1-5-24
-#     """
+def review4(capacity: int):
+    """
+    Anki 1-6-24
+    Time: 1h 8m
+    """
 
-#     class Node:
-#         def __init__(self, k: int = None, v: int = None):
-#             self.key = k
-#             self.val = v
-#             self.prev = self.next = None
+    class Node:
+        def __init__(self, k: int = None, v: int = None):
+            self.key = k
+            self.val = v
+            self.prev = self.next = None
+
+    class LRUCache:
+
+        def __init__(self, capacity: int):
+            """Initialize the LRU cache with positive size capacity."""
+            self.capacity = capacity
+            self.cache = {}
+            self.left, self.right = Node(), Node()
+            self.left.next, self.right.prev = self.right, self.left
+
+        def get(self, key: int) -> int:
+            """
+            Return the value of the key if the key exists, otherwise return -1.
+            Runs in O(1) average time complexity
+            """
+            if key in self.cache:
+                self.remove(self.cache[key])
+                self.insert(self.cache[key])
+                return self.cache[key].val
+            return -1
+
+        def put(self, key: int, value: int) -> None:
+            """
+            Update the value of the key if the key exists.
+            Otherwise, add the key-value pair to the cache.
+            If the number of keys exceeds the capacity from this operation, evict the least recently used key.
+            Runs in O(1) average time complexity
+            """
+            new_node = Node(key, value)
+            if key in self.cache:
+                self.remove(self.cache[key])
+            self.insert(new_node)
+            self.cache[key] = new_node
+
+            if len(self.cache) > self.capacity:  # gpt1 capacity
+                lru = self.left.next
+                self.remove(lru)
+                del self.cache[lru.key]  # gpt2 lru.val
+
+        def remove(self, n: Node):
+            n.prev.next = n.next
+            n.next.prev = n.prev
+
+        def insert(self, n: Node):
+            n.next = self.right
+            n.prev = self.right.prev
+            self.right.prev.next = n
+            self.right.prev = n
+
+    return LRUCache(capacity)
+
+
+# def review5(capacity: int):
+#     """
+#     Anki 1-6-24
+#     """
 
 #     class LRUCache:
-
 #         def __init__(self, capacity: int):
 #             """Initialize the LRU cache with positive size capacity."""
-#             self.capacity = capacity
-#             self.node = {}
-#             self.left, self.right = Node(), Node()
-#             self.left.next, self.right.prev = self.right, self.left
+#             pass
 
 #         def get(self, key: int) -> int:
 #             """
