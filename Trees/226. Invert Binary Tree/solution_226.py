@@ -72,3 +72,16 @@ def review1(root: TreeNode | None) -> TreeNode | None:
 
     dfs(root)
     return root
+
+
+def review1(root: TreeNode | None) -> TreeNode | None:
+    """
+    Anki 1-6-24
+    Time: 2 min
+    """
+    if root:
+        review1(root.left)
+        review1(root.right)
+        root.left, root.right = root.right, root.left
+
+    return root
