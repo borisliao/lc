@@ -156,3 +156,26 @@ def review1(root: TreeNode | None) -> int:
 
     dfs(root)
     return largest
+
+
+def review2(root: TreeNode | None) -> int:
+    """
+    Anki 1-7-24
+    Time: 12 min
+    Used: debugger 2
+    """
+    max_diameter = 0
+
+    def dfs(root: TreeNode | None):
+        nonlocal max_diameter
+        if root == None:
+            return 0
+        left_depth = dfs(root.left)
+        right_depth = dfs(root.right)
+
+        # d1 forgot , max_diameter
+        max_diameter = max(left_depth + right_depth, max_diameter)
+        return 1 + max(left_depth, right_depth)
+
+    dfs(root)  # d2
+    return max_diameter
