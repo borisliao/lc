@@ -28,3 +28,12 @@ def test_example_3(f):
     output = False
 
     assert f(s) == output
+
+
+@pytest.mark.timeout(1)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_20, predicate=inspect.isfunction)])
+def test_lc_87(f):
+    s = "["
+    output = False
+
+    assert f(s) == output
