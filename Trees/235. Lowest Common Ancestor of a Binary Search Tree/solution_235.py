@@ -118,3 +118,34 @@ def review2(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
             root = root.right
         else:
             return root
+
+
+def review2(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+    """
+    Anki 1-8-23
+    Time: 15 min
+    Alternative solution declaring explicit condition
+    Used: debugger 1, solution 1
+    """
+    if (root.val > p.val and root.val < q.val
+        or root.val <= p.val and root.val >= q.val  # s1
+            or root.val == p.val or root.val == q.val):
+        return root
+    elif root.val < p.val and root.val < q.val:
+        return review2(root.right, p, q)  # d1 p, q
+    elif root.val > p.val and root.val > q.val:
+        return review2(root.left, p, q)  # d1 p, q
+
+
+def review3(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+    """
+    Anki 1-8-23
+    Time: 17 min
+    Used: debugger 1
+    """
+    if root.val < p.val and root.val < q.val:
+        return review3(root.right, p, q)  # d1 p, q
+    elif root.val > p.val and root.val > q.val:
+        return review3(root.left, p, q)  # d1 p, q
+    else:
+        return root
