@@ -246,3 +246,33 @@ def review7(nums: list[int]) -> list[list[int]]:
                     l += 1
 
     return result
+
+
+def review8(nums: list[int]) -> list[list[int]]:
+    """
+    Anki 1-8-24
+    Used: solution 2
+    Time: 14 min
+    """
+    nums.sort()
+    result = []
+    for i in range(len(nums)):
+        if i > 0 and nums[i] == nums[i-1]:  # s1
+            continue  # s1
+
+        l = i + 1
+        r = len(nums) - 1
+
+        while l < r:
+            values = [nums[i], nums[l], nums[r]]
+            if sum(values) == 0:
+                result.append(values)
+                l += 1  # s2
+                while l < r and nums[l] == nums[l-1]:  # s2
+                    l += 1  # s2
+            elif sum(values) > 0:
+                r -= 1
+            else:
+                l += 1
+
+    return result
