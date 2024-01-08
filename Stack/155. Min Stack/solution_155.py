@@ -31,6 +31,68 @@ def minStack():
     return MinStack()
 
 
+def review1():
+    """
+    Anki 1-8-24
+    Time: 10 min
+    """
+
+    class MinStack:
+
+        def __init__(self):
+            self.stack = []
+            self.minimum_at_index = {}
+            self.minimum = float('inf')
+
+        def push(self, val: int) -> None:
+            self.minimum_at_index[len(self.stack)] = self.minimum
+            self.minimum = min(self.minimum, val)
+            self.stack.append(val)
+
+        def pop(self) -> None:
+            self.stack.pop()
+            self.minimum = self.minimum_at_index[len(self.stack)]
+
+        def top(self) -> int:
+            return self.stack[-1]
+
+        def getMin(self) -> int:
+            return self.minimum
+
+    return MinStack()
+
+
+def review2():
+    """
+    1-8-24
+    Time: (10 min) + 3 min
+    Used 2 stacks instead of 1 stack and 1 hash
+    """
+
+    class MinStack:
+
+        def __init__(self):
+            self.stack = []
+            self.last_minimum = []
+            self.minimum = float('inf')
+
+        def push(self, val: int) -> None:
+            self.last_minimum.append(self.minimum)
+            self.minimum = min(self.minimum, val)
+            self.stack.append(val)
+
+        def pop(self) -> None:
+            self.stack.pop()
+            self.minimum = self.last_minimum.pop()
+
+        def top(self) -> int:
+            return self.stack[-1]
+
+        def getMin(self) -> int:
+            return self.minimum
+
+    return MinStack()
+
 # def minStack():
 #     class MinStack:
 
