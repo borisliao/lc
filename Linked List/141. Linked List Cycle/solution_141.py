@@ -104,3 +104,20 @@ def review2(head: ListNode | None) -> bool:
             return True
 
     return False
+
+
+def review3(head: ListNode | None) -> bool:
+    """
+    Anki 1-7-24
+    Time: 2:30
+    """
+    fast = slow = head
+
+    while fast and fast.next:
+        fast = fast.next.next
+        slow = slow.next
+
+        if fast == slow:
+            return True
+
+    return False
