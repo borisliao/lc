@@ -49,3 +49,25 @@ def test_example_3(f):
     output = 1
 
     assert f(target, position, speed) == output
+
+
+@pytest.mark.timeout(1)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_853, predicate=inspect.isfunction)])
+def test_lc_9(f):
+    target = 12
+    position = [10, 8, 0, 5, 3]
+    speed = [2, 4, 1, 1, 3]
+    output = 3
+
+    assert f(target, position, speed) == output
+
+
+@pytest.mark.timeout(1)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_853, predicate=inspect.isfunction)])
+def test_lc_31(f):
+    target = 31
+    position = [5, 26, 18, 25, 29, 21, 22, 12, 19, 6]
+    speed = [7, 6, 6, 4, 3, 4, 9, 7, 6, 4]
+    output = 6
+
+    assert f(target, position, speed) == output
