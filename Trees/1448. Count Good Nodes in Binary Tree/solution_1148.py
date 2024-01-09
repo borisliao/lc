@@ -61,3 +61,27 @@ def attempt1(root: TreeNode) -> bool:
             return 0 + gn(node.left, m) + gn(node.right, m)
 
     return gn(root, root.val)
+
+
+def review1(root: TreeNode) -> bool:
+    """
+    Anki 1-9-24
+    Time: 20 min
+    """
+    def dfs(node: TreeNode | None, largest):
+        if node == None:
+            return 0
+
+        good_node = 1 if node.val >= largest else 0
+        max_largest = max(largest, node.val)
+
+        return good_node + dfs(node.left, max_largest) + dfs(node.right, max_largest)
+
+    return dfs(root, root.val)
+
+
+def review2(root: TreeNode) -> bool:
+    """
+    Anki 
+    Time: 
+    """
