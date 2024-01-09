@@ -199,3 +199,33 @@ def review4(l1: ListNode, l2: ListNode) -> ListNode:
         dummy = dummy.next
 
     return head.next  # d1
+
+
+def review5(l1: ListNode, l2: ListNode) -> ListNode:
+    """
+    Anki 1-9-24
+    Time: 20 min
+    Used debugger 2
+    """
+    dummy = ListNode()
+    result = dummy
+    carry = 0
+    while l1 or l2 or carry:
+        val1 = l1.val if l1 else 0
+        val2 = l2.val if l2 else 0
+
+        total = (carry + val1 + val2) % 10
+        carry = (carry + val1 + val2) // 10
+
+        dummy.next = ListNode(total)
+        l1 = l1.next if l1 else None  # d1, d2 if l1 else None
+        l2 = l2.next if l2 else None  # d1, d2 if l2 else None
+        dummy = dummy.next  # d1
+
+    return result.next
+
+
+# def review6(l1: ListNode, l2: ListNode) -> ListNode:
+#     """
+#     Anki
+#     """
