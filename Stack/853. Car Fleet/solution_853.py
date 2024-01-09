@@ -81,3 +81,27 @@ def review1(target: int, position: list[int], speed: list[int]) -> int:
             stack.pop()
 
     return len(stack)
+
+
+def review2(target: int, position: list[int], speed: list[int]) -> int:
+    """
+    Anki 1-9-24
+    Time: 14 min
+    """
+    cars = [(p, s) for p, s in zip(position, speed)]
+    # d2 seperate line, .sort returns None, making cars = None
+    cars.sort(reverse=True)
+    stack = []
+
+    for p, s in cars:
+        stack.append((target-p)/s)
+        if len(stack) >= 2 and stack[-1] <= stack[-2]:  # d1 len(stack)
+            stack.pop()
+
+    return len(stack)
+
+
+# def review3(target: int, position: list[int], speed: list[int]) -> int:
+#     """
+#     Anki
+#     """
