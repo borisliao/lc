@@ -121,3 +121,16 @@ def review7(n: int) -> int:
         n >>= 1
 
     return count
+
+
+def review7(n: int) -> int:
+    """
+    Anki 1-10-24
+    Time: 3 min
+    Used: Debugger 1
+    """
+    one_bits = 0
+    while n:
+        one_bits += n & 1
+        n >>= 1  # d1 n >>= n
+    return one_bits
