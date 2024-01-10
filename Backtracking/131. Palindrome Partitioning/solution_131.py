@@ -214,8 +214,6 @@ def review6(s: str) -> list[list[str]]:
             result.append(subset.copy())
             return
 
-        if subset[-1] != subset[-1][::-1]:
-            return
         subset.append(s[i])
         dfs(i+1)
         subset.pop()

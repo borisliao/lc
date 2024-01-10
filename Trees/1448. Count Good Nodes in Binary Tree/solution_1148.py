@@ -80,8 +80,8 @@ def review1(root: TreeNode) -> bool:
     return dfs(root, root.val)
 
 
-def review2(root: TreeNode) -> bool:
-    """
-    Anki 
-    Time: 
-    """
+# def review2(root: TreeNode) -> bool:
+#     """
+#     Anki
+#     Time:
+#     """

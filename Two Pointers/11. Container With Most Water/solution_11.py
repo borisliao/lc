@@ -1,2 +1,2 @@
-# def maxArea(self, height: list[int]) -> int:
+# def maxArea(height: list[int]) -> int:
 #     pass

@@ -1,2 +1,2 @@
-# def trap(self, height: list[int]) -> int:
+# def trap(height: list[int]) -> int:
 #     pass
