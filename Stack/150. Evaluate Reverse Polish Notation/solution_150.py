@@ -47,3 +47,29 @@ def review1(tokens: list[str]) -> int:
             s.append(int(t))
 
     return s[0]
+
+
+def review2(tokens: list[str]) -> int:
+    """
+    Anki 1-10-23
+    Time: 14 min
+    Used: Debugger 3
+    """
+    stack = []
+    for t in tokens:
+        if t == '+':
+            stack.append(stack.pop() + stack.pop())
+        elif t == '-':
+            r, l = stack.pop(), stack.pop()
+            stack.append(l - r)
+        elif t == '*':
+            # d3 stack.append(stack.append(...))
+            stack.append(stack.pop() * stack.pop())
+        elif t == '/':
+            r, l = stack.pop(), stack.pop()
+            # d1 int(l / r), d2 stack.append(stack.append(...))
+            stack.append(int(l / r))
+        else:
+            stack.append(int(t))
+
+    return stack[0]
