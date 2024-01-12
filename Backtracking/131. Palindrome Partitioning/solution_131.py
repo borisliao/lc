@@ -252,8 +252,39 @@ def review7(s: str) -> list[list[str]]:
     dfs(1)
     return result
 
-# def review8(s: str) -> list[list[str]]:
+
+def review8(s: str) -> list[list[str]]:
+    """
+    Anki 1-12-24
+    Time: 20 min
+    """
+    subset = [s[0]]  # d3 []
+    result = []
+
+    def dfs(i):
+        if i >= len(s):
+            if subset[-1] != subset[-1][::-1]:  # d1
+                return  # d1
+            result.append(subset.copy())
+            return
+
+        subset[-1] += s[i]
+        dfs(i+1)
+        subset[-1] = subset[-1][:-1]
+        if subset[-1] != subset[-1][::-1]:
+            return
+        subset.append(s[i])
+        dfs(i+1)
+        subset.pop()
+
+    dfs(1)  # d3 0
+    return result
+
+
+# def review9(s: str) -> list[list[str]]:
 #     """
 #     Anki
+#     NOTE: Use `for j in range(i, len(s)):` and `def isPali(l, r):`
 #     """
-#     pass
+#     def isPali(l: int, r: int):
+#         pass
