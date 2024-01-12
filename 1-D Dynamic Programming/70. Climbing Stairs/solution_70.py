@@ -114,3 +114,17 @@ def review5(n: int) -> int:
         one, two = one + two, one
 
     return one
+
+
+def review5(n: int) -> int:
+    """
+    Anki 1-1-24
+    Time: 6 min
+    Used: Debugger 1
+    """
+    one, two = 0, 1
+
+    for _ in range(n):
+        one, two = two, one + two  # d1 two, one
+
+    return two
