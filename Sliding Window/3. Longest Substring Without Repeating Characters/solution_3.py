@@ -118,3 +118,26 @@ def review2(s: str) -> int:
         # max_length = max(max_length, characters.total())  # i1 characters.total(), but it's slower
 
     return max_length
+
+
+def review3(s: str) -> int:
+    """
+    Anki 1-12-24
+    """
+    seen = set()
+    l = 0
+    largest = 0
+
+    for r in range(len(s)):
+        while s[r] in seen:  # d1
+            seen.remove(s[l])
+            l += 1
+        largest = max(largest, r+1-l)
+        seen.add(s[r])
+
+    return largest
+
+# def review4(s: str) -> int:
+#     """
+#     Anki 1-12-24
+#     """
