@@ -33,5 +33,71 @@ def findMedianSortedArrays(nums1: list[int], nums2: list[int]) -> float:
             l = i + 1
 
 
-# def review1(nums1: list[int], nums2: list[int]) -> float:
-#     pass
+def review1(nums1: list[int], nums2: list[int]) -> float:
+    """
+    Anki 1-14-24
+    Used: Solution 6, gpt 1
+    Time: 30 min
+    """
+    A, B = nums1, nums2
+    total = len(A) + len(B)
+    half = total // 2
+
+    if len(A) > len(B):
+        A, B = B, A
+
+    l = 0
+    r = len(A) - 1  # s5 - 1
+    while True:
+        i = (l+r) // 2
+        j = (half-2) - i  # s4 total-2
+
+        a_left = A[i] if i >= 0 else float('-inf')  # s6 >
+        a_right = A[i+1] if i+1 < len(A) else float('inf')
+        b_left = B[j] if j >= 0 else float('-inf')  # s6 >, gpt7
+        b_right = B[j+1] if j+1 < len(B) else float('inf')
+
+        if a_left <= b_right and b_left <= a_right:
+            if total % 2 == 1:
+                return min(a_right, b_right)  # s1 min(a_left,b_right)
+            # s2 return (a_left + b_right) / 2
+            return (max(a_left, b_left) + min(a_right, b_right)) / 2
+        elif a_left > b_right:  # s3
+            r = i - 1  # s3
+        else:  # s3
+            l = i + 1  # s3
+
+
+def review2(nums1: list[int], nums2: list[int]) -> float:
+    """
+    Anki 1-14-24
+    Used: solution 4
+    Time: 37 min
+    """
+    A, B = nums1, nums2
+    total = len(nums1) + len(nums2)
+    half = total // 2
+
+    if len(A) > len(B):
+        A, B = B, A
+
+    l = 0
+    r = len(A)-1  # s4 (half-2)-1
+    while True:
+        i = (l+r)//2
+        j = (half-2) - i
+
+        a_left = A[i] if i >= 0 else float('-inf')
+        a_right = A[i + 1] if i + 1 < len(A) else float('inf')
+        b_left = B[j] if j >= 0 else float('-inf')
+        b_right = B[j + 1] if j + 1 < len(B) else float('inf')
+
+        if a_left <= b_right and b_left <= a_right:
+            if total % 2 == 1:
+                return min(a_right, b_right)  # s1 min(a_left, b_right)
+            # s2 (a_left + b_right)
+            return (max(a_left, b_left) + min(a_right, b_right)) / 2
+        elif a_left > b_right:
+            r = i - 1  # s3 j
+        else:
+            l = j + 1  # s3 i
