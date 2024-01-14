@@ -137,7 +137,26 @@ def review3(s: str) -> int:
 
     return largest
 
-# def review4(s: str) -> int:
+
+def review4(s: str) -> int:
+    """
+    Anki 1-14-24
+    Time: 5 min
+    """
+    seen = set()
+    l = 0
+    longest = 0
+
+    for r in range(len(s)):
+        while s[r] in seen:
+            seen.remove(s[l])
+            l += 1
+        longest = max(longest, (r+1)-l)
+        seen.add(s[r])
+
+    return longest
+
+# def review5(s: str) -> int:
 #     """
-#     Anki 1-12-24
+#     Anki 1-14-24
 #     """
