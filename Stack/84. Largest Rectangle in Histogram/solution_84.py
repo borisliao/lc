@@ -22,7 +22,28 @@ def largestRectangleArea(heights: list[int]) -> int:
     return largest
 
 
-# def review1(heights: list[int]) -> int:
+def review1(heights: list[int]) -> int:
+    """
+    Anki 1-15-24
+    """
+    stack = []
+    largest = 0
+
+    for i, h in enumerate(heights):
+        start = i
+        while stack and stack[-1][1] > h:
+            index, height = stack.pop()
+            largest = max(largest, (i-index) * height)
+            start = index
+        stack.append((start, h))
+
+    for i, h in stack:  # s1, d2 enumerate
+        largest = max(largest, (len(heights)-i) * h)  # s1
+
+    return largest
+
+# def review2(heights: list[int]) -> int:
 #     """
-#     Anki
+#     Anki 1-15-24
 #     """
+#     pass
