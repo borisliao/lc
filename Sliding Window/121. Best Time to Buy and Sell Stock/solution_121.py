@@ -76,3 +76,20 @@ def review3(prices: list[int]) -> int:
         max_profit = max(max_profit, prices[r]-prices[l])
         r += 1
     return max_profit
+
+
+def review3(prices: list[int]) -> int:
+    """
+    Anki 1-14-24
+    Time: 4:30
+    """
+    l = 0  # buy
+    max_profit = 0
+
+    for r in range(len(prices)):  # sell
+        if prices[l] > prices[r]:
+            l = r
+            continue
+        max_profit = max(max_profit, prices[r] - prices[l])
+
+    return max_profit
