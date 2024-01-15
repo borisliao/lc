@@ -18,3 +18,8 @@ Given an array of integers `heights` representing the histogram's bar height whe
 
 > **Input:** heights = \[2,4\]  
 > **Output:** 4
+
+**Constraints:**
+
+- `1 <= heights.length <= 10<sup>5</sup>`
+- `0 <= heights[i] <= 10<sup>4</sup>`
