@@ -105,7 +105,30 @@ def review1(height: list[int]) -> int:
     return result
 
 
-# def review2(height: list[int]) -> int:
+def review2(height: list[int]) -> int:
+    """
+    Anki 1-16-24
+    Used: [Trapping Rain Water - Google Interview Question - Leetcode 42](https://www.youtube.com/watch?v=ZI2z5pq0TqA)
+    Time: 10 min
+    """
+    l, r = 0, len(height) - 1
+    max_left, max_right = height[l], height[r]
+    result = 0
+
+    while l < r:
+        if max_left <= max_right:
+            l += 1
+            max_left = max(max_left, height[l])
+            result += max_left - height[l]  # s1 min(max_left, max_right)
+        else:
+            r -= 1
+            max_right = max(max_right, height[r])
+            result += max_right - height[r]  # s1 min(max_left, max_right)
+
+    return result
+
+
+# def review3(height: list[int]) -> int:
 #     """
 #     Anki 1-16-24
 #     Used: [Trapping Rain Water - Google Interview Question - Leetcode 42](https://www.youtube.com/watch?v=ZI2z5pq0TqA)
