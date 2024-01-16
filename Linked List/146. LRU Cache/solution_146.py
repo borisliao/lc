@@ -441,7 +441,60 @@ def review5(capacity: int):
     return LRUCache(capacity)
 
 
-# def review6(capacity: int):
+def review6(capacity: int):
+    """
+    Anki 1-16-24
+    Time: 25 min
+    """
+
+    class Node:
+        def __init__(self, k=None, v=None):
+            self.key = k
+            self.val = v
+            self.next: Node = None
+            self.prev: Node = None
+
+    class LRUCache:
+        def __init__(self, capacity: int):
+            self.size = capacity
+            self.head = Node()
+            self.tail = Node()
+            self.list: dict[int, Node] = {}
+            self.head.prev, self.tail.next = self.tail, self.head
+
+        def get(self, key: int) -> int:
+            if key in self.list:
+                node = self.list[key]
+                self.remove(node)
+                self.insert(node)
+                return node.val
+            return -1
+
+        def put(self, key: int, value: int) -> None:
+            new_node = Node(key, value)
+            if key in self.list:
+                self.remove(self.list[key])
+                self.list[key] = new_node
+            self.insert(new_node)
+            self.list[key] = new_node
+
+            if len(self.list) > self.size:
+                LRU = self.tail.next
+                self.remove(LRU)
+                del self.list[LRU.key]
+
+        def remove(self, node: Node):
+            left, right = node.prev, node.next
+            left.next, right.prev = right, left
+
+        def insert(self, node: Node):
+            left, right = self.head.prev, self.head
+            left.next, right.prev = node, node
+            node.prev, node.next = left, right
+
+    return LRUCache(capacity)
+
+# def review7(capacity: int):
 #     """
 #     Anki
 #     Time:
