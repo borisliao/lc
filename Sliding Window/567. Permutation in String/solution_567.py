@@ -351,3 +351,45 @@ def review8(s1: str, s2: str) -> bool:
 #             non_matches += 1
 
 #     return False
+
+def review8(s1: str, s2: str) -> bool:
+    """
+    Anki 1-16-24
+    Time: 7 min
+    """
+    s1_count = Counter(s1)
+
+    for r in range(len(s1), len(s2)+1):
+        l = r-len(s1)
+        s2_count = Counter(s2[l:r])
+        if s1_count == s2_count:
+            return True
+    return False
+
+
+def review9(s1: str, s2: str) -> bool:
+    """
+    Anki 1-16-24
+    Time: 17 min
+    """
+    s1_count = Counter(s1)
+    s2_count = Counter(s2[0:len(s1)])
+
+    if s1_count == s2_count:
+        return True
+
+    for r in range(len(s1)+1, len(s2)+1):  # d1 len(s2)+1
+        l = r-len(s1)
+        s2_count[s2[l-1]] -= 1
+        s2_count[s2[r-1]] += 1  # d1 r-1
+
+        if s1_count == s2_count:
+            return True
+
+    return False
+
+
+# def review10(s1: str, s2: str) -> bool:
+#     """
+#     Anki 1-16-24
+#     """
