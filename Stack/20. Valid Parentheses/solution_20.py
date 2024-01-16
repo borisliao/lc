@@ -45,9 +45,28 @@ def review1(s: str) -> bool:
     return True if stack == [] else False  # d2 check if stack is empty
 
 
-# def review2(s: str) -> bool:
+def review2(s: str) -> bool:
+    """
+    Anki 1-16-24
+    Added map
+    Time: 10 min
+    Used: Debugger 2
+    """
+    map = {")": "(", "]": "[", "}": "{"}
+    stack = []
+
+    for c in s:
+        if c in map:
+            val = stack.pop()
+            if val != map[c]:
+                return False
+        else:  # d2
+            stack.append(c)
+
+    return True if not stack else False  # d1
+
+
+# def review3(s: str) -> bool:
 #     """
-#     Anki
-#     Added map
+#     Anki 1-16-24
 #     """
-#     Map = {")": "(", "]": "[", "}": "{"}
