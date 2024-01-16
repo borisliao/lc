@@ -47,3 +47,34 @@ def review1(n: int) -> list[str]:
 
     dfs(0, 0)
     return result
+
+
+def review2(n: int) -> list[str]:
+    """
+    Anki 1-16-24
+    Used: solution 1
+    """
+    result = []
+    stack = []
+
+    def dfs(open, close):
+        if open == close == n:  # s1 == 3
+            result.append(''.join(stack))
+            return
+        if open < n:
+            stack.append('(')
+            dfs(open+1, close)
+            stack.pop()
+        if open > close:  # s1
+            stack.append(')')
+            dfs(open, close+1)
+            stack.pop()
+
+    dfs(0, 0)
+    return result
+
+
+# def review3(n: int) -> list[str]:
+#     """
+#     Anki 1-16-24
+#     """
