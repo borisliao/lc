@@ -66,7 +66,20 @@ def review2(s: str) -> bool:
     return True if not stack else False  # d1
 
 
-# def review3(s: str) -> bool:
-#     """
-#     Anki 1-16-24
-#     """
+def review3(s: str) -> bool:
+    """
+    Anki 1-16-24
+    Time: 4 min
+    """
+    stack = []
+    brackets = {']': '[', ')': '(', '}': '{'}  # d1 typos
+
+    for c in s:
+        if c in brackets:
+            value = stack.pop()
+            if value != brackets[c]:
+                return False
+        else:
+            stack.append(c)
+
+    return True if not stack else False  # d2 if not stack else False
