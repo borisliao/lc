@@ -66,3 +66,20 @@ def review3(temperatures: list[int]) -> list[int]:
             result[i] = days
         i -= 1
     return result
+
+
+def review4(temperatures: list[int]) -> list[int]:
+    """
+    Anki 1-14-24
+    Time: 40 min
+    Used: solution 1, debugger 1
+    """
+    result = [0] * len(temperatures)
+    stack = []
+    for i, t in enumerate(temperatures):
+        while stack and t > temperatures[stack[-1]]:  # d1 <
+            index = stack.pop()
+            result[index] = i-index
+        stack.append(i)
+
+    return result
