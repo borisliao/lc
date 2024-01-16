@@ -77,3 +77,36 @@ def trap(height: list[int]) -> int:
             result += max_right - height[r]
 
     return result
+
+
+def review1(height: list[int]) -> int:
+    """
+    Anki 1-16-24
+    Used: debugger 2
+    Time: 9:09
+    """
+    l, r = 0, len(height) - 1
+    max_left, max_right = height[l], height[r]
+    result = 0
+
+    while l < r:
+        if max_left < max_right:
+            l += 1
+            # d2 max(0,
+            result += max(0, min(max_left, max_right) - height[l])
+            max_left = max(max_left, height[l])
+        else:
+            r -= 1
+            # d2 max(0,
+            result += max(0, min(max_left, max_right) - height[r])
+            # d1 max(max_left, max_right)
+            max_right = max(max_right, height[r])
+
+    return result
+
+
+# def review2(height: list[int]) -> int:
+#     """
+#     Anki 1-16-24
+#     Used: [Trapping Rain Water - Google Interview Question - Leetcode 42](https://www.youtube.com/watch?v=ZI2z5pq0TqA)
+#     """
