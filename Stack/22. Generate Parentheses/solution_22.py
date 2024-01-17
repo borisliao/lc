@@ -74,7 +74,31 @@ def review2(n: int) -> list[str]:
     return result
 
 
-# def review3(n: int) -> list[str]:
+def review3(n: int) -> list[str]:
+    """
+    Anki 1-16-24
+    Time: 6 min
+    """
+    stack = []
+    result = []
+
+    def dfs(open, close):
+        if open == close == n:
+            result.append(''.join(stack))
+            return
+        if open < n:
+            stack.append('(')
+            dfs(open+1, close)
+            stack.pop()
+        if close < open:
+            stack.append(')')
+            dfs(open, close+1)
+            stack.pop()
+
+    dfs(0, 0)
+    return result
+
+# def review4(n: int) -> list[str]:
 #     """
 #     Anki 1-16-24
 #     """
