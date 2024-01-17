@@ -117,3 +117,31 @@ def review2(root: TreeNode | None) -> list[list[int]]:
         stack = n_stack
 
     return result
+
+
+def review3(root: TreeNode | None) -> list[list[int]]:
+    """
+    Anki 1-16-24
+    """
+    level = [root] if root else []
+    result = []
+
+    while level:
+        level_values = []
+        new_level = []
+        for n in level:
+            level_values.append(n.val)
+            if n.left:
+                new_level.append(n.left)
+            if n.right:
+                new_level.append(n.right)
+        result.append(level_values)
+        level = new_level
+
+    return result
+
+
+# def review4(root: TreeNode | None) -> list[list[int]]:
+#     """
+#     Anki 1-16-24
+#     """
