@@ -108,3 +108,36 @@ def review2(root: TreeNode | None, subRoot: TreeNode | None) -> bool:
             return True
     # d1 else made it return None instead of False
     return review2(root.left, subRoot) or review2(root.right, subRoot)
+
+
+def review3(root: TreeNode, subRoot: TreeNode) -> bool:
+    """
+    Anki 1-16-24
+    Time: 12 min
+    """
+    def is_same_tree(p: TreeNode, q: TreeNode):
+        if p == q == None:
+            return True
+        elif p and q and p.val == q.val:
+            # s2 typo (p.right, p.right)
+            return is_same_tree(p.left, q.left) and is_same_tree(p.right, q.right)
+        else:
+            return False
+
+    def dfs(root: TreeNode, subRoot: TreeNode):
+        if root == None:
+            return False
+        if root.val == subRoot.val:
+            same_tree = is_same_tree(root, subRoot)
+            if same_tree:
+                return True
+        # d1 subRoot
+        return dfs(root.left, subRoot) or dfs(root.right, subRoot)
+
+    return dfs(root, subRoot)
+
+# def review4(root: TreeNode, subRoot: TreeNode) -> bool:
+#     """
+#     Anki 1-16-24
+#     Time: 12 min
+#     """
