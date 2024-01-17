@@ -99,3 +99,30 @@ def review3(numbers: list[int], target: int) -> list[int]:
             r -= 1
         else:
             l += 1
+
+
+def review4(numbers: list[int], target: int) -> list[int]:
+    """
+    Anki 1-16-24
+    Time: 8 min
+    Used: debugger 1
+    """
+    l = 0
+    r = len(numbers) - 1
+
+    while l < r:
+        total = numbers[l] + numbers[r]
+        if total == target:
+            return [l+1, r+1]  # d1 +1, +1
+        elif total > target:
+            r -= 1
+        else:
+            l += 1
+
+
+# def review5(numbers: list[int], target: int) -> list[int]:
+#     """
+#     Anki 1-2-24
+#     Time: 8 min
+#     Used: debugger 1
+#     """
