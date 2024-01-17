@@ -80,8 +80,23 @@ def review1(root: TreeNode) -> bool:
     return dfs(root, root.val)
 
 
-# def review2(root: TreeNode) -> bool:
+def review2(root: TreeNode) -> bool:
+    """
+    Anki 1-16-24
+    Time: 9 min
+    """
+    def dfs(root: TreeNode, largest: int):
+        if not root:
+            return 0
+        if root.val >= largest:
+            return 1 + dfs(root.left, max(root.val, largest)) + dfs(root.right, max(root.val, largest))
+        else:
+            return dfs(root.left, largest) + dfs(root.right, largest)
+
+    return dfs(root, root.val)
+
+# def review3(root: TreeNode) -> bool:
 #     """
-#     Anki
+#     Anki 1-16-24
 #     Time:
 #     """
