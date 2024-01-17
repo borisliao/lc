@@ -118,7 +118,26 @@ def review3(target: int, position: list[int], speed: list[int]) -> int:
 
     return len(stack)
 
-# def review4(target: int, position: list[int], speed: list[int]) -> int:
+
+def review4(target: int, position: list[int], speed: list[int]) -> int:
+    """
+    Anki 1-16-24
+    Time: 8 min
+    """
+    cars = [(p, s) for p, s in zip(position, speed)]
+    cars.sort(reverse=True)
+    fleets = []
+
+    for p, s in cars:
+        time_to_end = (target-p)/s
+        fleets.append(time_to_end)
+        if len(fleets) >= 2 and fleets[-2] >= time_to_end:
+            fleets.pop()
+
+    return len(fleets)
+
+# def review5(target: int, position: list[int], speed: list[int]) -> int:
 #     """
-#     Anki
+#     Anki 1-16-24
+#     Time: 8 min
 #     """
