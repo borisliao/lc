@@ -101,3 +101,45 @@ def review2(nums1: list[int], nums2: list[int]) -> float:
             r = i - 1  # s3 j
         else:
             l = j + 1  # s3 i
+
+
+def review3(nums1: list[int], nums2: list[int]) -> float:
+    """
+    Anki 1-18-24
+    O(m+n) merged solution
+    Time: 20 min
+    """
+    merged = []
+    i, j = 0, 0  # d1 , 0
+    while i < len(nums1) or j < len(nums2):
+        if i < len(nums1) and j < len(nums2):
+            if nums1[i] > nums2[j]:
+                merged.append(nums2[j])
+                j += 1
+            else:
+                merged.append(nums1[i])
+                i += 1
+        elif i < len(nums1):
+            merged.extend(nums1[i:])
+            break
+        else:
+            merged.extend(nums2[j:])
+            break
+
+    middle = (len(merged) - 1) // 2
+
+    if len(merged) % 2:  # d2 middle % 2
+        return merged[middle]
+    else:
+        return (merged[middle] + merged[middle+1]) / 2  # d3 parentheses
+
+
+# def review4(nums1: list[int], nums2: list[int]) -> float:
+#     """
+#     Anki 1-18-24
+#     Used: [Median of Two Sorted Arrays - Binary Search - Leetcode 4](https://www.youtube.com/watch?v=q6IEA26hvXc)
+#     O(log(n+m))
+#     """
+#     A, B = nums1, nums2
+#     if len(A) < len(B):
+#         A, B = B, A
