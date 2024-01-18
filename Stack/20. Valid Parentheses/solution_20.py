@@ -83,3 +83,25 @@ def review3(s: str) -> bool:
             stack.append(c)
 
     return True if not stack else False  # d2 if not stack else False
+
+
+def review4(s: str) -> bool:
+    """
+    Anki 1-17-24
+    Time: 9 min
+    """
+    close_map = {')': '(', ']': '[', '}': '{'}
+    stack = []
+    for c in s:
+        if c in close_map:
+            if stack.pop() != close_map[c]:
+                return False
+        else:
+            stack.append(c)
+    return True if not stack else False
+
+# def review5(s: str) -> bool:
+#     """
+#     Anki 1-17-24
+#     Time: 9 min
+#     """
