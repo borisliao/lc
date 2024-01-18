@@ -98,7 +98,26 @@ def review3(n: int) -> list[str]:
     dfs(0, 0)
     return result
 
-# def review4(n: int) -> list[str]:
-#     """
-#     Anki 1-16-24
-#     """
+
+def review4(n: int) -> list[str]:
+    """
+    Anki 1-18-24
+    Time: 2:43
+    """
+    result = []
+    subset = []
+
+    def dfs(open, close):
+        if open == close == n:
+            result.append(''.join(subset))
+            return
+        if open < n:
+            subset.append('(')
+            dfs(open+1, close)
+            subset.pop()
+        if close < open:
+            subset.append(')')
+            dfs(open, close+1)
+            subset.pop()
+    dfs(0, 0)
+    return result
