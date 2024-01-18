@@ -276,3 +276,37 @@ def review8(nums: list[int]) -> list[list[int]]:
                 l += 1
 
     return result
+
+
+def review9(nums: list[int]) -> list[list[int]]:
+    """
+    Anki 1-17-24
+    Time: 19 min
+    """
+    nums.sort()
+    result = []
+
+    for i in range(len(nums)):
+        if i > 0 and nums[i-1] == nums[i]:
+            continue
+        l = i+1
+        r = len(nums) - 1
+        while l < r:
+            target = nums[i] + nums[l] + nums[r]
+            if target == 0:
+                result.append([nums[i], nums[l], nums[r]])
+                l += 1
+                while l < r and nums[l-1] == nums[l]:
+                    l += 1
+            elif target > 0:
+                r -= 1
+            else:
+                l += 1
+
+    return result
+
+
+# def review10(nums: list[int]) -> list[list[int]]:
+#     """
+#     Anki 1-17-24
+#     """
