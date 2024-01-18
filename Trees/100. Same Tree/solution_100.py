@@ -214,3 +214,23 @@ def review4(p: TreeNode | None, q: TreeNode | None) -> bool:
             return False  # s1 return false if p or q doesnt exist
 
     return dfs(p, q)
+
+
+def review5(p: TreeNode | None, q: TreeNode | None) -> bool:
+    """
+    Anki 1-17-24
+    Time: 2 min
+    """
+    if p == None and q == None:
+        return True
+    elif p and q and p.val == q.val:
+        return review5(p.left, q.left) and review5(p.right, q.right)
+    else:
+        return False
+
+
+# def review6(p: TreeNode | None, q: TreeNode | None) -> bool:
+#     """
+#     Anki 1-17-24
+#     Time: 2 min
+#     """
