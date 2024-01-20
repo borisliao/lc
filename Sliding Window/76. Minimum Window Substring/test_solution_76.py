@@ -3,6 +3,7 @@ import inspect
 import solution_76
 
 
+@pytest.mark.timeout(1)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_76, predicate=inspect.isfunction)])
 def test_example_1(f):
     s = "ADOBECODEBANC"
@@ -15,6 +16,7 @@ def test_example_1(f):
     assert f(s, t) == output
 
 
+@pytest.mark.timeout(1)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_76, predicate=inspect.isfunction)])
 def test_example_2(f):
     s = "a"
@@ -27,6 +29,7 @@ def test_example_2(f):
     assert f(s, t) == output
 
 
+@pytest.mark.timeout(1)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_76, predicate=inspect.isfunction)])
 def test_example_3(f):
     s = "a"
@@ -40,6 +43,7 @@ def test_example_3(f):
     assert f(s, t) == output
 
 
+@pytest.mark.timeout(1)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_76, predicate=inspect.isfunction)])
 def test_lc_136(f):
     s = "aa"
@@ -49,6 +53,7 @@ def test_lc_136(f):
     assert f(s, t) == output
 
 
+@pytest.mark.timeout(1)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_76, predicate=inspect.isfunction)])
 def test_lc_196(f):
     s = "bba"

@@ -1,4 +1,5 @@
 from collections import Counter
+from functools import reduce
 
 
 # def minWindow(s: str, t: str) -> str:
@@ -14,9 +15,9 @@ from collections import Counter
 #     t_count = Counter(t)
 
 #     for c, c_amount in s_count.items():
-#         matches += 1 if t_count[c] == c_amount else 0
+#         matches += 1 if t_count[c] <= c_amount else 0
 
-#     if matches == len(t_count):  # d5 len(t)
+#     if s_count == t_count:  # d5 len(t)
 #         return s[:len(t)]
 
 #     for r in range(len(t), len(s)):
@@ -71,8 +72,39 @@ def minWindow_neetcode(s: str, t: str) -> str:
     l, r = result
     return s[l:r+1] if result_len != float('inf') else ""
 
-# def review1(s: str, t: str) -> str:
+
+def review1(s: str, t: str) -> str:
+    """
+    Anki 1-20-24
+    Used: [Minimum Window Substring - Airbnb Interview Question - Leetcode 76](https://www.youtube.com/watch?v=jSto0O4AJbM)
+    Time: 40 min
+    O(n^2)
+    """
+    shortest = ''
+    l = 0
+    s_count = Counter()
+    t_count = Counter(t)
+
+    for r in range(len(s)):
+        s_count[s[r]] += 1
+
+        def contains_count():
+            for t in t_count:
+                if s_count[t] < t_count[t]:
+                    return False
+            return True
+
+        while contains_count():
+            if shortest == '' or len(shortest) > r+1-l:
+                shortest = s[l:r+1]
+            s_count[s[l]] -= 1
+            l += 1
+
+    return shortest
+
+
+# def review2(s: str, t: str) -> str:
 #     """
-#     Anki 1-19-24
+#     Anki 1-20-24
 #     Used: [Minimum Window Substring - Airbnb Interview Question - Leetcode 76](https://www.youtube.com/watch?v=jSto0O4AJbM)
 #     """
