@@ -116,7 +116,25 @@ def review6(temperatures: list[int]) -> list[int]:
     return result
 
 
-# def review7(temperatures: list[int]) -> list[int]:
+def review7(temperatures: list[int]) -> list[int]:
+    """
+    Anki 1-20-24
+    Time: 16 min
+    Used: Solution 1
+    """
+    result = [0] * len(temperatures)
+    stack = []
+    for i, t in enumerate(temperatures):
+        while stack and temperatures[stack[-1]] < t:  # s1 if and >
+            index = stack.pop()
+            result[index] = i-index
+        stack.append(i)
+    return result
+
+
+# def review8(temperatures: list[int]) -> list[int]:
 #     """
-#     Anki 1-16-24
+#     Anki 1-20-24
+#     Time: 16 min
+#     Used: Solution 1
 #     """
