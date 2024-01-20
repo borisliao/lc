@@ -106,5 +106,25 @@ def review1(s: str, t: str) -> str:
 # def review2(s: str, t: str) -> str:
 #     """
 #     Anki 1-20-24
-#     Used: [Minimum Window Substring - Airbnb Interview Question - Leetcode 76](https://www.youtube.com/watch?v=jSto0O4AJbM)
+#     Time: 20 min
 #     """
+#     result = ""
+#     l = 0
+#     t_count = Counter(t)
+#     w_count = Counter()
+#     matches = 0
+
+#     for r in range(len(s)):
+#         w_count[s[r]] += 1
+#         if w_count[s[r]] == t_count[s[r]]:
+#             matches += 1
+
+#         while matches == len(t_count):
+#             if result == "" or len(result) > r+1-l:  # d3 r-l
+#                 result = s[l:r+1]  # s2 s[l:r]
+#             w_count[s[l]] -= 1  # s1 w_count[l]
+#             if w_count[s[l]] == t_count[s[l]]:
+#                 matches -= 1
+#             l += 1
+
+#     return result
