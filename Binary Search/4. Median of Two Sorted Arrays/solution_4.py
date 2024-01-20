@@ -169,7 +169,40 @@ def review4(nums1: list[int], nums2: list[int]) -> float:
             l = j+1  # s1 r -= 1
 
 
-# def review5(nums1: list[int], nums2: list[int]) -> float:
+def review5(nums1: list[int], nums2: list[int]) -> float:
+    """
+    Anki 1-19-24
+    O(log(n+m))
+    """
+    A, B = nums1, nums2
+    if len(A) > len(B):
+        A, B = B, A
+
+    total = len(A) + len(B)
+    half = total // 2
+
+    l = 0
+    r = len(A) - 1
+
+    while True:
+        i = (l+r)//2  # s1 /
+        j = half-i-2
+
+        aLeft = A[i] if i >= 0 else float('-inf')  # d2 j
+        bLeft = B[j] if j >= 0 else float('-inf')
+        aRight = A[i+1] if i+1 < len(A) else float('inf')
+        bRight = B[j+1] if j+1 < len(B) else float('inf')
+
+        if aLeft <= bRight and bLeft <= aRight:
+            if total % 2:
+                return min(aRight, bRight)  # s2 min(aLeft, bLeft)
+            return (max(aLeft, bLeft) + min(aRight, bRight)) / 2
+        elif aLeft > bRight:
+            r = i - 1
+        else:
+            l = i + 1
+
+# def review6(nums1: list[int], nums2: list[int]) -> float:
 #     """
 #     Anki 1-19-24
 #     Used: [Median of Two Sorted Arrays - Binary Search - Leetcode 4](https://www.youtube.com/watch?v=q6IEA26hvXc)
