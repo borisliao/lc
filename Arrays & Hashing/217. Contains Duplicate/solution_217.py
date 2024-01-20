@@ -56,3 +56,25 @@ def review2(nums: List[int]) -> bool:
         nums_set.add(n)
 
     return False
+
+
+def review3(nums: List[int]) -> bool:
+    """
+    Anki 1-19-24
+    Time: 2 min
+    """
+    num_set = set()
+    for n in nums:
+        if n in num_set:
+            return True
+        num_set.add(n)
+
+    return False
+
+
+# def review4(nums: List[int]) -> bool:
+#     """
+#     Anki 1-19-24
+#     Return true if any value appears at least twice in the array,
+#     and return false if every element is distinct.
+#     """
