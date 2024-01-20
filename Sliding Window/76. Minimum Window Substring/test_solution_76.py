@@ -38,3 +38,21 @@ def test_example_3(f):
     """
 
     assert f(s, t) == output
+
+
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_76, predicate=inspect.isfunction)])
+def test_lc_136(f):
+    s = "aa"
+    t = "aa"
+    output = "aa"
+
+    assert f(s, t) == output
+
+
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_76, predicate=inspect.isfunction)])
+def test_lc_196(f):
+    s = "bba"
+    t = "ab"
+    output = "ba"
+
+    assert f(s, t) == output
