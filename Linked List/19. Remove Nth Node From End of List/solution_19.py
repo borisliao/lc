@@ -138,3 +138,34 @@ def review3(head: Optional[ListNode], n: int) -> Optional[ListNode]:
     l.next = l.next.next
 
     return dummy.next  # d1 head
+
+
+def review4(head: ListNode | None, n: int) -> ListNode | None:
+    """
+    Anki 1-19-24
+    Time: 10 min
+    """
+    dummy = ListNode()
+    dummy.next = head
+    fast, slow = dummy, dummy
+
+    while n:
+        fast = fast.next
+        n -= 1
+
+    fast = fast.next
+
+    while fast:
+        fast = fast.next
+        slow = slow.next
+
+    slow.next = slow.next.next
+
+    return dummy.next
+
+# def review5(head: ListNode | None, n: int) -> ListNode | None:
+#     """
+#     Anki 12-24-23
+#     Time: 12 min
+#     Used: Debugger 1
+#     """
