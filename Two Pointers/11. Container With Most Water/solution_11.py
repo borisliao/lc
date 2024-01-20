@@ -69,9 +69,25 @@ def review2(height: list[int]) -> int:
     return water
 
 
-# def review3(height: list[int]) -> int:
+def review3(height: list[int]) -> int:
+    """
+    Anki 1-20-24
+    Time: 3:30
+    """
+    l = 0
+    r = len(height) - 1
+    result = 0
+
+    while l < r:
+        result = max(result, min(height[l], height[r]) * (r-l))
+        if height[l] > height[r]:
+            r -= 1
+        else:
+            l += 1
+    return result
+
+# def review4(height: list[int]) -> int:
 #     """
 #     Anki 1-20-24
 #     Time: 6 min
-#     Used: Solution 1
 #     """
