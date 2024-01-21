@@ -103,31 +103,31 @@ def review1(s: str, t: str) -> str:
     return shortest
 
 
-# def review2(s: str, t: str) -> str:
-#     """
-#     Anki 1-20-24
-#     """
-#     result = ""
-#     l = 0
-#     t_count = Counter(t)
-#     w_count = Counter()
-#     have = 0
-#     need = len(t_count)
+def review2(s: str, t: str) -> str:
+    """
+    Anki 1-20-24
+    Time: 20 min
+    Used: Solution 2, debugger 2
+    """
+    result = ""
+    l = 0
+    t_count = Counter(t)
+    w_count = Counter()
+    matches = 0
+    for r in range(len(s)):
+        w_count[s[r]] += 1
+        if w_count[s[r]] == t_count[s[r]]:
+            matches += 1
 
-#     for r in range(len(s)):
-#         w_count[s[r]] += 1
-#         if w_count[s[r]] == t_count[s[r]]:
-#             have += 1
+        while matches == len(t_count):
+            if result == "" or len(result) > r+1-l:  # d3 r-l
+                result = s[l:r+1]  # s2 s[l:r]
+            if w_count[s[l]] == t_count[s[l]]:
+                matches -= 1
+            w_count[s[l]] -= 1  # s1 w_count[l], d4 down2
+            l += 1
 
-#         while have == need:
-#             if result == "" or len(result) > r+1-l:  # d3 r-l
-#                 result = s[l:r+1]  # s2 s[l:r]
-#             w_count[s[l]] -= 1  # s1 w_count[l]
-#             if w_count[s[l]] == t_count[s[l]]:
-#                 have -= 1
-#             l += 1
-
-#     return result
+    return result
 
 
 def review3(s: str, t: str) -> str:
