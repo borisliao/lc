@@ -106,25 +106,62 @@ def review1(s: str, t: str) -> str:
 # def review2(s: str, t: str) -> str:
 #     """
 #     Anki 1-20-24
-#     Time: 20 min
 #     """
 #     result = ""
 #     l = 0
 #     t_count = Counter(t)
 #     w_count = Counter()
-#     matches = 0
+#     have = 0
+#     need = len(t_count)
 
 #     for r in range(len(s)):
 #         w_count[s[r]] += 1
 #         if w_count[s[r]] == t_count[s[r]]:
-#             matches += 1
+#             have += 1
 
-#         while matches == len(t_count):
+#         while have == need:
 #             if result == "" or len(result) > r+1-l:  # d3 r-l
 #                 result = s[l:r+1]  # s2 s[l:r]
 #             w_count[s[l]] -= 1  # s1 w_count[l]
 #             if w_count[s[l]] == t_count[s[l]]:
-#                 matches -= 1
+#                 have -= 1
 #             l += 1
 
 #     return result
+
+
+def review3(s: str, t: str) -> str:
+    """
+    Anki 1-20-24
+    Time: 20 min
+    """
+    result = ""
+    l = r = 0
+    window_count = Counter()
+    t_count = Counter(t)
+
+    while r < len(s):
+        window_count[s[r]] += 1
+
+        def t_in_window():
+            for c in t_count:
+                if window_count[c] < t_count[c]:
+                    return False
+            return True
+
+        while t_in_window():
+            if result == '' or len(result) > r+1-l:
+                result = s[l:r+1]
+            window_count[s[l]] -= 1
+            l += 1
+        r += 1
+
+    return result
+
+
+# def review4(s: str, t: str) -> str:
+#     """
+#     Anki 1-20-24
+#     Time: 20 min
+#     """
+#     pass
