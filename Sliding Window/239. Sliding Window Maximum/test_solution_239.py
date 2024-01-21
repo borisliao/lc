@@ -1,3 +1,4 @@
+from random import randrange
 import pytest
 import inspect
 import solution_239
@@ -28,5 +29,15 @@ def test_example_2(f):
     nums = [1]
     k = 1
     output = [1]
+
+    assert f(nums, k) == output
+
+
+@pytest.mark.timeout(1)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_239, predicate=inspect.isfunction)])
+def test_lc_37(f):
+    k = 50000
+    nums = [randrange(0, 10000) for _ in range((k*2))]
+    output = [max(nums)] * (k+1)
 
     assert f(nums, k) == output
