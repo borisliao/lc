@@ -87,7 +87,45 @@ def review1(nums: list[int], k: int) -> list[int]:
 
     return result
 
+
 # def review2(nums: list[int], k: int) -> list[int]:
 #     """
-#     Anki 1-20-24
+#     Anki 1-21-24
+#     Brute force
+#     Time: 8 min
+#     Used: debugger 1
 #     """
+#     l = 0
+#     result = []
+
+#     for r in range(k, len(nums)+1):  # d1 +1
+#         result.append(max(nums[l:r]))
+#         l += 1
+
+#     return result
+
+
+def review3(nums: list[int], k: int) -> list[int]:
+    """
+    Anki 1-21-24
+    Time: 20 min
+    Used: debugger 1
+    """
+    l = 0
+    result = []
+
+    q = deque()
+
+    for r in range(len(nums)):
+        while q and nums[q[-1]] < nums[r]:
+            q.pop()
+        q.append(r)
+
+        if q[0] < l:
+            q.popleft()
+
+        if r+1-l >= k:
+            result.append(nums[q[0]])  # d1 result.append(q[0])
+            l += 1
+
+    return result
