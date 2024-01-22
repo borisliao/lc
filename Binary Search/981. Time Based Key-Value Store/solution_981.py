@@ -325,7 +325,39 @@ def review3():
 
 #     return TimeMap()
 
-# def review5():
+def review5():
+    """
+    Anki 1-21-24
+    """
+    class TimeMap:
+        def __init__(self):
+            self.store: dict[str, list[tuple[int, str]]] = {}
+
+        def set(self, key: str, value: str, timestamp: int) -> None:
+            if key not in self.store:  # d1
+                self.store[key] = []  # d1
+            self.store[key].append((timestamp, value))
+
+        def get(self, key: str, timestamp: int) -> str:
+            values = self.store[key]
+            l = 0
+            r = len(values)-1
+
+            min_val = ""
+            while l <= r:
+                m = (l+r)//2
+                if values[m][0] < timestamp:
+                    min_val = values[m][1]
+                    l = m + 1  # s3 l +=1
+                elif values[m][0] > timestamp:
+                    r = m - 1
+                else:
+                    return values[m][1]
+            return min_val  # d2
+
+    return TimeMap()
+
+# def review6():
 #     """
 #     Anki
 #     """

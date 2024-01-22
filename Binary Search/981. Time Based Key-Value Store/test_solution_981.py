@@ -89,7 +89,7 @@ def test_lc_30(f):
     timeMap.set("kuexwze", "lvrexco", 30)
 
 
-@pytest.mark.timeout(10)
+@pytest.mark.timeout(3)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_981, predicate=inspect.isfunction)])
 # This is an aproximated test, see stress_test_lc_44.py for the full test
 def test_lc_44(f):
