@@ -79,3 +79,30 @@ def review2(preorder: list[int], inorder: list[int]) -> TreeNode:
     root.left = review2(preorder[1:mid+1], inorder[:mid])
     root.right = review2(preorder[mid+1:], inorder[mid+1:])
     return root
+
+
+def review3(preorder: list[int], inorder: list[int]) -> TreeNode:
+    """
+    Anki 1-21-24
+    Time: 5 min
+    Used: solution 1
+    """
+    if not preorder or not inorder:
+        return None
+
+    root = TreeNode(preorder[0])
+    distance_to_mid = inorder.index(root.val)
+    root.left = review3(preorder[1: distance_to_mid+1],
+                        inorder[:distance_to_mid+1])
+    root.right = review3(
+        preorder[distance_to_mid+1:], inorder[distance_to_mid+1:])  # s1 +1
+
+    return root
+
+
+# def review4(preorder: list[int], inorder: list[int]) -> TreeNode:
+#     """
+#     Anki 1-21-24
+#     Time: 5 min
+#     Used: solution 1
+#     """
