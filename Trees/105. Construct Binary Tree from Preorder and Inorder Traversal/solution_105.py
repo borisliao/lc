@@ -100,9 +100,22 @@ def review3(preorder: list[int], inorder: list[int]) -> TreeNode:
     return root
 
 
-# def review4(preorder: list[int], inorder: list[int]) -> TreeNode:
+def review4(preorder: list[int], inorder: list[int]) -> TreeNode:
+    """
+    Anki 1-21-24
+    Time: 4 min
+    """
+    if not preorder or not inorder:
+        return None
+    root = TreeNode(preorder[0])
+    m = inorder.index(preorder[0])
+    root.left = review4(preorder[1:m+1], inorder[:m])
+    root.right = review4(preorder[m+1:], inorder[m+1:])
+    return root
+
+# def review5(preorder: list[int], inorder: list[int]) -> TreeNode:
 #     """
 #     Anki 1-21-24
-#     Time: 5 min
-#     Used: solution 1
+#     Time: 4 min
+#     Used: https://www.youtube.com/watch?v=ihj4IQGZ2zc
 #     """
