@@ -107,7 +107,7 @@ def review1(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
 
 def review2(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
     """
-    Anki 1-2-23
+    Anki 1-2-24
     NOTE: use the fact that the data structure is a binary search tree, not a binary tree
     A binary search tree puts the lowest values on the left nodes
     """
@@ -122,7 +122,7 @@ def review2(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
 
 def review2(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
     """
-    Anki 1-8-23
+    Anki 1-8-24
     Time: 15 min
     Alternative solution declaring explicit condition
     Used: debugger 1, solution 1
@@ -139,7 +139,7 @@ def review2(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
 
 def review3(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
     """
-    Anki 1-8-23
+    Anki 1-8-24
     Time: 17 min
     Used: debugger 1
     """
@@ -147,5 +147,19 @@ def review3(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
         return review3(root.right, p, q)  # d1 p, q
     elif root.val > p.val and root.val > q.val:
         return review3(root.left, p, q)  # d1 p, q
+    else:
+        return root
+
+
+def review4(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+    """
+    Anki 1-22-24
+    Time: 16 min
+    Used: Solution 1
+    """
+    if root.val < p.val and root.val < q.val:
+        return review4(root.right, p, q)  # s1 root.left
+    elif root.val > p.val and root.val > q.val:
+        return review4(root.left, p, q)  # s1 root.right
     else:
         return root
