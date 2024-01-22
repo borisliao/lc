@@ -202,9 +202,47 @@ def review5(nums1: list[int], nums2: list[int]) -> float:
         else:
             l = i + 1
 
-# def review6(nums1: list[int], nums2: list[int]) -> float:
+
+def review6(nums1: list[int], nums2: list[int]) -> float:
+    """
+    Anki 1-19-24
+    Time: 45 min
+    Used: Debugger 2
+    O(log(n+m))
+    """
+    A, B = nums1, nums2
+    if len(A) < len(B):
+        A, B = B, A
+
+    total = len(A)+len(B)
+    half = total // 2
+    l = 0
+    r = len(B) - 1
+
+    while True:
+        m = (l+r)//2
+        n = half-m-2
+
+        aLeft = A[m] if m >= 0 else float('-inf')
+        aRight = A[m+1] if m + 1 < len(A) else float('inf')  # d1 + 1
+        bLeft = B[n] if n >= 0 else float('-inf')
+        bRight = B[n+1] if n + 1 < len(B) else float('inf')  # d1 + 1
+
+        if aLeft <= bRight and bLeft <= aRight:
+            if total % 2:
+                return min(aRight, bRight)
+            # d2 min(aLeft, bLeft) + max(aRight, bRight)
+            return (max(aLeft, bLeft) + min(aRight, bRight)) / 2
+        elif aLeft > bRight:
+            r = m - 1
+        else:
+            l = m + 1
+
+# def review7(nums1: list[int], nums2: list[int]) -> float:
 #     """
 #     Anki 1-19-24
 #     Used: [Median of Two Sorted Arrays - Binary Search - Leetcode 4](https://www.youtube.com/watch?v=q6IEA26hvXc)
+        # Time: 45 min
+        # Used: Debugger 2
 #     O(log(n+m))
 #     """
