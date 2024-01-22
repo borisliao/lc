@@ -48,3 +48,11 @@ def test_example_2(f):
     output = False
 
     assert f(root) == output
+
+
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_98, predicate=inspect.isfunction)])
+def test_lc_76(f):
+    root = tn([5, 4, 6, None, None, 3, 7])
+    output = False
+
+    assert f(root) == output

@@ -51,3 +51,40 @@ def isValidBST(root: Optional[TreeNode]) -> bool:
             return dfs(n.left, l, n.val) and dfs(n.right, n.val, r)
         return False
     return dfs(root, float('-inf'), float('inf'))
+
+
+# def review1(root: TreeNode) -> bool:
+#     """
+#     Anki 1-21-24
+#     Time: 6 min
+#     """
+#     if not root:
+#         return True
+
+#     left_val = root.left.val if root.left else float('-inf')
+#     right_val = root.right.val if root.right else float('inf')
+
+#     if left_val < root.val < right_val:  # d1 root
+#         return review1(root.left) and review1(root.right)
+
+#     return False
+
+def review2(root: TreeNode) -> bool:
+    """
+    Anki 1-21-24
+    Time: 25 min
+    Used: [Validate Binary Search Tree - Depth First Search - Leetcode 98](https://www.youtube.com/watch?v=s6ATEkipzow)
+    """
+    def dfs(root: TreeNode | None, l: int, r: int):
+        if not root:
+            return True
+        if l < root.val < r:
+            return dfs(root.left, l, root.val) and dfs(root.right, root.val, r)
+        return False
+    return dfs(root, float('-inf'), float('inf'))
+
+
+# def review3(root: TreeNode) -> bool:
+#     """
+#     Anki 1-21-24
+#     """
