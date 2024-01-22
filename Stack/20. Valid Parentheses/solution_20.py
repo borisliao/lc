@@ -100,8 +100,26 @@ def review4(s: str) -> bool:
             stack.append(c)
     return True if not stack else False
 
+
+def review5(s: str) -> bool:
+    """
+    Anki 1-22-24
+    Time: 4:30
+    """
+    stack = []
+    map = {")": "(", "]": "[", "}": "{"}
+
+    for c in s:
+        if c in map:
+            if stack.pop() != map[c]:
+                return False
+        else:
+            stack.append(c)
+    return True if stack == [] else False
+
+
 # def review5(s: str) -> bool:
 #     """
-#     Anki 1-17-24
-#     Time: 9 min
+#     Anki 1-22-24
+#     Time: 4:30
 #     """
