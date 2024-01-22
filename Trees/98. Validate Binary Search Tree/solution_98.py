@@ -84,7 +84,22 @@ def review2(root: TreeNode) -> bool:
     return dfs(root, float('-inf'), float('inf'))
 
 
-# def review3(root: TreeNode) -> bool:
+def review3(root: TreeNode) -> bool:
+    """
+    Anki 1-21-24
+    Time: 4 min
+    """
+    def dfs(root: TreeNode | None, l: int, r: int):
+        if not root:
+            return True
+        elif l < root.val < r:
+            return dfs(root.left, l, root.val) and dfs(root.right, root.val, r)
+        return False
+    return dfs(root, float('-inf'), float('inf'))
+
+
+# def review4(root: TreeNode) -> bool:
 #     """
 #     Anki 1-21-24
+#     Time: 4 min
 #     """
