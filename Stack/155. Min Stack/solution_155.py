@@ -93,7 +93,40 @@ def review2():
 
     return MinStack()
 
-# def minStack():
+
+def review3():
+    """
+    Anki 1-22-24
+    Time: 9 min
+    """
+    class MinStack:
+
+        def __init__(self):
+            self.stack = []
+            self.next_min = [float('inf')]
+
+        def push(self, val: int) -> None:
+            self.stack.append(val)
+            self.next_min.append(min(self.next_min[-1], val))
+
+        def pop(self) -> None:
+            self.stack.pop()
+            self.next_min.pop()
+
+        def top(self) -> int:
+            return self.stack[-1]
+
+        def getMin(self) -> int:
+            return self.next_min[-1]
+
+    return MinStack()
+
+
+# def review4():
+#     """
+#     Anki 1-22-24
+#     Time: 9 min
+#     """
 #     class MinStack:
 
 #         def __init__(self):
