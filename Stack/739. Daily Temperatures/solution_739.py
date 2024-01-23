@@ -147,3 +147,23 @@ def review8(temperatures: list[int]) -> list[int]:
         stack.append(i)
 
     return result
+
+
+def review9(temperatures: list[int]) -> list[int]:
+    """
+    Anki 1-22-24
+    """
+    result = [0] * len(temperatures)
+    stack = []
+    for i, t in enumerate(temperatures):
+        while stack and temperatures[stack[-1]] < t:  # d1 >
+            index = stack.pop()
+            result[index] = i-index
+        stack.append(i)
+    return result
+
+
+# def review10(temperatures: list[int]) -> list[int]:
+#     """
+#     Anki 1-22-24
+#     """
