@@ -188,12 +188,25 @@ def review4(root: TreeNode | None) -> bool:
     return balanced
 
 
-# def review5(root: TreeNode | None) -> bool:
-#     """
-#     Anki 1-22-24
-#     """
-#     pass
+def review6(root: TreeNode | None) -> bool:
+    """
+    Anki 1-23-24
+    Time: 5 min
+    """
+    balanced = True
 
+    def dfs(node):
+        nonlocal balanced
+        if not node or not balanced:
+            return 0
+
+        left = dfs(node.left)
+        right = dfs(node.right)
+        if abs(left-right) > 1:
+            balanced = False
+        return 1 + max(left, right)
+    dfs(root)
+    return balanced
 
 # def review6(root: TreeNode | None) -> bool:
 #     """
