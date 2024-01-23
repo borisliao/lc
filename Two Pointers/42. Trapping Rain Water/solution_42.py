@@ -152,7 +152,27 @@ def review3(height: list[int]) -> int:
     return result
 
 
-# def review4(height: list[int]) -> int:
+def review4(height: list[int]) -> int:
+    """
+    Anki 1-22-24
+    """
+    l, r = 0, len(height) - 1
+    lMax, rMax = height[l], height[r]
+    result = 0
+
+    while l < r:
+        if lMax < rMax:
+            l += 1
+            lMax = max(lMax, height[l])
+            result += lMax - height[l]
+        else:
+            r -= 1
+            rMax = max(rMax, height[r])
+            result += rMax - height[r]  # s1 -=
+
+    return result
+
+# def review5(height: list[int]) -> int:
 #     """
 #     Anki 1-22-24
 #     Time: 54 min
