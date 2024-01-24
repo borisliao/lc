@@ -81,3 +81,62 @@ def neetcode():
             return True
 
     return Trie()
+
+
+def review1():
+    """
+    Anki 1-24-24
+    Time: 22 min
+    """
+    class Node:
+        def __init__(self, c: str = None, word=False):  # d1 c: str
+            self.c = c
+            self.next: dict[str, Node] = {}
+            self.word = word
+
+    class Trie:
+        def __init__(self):
+            self.head = Node()
+
+        def insert(self, word: str) -> None:
+            node = self.head
+            for c in word:
+                if c not in node.next:  # d1 c in node.next
+                    node.next[c] = Node(c)
+                node = node.next[c]  # d1 else:
+
+            node.word = True
+
+        def search(self, word: str) -> bool:
+            node = self.head
+            for c in word:
+                if c not in node.next:
+                    return False
+                node = node.next[c]
+            return node.word
+
+        def startsWith(self, prefix: str) -> bool:
+            node = self.head
+            for c in prefix:
+                if c not in node.next:
+                    return False
+                node = node.next[c]  # d2
+            return True
+
+    return Trie()
+
+# def review2():
+#     class Trie:
+#         def __init__(self):
+#             pass
+
+#         def insert(self, word: str) -> None:
+#             pass
+
+#         def search(self, word: str) -> bool:
+#             pass
+
+#         def startsWith(self, prefix: str) -> bool:
+#             pass
+
+#     return Trie()
