@@ -57,3 +57,77 @@ def kthSmallest(root: Optional[TreeNode], k: int) -> int:
         if k == 0:
             return c.val
         c = c.right
+
+
+# def review1(root: TreeNode | None, k: int) -> int:
+#     """
+#     Anki 1-22-24
+#     Time: 24 min
+#     """
+#     smallest = None
+
+#     def dfs(root: TreeNode | None, k: int):
+#         nonlocal smallest  # d2
+#         if not root or smallest:
+#             return k
+#         if root.left:
+#             k = dfs(root.left, k)
+#         if k > 0:
+#             dfs(root.right, k-1)
+#             return k-1
+#         elif k == 0:
+#             smallest = root.val
+#             return k  # d2
+#     dfs(root, k)  # d1
+#     return smallest
+
+
+# def review2 (root: TreeNode | None, k: int) -> int:
+#     """
+#     Anki 1-22-24
+#     """
+#     stack = [root]
+
+#     while stack:
+#         n = stack.pop()
+#         k -= 1
+#         if k == 0:
+#             return n.val
+#         if n.right:
+#             stack.append(n.right)
+#         if n.left:
+#             stack.append(n.left)
+
+def review3(root: TreeNode | None, k: int) -> int:
+    """
+    Anki 1-22-24
+    """
+    stack = []
+    c = root
+
+    while stack or c:
+        while c:
+            stack.append(c)
+            c = c.left
+        c = stack.pop()
+        k -= 1
+        if k == 0:
+            return c.val
+        c = c.right
+
+
+def review4(root: TreeNode | None, k: int) -> int:
+    """
+    Anki 1-24-24
+    """
+    stack = []
+    c = root
+    while stack or c:
+        while c:
+            stack.append(c)
+            c = c.left
+        c = stack.pop()
+        k -= 1
+        if k == 0:
+            return c.val
+        c = c.right
