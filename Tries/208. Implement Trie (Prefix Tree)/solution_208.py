@@ -125,7 +125,49 @@ def review1():
 
     return Trie()
 
-# def review2():
+
+def review2():
+    """
+    Anki 1-24-24
+    Time: 5:25
+    """
+    class Node:
+        def __init__(self, c: str = None, word=False):
+            self.c = c
+            self.word = word
+            self.next: dict[str, "Node"] = {}
+
+    class Trie:
+        def __init__(self):
+            self.head = Node()
+
+        def insert(self, word: str) -> None:
+            node = self.head
+            for c in word:
+                if c not in node.next:
+                    node.next[c] = Node(c)
+                node = node.next[c]
+            node.word = True
+
+        def search(self, word: str) -> bool:
+            node = self.head
+            for c in word:
+                if c not in node.next:
+                    return False
+                node = node.next[c]
+            return node.word
+
+        def startsWith(self, prefix: str) -> bool:
+            node = self.head
+            for c in prefix:
+                if c not in node.next:
+                    return False
+                node = node.next[c]
+            return True
+
+    return Trie()
+
+# def review3():
 #     class Trie:
 #         def __init__(self):
 #             pass
