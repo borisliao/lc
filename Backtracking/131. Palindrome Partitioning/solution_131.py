@@ -283,8 +283,54 @@ def review8(s: str) -> list[list[str]]:
 
 # def review9(s: str) -> list[list[str]]:
 #     """
-#     Anki
+#     Anki 1-24-24
 #     NOTE: Use `for j in range(i, len(s)):` and `def isPali(l, r):`
 #     """
 #     def isPali(l: int, r: int):
-#         pass
+#         while l < r:
+#             if s[l] != s[r]:
+#                 return False
+#             l += 1
+#             r -= 1
+#         return True
+
+#     subset = []
+#     result = []
+
+#     def dfs(i):
+#         if i >= len(s):
+#             result.append(subset.copy())
+#             return  # d2
+#         subset.append(s[i])
+#         dfs(i+1)
+#         subset.pop()
+
+#         for j in range(i, len(s)):
+#             if isPali(i, j):
+#                 subset.append(s[i:j+1])
+#                 dfs(j+1)  # d1 tab >, s3 dfs(i)
+#                 subset.pop()  # d1 tab >
+
+#     dfs(0)
+#     return result
+
+
+def review10(s: str) -> list[list[str]]:
+    """
+    Anki 1-24-24
+    NOTE: Use `for j in range(i, len(s)):` and `def isPali(l, r):`
+    """
+    result = []
+    subset = []
+
+    def dfs(i):
+        if i >= len(s):
+            result.append(subset.copy())
+            return
+        for j in range(i, len(s)):
+            if s[i:j+1] == s[i:j+1][::-1]:
+                subset.append(s[i:j+1])
+                dfs(j+1)
+                subset.pop()
+    dfs(0)
+    return result
