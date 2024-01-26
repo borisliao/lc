@@ -74,7 +74,7 @@ def review1(root: TreeNode | None) -> TreeNode | None:
     return root
 
 
-def review1(root: TreeNode | None) -> TreeNode | None:
+def review2(root: TreeNode | None) -> TreeNode | None:
     """
     Anki 1-6-24
     Time: 2 min
@@ -85,3 +85,23 @@ def review1(root: TreeNode | None) -> TreeNode | None:
         root.left, root.right = root.right, root.left
 
     return root
+
+
+def review3(root: TreeNode | None) -> TreeNode | None:
+    """
+    Anki 1-6-24
+    Time: 4 min
+    """
+    if not root:
+        return
+    root.left, root.right = root.right, root.left
+    review3(root.left)
+    review3(root.right)
+
+    return root
+
+# def review4(root: TreeNode | None) -> TreeNode | None:
+#     """
+#     Anki 1-6-24
+#     Time: 2 min
+#     """
