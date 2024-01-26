@@ -172,9 +172,34 @@ def review4(height: list[int]) -> int:
 
     return result
 
-# def review5(height: list[int]) -> int:
+
+def review5(height: list[int]) -> int:
+    """
+    Anki 1-26-24
+    Used: Debugger 4
+    Time: 13 min
+    """
+    result = 0
+    maxL = 0
+    maxR = 0
+
+    l = 0
+    r = len(height) - 1  # d3 len(height)
+
+    while l < r:
+        if height[l] < height[r]:
+            maxL = max(maxL, height[l])
+            l += 1
+            result += (maxL - height[l]) if maxL - height[l] > 0 else 0
+        else:
+            maxR = max(maxR, height[r])
+            r -= 1  # d4 +=
+            result += (maxR - height[r]) if maxR - height[r] > 0 else 0
+    return result
+
+# def review6(height: list[int]) -> int:
 #     """
-#     Anki 1-22-24
-#     Time: 54 min
-#     Used: Solution 3
+#     Anki 1-26-24
+#     Used: Debugger 4
+#     Time: 13 min
 #     """
