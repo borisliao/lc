@@ -169,7 +169,27 @@ def review6(root: TreeNode | None, k: int) -> int:
             return c.val
         c = c.right
 
-# def review7(root: TreeNode | None, k: int) -> int:
+
+def review7(root: TreeNode | None, k: int) -> int:
+    """
+    Anki 1-26-24
+    Time: 2 min
+    """
+    stack = []
+    c = root
+    while stack or c:
+        while c:
+            stack.append(c)
+            c = c.left
+        c = stack.pop()
+        k -= 1
+        if k == 0:
+            return c.val
+        c = c.right
+
+
+# def review8(root: TreeNode | None, k: int) -> int:
 #     """
-#     Anki 1-25-24
+#     Anki 1-26-24
+#     Time: 2 min
 #     """
