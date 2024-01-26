@@ -121,3 +121,36 @@ def review4(n: int) -> list[str]:
             subset.pop()
     dfs(0, 0)
     return result
+
+
+def review5(n: int) -> list[str]:
+    """
+    Anki 1-26-24
+    Time: 8 min
+    Used: debugger 1
+    """
+    result = []
+    subset = []
+
+    def dfs(open, close):
+        if n == open == close:
+            result.append(''.join(subset))
+            return
+        if open < n:
+            subset.append('(')
+            dfs(open+1, close)
+            subset.pop()
+        if close < open:  # d1 close > open
+            subset.append(')')
+            dfs(open, close+1)
+            subset.pop()
+    dfs(0, 0)
+    return result
+
+
+# def review6(n: int) -> list[str]:
+#     """
+#     Anki 1-26-24
+#     Time: 8 min
+#     Used: debugger 1
+#     """
