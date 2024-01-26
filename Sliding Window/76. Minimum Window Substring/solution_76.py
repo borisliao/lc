@@ -159,9 +159,44 @@ def review3(s: str, t: str) -> str:
     return result
 
 
-# def review4(s: str, t: str) -> str:
+def review4(s: str, t: str) -> str:
+    """
+    Anki 1-26-24
+    Used: Debugger 5
+    Time: 31 min
+    """
+    t_count = {}
+    for c in t:
+        t_count[c] = t_count.get(c, 0) + 1
+    w_count = {}
+
+    matches = 0
+    min_substring = ''
+    l = 0
+    r = 0
+    for r in range(len(s)):  # d3
+        w_count[s[r]] = w_count.get(s[r], 0) + 1
+        if t_count.get(s[r], 0) == w_count[s[r]]:  # d4 t_count[s[r]]
+            matches += 1
+
+        # d3 r += 1  # d1, d2 up 7
+
+        if r+1-l < len(t):
+            continue
+
+        while matches == len(t_count):
+            if min_substring == '' or len(min_substring) > len(s[l:r+1]):
+                min_substring = s[l:r+1]
+            if w_count[s[l]] == t_count.get(s[l], 0):  # d5 t_count[s[l]]
+                matches -= 1
+            w_count[s[l]] -= 1
+            l += 1
+
+    return min_substring
+
+# def review5(s: str, t: str) -> str:
 #     """
-#     Anki 1-20-24
-#     Time: 20 min
+#     Anki 1-26-24
+#     Used: Debugger 5
+#     Time: 31 min
 #     """
-#     pass
