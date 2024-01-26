@@ -122,3 +122,30 @@ def review3(nums: List[int]) -> int:
                 c += 1
 
     return longest_sequence
+
+
+def review4(nums: list[int]) -> int:
+    """
+    Anki 1-26-24
+    Time: 10 min
+    Used: Debugger 1
+    """
+    nums = set(nums)
+    max_seq = 0
+
+    for n in nums:
+        if n-1 in nums:
+            continue
+        seq = 0  # d1 s did not account for negative numbers
+        while n+seq in nums:  # d1 s+1
+            seq += 1  # d1 s+=1
+            max_seq = max(max_seq, seq)  # d1 s-n
+    return max_seq
+
+
+# def review5(nums: list[int]) -> int:
+#     """
+#     Anki 1-26-24
+#     Time: 10 min
+#     Used: Debugger 1
+#     """
