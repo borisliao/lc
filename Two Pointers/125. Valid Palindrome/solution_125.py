@@ -66,3 +66,34 @@ def review2(s: str) -> bool:
         r -= 1  # d1
 
     return True
+
+
+def review3(s: str) -> bool:
+    """
+    Anki 1-26-24
+    Time: 6 min
+    """
+    l = 0
+    r = len(s) - 1
+
+    while l < r:
+        if not s[l].isalnum():  # note: ' ' is not alnum
+            l += 1
+            continue
+        if not s[r].isalnum():
+            r -= 1
+            continue
+        if s[l].lower() != s[r].lower():
+            return False
+        l += 1
+        r -= 1
+
+    return True
+
+
+# def review4(s: str) -> bool:
+#     """
+#     Anki 1-26-24
+#     Time: 6 min
+#     """
+#     pass
