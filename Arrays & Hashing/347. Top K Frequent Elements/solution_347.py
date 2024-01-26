@@ -177,3 +177,35 @@ def review6(nums: List[int], k: int) -> List[int]:
                 return result
 
     return result
+
+
+def review6(nums: list[int], k: int) -> list[int]:
+    """
+    Anki 1-26-24
+    Time: 16 min
+    Used: Debugger 1
+    """
+    count = {}
+    for n in nums:
+        count[n] = count.get(n, 0) + 1
+
+    # d1 [[]]*(len(nums) + 1) shares the same pointer
+    occurance = [[] for _ in range((len(nums) + 1))]
+    for n, o in count.items():
+        occurance[o].append(n)
+
+    result = []
+    for li in reversed(occurance):
+        for n in reversed(li):
+            result.append(n)
+            k -= 1
+            if k == 0:
+                return result
+
+
+# def review7(nums: list[int], k: int) -> list[int]:
+#     """
+#     Anki 1-26-24
+#     Time: 16 min
+#     Used: Debugger 1
+#     """

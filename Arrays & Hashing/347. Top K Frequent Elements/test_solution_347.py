@@ -26,7 +26,7 @@ def test_example_2(f):
 
 
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_347, predicate=inspect.isfunction)])
-def test_example_3(f):
+def test_lc(f):
     nums = [1, 2]
     k = 2
     output = [1, 2]
