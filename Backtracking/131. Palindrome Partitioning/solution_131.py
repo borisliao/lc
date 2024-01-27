@@ -334,3 +334,26 @@ def review10(s: str) -> list[list[str]]:
                 subset.pop()
     dfs(0)
     return result
+
+
+def review11(s: str) -> list[list[str]]:
+    """
+    Anki 1-26-24
+    NOTE: Use `for j in range(i, len(s)):` and `def isPali(l, r):`
+    Time: 7 min
+    """
+    result = []
+    subset = []
+
+    def dfs(i):
+        if i >= len(s):
+            result.append(subset.copy())
+            return
+        for j in range(i, len(s)):
+            if s[i:j+1] == s[i:j+1][::-1]:
+                subset.append(s[i:j+1])
+                dfs(j+1)
+                subset.pop()
+
+    dfs(0)
+    return result
