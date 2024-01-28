@@ -285,3 +285,32 @@ def review9(s: str, k: int) -> int:
         longest = max(longest, r+1-l)
 
     return longest
+
+
+def review10(s: str, k: int) -> int:
+    """
+    Anki 1-28-24
+    Time: 16 min
+    Used: Solution 1
+    """
+    l = 0
+    letters = Counter()
+    max_occurances = 0
+
+    for r in range(len(s)):
+        letters[s[r]] += 1
+        most_occurances = max(letters.values())
+        if (r+1-l) - most_occurances > k:
+            letters[s[l]] -= 1  # s1
+            l += 1
+        max_occurances = max(max_occurances, (r+1-l))
+
+    return max_occurances
+
+
+# def review11(s: str, k: int) -> int:
+#     """
+#     Anki 1-28-24
+#     Time: 16 min
+#     Used: Solution 1
+#     """
