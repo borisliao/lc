@@ -129,3 +129,54 @@ def review3(nums: list[int], k: int) -> list[int]:
             l += 1
 
     return result
+
+
+def review4(nums: list[int], k: int) -> list[int]:
+    """
+    Anki 1-27-24
+    Time: 20 min
+    Used: Solution 1
+    """
+    q = deque()
+    l = 0
+    result = []
+    for r in range(len(nums)):
+        while q and nums[q[-1]] < nums[r]:  # s1 q[-1] < nums[r]
+            q.pop()
+        q.append(r)  # s1 r
+
+        if r+1-l < k:
+            continue
+
+        result.append(nums[q[0]])  # s1 nums[q[-1]]
+        if l > q[0]:  # s1 q[0] == nums[l]
+            q.popleft()
+        l += 1
+
+    return result
+
+
+def review5(nums: list[int], k: int) -> list[int]:
+    """
+    Anki 1-27-24
+    Used: Debugger 1
+    Time: 8 min
+    """
+    q = deque()
+    result = []
+    l = 0
+
+    for r in range(len(nums)):
+        while q and nums[q[-1]] < nums[r]:
+            q.pop()
+        q.append(r)
+
+        if r+1-l < k:
+            continue
+
+        if q[0] < l:
+            q.popleft()
+        result.append(nums[q[0]])
+        l += 1
+
+    return result  # d1
