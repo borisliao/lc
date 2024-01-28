@@ -148,9 +148,24 @@ def review6(preorder: list[int], inorder: list[int]) -> TreeNode:
     return root
 
 
-# def review7(preorder: list[int], inorder: list[int]) -> TreeNode:
+def review7(preorder: list[int], inorder: list[int]) -> TreeNode:
+    """
+    Anki 1-28-24
+    Time: 8 min
+    Whiteboard the proof with complex example
+    """
+    if not preorder or not inorder:  # s1
+        return None  # s1
+    root = TreeNode(preorder[0])
+    mid = inorder.index(preorder[0])
+    left_tree = mid
+    root.left = review7(preorder[1:left_tree+1], inorder[:mid])
+    root.right = review7(preorder[left_tree+1:], inorder[mid+1:])
+    return root
+
+
+# def review8(preorder: list[int], inorder: list[int]) -> TreeNode:
 #     """
-#     Anki 1-26-24
-#     Time: 10 min
+#     Anki 1-28-24
 #     Whiteboard the proof with complex example
 #     """
