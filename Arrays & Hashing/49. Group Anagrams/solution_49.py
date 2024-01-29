@@ -38,7 +38,7 @@ def review2(strs):
         for char in word:
             count[ord(char) - ord('a')] += 1
         if tuple(count) in groups:
-            groups[tuple(count)].append(count)
+            groups[tuple(count)].append(word)  # d1 .append(count)
         else:
             groups[tuple(count)] = [word]
     return groups.values()
@@ -72,3 +72,29 @@ def review4(strs: List[str]) -> List[List[str]]:
         anagrams[tuple(hash)].append(s)
 
     return anagrams.values()
+
+
+def review5(strs: list[str]) -> list[list[str]]:
+    """
+    Anki 1-29-24
+    Time: 20 min
+    Used: Debugger 1
+    """
+    anagrams = {}
+    for s in strs:
+        freq = [0] * (ord('z') + 1 - ord('a'))  # d2 +1
+        for c in s:
+            freq[ord(c)-ord('a')] += 1
+        # d1 anagrams.get(tuple(freq), []).append(s)
+        li = anagrams.get(tuple(freq), [])
+        li.append(s)  # d1 anagrams.get(tuple(freq), []).append(s)
+        anagrams[tuple(freq)] = li  # d1 append(s) returns None
+
+    return anagrams.values()
+
+# def review5(strs: list[str]) -> list[list[str]]:
+#     """
+#     Anki 1-29-24
+#     Time: 20 min
+#     Used: Debugger 1
+#     """
