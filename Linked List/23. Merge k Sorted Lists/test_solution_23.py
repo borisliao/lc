@@ -24,7 +24,7 @@ def test_example_1(f):
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_23, predicate=inspect.isfunction)])
 def test_example_2(f):
     lists = []
-    output = ln([])
+    output = None
 
     assert str(f(lists)) == str(output)
 

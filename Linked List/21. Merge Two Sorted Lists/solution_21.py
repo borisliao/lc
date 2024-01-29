@@ -131,3 +131,44 @@ def review3(list1: ListNode | None, list2: ListNode | None) -> ListNode | None:
             break
 
     return head.next
+
+
+def merge(l: ListNode, r: ListNode):
+    """
+    1-28-24
+    Used in 23. Merge k Sorted Lists
+    """
+    if not l and not r:
+        return None
+    if l and r:
+        val = 0
+        next = None
+        if l.val > r.val:
+            val = r.val
+            next = merge(l, r.next)
+        else:
+            val = l.val
+            next = merge(l.next, r)
+        return ListNode(val, next)
+    elif l:
+        return l
+    else:
+        return r
+
+
+def merge2(l, r):
+    """
+    1-29-24
+    From https://www.youtube.com/watch?v=DvnxDGkjMDM
+    Used in 23. Merge k Sorted Lists
+    """
+    if not l:
+        return r
+    if not r:
+        return l
+    if l.val < r.val:
+        l.next = merge(l.next, r)
+        return l
+    else:
+        r.next = merge(l, r.next)
+        return r
