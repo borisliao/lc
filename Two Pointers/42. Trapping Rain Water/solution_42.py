@@ -197,9 +197,32 @@ def review5(height: list[int]) -> int:
             result += (maxR - height[r]) if maxR - height[r] > 0 else 0
     return result
 
-# def review6(height: list[int]) -> int:
+
+def review6(height: list[int]) -> int:
+    """
+    Anki 1-29-24
+    Time: 5:41
+    """
+    l = 0
+    r = len(height) - 1
+    maxL = height[l]
+    maxR = height[r]
+    water = 0
+
+    while l < r:
+        if height[l] < height[r]:
+            l += 1
+            maxL = max(maxL, height[l])
+            water += maxL - height[l]
+        else:
+            r -= 1
+            maxR = max(maxR, height[r])
+            water += maxR-height[r]
+
+    return water
+
+# def review7(height: list[int]) -> int:
 #     """
-#     Anki 1-26-24
-#     Used: Debugger 4
-#     Time: 13 min
+#     Anki 1-29-24
+#     Time: 5:41
 #     """
