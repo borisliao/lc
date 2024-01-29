@@ -237,3 +237,41 @@ def review5(board: list[list[str]], word: str) -> bool:
                 return True
 
     return False
+
+
+def review6(board: list[list[str]], word: str) -> bool:
+    """
+    Anki 1-29-24
+    Time: 16 min
+    Used: Debugger 2
+    """
+    visited = set()
+
+    def dfs(i, r, c):
+        if i >= len(word):
+            return True
+        if (r < 0 or c < 0 or
+            r >= len(board) or
+                c >= len(board[r]) or
+                board[r][c] != word[i] or  # d2 down 4
+                (r, c) in visited):  # d2 down 4
+            return False
+        visited.add((r, c))  # d1
+        return (dfs(i+1, r-1, c) or
+                dfs(i+1, r+1, c) or
+                dfs(i+1, r, c+1) or
+                dfs(i+1, r, c-1))
+
+    for r in range(len(board)):
+        for c in range(len(board[r])):
+            if dfs(0, r, c):
+                return True
+    return False
+
+
+# def review7(board: list[list[str]], word: str) -> bool:
+#     """
+#     Anki 1-29-24
+#     Time: 16 min
+#     Used: Debugger 2
+#     """
