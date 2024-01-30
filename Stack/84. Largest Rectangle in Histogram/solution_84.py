@@ -124,9 +124,31 @@ def review5(heights: list[int]) -> int:
 
     return area
 
-# def review6(heights: list[int]) -> int:
+
+def review6(heights: list[int]) -> int:
+    """
+    Anki 1-29-24
+    Time: 9 min
+    Used: Solution 2
+    """
+    stack = []
+    area = 0
+
+    for r in range(len(heights)):
+        l = r
+        while stack and stack[-1][0] > heights[r]:
+            h, l = stack.pop()
+            area = max(area, (r-l)*h)  # s2 +1
+        stack.append((heights[r], l))  # s1 ()
+
+    for h, l in stack:
+        area = max(area, (len(heights)-l)*h)
+
+    return area
+
+# def review7(heights: list[int]) -> int:
 #     """
-#     Anki 1-28-24
-#     Time: 9:25
-#     Used: Debugger 2
+#     Anki 1-29-24
+#     Time: 9 min
+#     Used: Solution 2
 #     """
