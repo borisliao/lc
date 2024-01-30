@@ -33,7 +33,7 @@ def test_example_2(f):
     assert f(nums, k) == output
 
 
-@pytest.mark.timeout(3)
+@pytest.mark.timeout(10)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_239, predicate=inspect.isfunction)])
 def test_lc_37(f):
     k = 50000

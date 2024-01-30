@@ -180,3 +180,36 @@ def review5(nums: list[int], k: int) -> list[int]:
         l += 1
 
     return result  # d1
+
+
+def review6(nums: list[int], k: int) -> list[int]:
+    """
+    Anki 1-29-24
+    Time: 12 min
+    Used: Solution 1
+    """
+    stack = deque()
+    result = []
+    l = 0
+
+    for r, n in enumerate(nums):
+        while stack and nums[stack[-1]] < n:  # s2 stack and
+            stack.pop()
+        stack.append(r)
+
+        if stack[0] < l:
+            stack.popleft()
+
+        if r+1-l >= k:  # s1 < len(nums)
+            result.append(nums[stack[0]])
+            l += 1
+
+    return result
+
+
+# def review7(nums: list[int], k: int) -> list[int]:
+#     """
+#     Anki 1-29-24
+#     Time: 12 min
+#     Used: Solution 1
+#     """
