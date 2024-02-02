@@ -22,5 +22,43 @@ class ListNode:
         return str(self) == str(__value)
 
 
-# def reverseKGroup(head: ListNode | None, k: int) -> ListNode | None:
-#     pass
+def reverseKGroup(head: ListNode | None, k: int) -> ListNode | None:
+    def reverse(head: ListNode, k: int):
+        new_head, prev = None, head
+
+        while k:
+            next_node = prev.next
+            prev.next = new_head
+
+            new_head = prev
+            prev = next_node
+            k -= 1
+
+        return new_head
+
+    cur = head
+    kTail = None
+
+    new_head = None
+
+    while cur:
+        count = 0
+        cur = head
+
+        while count < k and cur:
+            cur = cur.next
+            count += 1
+
+        if count == k:
+            rev_head = reverse(head, k)
+
+            if not new_head:
+                new_head = rev_head
+            if kTail:
+                kTail.next = rev_head
+            kTail = head
+            head = cur
+    if kTail:
+        kTail.next = head
+
+    return new_head if new_head else head
