@@ -63,3 +63,36 @@ def maxPathSum(root: TreeNode | None) -> int:
 
     dfs(root)
     return largest
+
+
+def review1(root: TreeNode | None) -> int:
+    """
+    Anki 2-3-24
+    Time: 5:42
+    Used: debugger 1
+    """
+    largest = root.val
+
+    def dfs(root):
+        nonlocal largest  # d1
+        if not root:
+            return 0
+
+        l = max(0, dfs(root.left))
+        r = max(0, dfs(root.right))
+        m = root.val
+
+        largest = max(largest, l+r+m)
+
+        return m + max(l, r, 0)
+
+    dfs(root)
+    return largest
+
+
+# def review2(root: TreeNode | None) -> int:
+#     """
+#     Anki 2-3-24
+#     Time: 5:42
+#     Used: debugger 1
+#     """
