@@ -42,5 +42,24 @@ class TreeNode:
         return id(self)
 
 
-# def maxPathSum(root: TreeNode | None) -> int:
-#     pass
+def maxPathSum(root: TreeNode | None) -> int:
+    """
+    Anki 2-2-24
+    Used: https://www.youtube.com/watch?v=Hr5cWUld4vU
+    """
+    largest = root.val
+
+    def dfs(root: TreeNode):
+        nonlocal largest
+        if not root:
+            return 0
+
+        l = max(dfs(root.left), 0)
+        r = max(dfs(root.right), 0)
+        m = root.val  # s3
+
+        largest = max(largest, l+m+r)  # s1 max(l,m,r)
+        return m + max(l, r)  # s2 l+m+r
+
+    dfs(root)
+    return largest
