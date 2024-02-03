@@ -146,9 +146,23 @@ def review6(heights: list[int]) -> int:
 
     return area
 
-# def review7(heights: list[int]) -> int:
-#     """
-#     Anki 1-29-24
-#     Time: 9 min
-#     Used: Solution 2
-#     """
+
+def review7(heights: list[int]) -> int:
+    """
+    Anki 2-3-24
+    Used: debugger 2
+    Time: 10:42
+    """
+    largest = 0
+    stack = []
+
+    for r, h in enumerate(heights):
+        l = r
+        while stack and stack[-1][1] > h:
+            l, height = stack.pop()
+            largest = max(largest, (r-l)*height)
+        stack.append((l, h))  # d1 stack.append(l, h)
+
+    for l, h in stack:  # d2 enumerate(stack)
+        largest = max(largest, (len(heights)-l)*h)
+    return largest
