@@ -194,9 +194,37 @@ def review4(s: str, t: str) -> str:
 
     return min_substring
 
-# def review5(s: str, t: str) -> str:
+
+def review5(s: str, t: str) -> str:
+    """
+    Anki 2-3-24
+    Time: 20 min
+    Used: Debugger 2, solution 2
+    """
+    result = ''
+    l = 0
+    S = Counter()
+    T = Counter(t)
+    matches = 0
+
+    for r, c in enumerate(s):
+        S[c] += 1  # s2 S[r]
+        if S[c] == T[c]:
+            matches += 1
+
+        while matches == len(T):
+            if result == '' or len(result) > r+1-l:
+                result = s[l:r+1]  # d1 result =, d3 result[l:r+1]
+
+            if T[s[l]] == S[s[l]]:
+                matches -= 1
+            S[s[l]] -= 1  # s3
+            l += 1
+    return result
+
+# def review6(s: str, t: str) -> str:
 #     """
-#     Anki 1-26-24
-#     Used: Debugger 5
-#     Time: 31 min
+#     Anki 2-3-24
+#     Time: 20 min
+#     Used: Debugger 2, solution 2
 #     """
