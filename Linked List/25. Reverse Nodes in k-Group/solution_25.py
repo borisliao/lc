@@ -62,3 +62,37 @@ def reverseKGroup(head: ListNode | None, k: int) -> ListNode | None:
         kTail.next = head
 
     return new_head if new_head else head
+
+
+# def review1(head: ListNode | None, k: int) -> ListNode | None:
+#     def reverse(head, k):
+#         prev = None
+#         while k:
+#             next = head.next
+#             head.next = prev
+#             prev = head
+#             head = next
+#             k -= 1
+
+#         return prev
+
+#     reversed_head = None
+#     traversed = 0
+#     reverse_start = None
+
+#     while head:
+#         if traversed == 0:
+#             reverse_start = head
+
+#         traversed += 1
+#         head = head.next
+
+#         if traversed == k:
+#             node = reverse(reverse_start, k)
+#             if not reversed_head:
+#                 reversed_head = node
+#             reverse_start.next = head
+#             reverse_start = None
+#             traversed = 0
+
+#     return reversed_head
