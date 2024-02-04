@@ -86,9 +86,28 @@ def review1(node: Node | None) -> Node | None:
 
     return dfs(node)
 
-# def review2(node: Node | None) -> Node | None:
-#     """
-#     Anki 2-3-24
-#     Used: Solution 1
-#     Time: 8 min
-#     """
+
+def review2(node: Node | None) -> Node | None:
+    """
+    Anki 2-4-24
+    Time: 13 min
+    Used: Solution 4
+    """
+    if not node:  # s4
+        return None  # s4
+    clones = {node: Node(node.val, [])}  # s3 optimization {}
+
+    q = deque([node])  # d1 deque(node)
+
+    while q:
+        n = q.popleft()
+        # s3 optimization
+        # if n not in clones:
+        #     clones[n] = Node(n.val, [])
+        for neighbor in n.neighbors:
+            if neighbor not in clones:
+                q.append(neighbor)  # s2 up 1
+                clones[neighbor] = Node(neighbor.val, [])
+            clones[n].neighbors.append(clones[neighbor])
+
+    return clones[node]
