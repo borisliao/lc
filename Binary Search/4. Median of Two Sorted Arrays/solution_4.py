@@ -238,11 +238,34 @@ def review6(nums1: list[int], nums2: list[int]) -> float:
         else:
             l = m + 1
 
-# def review7(nums1: list[int], nums2: list[int]) -> float:
-#     """
-#     Anki 1-19-24
-#     Used: [Median of Two Sorted Arrays - Binary Search - Leetcode 4](https://www.youtube.com/watch?v=q6IEA26hvXc)
-        # Time: 45 min
-        # Used: Debugger 2
-#     O(log(n+m))
-#     """
+
+def review7(nums1: list[int], nums2: list[int]) -> float:
+    """
+    Anki 2-4-24
+    """
+    A, B = nums1, nums2
+    if len(A) < len(B):  # s4 >
+        A, B = B, A
+
+    total = len(A) + len(B)
+    mid = total // 2
+    l = 0
+    r = len(B) - 1  # s5 len(A)
+
+    while l <= r:  # s6 <
+        i = (l + r) // 2
+        j = mid - 2 - i  # s3 + i
+
+        aLeft = A[i] if i >= 0 else float('-inf')
+        aRight = A[i+1] if i + 1 < len(A) else float('inf')  # s2 A[i]
+        bLeft = B[j] if j >= 0 else float('-inf')
+        bRight = B[j+1] if j + 1 < len(B) else float('inf')  # s2 B[j]
+
+        if aLeft <= bRight and bLeft <= aRight:
+            if total % 2:
+                return min(aRight, bRight)
+            return (max(aLeft, bLeft) + min(aRight, bRight)) / 2
+        elif aLeft > bRight:
+            r = i - 1  # s1 swap
+        else:
+            l = i + 1  # s1 swap
