@@ -1,2 +1,18 @@
-# def lastStoneWeight(self, stones: list[int]) -> int:
-#     pass
+import heapq
+
+
+def lastStoneWeight(stones: list[int]) -> int:
+    """
+    Anki 2-4-24
+    Used: Solution
+    Time: 19 min
+    """
+    stones = [-s for s in stones]
+    heapq.heapify(stones)
+
+    while len(stones) >= 2:
+        y = heapq.heappop(stones)
+        x = heapq.heappop(stones)
+        if y-x < 0:
+            heapq.heappush(stones, y-x)
+    return -stones[0] if stones else 0
