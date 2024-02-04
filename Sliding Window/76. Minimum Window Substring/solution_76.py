@@ -251,9 +251,30 @@ def review6(s: str, t: str) -> str:
 
     return result
 
-# def review7(s: str, t: str) -> str:
-#     """
-#     Anki 2-3-24
-#     Time: 14:45
-#     Used: solution 2
-#     """
+
+def review7(s: str, t: str) -> str:
+    """
+    Anki 2-4-24
+    Time: 13 min
+    """
+    count = Counter(t)
+    window = Counter()
+    l = 0
+    result = ''
+
+    for r, c in enumerate(s):
+        window[c] += 1
+
+        def inCount():
+            for char in count:
+                if window[char] < count[char]:
+                    return False
+            return True
+
+        while inCount():  # gpt2 if
+            if result == '' or len(result) > r+1-l:
+                result = s[l:r+1]
+            window[s[l]] -= 1  # d1 window[l]
+            l += 1
+
+    return result
