@@ -111,3 +111,27 @@ def review2(node: Node | None) -> Node | None:
             clones[n].neighbors.append(clones[neighbor])
 
     return clones[node]
+
+
+def review2(node: Node | None) -> Node | None:
+    """
+    Anki 2-4-24
+    Time: 11:20
+    """
+    if not node:
+        return None
+
+    clones = {}
+
+    def dfs(n):
+        if n in clones:  # s1 not in
+            return clones[n]
+        clones[n] = Node(n.val, [])
+        for neighbor in n.neighbors:
+            clones[neighbor] = dfs(neighbor)
+            clones[n].neighbors.append(clones[neighbor])
+
+        return clones[n]
+
+    dfs(node)
+    return clones[node]
