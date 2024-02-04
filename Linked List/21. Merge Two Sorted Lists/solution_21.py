@@ -172,3 +172,20 @@ def merge2(l, r):
     else:
         r.next = merge(l, r.next)
         return r
+
+
+def merge3(l1, l2):
+    """
+    2-3-24
+    """
+    if not l1:
+        return l2
+    if not l2:
+        return l1
+
+    if l1.val > l2.val:
+        l2.next = merge3(l1, l2.next)
+        return l2
+    else:
+        l1.next = merge3(l1.next, l2)
+        return l1
