@@ -61,3 +61,34 @@ def crackingFaang(node: Node | None) -> Node | None:
             clone[cur].neighbors.append(clone[neighbor])
 
     return clone[node]
+
+
+def review1(node: Node | None) -> Node | None:
+    """
+    Anki 2-3-24
+    Used: Solution 1
+    Time: 8 min
+    """
+    clone = {}
+
+    if not node:
+        return None
+
+    def dfs(node: Node):
+        if node in clone:
+            return clone[node]
+        copy = Node(node.val, [])
+        clone[node] = copy
+
+        for n in node.neighbors:
+            copy.neighbors.append(dfs(n))  # s1
+        return copy
+
+    return dfs(node)
+
+# def review2(node: Node | None) -> Node | None:
+#     """
+#     Anki 2-3-24
+#     Used: Solution 1
+#     Time: 8 min
+#     """
