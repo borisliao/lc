@@ -64,6 +64,59 @@ def reverseKGroup(head: ListNode | None, k: int) -> ListNode | None:
     return new_head if new_head else head
 
 
+def review2(head: ListNode | None, k: int) -> ListNode | None:
+    """
+    Anki 2-4-24
+    Used: Solution
+    Time: 20 min
+    """
+    def reverse(head, k):
+        """
+        head = 3
+        next = 3
+        prev = 2
+        k = 1
+        1 -> 2 -> 3
+        1 2 -> 3
+        """
+        prev = None
+        while k:
+            next = head.next
+            head.next = prev
+            prev = head
+            head = next
+            k -= 1
+        return prev
+
+    if not head:
+        return None
+
+    node = head
+    r_tail = None
+    r_head = None
+
+    while node:
+        i = 0
+        node = head
+
+        while i < k and node:
+            i += 1
+            node = node.next
+
+        if i == k:
+            h = reverse(head, k)
+
+            if not r_head:
+                r_head = h
+            if r_tail:
+                r_tail.next = h
+            r_tail = head
+            head = node
+    if r_tail:
+        r_tail.next = head
+
+    return r_head
+
 # def review1(head: ListNode | None, k: int) -> ListNode | None:
 #     def reverse(head, k):
 #         prev = None
