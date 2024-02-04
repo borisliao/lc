@@ -222,9 +222,38 @@ def review5(s: str, t: str) -> str:
             l += 1
     return result
 
-# def review6(s: str, t: str) -> str:
+
+def review6(s: str, t: str) -> str:
+    """
+    Anki 2-3-24
+    Time: 14:45
+    Used: solution 2
+    """
+    result = ''
+    l = 0
+    t_count = Counter(t)
+    window = Counter()
+
+    for r in range(len(s)):
+        window[s[r]] += 1
+
+        def t_in_window():
+            for c in t_count:
+                if t_count[c] > window[c]:
+                    return False
+            return True
+
+        while t_in_window():
+            if result == '' or len(result) > r+1-l:
+                result = s[l:r+1]
+            window[s[l]] -= 1  # s1 left 1, s2 window[l]
+            l += 1  # s1 left 1
+
+    return result
+
+# def review7(s: str, t: str) -> str:
 #     """
 #     Anki 2-3-24
-#     Time: 20 min
-#     Used: Debugger 2, solution 2
+#     Time: 14:45
+#     Used: solution 2
 #     """
