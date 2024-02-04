@@ -189,3 +189,30 @@ def merge3(l1, l2):
     else:
         l1.next = merge3(l1.next, l2)
         return l1
+
+
+def review4(list1: ListNode | None, list2: ListNode | None) -> ListNode | None:
+    """
+    2-3-24
+    Time: 4 min
+    Used: Debugger 1
+    """
+    dummy = ListNode()
+    head = dummy
+
+    while list1 or list2:
+        if not list1:
+            head.next = list2
+            list2 = list2.next  # d1
+        elif not list2:
+            head.next = list1
+            list1 = list1.next  # d1
+        elif list1.val > list2.val:
+            head.next = list2
+            list2 = list2.next  # d1
+        else:
+            head.next = list1
+            list1 = list1.next  # d1
+        head = head.next
+
+    return dummy.next
