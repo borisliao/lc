@@ -242,6 +242,8 @@ def review6(nums1: list[int], nums2: list[int]) -> float:
 def review7(nums1: list[int], nums2: list[int]) -> float:
     """
     Anki 2-4-24
+    Time: 17 min
+    Used: Solution 6
     """
     A, B = nums1, nums2
     if len(A) < len(B):  # s4 >
