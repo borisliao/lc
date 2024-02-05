@@ -36,3 +36,12 @@ def test_example_3(f):
     output = ln([])
 
     assert str(f(lists)) == str(output)
+
+
+@pytest.mark.timeout(1)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_23, predicate=inspect.isfunction)])
+def test_lc_13(f):
+    lists = [ln([]), ln([-1, 5, 11]), ln([]), ln([6, 10])]
+    output = ln([-1, 5, 6, 10, 11])
+
+    assert str(f(lists)) == str(output)
