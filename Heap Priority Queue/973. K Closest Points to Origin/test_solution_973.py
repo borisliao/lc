@@ -30,7 +30,7 @@ def test_example_1(f):
 
 @pytest.mark.timeout(3)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_973, predicate=inspect.isfunction)])
-def test_example_1(f):
+def test_example_2(f):
     """
     Explanation: The answer [[-2,4],[3,3]] would also be accepted.
     """
