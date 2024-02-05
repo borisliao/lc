@@ -278,3 +278,29 @@ def review7(s: str, t: str) -> str:
             l += 1
 
     return result
+
+
+def review7(s: str, t: str) -> str:
+    """
+    Anki 2-5-24
+    Time: 12 min
+    """
+    t_count = Counter(t)
+    window = Counter()
+    matches = 0
+    l = 0
+    result = ''
+
+    for r, c in enumerate(s):
+        window[c] += 1
+        if window[c] == t_count[c]:
+            matches += 1
+
+        while len(t_count) == matches:
+            if result == '' or r+1-l < len(result):
+                result = s[l:r+1]
+            if window[s[l]] == t_count[s[l]]:  # s1 up 2 and !=
+                matches -= 1
+            window[s[l]] -= 1
+            l += 1
+    return result
