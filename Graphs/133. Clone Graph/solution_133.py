@@ -113,7 +113,7 @@ def review2(node: Node | None) -> Node | None:
     return clones[node]
 
 
-def review2(node: Node | None) -> Node | None:
+def review3(node: Node | None) -> Node | None:
     """
     Anki 2-4-24
     Time: 11:20
@@ -135,3 +135,29 @@ def review2(node: Node | None) -> Node | None:
 
     dfs(node)
     return clones[node]
+
+
+def review4(node: Node | None) -> Node | None:
+    """
+    Anki 2-5-24
+    Time: 7:20
+    Used: debugger 3
+    """
+    if not node:
+        return None
+
+    clones = {}
+    clones[node] = Node(node.val, [])
+
+    q = deque([node])
+
+    while q:
+        head = q.popleft()  # d3 node =
+
+        for n in head.neighbors:
+            if n not in clones:
+                q.append(n)  # s1 up 2
+                clones[n] = Node(n.val, [])
+            clones[head].neighbors.append(clones[n])
+
+    return clones[node]  # gpt2
