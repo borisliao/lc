@@ -161,3 +161,27 @@ def review4(node: Node | None) -> Node | None:
             clones[head].neighbors.append(clones[n])
 
     return clones[node]  # gpt2
+
+
+def review5(node: Node | None) -> Node | None:
+    """
+    Anki 2-5-24
+    Time: 7 min
+    """
+    if not node:
+        return None
+
+    clones = {node: Node(node.val, [])}
+
+    q = deque([node])
+
+    while q:
+        head = q.popleft()
+
+        for n in head.neighbors:
+            if n not in clones:
+                clones[n] = Node(n.val, [])
+                q.append(n)
+            clones[head].neighbors.append(clones[n])
+
+    return clones[node]
