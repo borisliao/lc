@@ -149,3 +149,44 @@ def review2(head: ListNode | None, k: int) -> ListNode | None:
 #             traversed = 0
 
 #     return reversed_head
+
+
+def review1(head: ListNode | None, k: int) -> ListNode | None:
+    def reverse(head, k):
+        prev = None
+        while k:
+            next = head.next
+            head.next = prev
+            prev = head
+            head = next
+            k -= 1
+
+        return prev
+
+    node = head
+    prev_tail = None
+    new_head = None
+
+    while node:
+        traversed = 0
+        traversed_head = node
+
+        while traversed < k and node:
+            node = node.next
+            traversed += 1
+
+        if traversed == k:
+            reversed_head = reverse(traversed_head, k)
+
+            if not new_head:  # runs only one time
+                new_head = reversed_head
+
+            if prev_tail:  # connect the prev traversed tail to the new reversed head
+                prev_tail.next = reversed_head
+
+            prev_tail = head
+            head = node
+        elif traversed < k:
+            prev_tail.next = head
+
+    return new_head if new_head else head
