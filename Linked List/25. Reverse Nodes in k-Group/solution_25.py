@@ -190,3 +190,45 @@ def review1(head: ListNode | None, k: int) -> ListNode | None:
             prev_tail.next = head
 
     return new_head if new_head else head
+
+
+def review3(head: ListNode | None, k: int) -> ListNode | None:
+    """
+    Anki 2-5-24
+    Time: 20 min
+    """
+    def reverse(h, k):
+        prev = None
+        while k:
+            n = h.next
+            h.next = prev
+            prev = h
+            h = n
+            k -= 1
+        return prev
+    prev_tail = None
+    new_head = None
+    while head:
+        t = head
+        distance = 0
+
+        while t and distance < k:
+            t = t.next
+            distance += 1
+
+        if distance == k:
+            reversed_head = reverse(head, k)
+
+            if not new_head:
+                new_head = reversed_head
+
+            if prev_tail:
+                prev_tail.next = reversed_head
+
+            prev_tail = head
+            head = t
+        elif distance < k:
+            prev_tail.next = head
+            break  # d1
+
+    return new_head
