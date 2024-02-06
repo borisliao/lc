@@ -207,9 +207,25 @@ def review6(nums: list[int], k: int) -> list[int]:
     return result
 
 
-# def review7(nums: list[int], k: int) -> list[int]:
-#     """
-#     Anki 1-29-24
-#     Time: 12 min
-#     Used: Solution 1
-#     """
+def review7(nums: list[int], k: int) -> list[int]:
+    """
+    Anki 2-6-24
+    Time: 15 min
+    Used: Solution 1
+    """
+    result = []
+    q = deque()
+    l = 0
+    for r, n in enumerate(nums):
+        while q and n > nums[q[-1]]:
+            q.pop()
+        q.append(r)
+
+        while q[0] < l:
+            q.popleft()
+
+        if r+1-l == k:
+            result.append(nums[q[0]])  # s1 q[0]
+            l += 1
+
+    return result
