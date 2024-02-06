@@ -389,7 +389,45 @@ def review9(s1: str, s2: str) -> bool:
     return False
 
 
-# def review10(s1: str, s2: str) -> bool:
-#     """
-#     Anki 1-16-24
-#     """
+def review10(s1: str, s2: str) -> bool:
+    """
+    Anki 2-6-24
+    Time: 9:21
+    Used: debugger 1
+    """
+    a = Counter(s1)
+    b = Counter()
+    l = 0
+
+    for r, c in enumerate(s2):
+        b[c] += 1
+        if r+1-l == len(s1):
+            if a == b:
+                return True
+            b[s2[l]] -= 1  # d1 b[l]
+            l += 1
+    return False
+
+
+def review11(s1: str, s2: str) -> bool:
+    """
+    Anki 2-6-24
+    Time: 12 min, 9m+3m
+    """
+    a = Counter(s1)
+    b = Counter()
+    l = 0
+    matches = 0
+
+    for r, c in enumerate(s2):
+        b[c] += 1
+        if b[c] == a[c]:
+            matches += 1
+        if r+1-l == len(s1):
+            if matches == len(a):
+                return True
+            if b[s2[l]] == a[s2[l]]:
+                matches -= 1
+            b[s2[l]] -= 1  # d1 b[l]
+            l += 1
+    return False
