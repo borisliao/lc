@@ -357,3 +357,25 @@ def review11(s: str) -> list[list[str]]:
 
     dfs(0)
     return result
+
+
+def review12(s: str) -> list[list[str]]:
+    """
+    Anki 2-5-24
+    Time: 13:50
+    Used: Solution 2
+    """
+    result = []
+    subset = []
+
+    def dfs(i):
+        if i >= len(s):
+            result.append(subset.copy())
+            return
+        for j in range(i, len(s)):
+            if s[i:j+1] == s[i:j+1][::-1]:  # s1[::-1]
+                subset.append(s[i:j+1])
+                dfs(j+1)  # s2 +1
+                subset.pop()
+    dfs(0)
+    return result
