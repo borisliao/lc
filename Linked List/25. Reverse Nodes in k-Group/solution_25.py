@@ -232,3 +232,46 @@ def review3(head: ListNode | None, k: int) -> ListNode | None:
             break  # d1
 
     return new_head
+
+
+def review3(head: ListNode | None, k: int) -> ListNode | None:
+    """
+    Anki 2-6-24
+    Time: 12 min
+    """
+    def reverse(h, k):
+        prev = None
+        while k:
+            n = h.next
+            h.next = prev
+            prev = h
+            h = n
+            k -= 1
+        return prev
+
+    prev_tail = None
+    new_head = None
+    traversed = 0
+    while head:  # only covers when len(head) % k == 0
+        t = head
+        while t and traversed < k:
+            t = t.next
+            traversed += 1
+
+        if traversed == k:
+            reversed_head = reverse(head, k)
+
+            if not new_head:  # only runs one time
+                new_head = reversed_head
+
+            if prev_tail:
+                prev_tail.next = reversed_head
+
+            prev_tail = head
+            traversed = 0
+            head = t
+        elif traversed < k:
+            prev_tail.next = head
+            break
+
+    return new_head
