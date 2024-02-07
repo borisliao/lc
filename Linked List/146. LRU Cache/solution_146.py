@@ -494,7 +494,64 @@ def review6(capacity: int):
 
     return LRUCache(capacity)
 
-# def review7(capacity: int):
+
+def review7(capacity: int):
+    """
+    Anki 2-6-24
+    Time: 29 min
+    Used: solution 1, debugger 2
+    """
+    class Node:
+        def __init__(self, k, v, p, n):
+            self.key = k
+            self.val = v
+            self.prev = p
+            self.next = n
+
+    class LRUCache:
+        def __init__(self, capacity: int):
+            self.head = Node(0, 0, None, None)
+            self.tail = Node(0, 0, None, None)
+            self.head.next, self.tail.prev = self.tail, self.head
+            self.capacity = capacity
+            self.lookup = {}
+
+        def get(self, key: int) -> int:
+            if key in self.lookup:
+                node = self.lookup[key]
+                del self.lookup[key]
+                self.remove(node)
+                self.put(node.key, node.val)
+                return node.val
+            return -1
+
+        def put(self, key: int, value: int) -> None:
+            if key in self.lookup:
+                self.remove(self.lookup[key])
+                del self.lookup[key]
+            node = Node(key, value, None, None)
+            l = self.tail.prev
+            l.next = node
+            self.tail.prev = node
+            node.prev = l
+            node.next = self.tail
+
+            self.lookup[key] = node
+
+            if len(self.lookup) > self.capacity:  # d2 ==
+                evicted = self.head.next
+                self.remove(evicted)
+                del self.lookup[evicted.key]  # s3 .key
+
+        def remove(self, n):
+            l = n.prev  # d1 n.left
+            r = n.next  # d1 n.right
+
+            l.next, r.prev = r, l
+
+    return LRUCache(capacity)
+
+# def review8(capacity: int):
 #     """
 #     Anki
 #     Time:
