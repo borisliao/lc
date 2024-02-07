@@ -221,8 +221,49 @@ def review6(height: list[int]) -> int:
 
     return water
 
-# def review7(height: list[int]) -> int:
-#     """
-#     Anki 1-29-24
-#     Time: 5:41
-#     """
+
+def review7(height: list[int]) -> int:
+    """
+    Anki 2-6-24
+    Time: 12 min
+    """
+    max_left = []
+    max_right = []
+
+    l = 0
+    for h in height:
+        l = max(l, h)
+        max_left.append(l)
+
+    r = 0
+    for h in reversed(height):
+        r = max(r, h)
+        max_right.append(r)
+    max_right = max_right[::-1]
+
+    result = 0
+    for i, h in enumerate(height):
+        result += (min(max_left[i], max_right[i]) - h)
+    return result
+
+
+def review8(height: list[int]) -> int:
+    """
+    2-6-24
+    """
+    l = 0
+    r = len(height) - 1
+    result = 0
+    maxL = height[l]
+    maxR = height[r]
+
+    while l < r:
+        if height[l] < height[r]:
+            maxL = max(maxL, height[l])
+            l += 1
+            result += max(0, maxL-height[l])
+        else:
+            maxR = max(maxR, height[r])
+            r -= 1
+            result += max(0, maxR-height[r])
+    return result
