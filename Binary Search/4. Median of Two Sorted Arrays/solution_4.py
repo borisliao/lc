@@ -211,13 +211,13 @@ def review6(nums1: list[int], nums2: list[int]) -> float:
     O(log(n+m))
     """
     A, B = nums1, nums2
-    if len(A) < len(B):
+    if len(A) > len(B):
         A, B = B, A
 
     total = len(A)+len(B)
     half = total // 2
     l = 0
-    r = len(B) - 1
+    r = len(A) - 1
 
     while True:
         m = (l+r)//2
@@ -246,15 +246,15 @@ def review7(nums1: list[int], nums2: list[int]) -> float:
     Used: Solution 6
     """
     A, B = nums1, nums2
-    if len(A) < len(B):  # s4 >
+    if len(A) > len(B):  # s4 >
         A, B = B, A
 
     total = len(A) + len(B)
     mid = total // 2
     l = 0
-    r = len(B) - 1  # s5 len(A)
+    r = len(A) - 1  # s5 len(A)
 
-    while l <= r:  # s6 <
+    while True:  # s6 <
         i = (l + r) // 2
         j = mid - 2 - i  # s3 + i
 
@@ -273,13 +273,13 @@ def review7(nums1: list[int], nums2: list[int]) -> float:
             l = i + 1  # s1 swap
 
 
-def review7(nums1: list[int], nums2: list[int]) -> float:
+def review8(nums1: list[int], nums2: list[int]) -> float:
     """
     Anki 2-5-24
     Time: 12 min
     """
     A, B = nums1, nums2
-    if len(A) < len(B):  # s3 >
+    if len(A) > len(B):  # s3 >
         A, B = B, A
 
     total = len(A) + len(B)
@@ -287,7 +287,7 @@ def review7(nums1: list[int], nums2: list[int]) -> float:
     l = 0
     r = len(A) - 1
 
-    while l <= r:
+    while True:
         i = (l+r)//2
         j = half-2-i
 
@@ -301,6 +301,40 @@ def review7(nums1: list[int], nums2: list[int]) -> float:
                 return min(aRight, bRight)  # s1 max
             return (max(aLeft, bLeft) + min(aRight, bRight)) / 2
         elif aLeft > bRight:
+            r = i - 1
+        else:
+            l = i + 1
+
+
+def review9(nums1: list[int], nums2: list[int]) -> float:
+    """
+    Anki 2-5-24
+    """
+    A, B = nums1, nums2
+
+    if len(A) > len(B):  # s1 >
+        A, B = B, A
+
+    total = len(A) + len(B)
+    half = total // 2
+    l = 0
+    r = len(A)-1
+
+    while True:
+        i = (l+r)//2
+        j = half-2-i
+
+        aLeft = A[i] if i >= 0 else float('-inf')
+        aRight = A[i+1] if i+1 < len(A) else float('inf')
+        bLeft = B[j] if j >= 0 else float('-inf')
+        bRight = B[j+1] if j+1 < len(B) else float('inf')
+
+        if aLeft <= bRight and bLeft <= aRight:
+            if total % 2:
+                return min(aRight, bRight)
+            else:
+                return (max(aLeft, bLeft) + min(aRight, bRight))/2
+        if aLeft > bRight:
             r = i - 1
         else:
             l = i + 1

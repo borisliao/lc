@@ -27,3 +27,23 @@ def test_example_2(f):
     """
 
     assert f(nums1, nums2) == output
+
+
+@pytest.mark.timeout(1)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_4, predicate=inspect.isfunction)])
+def test_lc_3(f):
+    nums1 = []
+    nums2 = [1]
+    output = 1
+
+    assert f(nums1, nums2) == output
+
+
+@pytest.mark.timeout(1)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_4, predicate=inspect.isfunction)])
+def test_lc_11(f):
+    nums1 = []
+    nums2 = [2, 3]
+    output = 2.50000
+
+    assert f(nums1, nums2) == output
