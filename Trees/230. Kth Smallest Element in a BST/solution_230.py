@@ -1,3 +1,4 @@
+from collections import deque
 from typing import List, Optional
 
 
@@ -207,7 +208,26 @@ def review8(root: TreeNode | None, k: int) -> int:
         c = c.right
 
 
-# def review10(root: TreeNode | None, k: int) -> int:
+def review10(root: TreeNode | None, k: int) -> int:
+    """
+    Anki 2-9-24
+    Time: 3:44
+    """
+    c = root
+    stack = []
+
+    while c or stack:
+        while c:  # s1 if, s2 c.left
+            stack.append(c)  # s3 c.right
+            c = c.left
+        c = stack.pop()
+        k -= 1
+        if k == 0:
+            return c.val
+        c = c.right
+
+
+# def review11(root: TreeNode | None, k: int) -> int:
 #     """
 #     Anki 1-29-24
 #     Time: 3:44
