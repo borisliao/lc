@@ -90,9 +90,25 @@ def review1(root: TreeNode | None) -> int:
     return largest
 
 
-# def review2(root: TreeNode | None) -> int:
-#     """
-#     Anki 2-3-24
-#     Time: 5:42
-#     Used: debugger 1
-#     """
+def review2(root: TreeNode | None) -> int:
+    """
+    Anki 2-3-24
+    Used: solution
+    """
+    path = float('-inf')
+
+    def dfs(n):
+        nonlocal path
+        if not n:
+            return 0
+
+        l = max(0, dfs(n.left))
+        r = max(0, dfs(n.right))
+        m = n.val
+
+        path = max(path, l + m + r)
+
+        return m + max(l, r, 0)
+
+    dfs(root)
+    return path
