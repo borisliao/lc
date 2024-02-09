@@ -46,3 +46,29 @@ def review2(nums: list[int], k: int) -> int:
             heapq.heappush(heap, n)
 
     return heap[0]
+
+
+def review3(nums: list[int], k: int) -> int:
+    """
+    Anki 2-9-24
+    Time: 4:38
+    Used: debugger 2
+    """
+    heap = []
+
+    for n in nums:
+        if len(heap) < k:
+            heapq.heappush(heap, n)  # d1 heap
+        elif n > heap[0]:
+            heapq.heappop(heap)  # d1 heap, s3 swap
+            heapq.heappush(heap, n)  # d2 heap, s3 swap
+
+    return heap[0]
+
+
+# def review4(nums: list[int], k: int) -> int:
+#     """
+#     Anki 2-9-24
+#     Time: 4:38
+#     Used: debugger 2
+#     """
