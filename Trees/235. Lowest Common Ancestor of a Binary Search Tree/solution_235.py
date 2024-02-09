@@ -120,7 +120,7 @@ def review2(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
             return root
 
 
-def review2(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+def review3(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
     """
     Anki 1-8-24
     Time: 15 min
@@ -137,7 +137,7 @@ def review2(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
         return review2(root.left, p, q)  # d1 p, q
 
 
-def review3(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+def review4(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
     """
     Anki 1-8-24
     Time: 17 min
@@ -151,7 +151,7 @@ def review3(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
         return root
 
 
-def review4(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+def review5(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
     """
     Anki 1-22-24
     Time: 16 min
@@ -161,5 +161,18 @@ def review4(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
         return review4(root.right, p, q)  # s1 root.left
     elif root.val > p.val and root.val > q.val:
         return review4(root.left, p, q)  # s1 root.right
+    else:
+        return root
+
+
+def review5(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+    """
+    Anki 2-9-24
+    Time: 8 min
+    """
+    if root.val < p.val and root.val < q.val:
+        return review5(root.right, p, q)
+    elif root.val > p.val and root.val > q.val:
+        return review5(root.left, p, q)
     else:
         return root
