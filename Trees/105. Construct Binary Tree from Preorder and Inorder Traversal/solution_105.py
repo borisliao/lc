@@ -196,3 +196,17 @@ def review9(preorder: list[int], inorder: list[int]) -> TreeNode:
     root.left = review9(preorder[1:left_nodes+1], inorder[:mid])
     root.right = review9(preorder[left_nodes+1:], inorder[mid+1:])
     return root
+
+
+def review10(preorder: list[int], inorder: list[int]) -> TreeNode:
+    """
+    Anki 2-13-24
+    """
+    if not inorder or not preorder:  # s1 or preorder
+        return None
+    root = TreeNode(preorder[0])
+    mid = inorder.index(preorder[0])
+    left_tree = mid
+    root.left = review10(preorder[1:left_tree+1], inorder[:mid])
+    root.right = review10(preorder[left_tree+1:], inorder[mid+1:])
+    return root
