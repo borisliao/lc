@@ -133,3 +133,24 @@ def review3(root: TreeNode | None) -> int:
 
     dfs(root)
     return result
+
+
+def review4(root: TreeNode | None) -> int:
+    """
+    Anki 2-13-24
+    Time: 7 min
+    """
+    result = float('-inf')
+
+    def dfs(node):
+        nonlocal result
+        if not node:
+            return 0
+        l = max(0, dfs(node.left))
+        r = max(0, dfs(node.right))
+        m = node.val
+
+        result = max(l+r+m, result)
+        return m + max(l, r, 0)
+    dfs(root)
+    return result
