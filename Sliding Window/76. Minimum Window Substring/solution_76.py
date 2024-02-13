@@ -304,3 +304,42 @@ def review7(s: str, t: str) -> str:
             window[s[l]] -= 1
             l += 1
     return result
+
+
+def review8(s: str, t: str) -> str:
+    """
+    Anki 2-13-24
+    Used: debugger 1
+    Time: 15 min
+    """
+    result = ''
+    t_count = Counter(t)
+    window = Counter()
+    matches = 0
+
+    l = 0
+
+    for r, c in enumerate(s):
+        window[c] += 1
+
+        if window[c] == t_count[c]:
+            matches += 1
+
+        while matches == len(t_count):  # d1 if
+            if result == '' or len(result) > r+1-l:
+                result = s[l:r+1]
+
+            if window[s[l]] == t_count[s[l]]:
+                matches -= 1
+            window[s[l]] -= 1
+            l += 1
+
+    return result
+
+
+# def review9(s: str, t: str) -> str:
+#     """
+#     Anki 2-13-24
+#     Used: debugger 1
+#     Time: 15 min
+#     """
