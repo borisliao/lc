@@ -112,3 +112,24 @@ def review2(root: TreeNode | None) -> int:
 
     dfs(root)
     return path
+
+
+def review3(root: TreeNode | None) -> int:
+    """
+    Anki 2-13-24
+    """
+    result = float('-inf')
+
+    def dfs(n):
+        nonlocal result
+        if not n:
+            return 0
+        l = max(0, dfs(n.left))
+        r = max(0, dfs(n.right))
+        m = n.val
+
+        result = max(l+r+m, result)
+        return max(m+l, m+r, 0)
+
+    dfs(root)
+    return result

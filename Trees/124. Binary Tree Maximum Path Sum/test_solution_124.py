@@ -49,3 +49,16 @@ def test_example_2(f):
     output = 42
 
     assert f(root) == output
+
+
+@pytest.mark.timeout(3)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_124, predicate=inspect.isfunction)])
+def test_lc_71(f):
+    """
+    ![https://assets.leetcode.com/uploads/2020/10/13/exx2.jpg](https://assets.leetcode.com/uploads/2020/10/13/exx2.jpg)
+    Explanation: The optimal path is 15 -> 20 -> 7 with a path sum of 15 + 20 + 7 = 42.
+    """
+    root = tn([2, -1])
+    output = 2
+
+    assert f(root) == output
