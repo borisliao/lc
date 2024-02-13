@@ -180,3 +180,26 @@ def review4(board: List[List[str]]) -> bool:
             sqr[(r // 3, c // 3)].add(board[r][c])
 
     return True
+
+
+def review5(board: list[list[str]]) -> bool:
+    """
+    Anki 2-13-24
+    Time: 8:43
+    """
+    row = defaultdict(lambda: set())
+    col = defaultdict(lambda: set())
+    sqr = defaultdict(lambda: set())
+
+    for r in range(9):
+        for c in range(9):
+            num = board[r][c]
+            if num == '.':
+                continue
+            if num in row[r] or num in col[c] or num in sqr[(r//3, c//3)]:
+                return False
+            row[r].add(board[r][c])
+            col[c].add(board[r][c])
+            sqr[(r//3, c//3)].add(board[r][c])
+
+    return True
