@@ -184,10 +184,15 @@ def review8(preorder: list[int], inorder: list[int]) -> TreeNode:
     return root
 
 
-# def review9(preorder: list[int], inorder: list[int]) -> TreeNode:
-#     """
-#     Anki 2-3-24
-#     Whiteboard the proof with complex example
-#     Used: Debugger 4
-#     Time: 13 min
-#     """
+def review9(preorder: list[int], inorder: list[int]) -> TreeNode:
+    """
+    Anki 2-13-24
+    """
+    if not preorder or not inorder:  # s2
+        return None  # s2
+    root = TreeNode(preorder[0])
+    mid = inorder.index(preorder[0])  # s1 preorder[1]
+    left_nodes = mid
+    root.left = review9(preorder[1:left_nodes+1], inorder[:mid])
+    root.right = review9(preorder[left_nodes+1:], inorder[mid+1:])
+    return root
