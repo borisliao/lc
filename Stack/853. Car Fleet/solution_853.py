@@ -152,3 +152,20 @@ def review5(target: int, position: list[int], speed: list[int]) -> int:
             stack.pop()
 
     return len(stack)
+
+
+def review5(target: int, position: list[int], speed: list[int]) -> int:
+    """
+    Anki 2-15-24
+    Time: 20 min
+    """
+    car = [(p, s) for p, s in zip(position, speed)]
+    car.sort()
+
+    stack = []
+    for p, s in reversed(car):
+        stack.append((target-p)/s)
+        if len(stack) >= 2 and stack[-2] >= stack[-1]:  # s1 <
+            stack.pop()
+
+    return len(stack)
