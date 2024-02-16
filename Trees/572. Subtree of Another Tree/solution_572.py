@@ -136,8 +136,23 @@ def review3(root: TreeNode, subRoot: TreeNode) -> bool:
 
     return dfs(root, subRoot)
 
-# def review4(root: TreeNode, subRoot: TreeNode) -> bool:
-#     """
-#     Anki 1-16-24
-#     Time: 12 min
-#     """
+
+def review4(root: TreeNode, subRoot: TreeNode) -> bool:
+    """
+    Anki 2-15-24
+    """
+    def same_tree(r, s):
+        if r == s == None:  # s1
+            return True  # s1
+        if r and s and r.val == s.val:
+            return same_tree(r.left, s.left) and same_tree(r.right, s.right)
+        else:
+            return False
+
+    if not root or not subRoot:  # s2 if not root or subroot
+        return False
+
+    if root.val == subRoot.val:
+        if same_tree(root, subRoot):
+            return True
+    return review4(root.left, subRoot) or review4(root.right, subRoot)
