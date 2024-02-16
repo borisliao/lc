@@ -65,6 +65,21 @@ def test_lc_9(f):
 @pytest.mark.timeout(1)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_853, predicate=inspect.isfunction)])
 def test_lc_31(f):
+    """
+    Tests if the stack is still monotonic increasing when you end the loop:
+    Wrong:
+    for p, s in reversed(car):
+        time = (target-p)/s
+        if stack and stack[-1] >= time:
+            stack.pop()
+        stack.append(time) # wrong
+
+    Right:
+    for p, s in reversed(car):
+        stack.append((target-p)/s)
+        if len(stack) >= 2 and stack[-2] >= stack[-1]:
+            stack.pop()
+    """
     target = 31
     position = [5, 26, 18, 25, 29, 21, 22, 12, 19, 6]
     speed = [7, 6, 6, 4, 3, 4, 9, 7, 6, 4]
