@@ -244,3 +244,31 @@ def review5(lists: list[ListNode | None]) -> ListNode | None:
             lists[i] = merge(lists[i], lists[i+interval])
         interval *= 2
     return lists[0]
+
+
+def review6(lists: list[ListNode | None]) -> ListNode | None:
+    """
+    Anki 2-15-24
+    """
+    def merge(l, r):
+        if not l:
+            return r
+        if not r:
+            return l
+        if l.val < r.val:
+            l.next = merge(l.next, r)
+            return l
+        else:
+            r.next = merge(l, r.next)
+            return r  # s3
+
+    if not lists:  # s1
+        return None  # s1
+
+    interval = 1
+    while interval < len(lists):  # s2
+        for i in range(0, len(lists)-interval, 2*interval):
+            lists[i] = merge(lists[i], lists[i+interval])
+        interval *= 2  # s1 interval+1
+
+    return lists[0]
