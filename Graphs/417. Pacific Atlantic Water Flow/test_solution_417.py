@@ -4,6 +4,13 @@ import pytest
 import solution_417
 
 
+def same_elements(x, y):
+    sorted_x = sorted([sorted(e) for e in x])
+    sorted_y = sorted([sorted(e) for e in y])
+    assert sorted_x == sorted_y
+    return sorted_x == sorted_y
+
+
 @pytest.mark.timeout(1)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_417, predicate=inspect.isfunction)])
 def test_example_1(f):
@@ -30,7 +37,7 @@ def test_example_1(f):
         2, 4, 5, 3, 1], [6, 7, 1, 4, 5], [5, 1, 1, 2, 4]]
     output = [[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]]
 
-    assert f(heights) == output
+    assert same_elements(f(heights), output)
 
 
 @pytest.mark.timeout(1)
@@ -43,3 +50,17 @@ def test_example_2(f):
     output = [[0, 0]]
 
     assert f(heights) == output
+
+
+@pytest.mark.timeout(1)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_417, predicate=inspect.isfunction)])
+def test_lc_37(f):
+    """
+    Explanation: The water can flow from the only cell to the Pacific and Atlantic oceans.
+    """
+    heights = [[3, 3, 3],
+               [3, 1, 3],
+               [0, 2, 4]]
+    output = [[0, 0], [0, 1], [0, 2], [1, 0], [1, 2], [2, 0], [2, 1], [2, 2]]
+
+    assert same_elements(f(heights), output)
