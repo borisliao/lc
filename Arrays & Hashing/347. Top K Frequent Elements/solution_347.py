@@ -203,9 +203,30 @@ def review6(nums: list[int], k: int) -> list[int]:
                 return result
 
 
-# def review7(nums: list[int], k: int) -> list[int]:
+def review7(nums: list[int], k: int) -> list[int]:
+    """
+    Anki 3-7-24
+    Time: 10:44
+    Used: solution 2, debugger 1
+    """
+    count = Counter(nums)
+
+    occ = [[] for _ in range(len(nums)+1)]  # s3 +1
+
+    for n, c in count.items():  # s1 .items()
+        occ[c].append(n)  # d2 append[n]``
+
+    result = []
+    for l in reversed(occ):
+        while l:
+            result.append(l.pop())
+            k -= 1
+            if k == 0:
+                return result
+
+# def review8(nums: list[int], k: int) -> list[int]:
 #     """
-#     Anki 1-26-24
-#     Time: 16 min
-#     Used: Debugger 1
+#     Anki 3-7-24
+#     Time: 10:44
+#     Used: solution 2, debugger 1
 #     """
