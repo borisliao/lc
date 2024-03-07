@@ -235,3 +235,33 @@ def review7(nums: List[int]) -> List[int]:
         i -= 1  # d2 i +=1
 
     return result
+
+
+def review8(nums: List[int]) -> List[int]:
+    """
+    Anki 3-7-24
+    Time: 11 min
+    Used: Solution
+    """
+    left_sum = []
+    t = 1
+    for n in nums:
+        left_sum.append(t)
+        t *= n
+
+    i = len(left_sum) - 1
+    t = 1
+    for n in reversed(nums):
+        left_sum[i] *= t
+        t *= n
+        i -= 1  # d1
+
+    return left_sum
+
+
+# def review9(nums: List[int]) -> List[int]:
+#     """
+#     Anki 3-5-24
+#     Time: 11 min
+#     Use whiteboard
+#     """
