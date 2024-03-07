@@ -335,7 +335,41 @@ def review5(func_name):
     if func_name == 'decode':
         return decode
 
-# def review6(func_name):
+
+def review6(func_name):
+    """
+    Anki 3-7-24
+    Time: 14:44
+    Used: Solution 1
+    """
+    def encode(strs: list[str]) -> str:
+        result = []
+        for s in strs:
+            result.append(f"{len(s)}#{s}")
+        return ''.join(result)
+
+    def decode(str: str) -> list[str]:
+        result = []
+        num = ''
+        i = 0
+        while i < len(str):
+            if str[i] != '#':
+                num += str[i]
+                i += 1
+            else:
+                val = int(num)
+                result.append(str[i+1:i+1+val])  # s1 +1 +1+val
+                i += val + 1
+                num = ''
+
+        return result
+
+    if func_name == 'encode':
+        return encode
+    if func_name == 'decode':
+        return decode
+
+# def review7(func_name):
 #     """
 #     Anki 12-27-23
 #     Time: 16 min
