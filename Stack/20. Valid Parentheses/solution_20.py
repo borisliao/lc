@@ -45,81 +45,112 @@ def review1(s: str) -> bool:
     return True if stack == [] else False  # d2 check if stack is empty
 
 
-def review2(s: str) -> bool:
-    """
-    Anki 1-16-24
-    Added map
-    Time: 10 min
-    Used: Debugger 2
-    """
-    map = {")": "(", "]": "[", "}": "{"}
-    stack = []
+# def review2(s: str) -> bool:
+#     """
+#     Anki 1-16-24
+#     Added map
+#     Time: 10 min
+#     Used: Debugger 2
+#     """
+#     map = {")": "(", "]": "[", "}": "{"}
+#     stack = []
 
-    for c in s:
-        if c in map:
-            val = stack.pop()
-            if val != map[c]:
-                return False
-        else:  # d2
-            stack.append(c)
+#     for c in s:
+#         if c in map:
+#             val = stack.pop()
+#             if val != map[c]:
+#                 return False
+#         else:  # d2
+#             stack.append(c)
 
-    return True if not stack else False  # d1
-
-
-def review3(s: str) -> bool:
-    """
-    Anki 1-16-24
-    Time: 4 min
-    """
-    stack = []
-    brackets = {']': '[', ')': '(', '}': '{'}  # d1 typos
-
-    for c in s:
-        if c in brackets:
-            value = stack.pop()
-            if value != brackets[c]:
-                return False
-        else:
-            stack.append(c)
-
-    return True if not stack else False  # d2 if not stack else False
+#     return True if not stack else False  # d1
 
 
-def review4(s: str) -> bool:
-    """
-    Anki 1-17-24
-    Time: 9 min
-    """
-    close_map = {')': '(', ']': '[', '}': '{'}
-    stack = []
-    for c in s:
-        if c in close_map:
-            if stack.pop() != close_map[c]:
-                return False
-        else:
-            stack.append(c)
-    return True if not stack else False
+# def review3(s: str) -> bool:
+#     """
+#     Anki 1-16-24
+#     Time: 4 min
+#     """
+#     stack = []
+#     brackets = {']': '[', ')': '(', '}': '{'}  # d1 typos
+
+#     for c in s:
+#         if c in brackets:
+#             value = stack.pop()
+#             if value != brackets[c]:
+#                 return False
+#         else:
+#             stack.append(c)
+
+#     return True if not stack else False  # d2 if not stack else False
 
 
-def review5(s: str) -> bool:
-    """
-    Anki 1-22-24
-    Time: 4:30
-    """
-    stack = []
-    map = {")": "(", "]": "[", "}": "{"}
-
-    for c in s:
-        if c in map:
-            if stack.pop() != map[c]:
-                return False
-        else:
-            stack.append(c)
-    return True if stack == [] else False
+# def review4(s: str) -> bool:
+#     """
+#     Anki 1-17-24
+#     Time: 9 min
+#     """
+#     close_map = {')': '(', ']': '[', '}': '{'}
+#     stack = []
+#     for c in s:
+#         if c in close_map:
+#             if stack.pop() != close_map[c]:
+#                 return False
+#         else:
+#             stack.append(c)
+#     return True if not stack else False
 
 
 # def review5(s: str) -> bool:
 #     """
 #     Anki 1-22-24
 #     Time: 4:30
+#     """
+#     stack = []
+#     map = {")": "(", "]": "[", "}": "{"}
+
+#     for c in s:
+#         if c in map:
+#             if stack.pop() != map[c]:
+#                 return False
+#         else:
+#             stack.append(c)
+#     return True if stack == [] else False
+
+
+def review6(s: str) -> bool:
+    """
+    Anki 4-29-24
+    Time: 10 min
+    Used: debugger 1
+    """
+    stack = []
+
+    open_brackets = ['(', '{', '[']
+
+    for c in s:
+        if c in open_brackets:
+            stack.append(c)
+
+        if stack:
+            if c == ')':
+                if stack.pop() != '(':
+                    return False
+            elif c == '}':
+                if stack.pop() != '{':
+                    return False
+            elif c == ']':
+                if stack.pop() != '[':
+                    return False
+        else:  # d1
+            return False  # d1
+
+    return True if stack == [] else False
+
+
+# def review7(s: str) -> bool:
+#     """
+#     Anki 4-29-24
+#     Time: 10 min
+#     Used: debugger 1
 #     """
