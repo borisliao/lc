@@ -31,6 +31,15 @@ def test_example_2(f):
 
 @pytest.mark.timeout(1)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_84, predicate=inspect.isfunction)])
+def test_lc_53(f):
+    heights = [2, 1, 2]
+    output = 3
+
+    assert f(heights) == output
+
+
+@pytest.mark.timeout(1)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_84, predicate=inspect.isfunction)])
 def test_lc_87(f):
     heights = [1] * 20000
     output = 20000

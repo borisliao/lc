@@ -166,3 +166,32 @@ def review7(heights: list[int]) -> int:
     for l, h in stack:  # d2 enumerate(stack)
         largest = max(largest, (len(heights)-l)*h)
     return largest
+
+
+def review8(heights: list[int]) -> int:
+    """
+    Mochi 4-30-24
+    Used: Solution 1
+    Time: 40 min
+    """
+    area = 0
+    stack = []
+
+    for i, h in enumerate(heights):
+        l = i  # for now
+        while stack and stack[-1][1] > h:
+            l, height = stack.pop()
+            area = max(area, (i-l)*height)
+        stack.append((l, h))
+        # if h >= prev:
+        #     stack.append((i, h))
+        #     prev = h
+        # else:
+        #     while stack and h < prev:
+        #         distance, prev = stack.pop()
+        #         area = max(prev*(i+1-distance), area)
+
+    for i, h in stack:  # d2 enumerate(stack)
+        area = max(area, h*(len(heights)-i))
+
+    return area
