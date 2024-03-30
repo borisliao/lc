@@ -351,3 +351,40 @@ def review5(head: ListNode) -> None:
         second.next = first
 
         second = next_second
+
+
+def review6(head: ListNode) -> None:
+    """
+    Anki 3-29-24
+    Time: 15 min
+    """
+    slow, fast = head, head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+
+    mid = slow.next  # s1
+    slow.next = None  # s1
+
+    prev = None  # s1
+    node = mid
+    while node:  # s1
+        next_node = node.next  # s1
+        node.next = prev  # s1
+
+        prev = node  # s1
+        node = next_node  # s1
+
+    # merge lists # s1
+    first = head  # s1
+    second = prev  # s1
+    while second:  # s1
+        next_first = first.next  # s1
+        first.next = second  # s1
+
+        first = next_first  # s1
+
+        next_second = second.next  # s1
+        second.next = first  # s1
+
+        second = next_second  # s1
