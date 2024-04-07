@@ -19,3 +19,21 @@ def kClosest(points: list[list[int]], k: int) -> list[list[int]]:
         result.append(list(point))
 
     return result
+
+
+def review1(points: list[list[int]], k: int) -> list[list[int]]:
+    """
+    Mochi 4-7-24
+    Time: 10 min
+    """
+    heap = []
+    for x, y in points:
+        heapq.heappush(heap, (-(x**2 + y**2), [x, y]))
+        if len(heap) > k:
+            heapq.heappop(heap)
+
+    result = []
+    for distance, point in heap:
+        result.append(point)
+
+    return result
