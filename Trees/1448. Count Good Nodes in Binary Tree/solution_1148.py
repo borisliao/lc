@@ -95,8 +95,21 @@ def review2(root: TreeNode) -> bool:
 
     return dfs(root, root.val)
 
-# def review3(root: TreeNode) -> bool:
-#     """
-#     Anki 1-16-24
-#     Time:
-#     """
+
+def review3(root: TreeNode) -> bool:
+    """
+    Mochi 4-7-24
+    """
+    good_nodes = 0
+
+    def dfs(node: TreeNode, largest):
+        nonlocal good_nodes
+        if node.val >= largest:
+            good_nodes += 1
+        if node.left:
+            dfs(node.left, max(largest, node.val))
+        if node.right:
+            dfs(node.right, max(largest, node.val))
+
+    dfs(root, root.val)
+    return good_nodes
