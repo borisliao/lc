@@ -204,7 +204,23 @@ def review3(root: TreeNode) -> int:
     return diameter  # d1
 
 
-# def review4(root: TreeNode) -> int:
-#     """
-#     Anki 1-7-24
-#     """
+def review4(root: TreeNode) -> int:
+    """
+    Mochi 4-7-24
+    Time: 20 min
+    """
+    max_length = 0
+
+    def dfs(node: TreeNode):
+        nonlocal max_length
+        if not node:
+            return 0
+        left = 1 + dfs(node.left) if node.left else 0
+        right = 1 + dfs(node.right) if node.right else 0
+
+        max_length = max(max_length, left+right)
+
+        return max(left, right)  # s1
+
+    dfs(root)
+    return max_length
