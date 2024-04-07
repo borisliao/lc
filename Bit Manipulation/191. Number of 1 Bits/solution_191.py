@@ -123,7 +123,7 @@ def review7(n: int) -> int:
     return count
 
 
-def review7(n: int) -> int:
+def review8(n: int) -> int:
     """
     Anki 1-10-24
     Time: 3 min
@@ -134,3 +134,31 @@ def review7(n: int) -> int:
         one_bits += n & 1
         n >>= 1  # d1 n >>= n
     return one_bits
+
+
+def review8(n: int) -> int:
+    """
+    Mochi 4-7-24
+    Time: 4 min
+    """
+    amount = 0
+
+    while n:
+        amount += n & 1
+        n >>= 1
+
+    return amount
+
+
+def review9(n: int) -> int:
+    """
+    Mochi 4-7-24
+    Time: 4 min
+    """
+    amount = 0
+
+    while n:
+        n = n & (n - 1)
+        amount += 1
+
+    return amount
