@@ -95,3 +95,35 @@ def review2(digits: str) -> list[str]:
 
     dfs(0)
     return result
+
+
+def review3(digits: str) -> list[str]:
+    """
+    Anki 4-4-24
+    """
+    result = []
+    subset = []
+    letter = {
+        '2': ['a', 'b', 'c'],
+        '3': ['d', 'e', 'f'],
+        '4': ['g', 'h', 'i'],
+        '5': ['j', 'k', 'l'],
+        '6': ['n', 'm', 'o'],
+        '7': ['p', 'q', 'r', 's'],
+        '8': ['t', 'u', 'v'],
+        '9': ['w', 'x', 'y', 'z']
+    }
+
+    def dfs(i):
+        if i == len(digits):
+            if len(subset) > 0:
+                result.append(''.join(subset))
+            return  # s1
+        for c in letter[digits[i]]:
+            subset.append(c)
+            dfs(i+1)
+            subset.pop()
+
+    dfs(0)  # s2
+
+    return result
