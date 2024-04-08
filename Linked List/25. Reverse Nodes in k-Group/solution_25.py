@@ -234,7 +234,7 @@ def review3(head: ListNode | None, k: int) -> ListNode | None:
     return new_head
 
 
-def review3(head: ListNode | None, k: int) -> ListNode | None:
+def review4(head: ListNode | None, k: int) -> ListNode | None:
     """
     Anki 2-6-24
     Time: 12 min
@@ -275,3 +275,38 @@ def review3(head: ListNode | None, k: int) -> ListNode | None:
             break
 
     return new_head
+
+
+# def review5(head: ListNode | None, k: int) -> ListNode | None:
+#     """
+#     Mochi 4-8-24
+#     """
+#     def reverse(node: ListNode, new_next: ListNode):
+#         prev = None
+#         current = node
+#         for _ in range(k):
+#             next = current.next
+#             current.next = prev
+#             prev = node
+#             current = next
+
+#         current.next = new_next
+
+#     modified_list: ListNode = None
+#     n_tail: ListNode = head
+
+#     while head:
+#         i = k - 1
+#         while head and i != 0:
+#             i -= 1
+#             n_tail = head.next
+#             head = head.next
+
+#         head = head.next
+
+#         reverse(n_tail, head)
+
+#         if not modified_list:
+#             modified_list = n_tail
+
+#     return modified_list
