@@ -66,9 +66,14 @@ def review3(nums: list[int], k: int) -> int:
     return heap[0]
 
 
-# def review4(nums: list[int], k: int) -> int:
-#     """
-#     Anki 2-9-24
-#     Time: 4:38
-#     Used: debugger 2
-#     """
+def review4(nums: list[int], k: int) -> int:
+    """
+    Mochi 4-7-24
+    Time: 5 min
+    """
+    heap = []
+    for n in nums:
+        heapq.heappush(heap, n)
+        if len(heap) > k:
+            heapq.heappop(heap)
+    return heap[0]
