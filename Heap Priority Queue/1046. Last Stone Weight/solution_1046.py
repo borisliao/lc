@@ -49,3 +49,21 @@ def review2(stones: list[int]) -> int:
         if y < x:
             heapq.heappush(stones, y-x)
     return -stones[0] if stones else 0
+
+
+def review3(stones: list[int]) -> int:
+    """
+    Mochi 4-7-24
+    Time: 6 min
+    """
+    heap = [-s for s in stones]
+    heapq.heapify(heap)
+
+    while len(heap) >= 2:
+        x = -heapq.heappop(heap)
+        y = -heapq.heappop(heap)
+
+        smash_result = abs(x-y)
+        heapq.heappush(heap, -smash_result)
+
+    return 0 if len(heap) == 0 else -heap[0]
