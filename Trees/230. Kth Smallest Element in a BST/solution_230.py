@@ -245,8 +245,23 @@ def review11(root: TreeNode | None, k: int) -> int:
             return c.val
         c = c.right
 
-# def review12(root: TreeNode | None, k: int) -> int:
-#     """
-#     Anki 1-29-24
-#     Time: 3:44
-#     """
+
+def review12(root: TreeNode | None, k: int) -> int:
+    """
+    Mochi 4-8-24
+    Time: 30 min
+    """
+    stack: list[TreeNode] = []
+    node = root
+    while stack or node:
+        while node:
+            stack.append(node)  # d1 node.left
+            node = node.left
+
+        node = stack.pop()
+        k -= 1
+        if k == 0:
+            return node.val
+        # if node.right:
+        #     stack.append(node.right)
+        node = node.right
