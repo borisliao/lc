@@ -142,8 +142,28 @@ def review3(nums: list[int]) -> list[list[int]]:
     return result
 
 
-# def review4(nums: list[int]) -> list[list[int]]:
-#     """
-#     Anki
-#     """
-#     pass
+def review4(nums: list[int]) -> list[list[int]]:
+    """
+    Mochi 4-8-24
+    Time: 20 min
+    """
+    nums.sort()  # d2
+    result = []
+    subset = []
+
+    def dfs(i):
+        if i == len(nums):
+            result.append(subset.copy())
+            return
+
+        subset.append(nums[i])
+        dfs(i+1)
+        subset.pop()
+        i += 1
+        # while i < len(nums) and prev == nums[i+1]:
+        while i < len(nums) and nums[i-1] == nums[i]:
+            i += 1
+        dfs(i)
+
+    dfs(0)
+    return result
