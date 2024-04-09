@@ -26,5 +26,22 @@ def maxAreaOfIsland(grid: list[list[int]]) -> int:
     return area
 
 
-# def review1(grid: list[list[int]]) -> int:
-#     pass
+def review1(grid: list[list[int]]) -> int:
+    """
+    Mochi 4-8-24
+    Time: 15 min
+    """
+    def fill(r, c):
+        if r < 0 or c < 0 or r >= len(grid) or c >= len(grid[r]) or grid[r][c] == 0:
+            return 0
+        grid[r][c] = 0
+        return 1 + fill(r-1, c) + fill(r+1, c) + fill(r, c-1) + fill(r, c+1)
+
+    island_size = 0
+    for r in range(len(grid)):
+        for c in range(len(grid[r])):
+            if grid[r][c] == 1:
+                amount = fill(r, c)
+                island_size = max(amount, island_size)
+
+    return island_size
