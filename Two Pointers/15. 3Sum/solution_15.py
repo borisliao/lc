@@ -306,7 +306,29 @@ def review9(nums: list[int]) -> list[list[int]]:
     return result
 
 
-# def review10(nums: list[int]) -> list[list[int]]:
-#     """
-#     Anki 1-17-24
-#     """
+def review10(nums: list[int]) -> list[list[int]]:
+    """
+    Mochi 4-8-24
+    Time: 25 min
+    """
+    nums.sort()
+    result = []
+
+    for i in range(len(nums)):
+        if i > 0 and nums[i-1] == nums[i]:  # s1
+            continue  # s1
+
+        l = i+1  # d2
+        r = len(nums) - 1
+        while l < r:
+            if nums[l] + nums[r] + nums[i] == 0:
+                # d4 result.append([l, i, r])
+                result.append([nums[i], nums[l], nums[r]])
+                l += 1  # d3
+                while l < r and nums[l-1] == nums[l]:  # d3
+                    l += 1  # d3
+            elif nums[l] + nums[r] + nums[i] > 0:
+                r -= 1
+            else:
+                l += 1
+    return result
