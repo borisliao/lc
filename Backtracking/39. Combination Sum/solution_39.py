@@ -234,3 +234,28 @@ def review8(candidates: list[int], target: int) -> list[list[int]]:
 
     dfs(0)
     return result
+
+
+def review9(candidates: list[int], target: int) -> list[list[int]]:
+    """
+    Mochi 4-9-24
+    Time: 8 min
+    """
+    result = []
+    subset = []
+
+    def dfs(i):
+        if i >= len(candidates) or sum(subset) > target:
+            return
+        if sum(subset) == target:
+            result.append(subset.copy())
+            return
+
+        subset.append(candidates[i])
+        dfs(i)
+        subset.pop()
+        if sum(subset) < target:
+            dfs(i+1)
+
+    dfs(0)
+    return result

@@ -1,6 +1,6 @@
-# [39\. Combination Sum](https://leetcode.com/problems/combination-sum/)
+### [39. Combination Sum](https://leetcode.com/problems/combination-sum/)
 
-Medium
+#Medium
 
 Given an array of **distinct** integers `candidates` and a target integer `target`, return _a list of all **unique combinations** of_ `candidates` _where the chosen numbers sum to_ `target`_._ You may return the combinations in **any order**.
 
