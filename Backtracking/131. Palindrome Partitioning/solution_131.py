@@ -379,3 +379,27 @@ def review12(s: str) -> list[list[str]]:
                 subset.pop()
     dfs(0)
     return result
+
+
+# def review13(s: str) -> list[list[str]]:
+#     """
+#     Mochi 4-9-24
+#     """
+#     result = []
+#     subset = ['']
+
+#     def dfs(i):
+#         if subset[-1][::-1] != subset[-1]:
+#             return
+#         if i >= len(s):
+#             result.append(subset.copy())
+#             return
+#         subset.append(s[i])
+#         dfs(i+1)
+#         subset.pop()
+#         subset[-1] += s[i]
+#         dfs(i+1)
+#         subset[-1] = subset[-1][:-1]
+
+#     dfs(0)
+#     return result
