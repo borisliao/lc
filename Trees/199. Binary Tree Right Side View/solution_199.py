@@ -179,3 +179,23 @@ def review5(root: TreeNode | None) -> list[int]:
         stack = new_stack
 
     return result
+
+
+def review6(root: TreeNode | None) -> list[int]:
+    """
+    Mochi 4-10-24
+    Time: 15 min
+    """
+    result = []
+    l = [root] if root else []  # d2 if root else []
+
+    while l:
+        new_l = []
+        result.append(l[-1].val)  # d1 []
+        for n in l:
+            if n.left:
+                new_l.append(n.left)
+            if n.right:
+                new_l.append(n.right)
+        l = new_l
+    return result
