@@ -357,9 +357,43 @@ def review5():
 
     return TimeMap()
 
-# def review6():
+
+def review6():
+    """
+    Mochi 4-10-24
+    Time: 30 min
+    """
+    class TimeMap:
+        def __init__(self):
+            self.db = {}
+
+        def set(self, key: str, value: str, timestamp: int) -> None:
+            if key in self.db:
+                self.db[key].append([value, timestamp])
+            else:
+                self.db[key] = [[value, timestamp]]  # d1
+
+        def get(self, key: str, timestamp: int) -> str:
+            db_vals = self.db[key]
+            closest_match = ''  # d2 None
+            l = 0
+            r = len(db_vals) - 1
+            while l <= r:
+                m = (l+r)//2
+                if db_vals[m][1] == timestamp:
+                    return db_vals[m][0]
+                if db_vals[m][1] > timestamp:
+                    r = m - 1
+                else:
+                    closest_match = db_vals[m][0]
+                    l = m + 1
+            return closest_match
+
+    return TimeMap()
+
+# def review7():
 #     """
-#     Anki
+#     Mochi 4-10-24
 #     """
 #     class TimeMap:
 #         def __init__(self):
