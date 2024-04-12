@@ -154,3 +154,24 @@ def review4(root: TreeNode | None) -> int:
         return m + max(l, r, 0)
     dfs(root)
     return result
+
+
+def review5(root: TreeNode | None) -> int:
+    """
+    Mochi 4-11-24
+    Time: 12 min
+    """
+    largest = float('-inf')  # d1 0
+
+    def dfs(node: TreeNode):
+        nonlocal largest
+        if not node:
+            return 0
+        left = dfs(node.left)
+        right = dfs(node.right)
+        mid = node.val
+
+        largest = max(largest, left+mid+right, left+mid, mid+right, mid)
+        return max(left+mid, mid+right, mid)
+    dfs(root)
+    return largest
