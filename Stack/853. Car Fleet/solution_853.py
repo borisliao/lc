@@ -169,3 +169,45 @@ def review5(target: int, position: list[int], speed: list[int]) -> int:
             stack.pop()
 
     return len(stack)
+
+
+# def review6(target: int, position: list[int], speed: list[int]) -> int:
+#     """
+#     Mochi 4-12-24
+#     """
+#     cars = [(p, s) for p, s in zip(position, speed)]
+#     cars.sort()
+
+#     result = 0
+
+#     while cars:
+#         finished = 0
+#         prev = float('inf')
+#         for i, (p, s) in enumerate(reversed(cars)):
+#             pos = min(p+s, prev)
+#             cars[len(cars)-1-i] = (pos, s)
+#             prev = pos
+#             if pos > target:
+#                 finished += 1
+#         if finished:
+#             result += 1
+#         for _ in range(finished):
+#             cars.pop()
+#     return result
+
+def review6(target: int, position: list[int], speed: list[int]) -> int:
+    """
+    Mochi 4-13-24
+    """
+    cars = [(p, s) for p, s in zip(position, speed)]
+    cars.sort()
+
+    stack = []
+    for p, s in reversed(cars):
+        stack.append((target-p)/s)  # append time it takes to get to target
+        # if the time it takes to get to target is shorter or equal
+        # to the time it takes for the car ahead of it, pop
+        if len(stack) >= 2 and stack[-2] >= stack[-1]:
+            stack.pop()
+
+    return len(stack)
