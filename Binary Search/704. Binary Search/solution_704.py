@@ -1,7 +1,4 @@
-from typing import List
-
-
-# def index(nums: List[int], target: int) -> int:
+# def index(nums: list[int], target: int) -> int:
 #     i = (len(nums)-1)//2
 
 #     while True:
@@ -19,7 +16,7 @@ from typing import List
 #             return i
 
 
-# def recursive(nums: List[int], target: int) -> int:
+# def recursive(nums: list[int], target: int) -> int:
 #     i = ((len(nums)-1) + 2 // 2) // 2
 
 #     if len(nums) == 0:
@@ -42,7 +39,7 @@ from typing import List
 
 #     return -1
 
-def search(nums: List[int], target: int) -> int:
+def search(nums: list[int], target: int) -> int:
     l, r = 0, len(nums) - 1
 
     while l <= r:
@@ -58,7 +55,7 @@ def search(nums: List[int], target: int) -> int:
     return -1
 
 
-def review1(nums: List[int], target: int) -> int:
+def review1(nums: list[int], target: int) -> int:
     """
     Review 11-27-23
     Time: 6:05
@@ -80,7 +77,7 @@ def review1(nums: List[int], target: int) -> int:
     return -1
 
 
-def review2(nums: List[int], target: int) -> int:
+def review2(nums: list[int], target: int) -> int:
     """
     Anki 11-27-23
     Time: 3:12
@@ -102,7 +99,7 @@ def review2(nums: List[int], target: int) -> int:
     return -1
 
 
-def review2(nums: List[int], target: int) -> int:
+def review3(nums: list[int], target: int) -> int:
     """
     Anki 12-22-23
     Time: 3:16
@@ -119,4 +116,21 @@ def review2(nums: List[int], target: int) -> int:
         else:
             r -= 1
 
+    return -1
+
+
+def review4(nums: list[int], target: int) -> int:
+    """
+    Mochi 4-13-24
+    """
+    l = 0
+    r = len(nums) - 1
+    while l <= r:
+        m = (l+r)//2
+        if nums[m] < target:
+            l = m + 1
+        elif nums[m] > target:
+            r = m - 1
+        else:
+            return m
     return -1
