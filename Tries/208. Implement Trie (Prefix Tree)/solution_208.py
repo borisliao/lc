@@ -210,11 +210,53 @@ def review3():
 
     return Trie()
 
-# def review4():
+
+def review4():
+    """
+    Mochi 4-13-24
+    """
+    class Node:
+        def __init__(self):
+            self.word = False
+            self.next: dict[str, Node] = {}
+
+    class Trie:
+        def __init__(self):
+            self.db = Node()
+
+        def insert(self, word: str) -> None:
+            trie = self.db
+            for c in word:
+                if c not in trie.next:
+                    new_node = Node()
+                    trie.next[c] = new_node
+                    trie = new_node
+                else:
+                    trie = trie.next[c]
+            trie.word = True
+
+        def search(self, word: str) -> bool:
+            trie = self.db
+            for c in word:
+                if c not in trie.next:
+                    return False
+                trie = trie.next[c]
+
+            return trie.word
+
+        def startsWith(self, prefix: str) -> bool:
+            trie = self.db
+            for c in prefix:
+                if c not in trie.next:
+                    return False
+                trie = trie.next[c]
+            return True
+
+    return Trie()
+
+# def review5():
 #     """
-#     Anki 1-29-24
-#     Time: 8 min
-#     Used: debugger 1
+#     Mochi 4-13-24
 #     """
 #     class Trie:
 #         def __init__(self):
