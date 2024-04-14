@@ -267,3 +267,25 @@ def review8(height: list[int]) -> int:
             r -= 1
             result += max(0, maxR-height[r])
     return result
+
+
+def review9(height: list[int]) -> int:
+    """
+    Mochi 4-14-24
+    """
+    l = 0
+    r = len(height) - 1
+    maxL = height[l]
+    maxR = height[r]
+    result = 0
+
+    while l < r:
+        if height[l] < height[r]:
+            maxL = max(maxL, height[l])
+            l += 1
+            result += max(0, maxL-height[l])
+        else:
+            maxR = max(maxR, height[r])
+            r -= 1
+            result += max(0, maxR-height[r])
+    return result
