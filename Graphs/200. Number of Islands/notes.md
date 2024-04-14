@@ -1,6 +1,6 @@
-# [200\. Number of Islands](https://leetcode.com/problems/number-of-islands/)
+### [200. Number of Islands](https://leetcode.com/problems/number-of-islands/)
 
-Medium
+#Medium #Blind75 #NeetCode150
 
 Given an `m x n` 2D binary grid `grid` which represents a map of `'1'`s (land) and `'0'`s (water), return _the number of islands_.
 
