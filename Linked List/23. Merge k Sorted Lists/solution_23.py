@@ -272,3 +272,31 @@ def review6(lists: list[ListNode | None]) -> ListNode | None:
         interval *= 2  # s1 interval+1
 
     return lists[0]
+
+
+def review7(lists: list[ListNode | None]) -> ListNode:
+    """
+    Mochi 4-14-24
+    Time: 27:41
+    Too slow
+    """
+    dummy = ListNode()
+    node = dummy
+
+    for i in range(len(lists)-1, -1, -1):  # Edge case
+        if not lists[i] or lists[i].val == None:
+            del lists[i]
+
+    while lists:
+        i: int = None
+        smallest: ListNode = None
+        for index, ln in enumerate(lists):
+            if not smallest or ln.val < smallest.val:
+                i = index
+                smallest = ln
+        node.next = smallest
+        node = node.next
+        lists[i] = lists[i].next
+        if not lists[i]:
+            del lists[i]
+    return dummy.next

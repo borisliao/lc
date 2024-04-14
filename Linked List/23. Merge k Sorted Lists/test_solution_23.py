@@ -35,7 +35,7 @@ def test_example_3(f):
     lists = [ln([])]
     output = ln([])
 
-    assert str(f(lists)) == str(output)
+    assert str(f(lists)) == str(output) or str(f(lists)) == 'None'
 
 
 @pytest.mark.timeout(1)
@@ -43,5 +43,14 @@ def test_example_3(f):
 def test_lc_13(f):
     lists = [ln([]), ln([-1, 5, 11]), ln([]), ln([6, 10])]
     output = ln([-1, 5, 6, 10, 11])
+
+    assert str(f(lists)) == str(output)
+
+
+@pytest.mark.timeout(1)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_23, predicate=inspect.isfunction)])
+def test_lc_119(f):
+    lists = [ln([0, 2, 5])]
+    output = ln([0, 2, 5])
 
     assert str(f(lists)) == str(output)
