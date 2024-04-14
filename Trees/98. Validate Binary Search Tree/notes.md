@@ -1,6 +1,6 @@
-# [98\. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/)
+### [98. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/)
 
-Medium
+#Medium #NeetCode150
 
 Given the `root` of a binary tree, _determine if it is a valid binary search tree (BST)_.
 

@@ -112,8 +112,16 @@ def review4(root: TreeNode) -> bool:
 
     return dfs(root, float('-inf'), float('inf'))
 
-# def review6(root: TreeNode) -> bool:
-#     """
-#     Anki 1-27-24
-#     Time: 5 min
-#     """
+
+def review5(root: TreeNode) -> bool:
+    """
+    Mochi 4-14-24
+    """
+    def dfs(node: TreeNode, maxL, maxR):
+        if not node:
+            return True
+        if maxL < node.val < maxR:
+            # s1
+            return dfs(node.left, maxL, node.val) and dfs(node.right, node.val, maxR)
+        return False  # s1
+    return dfs(root, float('-inf'), float('inf'))
