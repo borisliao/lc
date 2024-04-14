@@ -231,3 +231,27 @@ def review6(nums: list[int]) -> list[list[int]]:
 
     dfs(nums)
     return result
+
+
+def review7(nums: list[int]) -> list[list[int]]:
+    """
+    Mochi 4-14-24
+    Time: 5 min
+    """
+    result = []
+    subset = []
+
+    def dfs(vals: list):
+        if not vals:
+            result.append(subset.copy())
+            return
+
+        for i, n in enumerate(vals):
+            subset.append(n)
+            new_vals = vals.copy()
+            new_vals.pop(i)
+            dfs(new_vals)
+            subset.pop()  # s1
+
+    dfs(nums)
+    return result
