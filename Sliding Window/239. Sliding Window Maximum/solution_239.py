@@ -229,3 +229,43 @@ def review7(nums: list[int], k: int) -> list[int]:
             l += 1
 
     return result
+
+
+# def review8(nums: list[int], k: int) -> list[int]:
+#     """
+#     Mochi 4-14-24
+#     """
+#     q = deque()
+#     l = 0
+#     result = []
+#     for r in range(len(nums)):
+#         if q and nums[q[-1]] > nums[r]:
+#             continue
+#         q.append(r)
+#         if r-l >= k:
+#             while q[0] <= l:
+#                 q.popleft()
+#             l += 1
+#             result.append(nums(q[0]))
+#     return result
+
+def review9(nums: list[int], k: int) -> list[int]:
+    """
+    Mochi 4-14-24
+    """
+    result = []
+    q = deque()
+    l = 0
+    for r, n in enumerate(nums):
+        while q and n > nums[q[-1]]:  # make sure last element in q is the largest
+            q.pop()
+        q.append(r)
+
+        while q[0] < l:  # make sure first element of the queue is within range of k
+            q.popleft()
+
+        if r+1-l == k:  # when the window is at the k length, generate max
+            result.append(nums[q[0]])
+            l += 1
+
+    return result
