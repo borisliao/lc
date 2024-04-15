@@ -1,4 +1,4 @@
-from collections import Counter, defaultdict
+from collections import Counter
 
 
 def characterReplacement(s: str, k: int) -> int:
@@ -308,9 +308,23 @@ def review10(s: str, k: int) -> int:
     return max_occurances
 
 
-# def review11(s: str, k: int) -> int:
-#     """
-#     Anki 1-28-24
-#     Time: 16 min
-#     Used: Solution 1
-#     """
+def review11(s: str, k: int) -> int:
+    """
+    Mochi 4-15-24
+    Time: 12:40, 5:27
+    """
+    count = {}
+    l = 0
+    chars = 0
+    for r in range(len(s)):
+        count[s[r]] = count.get(s[r], 0) + 1
+
+        max_chars = max(count.values())
+        length = r+1-l
+        while length - max_chars > k:
+            count[s[l]] -= 1
+            l += 1
+            max_chars = max(count.values())
+            length = r+1-l
+        chars = max(chars, length)
+    return chars

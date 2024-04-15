@@ -1,6 +1,6 @@
-# [424\. Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/)
+### [424. Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/)
 
-Medium
+#Medium #Blind75 #NeetCode150
 
 You are given a string `s` and an integer `k`. You can choose any character of
 the string and change it to any other uppercase English character. You can
