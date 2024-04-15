@@ -1,9 +1,6 @@
-import math
-
-
 def evalRPN(tokens: list[str]) -> int:
     """
-    1-5-23
+    1-5-24
     Used: [Evaluate Reverse Polish Notation - Leetcode 150 - Python](https://www.youtube.com/watch?v=iu0082c4HDE)
     """
     stack = []
@@ -27,7 +24,7 @@ def evalRPN(tokens: list[str]) -> int:
 
 def review1(tokens: list[str]) -> int:
     """
-    Anki 1-5-23
+    Anki 1-5-24
     Time: 5 min
     Used: debugger 1, insight 1
     """
@@ -51,7 +48,7 @@ def review1(tokens: list[str]) -> int:
 
 def review2(tokens: list[str]) -> int:
     """
-    Anki 1-10-23
+    Anki 1-10-24
     Time: 14 min
     Used: Debugger 3
     """
@@ -77,7 +74,7 @@ def review2(tokens: list[str]) -> int:
 
 def review3(tokens: list[str]) -> int:
     """
-    Anki 1-22-23
+    Anki 1-22-24
     Time: 10 min
     Used: debugger 1
     """
@@ -98,5 +95,29 @@ def review3(tokens: list[str]) -> int:
             stack.append(int(l/r))
         else:
             stack.append(int(t))  # d1 int(stack)
+
+    return stack[0]
+
+
+def review4(tokens: list[str]) -> int:
+    """
+    Mochi 4-15-24
+    """
+    stack = []
+    for t in tokens:
+        if t == '+':
+            r, l = stack.pop(), stack.pop()
+            stack.append(l+r)
+        elif t == '-':
+            r, l = stack.pop(), stack.pop()
+            stack.append(l-r)
+        elif t == '*':
+            r, l = stack.pop(), stack.pop()
+            stack.append(l*r)
+        elif t == '/':
+            r, l = stack.pop(), stack.pop()
+            stack.append(int(l/r))
+        else:
+            stack.append(int(t))
 
     return stack[0]
