@@ -1,6 +1,3 @@
-from typing import List, Optional
-
-
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -9,7 +6,7 @@ class ListNode:
     def __str__(self):
         list = []
 
-        def addToList(ln: ListNode, list: List):
+        def addToList(ln: ListNode, list: 'list'):
             list.append(ln.val)
             if (ln.next):
                 addToList(ln.next, list)
@@ -25,7 +22,7 @@ class ListNode:
         return str(self) == str(__value)
 
 
-def mergeTwoLists(list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+def mergeTwoLists(list1: ListNode | None, list2: ListNode | None) -> ListNode | None:
     res = ListNode()
     p = res
 
@@ -49,7 +46,7 @@ def mergeTwoLists(list1: Optional[ListNode], list2: Optional[ListNode]) -> Optio
     return res.next
 
 
-def review1(list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+def review1(list1: ListNode | None, list2: ListNode | None) -> ListNode | None:
     """
     Anki 12-10-23
     Used: debugger (1)
@@ -167,10 +164,10 @@ def merge2(l, r):
     if not r:
         return l
     if l.val < r.val:
-        l.next = merge(l.next, r)
+        l.next = merge2(l.next, r)
         return l
     else:
-        r.next = merge(l, r.next)
+        r.next = merge2(l, r.next)
         return r
 
 
@@ -214,5 +211,30 @@ def review4(list1: ListNode | None, list2: ListNode | None) -> ListNode | None:
             head.next = list1
             list1 = list1.next  # d1
         head = head.next
+
+    return dummy.next
+
+
+def review5(list1: ListNode | None, list2: ListNode | None) -> ListNode | None:
+    """
+    Mochi 4-15-24
+    Time: 4:04, 9:01
+    """
+    dummy = ListNode()
+    node = dummy
+    while list1 and list2:
+        if list1.val < list2.val:
+            node.next = list1
+            node = node.next
+            list1 = list1.next
+        else:
+            node.next = list2
+            node = node.next
+            list2 = list2.next
+
+    if list1 and not list2:
+        node.next = list1
+    elif not list1 and list2:
+        node.next = list2
 
     return dummy.next
