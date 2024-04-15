@@ -1,7 +1,4 @@
-from typing import List
-
-
-def neetCode(nums: List[int]) -> int:
+def neetCode(nums: list[int]) -> int:
     """
     https://www.youtube.com/watch?v=nIVW4P8b1VA
     """
@@ -23,7 +20,7 @@ def neetCode(nums: List[int]) -> int:
     return lowest
 
 
-def youtubeCommentOptimization(nums: List[int]) -> int:
+def youtubeCommentOptimization(nums: list[int]) -> int:
     """
     https://www.youtube.com/watch?v=nIVW4P8b1VA&lc=UgwpyIcgEwwDVzN735d4AaABAg
     """
@@ -42,7 +39,7 @@ def youtubeCommentOptimization(nums: List[int]) -> int:
     return lowest
 
 
-def review1(nums: List[int]) -> int:
+def review1(nums: list[int]) -> int:
     """
     Anki 11-20-23
     Used: debugger (2) (for edge cases)
@@ -68,7 +65,7 @@ def review1(nums: List[int]) -> int:
     return nums[r + 1]
 
 
-def review1(nums: List[int]) -> int:
+def review2(nums: list[int]) -> int:
     """
     Anki 12-20-23
     Time: 17:11
@@ -91,3 +88,24 @@ def review1(nums: List[int]) -> int:
             r = m - 1
 
     return minimum
+
+
+def review3(nums: list[int]) -> int:
+    """
+    Mochi 4-15-24
+    Time: 16:53, 3:53
+    """
+    l = 0
+    r = len(nums)-1
+    smallest = float('inf')
+
+    while l <= r:
+        m = (l+r) // 2
+
+        smallest = min(smallest, nums[m])
+        if nums[m] < nums[r]:
+            r = m - 1
+        else:
+            l = m + 1
+
+    return smallest
