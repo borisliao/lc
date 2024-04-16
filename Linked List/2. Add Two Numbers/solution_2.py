@@ -1,7 +1,4 @@
 # Definition for singly-linked list.
-from typing import List, Optional
-
-
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -10,7 +7,7 @@ class ListNode:
     def __str__(self):
         list = []
 
-        def addToList(ln: ListNode, list: List):
+        def addToList(ln: ListNode, list: 'list'):
             list.append(ln.val)
             if (ln.next):
                 addToList(ln.next, list)
@@ -25,7 +22,7 @@ class ListNode:
     def __eq__(self, __value: object) -> bool:
         return str(self) == str(__value)
 
-# def addTwoNumbers(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+# def addTwoNumbers(l1: ListNode | None, l2: ListNode | None) -> ListNode | None:
 #     num1 = ''
 #     num2 = ''
 #     while True:
@@ -60,7 +57,7 @@ class ListNode:
 #     return result
 
 
-def addTwoNumbers(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+def addTwoNumbers(l1: ListNode | None, l2: ListNode | None) -> ListNode | None:
     result = ListNode()
     head = result
     carry = 0
@@ -96,7 +93,7 @@ def addTwoNumbers(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[Li
     return head.next
 
 
-def review1(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+def review1(l1: ListNode | None, l2: ListNode | None) -> ListNode | None:
     """
     Anki 12-6-23
     Used: Debugger (5)
@@ -124,7 +121,7 @@ def review1(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode
     return result_start.next
 
 
-def review2(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+def review2(l1: ListNode | None, l2: ListNode | None) -> ListNode | None:
     """
     Anki 12-6-23
     Time: 34 min
@@ -225,7 +222,22 @@ def review5(l1: ListNode, l2: ListNode) -> ListNode:
     return result.next
 
 
-# def review6(l1: ListNode, l2: ListNode) -> ListNode:
-#     """
-#     Anki
-#     """
+def review6(l1: ListNode, l2: ListNode) -> ListNode:
+    """
+    Mochi 4-15-24
+    """
+    dummy = ListNode()
+    node = dummy
+    carry = 0
+    while l1 or l2 or carry:  # s1 or carry
+        l = l1.val if l1 else 0
+        r = l2.val if l2 else 0
+
+        sum = (l+r+carry) % 10
+        carry = (l+r+carry) // 10
+        node.next = ListNode(sum)
+        node = node.next
+
+        l1 = l1.next if l1 else None
+        l2 = l2.next if l2 else None
+    return dummy.next
