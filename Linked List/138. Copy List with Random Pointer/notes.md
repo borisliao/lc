@@ -1,6 +1,6 @@
-# [138\. Copy List with Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/)
+### [138. Copy List with Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/)
 
-Medium
+#Medium #NeetCode150
 
 A linked list of length `n` is given such that each node contains an additional random pointer, which could point to any node in the list, or `null`.
 

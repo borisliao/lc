@@ -1,6 +1,3 @@
-from typing import List, Optional
-
-
 class Node:
     def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
         self.val = int(x)
@@ -37,7 +34,7 @@ class Node:
         return id(self)
 
 
-def copyRandomList(head: Optional[Node]) -> Optional[Node]:
+def copyRandomList(head: Node | None) -> Node | None:
     headDict = {None: None}
 
     cur = head
@@ -54,7 +51,7 @@ def copyRandomList(head: Optional[Node]) -> Optional[Node]:
     return headDict[head]
 
 
-def review1(head: Optional[Node]) -> Optional[Node]:
+def review1(head: Node | None) -> Node | None:
     """
     Anki 12-11-23
     Time: 1:36:57
@@ -89,7 +86,7 @@ def review1(head: Optional[Node]) -> Optional[Node]:
     return new_head.next
 
 
-def review2(head: Optional[Node]) -> Optional[Node]:
+def review2(head: Node | None) -> Node | None:
     """
     Anki 12-11-23
     Time: 9 min
@@ -111,7 +108,7 @@ def review2(head: Optional[Node]) -> Optional[Node]:
     return new_head[head]
 
 
-def review3(head: Optional[Node]) -> Optional[Node]:
+def review3(head: Node | None) -> Node | None:
     """
     Anki 12-22-23
     Time: 18:34
@@ -139,7 +136,7 @@ def review3(head: Optional[Node]) -> Optional[Node]:
     return new_head.next
 
 
-def review4(head: Optional[Node]) -> Optional[Node]:
+def review4(head: Node | None) -> Node | None:
     """
     12-22-23
     Time: 11:46
@@ -182,7 +179,22 @@ def review5(head: Node | None) -> Node | None:
     return new_node[head]
 
 
-# def review6(head: Node | None) -> Node | None:
-#     """
-#     Anki 1-12-24
-#     """
+def review6(head: Node | None) -> Node | None:
+    """
+    Mochi 4-16-24
+    Time: 6 min
+    """
+    db: dict[Node, Node] = {None: None}  # s1 {None: None}
+
+    node = head
+    while node:
+        db[node] = Node(node.val)
+        node = node.next
+
+    node = head
+    while node:
+        db[node].next = db[node.next]
+        db[node].random = db[node.random]
+        node = node.next
+
+    return db[head]
