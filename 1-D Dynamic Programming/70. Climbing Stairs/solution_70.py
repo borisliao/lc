@@ -149,9 +149,14 @@ def review6(n: int) -> int:
 
     return l  # d1 r
 
-# def review7(n: int) -> int:
-#     """
-#     Anki 2-3-24
-#     Time: 16:23
-#     Used: Debugger 1
-#     """
+
+def review7(n: int) -> int:
+    """
+    Mochi 4-15-24
+    """
+    one, two = 1, 0
+
+    for _ in range(n):
+        one, two = one+two, one
+
+    return one

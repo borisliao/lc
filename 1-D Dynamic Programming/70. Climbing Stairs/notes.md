@@ -1,6 +1,6 @@
-# [70\. Climbing Stairs](https://leetcode.com/problems/climbing-stairs/)
+### [70. Climbing Stairs](https://leetcode.com/problems/climbing-stairs/)
 
-Easy
+#Easy #Blind75 #NeetCode150
 
 You are climbing a staircase. It takes `n` steps to reach the top.
 
