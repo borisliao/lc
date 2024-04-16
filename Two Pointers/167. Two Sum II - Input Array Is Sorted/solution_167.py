@@ -1,7 +1,4 @@
-from typing import List
-
-
-# def nsquared(numbers: List[int], target: int) -> List[int]:
+# def nsquared(numbers: list[int], target: int) -> list[int]:
 #     """
 #     Time Complexity: O(n^2)
 #     Space Complexity: O(1)
@@ -13,7 +10,7 @@ from typing import List
 #                     return [i+1, j+1]
 
 
-def twoPointers(numbers: List[int], target: int) -> List[int]:
+def twoPointers(numbers: list[int], target: int) -> list[int]:
     """
     Time Complexity: O(n)
     Space Complexity: O(1)
@@ -82,7 +79,7 @@ def review3(numbers: list[int], target: int) -> list[int]:
             l += 1  # d2 l-=1
 
 
-def review3(numbers: list[int], target: int) -> list[int]:
+def review4(numbers: list[int], target: int) -> list[int]:
     """
     Anki 1-2-24
     Time: 7 min
@@ -101,7 +98,7 @@ def review3(numbers: list[int], target: int) -> list[int]:
             l += 1
 
 
-def review4(numbers: list[int], target: int) -> list[int]:
+def review5(numbers: list[int], target: int) -> list[int]:
     """
     Anki 1-16-24
     Time: 8 min
@@ -120,9 +117,18 @@ def review4(numbers: list[int], target: int) -> list[int]:
             l += 1
 
 
-# def review5(numbers: list[int], target: int) -> list[int]:
-#     """
-#     Anki 1-2-24
-#     Time: 8 min
-#     Used: debugger 1
-#     """
+def review6(numbers: list[int], target: int) -> list[int]:
+    """
+    Mochi 4-16-24
+    Time: 5 min
+    """
+    l = 0
+    r = len(numbers) - 1  # d1 - 1
+
+    while l < r:
+        if numbers[l] + numbers[r] == target:
+            return [l+1, r+1]  # d2 +1, +1
+        elif numbers[l] + numbers[r] < target:
+            l += 1
+        else:
+            r -= 1
