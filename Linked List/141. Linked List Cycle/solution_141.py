@@ -1,6 +1,3 @@
-from typing import List, Optional
-
-
 class ListNode:
     def __init__(self, val=0, next: "ListNode" = None):
         self.val = val
@@ -10,7 +7,7 @@ class ListNode:
     def __str__(self):
         list = []
 
-        def addToList(ln: ListNode, list: List):
+        def addToList(ln: ListNode, list: 'list'):
             list.append(ln.val)
             self._nodes.add(self)
 
@@ -32,7 +29,7 @@ class ListNode:
         return id(self)
 
 
-def hashSet(head: Optional[ListNode]) -> bool:
+def hashSet(head: ListNode) -> bool:
     """Naive solution, Space complexity O(n)"""
     nodes = set()
 
@@ -47,7 +44,7 @@ def hashSet(head: Optional[ListNode]) -> bool:
     return False
 
 
-def floyds(head: Optional[ListNode]) -> bool:
+def floyds(head: ListNode) -> bool:
     """
     Hint from neetcode https://www.youtube.com/watch?v=gBTe7lFR3vc
     Floyd's Tortoise and Hare algorithm guarantees a solution
@@ -120,4 +117,18 @@ def review3(head: ListNode | None) -> bool:
         if fast == slow:
             return True
 
+    return False
+
+
+def review4(head: ListNode) -> bool:
+    """
+    Mochi 4-16-24
+    """
+    slow, fast = head, head
+
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            return True
     return False
