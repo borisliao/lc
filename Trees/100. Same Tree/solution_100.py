@@ -1,10 +1,6 @@
 # Definition for a binary tree node.
-from collections import deque
-from typing import Deque, Optional
-
-
 class TreeNode:
-    def __init__(self, val=0, left: Optional['TreeNode'] = None, right: Optional['TreeNode'] = None):
+    def __init__(self, val=0, left: 'TreeNode' = None, right: 'TreeNode' = None):
         self.val = val
         self.left = left
         self.right = right
@@ -45,7 +41,7 @@ class TreeNode:
         return id(self)
 
 
-def attempt1(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+def attempt1(p: TreeNode, q: TreeNode) -> bool:
     """Recrusive dfs"""
     same_values = True
     p_left = p.left if p and p.left else None
@@ -66,7 +62,7 @@ def attempt1(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
     return same_values
 
 
-def leetCode_572(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+def leetCode_572(p: TreeNode, q: TreeNode) -> bool:
     """
     This solution comes from neetcode, from problem 572
     https://www.youtube.com/watch?v=E36O5SWp-LE
@@ -78,7 +74,7 @@ def leetCode_572(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
     return False
 
 
-# def attempt2(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+# def attempt2(p: TreeNode, q: TreeNode) -> bool:
 #     """itterative bfs"""
 #     pq: Deque['TreeNode'] = deque()
 #     qq: Deque['TreeNode'] = deque()
@@ -104,7 +100,7 @@ def leetCode_572(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
 
 #     return True
 
-# def solution_lc_BFS(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+# def solution_lc_BFS(p: TreeNode, q: TreeNode) -> bool:
 #     """
 #     itterative bfs
 #     https://leetcode.com/problems/same-tree/solutions/361737/python3-recursively-and-bfs-and-dfs-iteratively/
@@ -229,8 +225,12 @@ def review5(p: TreeNode | None, q: TreeNode | None) -> bool:
         return False
 
 
-# def review6(p: TreeNode | None, q: TreeNode | None) -> bool:
-#     """
-#     Anki 1-17-24
-#     Time: 2 min
-#     """
+def review6(p: TreeNode, q: TreeNode) -> bool:
+    """
+    Mochi 4-16-24
+    """
+    if not p and not q:
+        return True
+    if p and q and p.val == q.val:
+        return review6(p.left, q.left) and review6(p.right, q.right)
+    return False
