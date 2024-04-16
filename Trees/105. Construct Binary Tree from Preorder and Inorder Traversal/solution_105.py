@@ -1,8 +1,5 @@
-from typing import List, Optional
-
-
 class TreeNode:
-    def __init__(self, val=0, left: Optional['TreeNode'] = None, right: Optional['TreeNode'] = None):
+    def __init__(self, val=0, left: 'TreeNode' = None, right: 'TreeNode' = None):
         self.val = val
         self.left = left
         self.right = right
@@ -43,7 +40,7 @@ class TreeNode:
         return id(self)
 
 
-def buildTree(preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+def buildTree(preorder: list[int], inorder: list[int]) -> TreeNode:
     if not preorder or not inorder:
         return None
 
@@ -209,4 +206,17 @@ def review10(preorder: list[int], inorder: list[int]) -> TreeNode:
     left_tree = mid
     root.left = review10(preorder[1:left_tree+1], inorder[:mid])
     root.right = review10(preorder[left_tree+1:], inorder[mid+1:])
+    return root
+
+
+def review11(preorder: list[int], inorder: list[int]) -> TreeNode:
+    """
+    Mochi 4-15-24
+    """
+    if not inorder or not preorder:  # s1
+        return None  # s1
+    root = TreeNode(preorder[0])
+    mid = inorder.index(preorder[0])  # s1 preorder.index(inorder
+    root.left = review11(preorder[1:mid+1], inorder[:mid])
+    root.right = review11(preorder[mid+1:], inorder[mid+1:])
     return root
