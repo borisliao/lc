@@ -1,10 +1,6 @@
 # Definition for a binary tree node.
-from collections import deque
-from typing import Optional
-
-
 class TreeNode:
-    def __init__(self, val=0, left: Optional['TreeNode'] = None, right: Optional['TreeNode'] = None):
+    def __init__(self, val=0, left: 'TreeNode' = None, right: 'TreeNode' = None):
         self.val = val
         self.left = left
         self.right = right
@@ -45,11 +41,11 @@ class TreeNode:
         return id(self)
 
 
-def isBalanced(root: Optional[TreeNode]) -> bool:
+def isBalanced(root: TreeNode) -> bool:
     """
     Solution from neetcode: https://www.youtube.com/watch?v=QfJsau0ItOY
     """
-    def dfs(tn: Optional[TreeNode]):
+    def dfs(tn: TreeNode):
         if tn is None:
             return {"unbalanced": True, "length": 0}
 
@@ -62,7 +58,7 @@ def isBalanced(root: Optional[TreeNode]) -> bool:
     return dfs(root)['unbalanced']
 
 
-def globalVar(root: Optional[TreeNode]) -> bool:
+def globalVar(root: TreeNode) -> bool:
     """
     Hint from:
      [![@gregoryvan9474](https://yt3.ggpht.com/ytc/AOPolaRUzeM-N91T2Xj8qb5MAoaAveQ1sC_dc1VrUWKt=s48-c-k-c0x00ffffff-no-rj)](https://www.youtube.com/channel/UCXKpafMwrdlABcch9razbtA) 
@@ -75,7 +71,7 @@ def globalVar(root: Optional[TreeNode]) -> bool:
     """
     unbalanced = False
 
-    def dfs(tn: Optional[TreeNode]) -> int:
+    def dfs(tn: TreeNode) -> int:
         nonlocal unbalanced
         if unbalanced or tn is None:
             return 0
@@ -248,6 +244,27 @@ def review7(root: TreeNode | None) -> bool:
         if abs(l-r) > 1:
             balanced = False
         return 1 + max(l, r)
+
+    dfs(root)
+    return balanced
+
+
+def review8(root: TreeNode | None) -> bool:
+    """
+    Mochi 4-17-24
+    Time: 4:45
+    """
+    balanced = True
+
+    def dfs(node: TreeNode):
+        nonlocal balanced
+        if not node or not balanced:
+            return 0
+        left = dfs(node.left)
+        right = dfs(node.right)
+        if abs(left-right) > 1:
+            balanced = False
+        return 1+max(left, right)
 
     dfs(root)
     return balanced
