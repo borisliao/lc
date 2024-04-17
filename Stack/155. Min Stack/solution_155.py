@@ -122,10 +122,43 @@ def review3():
     return MinStack()
 
 
-# def review4():
+def review4():
+    """
+    Mochi 4-17-24
+    Time: 15 min
+    """
+    class MinStack:
+
+        def __init__(self):
+            self.stack = []
+            self.min = []
+            self.smallest = None
+
+        def push(self, val: int) -> None:
+            self.stack.append(val)
+            # d1 not self.smallest (== True when self.smallest = 0)
+            if self.smallest == None or self.smallest > val:
+                self.smallest = val
+            self.min.append(self.smallest)
+
+        def pop(self) -> None:
+            self.stack.pop()
+            self.min.pop()
+            # d2 if self.min else None
+            self.smallest = self.min[-1] if self.min else None
+
+        def top(self) -> int:
+            return self.stack[-1]
+
+        def getMin(self) -> int:
+            return self.min[-1]
+
+    return MinStack()
+
+
+# def review5():
 #     """
-#     Anki 1-22-24
-#     Time: 9 min
+#     Mochi 4-17-24
 #     """
 #     class MinStack:
 
