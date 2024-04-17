@@ -170,3 +170,26 @@ def review6(n: int) -> list[str]:
             subset.pop()
     dfs(0, 0)
     return result
+
+
+def review7(n: int) -> list[str]:
+    """
+    Mochi 4-16-24
+    """
+    result = []
+    subset = []
+
+    def dfs(open, close):
+        if open == close == n:
+            result.append(''.join(subset))
+            return
+        if open < n:
+            subset.append('(')
+            dfs(open+1, close)
+            subset.pop()
+        if open > close:
+            subset.append(')')
+            dfs(open, close+1)
+            subset.pop()
+    dfs(0, 0)
+    return result
