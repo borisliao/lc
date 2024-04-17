@@ -1,6 +1,6 @@
-[146\. LRU Cache](https://leetcode.com/problems/lru-cache/)
+### [146. LRU Cache](https://leetcode.com/problems/lru-cache/)
 
-Medium
+#Medium #NeetCode150
 
 Design a data structure that follows the constraints of a **[Least Recently Used (LRU) cache](https://en.wikipedia.org/wiki/Cache_replacement_policies#LRU)**.
 

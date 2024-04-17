@@ -553,7 +553,58 @@ def review7(capacity: int):
 
 # def review8(capacity: int):
 #     """
-#     Anki
+#     Mochi 4-16-24
+#     """
+#     class Node:
+#         def __init__(self, key=None, val=None):
+#             self.key = key
+#             self.val = val
+#             self.prev: Node = None
+#             self.next: Node = None
+
+#     class LRUCache:
+#         def __init__(self, capacity: int):
+#             self.db: dict[int, Node] = {}
+#             self.size = capacity
+#             self.head = Node()
+#             self.tail = self.head
+
+#         def insert(self, node: Node):
+#             self.head.next = node
+#             node.prev = self.head
+#             self.head = self.head.next
+
+#         def remove(self, node: Node):
+#             left = node.prev
+#             left.next = node.next
+
+#             right = node.next
+#             right.prev = node.prev
+
+#         def get(self, key: int) -> int:
+#             if key in self.db:
+#                 self.remove(self.db[key])
+#                 self.insert(self.db[key])
+#                 return self.db[key].val
+#             return -1
+
+#         def put(self, key: int, value: int) -> None:
+#             if key in self.db:
+#                 self.db[key].val = value
+#                 return
+#             new_node = Node(key, value)
+#             self.insert(new_node)
+#             self.db[key] = new_node
+
+#             if len(self.db) > capacity:
+#                 del self.db[self.tail.val]
+#                 self.remove(self.tail)
+
+#     return LRUCache(capacity)
+
+# def review9(capacity: int):
+#     """
+#     Mochi
 #     Time:
 #     """
 
