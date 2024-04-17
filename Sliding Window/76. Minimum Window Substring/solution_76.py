@@ -339,7 +339,20 @@ def review8(s: str, t: str) -> str:
 
 # def review9(s: str, t: str) -> str:
 #     """
-#     Anki 2-13-24
-#     Used: debugger 1
-#     Time: 15 min
+#     Mochi 4-16-24
 #     """
+#     window = Counter()
+#     target = Counter(t)
+
+#     l = 0
+
+#     for r, c in enumerate(s):
+#         window[c] += 1
+#         if r+1-l > len(t):
+#             window[s[l]] -= 1
+#             l += 1
+#         if r+1-l == len(t):
+#             if window >= target:
+#                 return s[l:r+1]
+
+#     return ''
