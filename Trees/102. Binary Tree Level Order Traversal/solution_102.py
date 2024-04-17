@@ -1,9 +1,8 @@
 from collections import deque
-from typing import List, Optional
 
 
 class TreeNode:
-    def __init__(self, val=0, left: Optional['TreeNode'] = None, right: Optional['TreeNode'] = None):
+    def __init__(self, val=0, left: 'TreeNode' = None, right: 'TreeNode' = None):
         self.val = val
         self.left = left
         self.right = right
@@ -44,7 +43,7 @@ class TreeNode:
         return id(self)
 
 
-def levelOrder(root: Optional[TreeNode]) -> List[List[int]]:
+def levelOrder(root: TreeNode) -> list[list[int]]:
     if not root:
         return []
 
@@ -141,7 +140,23 @@ def review3(root: TreeNode | None) -> list[list[int]]:
     return result
 
 
-# def review4(root: TreeNode | None) -> list[list[int]]:
-#     """
-#     Anki 1-16-24
-#     """
+def review4(root: TreeNode | None) -> list[list[int]]:
+    """
+    Mochi 4-17-24
+    """
+    result = []
+    subset = []
+    q: list[TreeNode] = [root] if root else []  # d1 []
+    while q:
+        new_q = []
+        for node in q:
+            subset.append(node.val)
+            if node.left:
+                new_q.append(node.left)
+            if node.right:
+                new_q.append(node.right)
+        result.append(subset.copy())
+        subset = []
+        q = new_q
+
+    return result
