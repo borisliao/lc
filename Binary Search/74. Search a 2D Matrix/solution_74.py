@@ -1,7 +1,4 @@
-from typing import List
-
-
-def searchMatrix(matrix: List[List[int]], target: int) -> bool:
+def searchMatrix(matrix: list[list[int]], target: int) -> bool:
     l, r = 0, len(matrix) - 1
 
     while l <= r:
@@ -26,7 +23,7 @@ def searchMatrix(matrix: List[List[int]], target: int) -> bool:
     return False
 
 
-def review1(matrix: List[List[int]], target: int) -> bool:
+def review1(matrix: list[list[int]], target: int) -> bool:
     """
     Anki 11-19-23
     Used: debugger (1)
@@ -67,7 +64,7 @@ def review1(matrix: List[List[int]], target: int) -> bool:
     return False
 
 
-def review2(matrix: List[List[int]], target: int) -> bool:
+def review2(matrix: list[list[int]], target: int) -> bool:
     """
     Anki 11-27-23
     Time: 27:28
@@ -105,7 +102,7 @@ def review2(matrix: List[List[int]], target: int) -> bool:
     return False
 
 
-def review3(matrix: List[List[int]], target: int) -> bool:
+def review3(matrix: list[list[int]], target: int) -> bool:
     """
     Anki 12-21-23
     Time: 18:13
@@ -144,3 +141,40 @@ def review3(matrix: List[List[int]], target: int) -> bool:
             l = m + 1
 
     return False
+
+
+def review4(matrix: list[list[int]], target: int) -> bool:
+    """
+    Mochi 4-17-24
+    Time: 11:13
+    """
+    l = 0
+    r = len(matrix) - 1
+    row = None
+
+    while l <= r:
+        m = (l + r) // 2
+        if matrix[m][0] <= target <= matrix[m][-1]:
+            row = m
+            break
+        if target < matrix[m][0]:
+            r = m - 1
+        else:
+            l = m + 1
+
+    result = False
+    if row != None:  # d1 != None
+        l = 0
+        r = len(matrix[row]) - 1
+
+        while l <= r:
+            m = (l+r)//2
+            if matrix[row][m] == target:
+                result = True
+                break
+            if matrix[row][m] < target:
+                l = m + 1
+            else:
+                r = m - 1
+
+    return result
