@@ -1,6 +1,6 @@
-# [875\. Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/)
+### [875. Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/)
 
-Medium
+#Medium #NeetCode150
 
 Koko loves to eat bananas. There are `n` piles of bananas, the `i<sup>th</sup>` pile has `piles[i]` bananas. The guards have gone and will come back in `h` hours.
 

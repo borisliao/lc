@@ -1,8 +1,6 @@
 import math
-from typing import List
 
-
-# def bruteForce(piles: List[int], h: int) -> int:
+# def bruteForce(piles: list[int], h: int) -> int:
 #     k = 0
 #     guess = float('inf')
 
@@ -15,7 +13,8 @@ from typing import List
 
 #     return k
 
-def neetcode(piles: List[int], h: int) -> int:
+
+def neetcode(piles: list[int], h: int) -> int:
     l, r = 1, max(piles)
     res = r
 
@@ -35,7 +34,7 @@ def neetcode(piles: List[int], h: int) -> int:
     return res
 
 
-def review1(piles: List[int], h: int) -> int:
+def review1(piles: list[int], h: int) -> int:
     """
     Anki 11-29-23
     Used: Hint (binary search section, optimal solution o(nlogn)), solution
@@ -57,7 +56,7 @@ def review1(piles: List[int], h: int) -> int:
     return result
 
 
-def review2(piles: List[int], h: int) -> int:
+def review2(piles: list[int], h: int) -> int:
     """
     Anki 11-30-23
     Used: debugger (2)
@@ -79,7 +78,7 @@ def review2(piles: List[int], h: int) -> int:
     return lowest_k
 
 
-def review3(piles: List[int], h: int) -> int:
+def review3(piles: list[int], h: int) -> int:
     """
     Anki 12-4-23
     Time: 16:36
@@ -105,7 +104,7 @@ def review3(piles: List[int], h: int) -> int:
     return result
 
 
-def review4(piles: List[int], h: int) -> int:
+def review4(piles: list[int], h: int) -> int:
     """
     Anki 12-20-23
     Used: Solution 5
@@ -129,7 +128,7 @@ def review4(piles: List[int], h: int) -> int:
     return minK
 
 
-def review5(piles: List[int], h: int) -> int:
+def review5(piles: list[int], h: int) -> int:
     """
     Anki 12-20-23
     Time: 7 min
@@ -153,7 +152,7 @@ def review5(piles: List[int], h: int) -> int:
     return minimum_k
 
 
-def review5(piles: List[int], h: int) -> int:
+def review6(piles: list[int], h: int) -> int:
     """
     Anki 12-22-23
     Time: 18:32
@@ -176,7 +175,7 @@ def review5(piles: List[int], h: int) -> int:
     return minK
 
 
-def review5(piles: List[int], h: int) -> int:
+def review7(piles: list[int], h: int) -> int:
     """
     Anki 12-31-23
     Used: Debugger 4
@@ -199,7 +198,7 @@ def review5(piles: List[int], h: int) -> int:
     return smallest_k  # d2 largest_k
 
 
-def review6(piles: List[int], h: int) -> int:
+def review8(piles: list[int], h: int) -> int:
     """
     Anki 1-21-24
     Time: 5 min
@@ -221,9 +220,25 @@ def review6(piles: List[int], h: int) -> int:
 
     return minK
 
-# def review7(piles: List[int], h: int) -> int:
-#     """
-#     Anki 1-21-24
-#     Time: 5 min
-#     Used: Debugger 1
-#     """
+
+def review9(piles: list[int], h: int) -> int:
+    """
+    Mochi 4-18-24
+    Time: 11:23
+    """
+    min_k = float('inf')
+    l = 1  # d1 0
+    r = max(piles)
+
+    while l <= r:
+        k = (l+r)//2
+        hours = 0
+        for p in piles:
+            hours += math.ceil(p/k)
+        if hours <= h:
+            min_k = min(min_k, k)
+            r = k - 1
+        else:
+            l = k + 1
+
+    return min_k
