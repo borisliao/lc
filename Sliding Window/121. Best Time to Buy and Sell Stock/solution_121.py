@@ -1,7 +1,4 @@
-from typing import List
-
-
-def maxProfit(prices: List[int]) -> int:
+def maxProfit(prices: list[int]) -> int:
     max = 0
     min = prices[0]
 
@@ -20,7 +17,7 @@ def maxProfit(prices: List[int]) -> int:
     return maxProfit
 
 
-def review1(prices: List[int]) -> int:
+def review1(prices: list[int]) -> int:
     """
     Anki 12-20-23
     Used: Solution 4
@@ -41,7 +38,7 @@ def review1(prices: List[int]) -> int:
     return profit
 
 
-def review2(prices: List[int]) -> int:
+def review2(prices: list[int]) -> int:
     """
     Anki 12-20-23
     Time: 13 min
@@ -78,7 +75,7 @@ def review3(prices: list[int]) -> int:
     return max_profit
 
 
-def review3(prices: list[int]) -> int:
+def review4(prices: list[int]) -> int:
     """
     Anki 1-14-24
     Time: 4:30
@@ -93,3 +90,19 @@ def review3(prices: list[int]) -> int:
         max_profit = max(max_profit, prices[r] - prices[l])
 
     return max_profit
+
+def review5(prices: list[int]) -> int:
+    """
+    Mochi 4-18-24
+    Time: 8:22
+    """
+    profit = 0
+    l = 0
+    for r in range(len(prices)):
+        if l == r:
+            continue
+        while l < r and prices[l] >= prices[r]:
+            l+=1
+        profit = max(prices[r]-prices[l], profit)
+    
+    return profit
