@@ -1,8 +1,5 @@
-from typing import Optional
-
-
 class TreeNode:
-    def __init__(self, val=0, left: Optional['TreeNode'] = None, right: Optional['TreeNode'] = None):
+    def __init__(self, val=0, left: 'TreeNode' = None, right: 'TreeNode' = None):
         self.val = val
         self.left = left
         self.right = right
@@ -165,7 +162,7 @@ def review5(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
         return root
 
 
-def review5(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+def review6(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
     """
     Anki 2-9-24
     Time: 8 min
@@ -176,3 +173,21 @@ def review5(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
         return review5(root.left, p, q)
     else:
         return root
+
+
+def review7(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+    """
+    Mochi 4-18-24
+    """
+    # covers the root.val == p.val or root.val == q.val case
+    # and the root.val > p.val and root.val < q.val case
+    # and the root.val < p.val and root.val > q.val case
+    if ((p.val < root.val and root.val < q.val)
+        or (q.val < root.val and root.val < p.val)
+            or (root.val == p.val)
+            or (root.val == q.val)):
+        return root
+    elif p.val < root.val and q.val < root.val:
+        return review7(root.left, p, q)
+    else:
+        return review7(root.right, p, q)
