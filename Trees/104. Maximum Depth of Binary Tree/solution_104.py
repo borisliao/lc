@@ -1,9 +1,6 @@
 # Definition for a binary tree node.
-from typing import Optional
-
-
 class TreeNode:
-    def __init__(self, val=0, left: Optional['TreeNode'] = None, right: Optional['TreeNode'] = None):
+    def __init__(self, val=0, left: 'TreeNode' = None, right: 'TreeNode' = None):
         self.val = val
         self.left = left
         self.right = right
@@ -44,7 +41,7 @@ class TreeNode:
         return id(self)
 
 
-def maxDepth(root: Optional[TreeNode]) -> int:
+def maxDepth(root: TreeNode) -> int:
     """attempt 1, DFS, recursive"""
     if root:
         left_depth = 1 + maxDepth(root.left)
@@ -55,7 +52,7 @@ def maxDepth(root: Optional[TreeNode]) -> int:
     return 0
 
 
-def BFS(root: Optional[TreeNode]) -> int:
+def BFS(root: TreeNode) -> int:
     """attempt 2, BFS, recursive, no queue (using lists)"""
     if not root:
         return 0
@@ -158,3 +155,24 @@ def review4(root: TreeNode | None) -> int:
         return 1 + max(dfs(node.left), dfs(node.right))
 
     return dfs(root)
+
+
+def review5(root: TreeNode | None) -> int:
+    """
+    Mochi 4-18-24
+    """
+    levels = 0
+    q = [root] if root else []
+
+    while q:
+        levels += 1
+        new_q = []
+
+        for n in q:
+            if n.left:
+                new_q.append(n.left)
+            if n.right:
+                new_q.append(n.right)
+        q = new_q
+
+    return levels

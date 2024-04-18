@@ -1,6 +1,6 @@
-# [104\. Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/)
+### [104. Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/)
 
-Easy
+#Easy #Blind75 #NeetCode150
 
 Given the `root` of a binary tree, return _its maximum depth_.
 
