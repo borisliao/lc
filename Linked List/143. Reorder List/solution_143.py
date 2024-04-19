@@ -1,6 +1,3 @@
-from typing import List, Optional
-
-
 class ListNode:
     def __init__(self, val: int = 0, next: 'ListNode | None' = None):
         self.val = val
@@ -9,7 +6,7 @@ class ListNode:
     def __str__(self):
         list = []
 
-        def addToList(ln: ListNode, list: List):
+        def addToList(ln: ListNode, list: list):
             list.append(ln.val)
             if (ln.next):
                 addToList(ln.next, list)
@@ -51,7 +48,7 @@ class ListNode:
 
 #         p = p.next
 
-def attempt1(head: Optional[ListNode]) -> None:
+def attempt1(head: ListNode) -> None:
     """
     Do not return anything, modify head in-place instead.
     Done with NeetCode guide: https://www.youtube.com/watch?v=S5bfdUTrKLM
@@ -313,7 +310,7 @@ def review5(head: ListNode) -> None:
     return head
 
 
-def review5(head: ListNode) -> None:
+def review6(head: ListNode) -> None:
     """
     Anki 1-1-24
     Time: 20 min
@@ -353,7 +350,7 @@ def review5(head: ListNode) -> None:
         second = next_second
 
 
-def review6(head: ListNode) -> None:
+def review7(head: ListNode) -> None:
     """
     Anki 3-29-24
     Time: 15 min
@@ -388,3 +385,41 @@ def review6(head: ListNode) -> None:
         second.next = first  # s1
 
         second = next_second  # s1
+
+
+def review8(head: ListNode) -> None:
+    """
+    Mochi 4-19-24
+    """
+    slow, fast = head, head
+
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+
+    l = head
+    r = slow.next
+    slow.next = None
+
+    prev = None
+    node = r
+    while node:
+        next = node.next
+        node.next = prev
+
+        prev = node
+        node = next
+
+    r = prev
+
+    while r:
+        ln = l.next
+        rn = r.next
+
+        l.next = r
+        r.next = ln
+
+        l = ln
+        r = rn
+
+    return head
