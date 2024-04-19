@@ -1,6 +1,3 @@
-from typing import List, Optional
-
-
 class ListNode:
     def __init__(self, val=0, next: 'ListNode' = None):
         self.val = val
@@ -9,7 +6,7 @@ class ListNode:
     def __str__(self):
         list = []
 
-        def addToList(ln: ListNode, list: List):
+        def addToList(ln: ListNode, list: list):
             list.append(ln.val)
             if (ln.next):
                 addToList(ln.next, list)
@@ -25,7 +22,7 @@ class ListNode:
         return str(self) == str(__value)
 
 
-# def two_pass(head: Optional[ListNode], n: int) -> Optional[ListNode]:
+# def two_pass(head: ListNode | None, n: int) -> ListNode | None:
 #     """
 #     attempt1, Naive approach, 2 passes
 #     fails test case 2 due to flawed nth_from_beginning
@@ -52,7 +49,7 @@ class ListNode:
 #         head.next = None
 #     return original_head
 
-def two_pointers(head: Optional[ListNode], n: int) -> Optional[ListNode]:
+def two_pointers(head: ListNode | None, n: int) -> ListNode | None:
     """
     Hint from Neetcode
     https://www.youtube.com/watch?v=XVuQxVej6y8
@@ -76,7 +73,7 @@ def two_pointers(head: Optional[ListNode], n: int) -> Optional[ListNode]:
     return dummy.next
 
 
-def review1(head: Optional[ListNode], n: int) -> Optional[ListNode]:
+def review1(head: ListNode | None, n: int) -> ListNode | None:
     """
     Anki 12-8-23
     Used: Solution (3), debugger (4)
@@ -97,7 +94,7 @@ def review1(head: Optional[ListNode], n: int) -> Optional[ListNode]:
     return dummy.next  # s6
 
 
-def review2(head: Optional[ListNode], n: int) -> Optional[ListNode]:
+def review2(head: ListNode | None, n: int) -> ListNode | None:
     """
     Anki 12-9-23
     Time: 3 min
@@ -118,7 +115,7 @@ def review2(head: Optional[ListNode], n: int) -> Optional[ListNode]:
     return dummy_node.next
 
 
-def review3(head: Optional[ListNode], n: int) -> Optional[ListNode]:
+def review3(head: ListNode | None, n: int) -> ListNode | None:
     """
     Anki 12-24-23
     Time: 12 min
@@ -163,9 +160,21 @@ def review4(head: ListNode | None, n: int) -> ListNode | None:
 
     return dummy.next
 
-# def review5(head: ListNode | None, n: int) -> ListNode | None:
-#     """
-#     Anki 12-24-23
-#     Time: 12 min
-#     Used: Debugger 1
-#     """
+
+def review5(head: ListNode | None, n: int) -> ListNode | None:
+    """
+    Mochi 4-19-24
+    """
+    dummy = ListNode(0, next=head)
+    slow, fast = dummy, head
+
+    for _ in range(n):
+        fast = fast.next
+
+    while fast:
+        slow = slow.next
+        fast = fast.next
+
+    slow.next = slow.next.next
+
+    return dummy.next  # d1 head

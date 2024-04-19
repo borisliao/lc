@@ -1,6 +1,6 @@
-# [19\. Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
+### [19. Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
 
-Medium
+#Medium #Blind75 #NeetCode150
 
 Given the `head` of a linked list, remove the `n<sup>th</sup>` node from the end of the list and return its head.
 
