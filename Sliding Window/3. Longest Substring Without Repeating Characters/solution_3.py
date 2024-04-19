@@ -97,7 +97,7 @@ def review2(s: str) -> int:
     return result
 
 
-def review2(s: str) -> int:
+def review3(s: str) -> int:
     """
     Anki 12-24-23
     Used: debugger 1, insight 1
@@ -120,7 +120,7 @@ def review2(s: str) -> int:
     return max_length
 
 
-def review3(s: str) -> int:
+def review4(s: str) -> int:
     """
     Anki 1-12-24
     """
@@ -138,7 +138,7 @@ def review3(s: str) -> int:
     return largest
 
 
-def review4(s: str) -> int:
+def review5(s: str) -> int:
     """
     Anki 1-14-24
     Time: 5 min
@@ -156,7 +156,20 @@ def review4(s: str) -> int:
 
     return longest
 
-# def review5(s: str) -> int:
-#     """
-#     Anki 1-14-24
-#     """
+
+def review6(s: str) -> int:
+    """
+    Mochi 4-18-24
+    """
+    seen = set()
+
+    length = 0
+    l = 0
+    for r, c in enumerate(s):
+        while c in seen:
+            seen.remove(s[l])
+            l += 1
+        seen.add(c)
+        length = max(r+1-l, length)
+
+    return length
