@@ -1,8 +1,7 @@
 from collections import defaultdict
-from typing import List
 
 
-def online_solution_abdullayevakbar0101(nums: List[int]) -> int:
+def online_solution_abdullayevakbar0101(nums: list[int]) -> int:
     """
     ✅Python3 || C++|| Java✅\[Intervals,Greedy and DP\] without any sort
 
@@ -63,7 +62,7 @@ def online_solution_abdullayevakbar0101(nums: List[int]) -> int:
     return mx
 
 
-def review1(nums: List[int]) -> int:
+def review1(nums: list[int]) -> int:
     """
     Anki review 10/18/23
     https://www.youtube.com/watch?v=P6RZZMu_maU
@@ -84,7 +83,7 @@ def review1(nums: List[int]) -> int:
     return leng
 
 
-def review2(nums: List[int]) -> int:
+def review2(nums: list[int]) -> int:
     """
     Anki 11-12-23
     Debug after running (1)
@@ -104,7 +103,7 @@ def review2(nums: List[int]) -> int:
     return l
 
 
-def review3(nums: List[int]) -> int:
+def review3(nums: list[int]) -> int:
     """
     Anki 11-28-23
     Time: 13:49
@@ -143,9 +142,21 @@ def review4(nums: list[int]) -> int:
     return max_seq
 
 
-# def review5(nums: list[int]) -> int:
-#     """
-#     Anki 1-26-24
-#     Time: 10 min
-#     Used: Debugger 1
-#     """
+def review5(nums: list[int]) -> int:
+    """
+    Mochi 4-19-24
+    Time: 5:29
+    """
+    num_set = set(nums)
+    result = 0
+
+    for n in num_set:
+        if n-1 in num_set:
+            continue
+        length = 0
+        val = n
+        while val in num_set:  # d1 num_set
+            length += 1
+            val += 1
+        result = max(length, result)
+    return result

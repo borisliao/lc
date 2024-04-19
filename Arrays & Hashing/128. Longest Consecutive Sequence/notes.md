@@ -1,7 +1,8 @@
-# [128\. Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/)
+### [128. Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/)
 
-Given an unsorted array of integers `nums`, return _the length of the longest
-consecutive elements sequence._
+#Medium #Blind75 #NeetCode150
+
+Given an unsorted array of integers `nums`, return _the length of the longest consecutive elements sequence._
 
 You must write an algorithm that runs in `O(n)` time.
 
