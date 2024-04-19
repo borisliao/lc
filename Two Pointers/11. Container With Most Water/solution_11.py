@@ -139,3 +139,20 @@ def review6(height: list[int]) -> int:
             l += 1
 
     return result
+
+
+def review7(height: list[int]) -> int:
+    """
+    Mochi 4-18-24
+    """
+    l = 0
+    r = len(height) - 1
+    size = 0
+
+    while l < r:
+        size = max((r-l)*min(height[l], height[r]), size)
+        if height[l] < height[r]:
+            l += 1
+        else:
+            r -= 1
+    return size
