@@ -214,64 +214,81 @@ def review4(board: list[list[str]], word: str) -> bool:
     return False
 
 
-def review5(board: list[list[str]], word: str) -> bool:
-    """
-    Anki 12-31-23
-    Time: 10 min
-    """
-    visited = set()
+# def review5(board: list[list[str]], word: str) -> bool:
+#     """
+#     Anki 12-31-23
+#     Time: 10 min
+#     """
+#     visited = set()
 
-    def dfs(r, c, i):
-        if i >= len(word):
-            return True
+#     def dfs(r, c, i):
+#         if i >= len(word):
+#             return True
 
-        if r < 0 or c < 0 or r >= len(board) or c >= len(board[r]) or board[r][c] != word[i] or (r, c) in visited:
-            return False
+#         if r < 0 or c < 0 or r >= len(board) or c >= len(board[r]) or board[r][c] != word[i] or (r, c) in visited:
+#             return False
 
-        visited.add((r, c))
-        return dfs(r-1, c, i+1) or dfs(r+1, c, i+1) or dfs(r, c-1, i+1) or dfs(r, c+1, i+1)
+#         visited.add((r, c))
+#         return dfs(r-1, c, i+1) or dfs(r+1, c, i+1) or dfs(r, c-1, i+1) or dfs(r, c+1, i+1)
 
-    for r in range(len(board)):
-        for c in range(len(board[r])):
-            if dfs(r, c, 0):
-                return True
+#     for r in range(len(board)):
+#         for c in range(len(board[r])):
+#             if dfs(r, c, 0):
+#                 return True
 
-    return False
-
-
-def review6(board: list[list[str]], word: str) -> bool:
-    """
-    Anki 1-29-24
-    Time: 16 min
-    Used: Debugger 2
-    """
-    visited = set()
-
-    def dfs(i, r, c):
-        if i >= len(word):
-            return True
-        if (r < 0 or c < 0 or
-            r >= len(board) or
-                c >= len(board[r]) or
-                board[r][c] != word[i] or  # d2 down 4
-                (r, c) in visited):  # d2 down 4
-            return False
-        visited.add((r, c))  # d1
-        return (dfs(i+1, r-1, c) or
-                dfs(i+1, r+1, c) or
-                dfs(i+1, r, c+1) or
-                dfs(i+1, r, c-1))
-
-    for r in range(len(board)):
-        for c in range(len(board[r])):
-            if dfs(0, r, c):
-                return True
-    return False
+#     return False
 
 
-# def review7(board: list[list[str]], word: str) -> bool:
+# def review6(board: list[list[str]], word: str) -> bool:
 #     """
 #     Anki 1-29-24
 #     Time: 16 min
 #     Used: Debugger 2
 #     """
+#     visited = set()
+
+#     def dfs(i, r, c):
+#         if i >= len(word):
+#             return True
+#         if (r < 0 or c < 0 or
+#             r >= len(board) or
+#                 c >= len(board[r]) or
+#                 board[r][c] != word[i] or  # d2 down 4
+#                 (r, c) in visited):  # d2 down 4
+#             return False
+#         visited.add((r, c))  # d1
+#         return (dfs(i+1, r-1, c) or
+#                 dfs(i+1, r+1, c) or
+#                 dfs(i+1, r, c+1) or
+#                 dfs(i+1, r, c-1))
+
+#     for r in range(len(board)):
+#         for c in range(len(board[r])):
+#             if dfs(0, r, c):
+#                 return True
+#     return False
+
+
+def review7(board: list[list[str]], word: str) -> bool:
+    """
+    Mochi 4-19-24
+    """
+    def find_word(r, c, i, visited):
+        if i >= len(word):  # d1
+            return True
+        if r < 0 or c < 0 or r == len(board) or c == len(board[r]) or board[r][c] != word[i] or (r, c) in visited:
+            return False
+
+        visited.add((r, c))
+        has_word = (find_word(r-1, c, i+1, visited)
+                    or find_word(r+1, c, i+1, visited)
+                    or find_word(r, c-1, i+1, visited)
+                    or find_word(r, c+1, i+1, visited))
+        visited.remove((r, c))  # d2
+        return has_word
+
+    for r in range(len(board)):
+        for c in range(len(board[r])):
+            if find_word(r, c, 0, set()):
+                return True
+    return False

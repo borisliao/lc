@@ -72,3 +72,13 @@ def test_lc_65(f):
     output = False
 
     assert f(board, word) == output
+
+
+@pytest.mark.timeout(3)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_79, predicate=inspect.isfunction)])
+def test_lc_80(f):
+    board = [["A", "B", "C", "E"], ["S", "F", "E", "S"], ["A", "D", "E", "E"]]
+    word = "ABCESEEEFS"
+    output = True
+
+    assert f(board, word) == output

@@ -1,6 +1,6 @@
-# [79\. Word Search](https://leetcode.com/problems/word-search/)
+### [79. Word Search](https://leetcode.com/problems/word-search/)
 
-Medium
+#Medium #Blind75 #NeetCode150
 
 Given an `m x n` grid of characters `board` and a string `word`, return `true` _if_ `word` _exists in the grid_.
 
