@@ -1,7 +1,4 @@
 # Definition for a binary tree node.
-from typing import Optional
-
-
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -44,7 +41,7 @@ class TreeNode:
         return id(self)
 
 
-def invertTree(root: Optional[TreeNode]) -> Optional[TreeNode]:
+def invertTree(root: TreeNode) -> TreeNode:
     if not root:
         return root
     if root.left or root.right:
@@ -100,8 +97,13 @@ def review3(root: TreeNode | None) -> TreeNode | None:
 
     return root
 
-# def review4(root: TreeNode | None) -> TreeNode | None:
-#     """
-#     Anki 1-6-24
-#     Time: 2 min
-#     """
+
+def review4(root: TreeNode | None) -> TreeNode | None:
+    """
+    Mochi 4-19-24
+    Time: 2 min
+    """
+    if not root:
+        return None
+    root.left, root.right = review4(root.right), review4(root.left)
+    return root

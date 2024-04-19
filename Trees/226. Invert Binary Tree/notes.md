@@ -1,6 +1,6 @@
-# [226\. Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/)
+### [226. Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/)
 
-Easy
+#Easy #Blind75 #NeetCode150
 
 Given the `root` of a binary tree, invert the tree, and return _its root_.
 
