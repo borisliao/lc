@@ -352,7 +352,7 @@ def review8(s1: str, s2: str) -> bool:
 
 #     return False
 
-def review8(s1: str, s2: str) -> bool:
+def review9(s1: str, s2: str) -> bool:
     """
     Anki 1-16-24
     Time: 7 min
@@ -367,7 +367,7 @@ def review8(s1: str, s2: str) -> bool:
     return False
 
 
-def review9(s1: str, s2: str) -> bool:
+def review10(s1: str, s2: str) -> bool:
     """
     Anki 1-16-24
     Time: 17 min
@@ -389,7 +389,7 @@ def review9(s1: str, s2: str) -> bool:
     return False
 
 
-def review10(s1: str, s2: str) -> bool:
+def review11(s1: str, s2: str) -> bool:
     """
     Anki 2-6-24
     Time: 9:21
@@ -409,7 +409,7 @@ def review10(s1: str, s2: str) -> bool:
     return False
 
 
-def review11(s1: str, s2: str) -> bool:
+def review12(s1: str, s2: str) -> bool:
     """
     Anki 2-6-24
     Time: 12 min, 9m+3m
@@ -431,3 +431,26 @@ def review11(s1: str, s2: str) -> bool:
             b[s2[l]] -= 1  # d1 b[l]
             l += 1
     return False
+
+
+# def review13(s1: str, s2: str) -> bool:
+#     """
+#     Mochi 4-18-24
+#     """
+#     count = {}
+#     for c in s1:
+#         count[c] = 1 + count.get(c, 0)
+
+#     l = 0
+#     for r, c in enumerate(s2):
+#         count[c] = 1 + count.get(c, 0)
+#         if r+1-l == len(s1):
+#             count[s2[l]] = 1 - count.get(s2[l], 0)
+#             if count[s2[l]] == 0:
+#                 del count[s2[l]]
+#         if count[c] == 0:
+#             del count[c]
+
+#         if len(count) == 0:
+#             return True
+#     return False

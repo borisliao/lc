@@ -1,6 +1,6 @@
-# [567\. Permutation in String](https://leetcode.com/problems/permutation-in-string/)
+### [567. Permutation in String](https://leetcode.com/problems/permutation-in-string/)
 
-Medium
+#Medium #NeetCode150
 
 Given two strings `s1` and `s2`, return `true` _if_ `s2` _contains a permutation of_ `s1`_, or_ `false` _otherwise_.
 
