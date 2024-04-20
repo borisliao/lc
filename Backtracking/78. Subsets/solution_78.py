@@ -1,7 +1,4 @@
-from typing import List
-
-
-def neetcode(nums: List[int]) -> List[List[int]]:
+def neetcode(nums: list[int]) -> list[list[int]]:
     """ https://www.youtube.com/watch?v=REOH22Xwdkk """
     res = []
     subset = []
@@ -21,7 +18,7 @@ def neetcode(nums: List[int]) -> List[List[int]]:
     return res
 
 
-def review1(nums: List[int]) -> List[List[int]]:
+def review1(nums: list[int]) -> list[list[int]]:
     """
     Anki 12-3-23
     Used: Peak at solution (2)
@@ -46,7 +43,7 @@ def review1(nums: List[int]) -> List[List[int]]:
     return result
 
 
-def review2(nums: List[int]) -> List[List[int]]:
+def review2(nums: list[int]) -> list[list[int]]:
     """
     Anki 12-3-23
     Used: [Subsets - Backtracking - Leetcode 78](https://www.youtube.com/watch?v=REOH22Xwdkk), solution (2)
@@ -72,7 +69,7 @@ def review2(nums: List[int]) -> List[List[int]]:
     return result
 
 
-def review3(nums: List[int]) -> List[List[int]]:
+def review3(nums: list[int]) -> list[list[int]]:
     """
     Anki 12-9-23
     Used: debugger (2)
@@ -102,7 +99,7 @@ def review3(nums: List[int]) -> List[List[int]]:
     return result
 
 
-def review4(nums: List[int]) -> List[List[int]]:
+def review4(nums: list[int]) -> list[list[int]]:
     """
     Anki 12-18-23
     Time: 1:59
@@ -124,7 +121,7 @@ def review4(nums: List[int]) -> List[List[int]]:
     return result
 
 
-def review5(nums: List[int]) -> List[List[int]]:
+def review5(nums: list[int]) -> list[list[int]]:
     """
     Anki 1-17-24
     Time: 7 min
@@ -145,8 +142,23 @@ def review5(nums: List[int]) -> List[List[int]]:
     return result
 
 
-# def review6(nums: List[int]) -> List[List[int]]:
-#     """
-#     Anki 12-18-23
-#     Time: 7 min
-#     """
+def review6(nums: list[int]) -> list[list[int]]:
+    """
+    Mochi 4-20-24
+    Time: 2 min
+    """
+    result = []
+    subset = []
+
+    def dfs(i):
+        if i == len(nums):
+            result.append(subset.copy())
+            return
+
+        subset.append(nums[i])
+        dfs(i+1)
+        subset.pop()
+        dfs(i+1)
+
+    dfs(0)
+    return result

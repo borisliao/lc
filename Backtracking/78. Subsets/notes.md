@@ -1,6 +1,6 @@
-# [78\. Subsets](https://leetcode.com/problems/subsets/)
+### [78. Subsets](https://leetcode.com/problems/subsets/)
 
-Medium
+#Medium #NeetCode150
 
 Given an integer array `nums` of **unique** elements, return _all possible subsets (the power set)_.
 
