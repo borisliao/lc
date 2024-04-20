@@ -1,8 +1,5 @@
-from typing import Optional
-
-
 class TreeNode:
-    def __init__(self, val=0, left: Optional['TreeNode'] = None, right: Optional['TreeNode'] = None):
+    def __init__(self, val=0, left: 'TreeNode' = None, right: 'TreeNode' = None):
         self.val = val
         self.left = left
         self.right = right
@@ -43,9 +40,9 @@ class TreeNode:
         return id(self)
 
 
-def isSubtree(root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+def isSubtree(root: TreeNode, subRoot: TreeNode) -> bool:
     """Solved with neetcode: https://www.youtube.com/watch?v=E36O5SWp-LE"""
-    def isSameTree(a: Optional[TreeNode], b: Optional[TreeNode]) -> bool:
+    def isSameTree(a: TreeNode, b: TreeNode) -> bool:
         if a == None and b == None:
             return True
         if a and b and (a.val == b.val):
@@ -156,3 +153,25 @@ def review4(root: TreeNode, subRoot: TreeNode) -> bool:
         if same_tree(root, subRoot):
             return True
     return review4(root.left, subRoot) or review4(root.right, subRoot)
+
+
+def review5(root: TreeNode, subRoot: TreeNode) -> bool:
+    """
+    Mochi 4-20-24
+    """
+    def same_tree(l: TreeNode, r: TreeNode):
+        if not l and not r:
+            return True
+        if l and r and l.val == r.val:
+            return same_tree(l.left, r.left) and same_tree(l.right, r.right)
+        return False
+
+    def dfs(root: TreeNode, subRoot: TreeNode):
+        if not root:
+            return False
+        if root.val == subRoot.val:
+            if same_tree(root, subRoot):
+                return True
+        return dfs(root.left, subRoot) or dfs(root.right, subRoot)
+
+    return dfs(root, subRoot)
