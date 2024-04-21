@@ -131,29 +131,29 @@ def review3(nums: list[int], k: int) -> list[int]:
     return result
 
 
-def review4(nums: list[int], k: int) -> list[int]:
-    """
-    Anki 1-27-24
-    Time: 20 min
-    Used: Solution 1
-    """
-    q = deque()
-    l = 0
-    result = []
-    for r in range(len(nums)):
-        while q and nums[q[-1]] < nums[r]:  # s1 q[-1] < nums[r]
-            q.pop()
-        q.append(r)  # s1 r
+# def review4(nums: list[int], k: int) -> list[int]:
+#     """
+#     Anki 1-27-24
+#     Time: 20 min
+#     Used: Solution 1
+#     """
+#     q = deque()
+#     l = 0
+#     result = []
+#     for r in range(len(nums)):
+#         while q and nums[q[-1]] < nums[r]:  # s1 q[-1] < nums[r]
+#             q.pop()
+#         q.append(r)  # s1 r
 
-        if r+1-l < k:
-            continue
+#         if r+1-l < k:
+#             continue
 
-        result.append(nums[q[0]])  # s1 nums[q[-1]]
-        if l > q[0]:  # s1 q[0] == nums[l]
-            q.popleft()
-        l += 1
+#         result.append(nums[q[0]])  # s1 nums[q[-1]]
+#         if l > q[0]:  # s1 q[0] == nums[l]
+#             q.popleft()
+#         l += 1
 
-    return result
+#     return result
 
 
 def review5(nums: list[int], k: int) -> list[int]:
@@ -267,5 +267,27 @@ def review9(nums: list[int], k: int) -> list[int]:
         if r+1-l == k:  # when the window is at the k length, generate max
             result.append(nums[q[0]])
             l += 1
+
+    return result
+
+
+def review10(nums: list[int], k: int) -> list[int]:
+    """
+    Mochi 4-21-24
+    """
+    result = []
+    q = deque()
+    l = 0
+    for r in range(len(nums)):
+        while q and nums[q[-1]] < nums[r]:
+            q.pop()
+        q.append(r)
+
+        while q[0] < l:
+            q.popleft()
+
+        if r+1-l == k:
+            l += 1
+            result.append(nums[q[0]])
 
     return result

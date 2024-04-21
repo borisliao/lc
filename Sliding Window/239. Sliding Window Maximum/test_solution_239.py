@@ -33,11 +33,31 @@ def test_example_2(f):
     assert f(nums, k) == output
 
 
-@pytest.mark.timeout(10)
+@pytest.mark.timeout(2)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_239, predicate=inspect.isfunction)])
+def test_lc_20(f):
+    k = 1
+    nums = [1, -1]
+    output = [1, -1]
+
+    assert f(nums, k) == output
+
+
+@pytest.mark.timeout(2)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_239, predicate=inspect.isfunction)])
 def test_lc_37(f):
     k = 50000
     nums = [randrange(0, 10000) for _ in range((k*2))]
     output = [max(nums)] * (k+1)
+
+    assert f(nums, k) == output
+
+
+@pytest.mark.timeout(2)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_239, predicate=inspect.isfunction)])
+def test_1(f):
+    k = 2
+    nums = [2, 1, 0]
+    output = [2, 1]
 
     assert f(nums, k) == output
