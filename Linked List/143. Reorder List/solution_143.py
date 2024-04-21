@@ -423,3 +423,39 @@ def review8(head: ListNode) -> None:
         r = rn
 
     return head
+
+
+def review9(head: ListNode) -> None:
+    """
+    Mochi 4-20-24
+    Time: 15:23
+    """
+    slow, fast = head, head
+
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+
+    l = head
+    r = slow.next
+    slow.next = None
+
+    prev = None
+    node = r
+    while node:
+        next = node.next
+        node.next = prev
+        prev = node
+        node = next
+
+    r = prev
+
+    while r:
+        ln = l.next
+        rn = r.next
+
+        l.next = r
+        r.next = ln
+
+        r = rn
+        l = ln
