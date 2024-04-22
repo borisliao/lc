@@ -33,3 +33,15 @@ def neetcode(students: list[int], sandwiches: list[int]) -> int:
         else:
             return result
     return 0
+
+
+def review1(students: list[int], sandwiches: list[int]) -> int:
+    amount = {1: 0, 0: 0}
+    for s in students:
+        amount[s] += 1
+
+    for sw in sandwiches:
+        if amount[sw] == 0:
+            return amount[1-sw]
+        amount[sw] -= 1
+    return 0

@@ -30,3 +30,12 @@ def test_example_2(f):
     output = 3
 
     assert f(students, sandwiches) == output
+
+
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_1700, predicate=inspect.isfunction)])
+def test_lc_10(f):
+    students = [1, 1]
+    sandwiches = [0, 1]
+    output = 2
+
+    assert f(students, sandwiches) == output
