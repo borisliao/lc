@@ -1,6 +1,3 @@
-from typing import List, Optional
-
-
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -9,7 +6,7 @@ class ListNode:
     def __str__(self):
         list = []
 
-        def addToList(ln: ListNode, list: List):
+        def addToList(ln: ListNode, list: 'list'):
             list.append(ln.val)
             if (ln.next):
                 addToList(ln.next, list)
@@ -25,7 +22,7 @@ class ListNode:
         return str(self) == str(__value)
 
 
-def attempt1(head: Optional[ListNode]) -> Optional[ListNode]:
+def attempt1(head: ListNode | None) -> ListNode | None:
     """
     Done by creating a new ListNode. Not very space efficent.
     1-1-23
@@ -43,7 +40,7 @@ def attempt1(head: Optional[ListNode]) -> Optional[ListNode]:
         return head
 
 
-def attempt2(head: Optional[ListNode]) -> Optional[ListNode]:
+def attempt2(head: ListNode | None) -> ListNode | None:
     """
     Done without using extra space complexity and iteratively.
     Same as how NeetCode did it
@@ -61,7 +58,7 @@ def attempt2(head: Optional[ListNode]) -> Optional[ListNode]:
     return prev
 
 
-def youtubeCommentRecursively(head: Optional[ListNode]) -> Optional[ListNode]:
+def youtubeCommentRecursively(head: ListNode | None) -> ListNode | None:
     """
         [![@Extremesarova](https://yt3.ggpht.com/ytc/AOPolaSUgkJ9T7zraqMY4MFRnye0LpCc0DCST5gsKBDicA=s48-c-k-c0x00ffffff-no-rj)](https://www.youtube.com/channel/UC4lk9BCGbIaaz2nn5PmpezQ)
         [@Extremesarova](https://www.youtube.com/channel/UC4lk9BCGbIaaz2nn5PmpezQ)
@@ -81,7 +78,7 @@ def youtubeCommentRecursively(head: Optional[ListNode]) -> Optional[ListNode]:
     return reverse(head, None)
 
 
-def neetCodeRecursively(head: Optional[ListNode]) -> Optional[ListNode]:
+def neetCodeRecursively(head: ListNode | None) -> ListNode | None:
     """https://youtu.be/G0_I-ZF0S38?si=li7NQdrD4EcPvNZC&t=647"""
     if not head:
         return None
@@ -93,3 +90,21 @@ def neetCodeRecursively(head: Optional[ListNode]) -> Optional[ListNode]:
     head.next = None
 
     return newHead
+
+
+def review1(head):
+    """
+    Mochi 4-21-24
+    """
+    prev = None
+    node = head
+
+    while node:
+        next = node.next
+
+        node.next = prev
+        prev = node
+
+        node = next
+
+    return prev
