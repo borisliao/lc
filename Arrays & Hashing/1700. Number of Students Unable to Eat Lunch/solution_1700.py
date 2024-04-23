@@ -45,3 +45,16 @@ def review1(students: list[int], sandwiches: list[int]) -> int:
             return amount[1-sw]
         amount[sw] -= 1
     return 0
+
+
+def review2(students: list[int], sandwiches: list[int]) -> int:
+    """
+    Mochi 4-22-24
+    """
+    count = Counter(students)
+
+    for s in sandwiches:
+        if count[s] == 0:
+            return count[1-s]
+        count[s] -= 1
+    return 0
