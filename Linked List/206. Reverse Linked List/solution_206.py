@@ -108,3 +108,20 @@ def review1(head):
         node = next
 
     return prev
+
+
+def review2(head):
+    """
+    Mochi 4-22-24
+    """
+    prev = None
+    node = head
+    while node:
+        next = node.next
+
+        node.next = prev
+        prev = node
+
+        node = next
+
+    return prev
