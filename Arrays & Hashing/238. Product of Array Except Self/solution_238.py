@@ -1,7 +1,4 @@
-from typing import List
-
-
-def productExceptSelf(nums: List[int]) -> List[int]:
+def productExceptSelf(nums: list[int]) -> list[int]:
     """
     Using Dynamic Programming (DP)
     Time Complexity: O(n)
@@ -23,7 +20,7 @@ def productExceptSelf(nums: List[int]) -> List[int]:
 
     return output
 
-# def naive(nums: List[int]) -> List[int]:
+# def naive(nums: list[int]) -> list[int]:
 #     """
 #     Time Complexity: O(n^2)
 #     Space Complexity: O(n)
@@ -45,7 +42,7 @@ def productExceptSelf(nums: List[int]) -> List[int]:
 
 #     return arr
 
-def review1(nums: List[int]) -> List[int]:
+def review1(nums: list[int]) -> list[int]:
     """
     Time Complexity: O(n)
     Space Complexity: O(n)
@@ -81,7 +78,7 @@ def review1(nums: List[int]) -> List[int]:
     return result
 
 
-def review2(nums: List[int]) -> List[int]:
+def review2(nums: list[int]) -> list[int]:
     """Anki Reviewed 10/28/23"""
     result = []
 
@@ -98,7 +95,7 @@ def review2(nums: List[int]) -> List[int]:
     return result
 
 
-def review3(nums: List[int]) -> List[int]:
+def review3(nums: list[int]) -> list[int]:
     """Anki Reviewed 10/29/23"""
     result = []
 
@@ -117,7 +114,7 @@ def review3(nums: List[int]) -> List[int]:
     return result
 
 
-def review4(nums: List[int]) -> List[int]:
+def review4(nums: list[int]) -> list[int]:
     """
     Anki 11-12-23
     Used: Whiteboard, Debugger (2)
@@ -147,7 +144,7 @@ def review4(nums: List[int]) -> List[int]:
     return result
 
 
-def review5(nums: List[int]) -> List[int]:
+def review5(nums: list[int]) -> list[int]:
     """
     Anki 11-12-23
     Solution recalled from memory
@@ -169,7 +166,7 @@ def review5(nums: List[int]) -> List[int]:
     return result
 
 
-def review6(nums: List[int]) -> List[int]:
+def review6(nums: list[int]) -> list[int]:
     """
     Anki 11-16-23
     Used: debugger (1)
@@ -192,7 +189,7 @@ def review6(nums: List[int]) -> List[int]:
     return result
 
 
-def review7(nums: List[int]) -> List[int]:
+def review7(nums: list[int]) -> list[int]:
     """
     Anki 11-16-23
     Used: debugger (1)
@@ -215,7 +212,7 @@ def review7(nums: List[int]) -> List[int]:
     return result
 
 
-def review7(nums: List[int]) -> List[int]:
+def review8(nums: list[int]) -> list[int]:
     """
     Anki 1-1-24
     Time: 30 min
@@ -237,7 +234,7 @@ def review7(nums: List[int]) -> List[int]:
     return result
 
 
-def review8(nums: List[int]) -> List[int]:
+def review9(nums: list[int]) -> list[int]:
     """
     Anki 3-7-24
     Time: 11 min
@@ -259,9 +256,26 @@ def review8(nums: List[int]) -> List[int]:
     return left_sum
 
 
-# def review9(nums: List[int]) -> List[int]:
-#     """
-#     Anki 3-5-24
-#     Time: 11 min
-#     Use whiteboard
-#     """
+def review10(nums: list[int]) -> list[int]:
+    """
+    Mochi 4-24-24
+    """
+    result = []
+
+    # 1 2 3 4
+    # 1 1 2 6
+    prod = 1
+    for n in nums:
+        result.append(prod)
+        prod *= n
+
+    # 1  2  3 4
+    # 24 12 8 6
+    i = len(nums)-1
+    prod = 1
+    for n in reversed(nums):
+        result[i] *= prod
+        prod *= n
+        i -= 1
+
+    return result

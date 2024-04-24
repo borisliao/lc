@@ -1,6 +1,6 @@
-# [238\. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/)
+### [238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/)
 
-Medium
+#Medium #Hard #Blind75 #NeetCode150
 
 Given an integer array `nums`, return _an array_ `answer` _such that_ `answer[i]` _is equal to the product of all the elements of_ `nums` _except_ `nums[i]`.
 
