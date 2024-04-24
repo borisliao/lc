@@ -1,7 +1,4 @@
-from typing import List
-
-
-# def attempt1(nums: List[int]) -> int:
+# def attempt1(nums: list[int]) -> int:
 #     """using flynns tortise and hare algo"""
 #     fast, slow = 0, 0
 
@@ -12,10 +9,10 @@ from typing import List
 #         if fast != slow and nums[fast] == nums[slow]:
 #             return nums[fast]
 
-def attempt2(nums: List[int]) -> int:
+def neetcode(nums: list[int]) -> int:
     """
-    Hint from neetcode: https://www.youtube.com/watch?v=wjYnzkAhcNk
-    using flynns tortise and hare algo
+    https://www.youtube.com/watch?v=wjYnzkAhcNk
+    Use flynns tortise and hare algo
     recognizing it is a linked list nums array
     """
     fast, slow = 0, 0
@@ -36,3 +33,27 @@ def attempt2(nums: List[int]) -> int:
 
         if slow == slow2:
             return slow
+
+
+def review1(nums: list[int]) -> int:
+    """
+    Mochi 4-22-24
+    """
+    fast, slow = 0, 0
+
+    # find intersection of fast and slow
+    while True:
+        fast = nums[nums[fast]]
+        slow = nums[slow]
+
+        if fast == slow:
+            break
+
+    # find start of cyclical graph (will be the number of the duplicate)
+    result = nums[0]
+    slow = nums[slow]
+    while result != slow:
+        result = nums[result]
+        slow = nums[slow]
+
+    return result

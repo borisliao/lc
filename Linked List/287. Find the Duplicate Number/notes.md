@@ -1,6 +1,6 @@
-# 287. Find the Duplicate Number
+### [287. Find the Duplicate Number](https://leetcode.com/problems/find-the-duplicate-number/)
 
-Medium
+#Medium #NeetCode150
 
 Given an array of integers `nums` containing `n + 1` integers where each integer is in the range `[1, n]` inclusive.
 
@@ -16,6 +16,11 @@ You must solve the problem **without** modifying the array `nums` and uses only
 **Example 2:**
 
 **Input:** nums = \[3,1,3,4,2\]
+**Output:** 3
+
+**Example 3:**
+
+**Input:** nums = \[3,3,3,3,3\]
 **Output:** 3
 
 **Constraints:**
