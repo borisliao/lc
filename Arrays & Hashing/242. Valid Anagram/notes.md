@@ -1,6 +1,6 @@
-# [242\. Valid Anagram](https://leetcode.com/problems/valid-anagram/)
+### [242. Valid Anagram](https://leetcode.com/problems/valid-anagram/)
 
-Easy
+#Easy #Blind75 #NeetCode150
 
 Given two strings `s` and `t`, return `true` _if_ `t` _is an anagram of_ `s`_, and_ `false` _otherwise_.
 

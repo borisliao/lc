@@ -99,3 +99,20 @@ def review3(s: str, t: str) -> bool:
             s_count[c] -= 1
 
     return True if len(s_count) == 0 else False
+
+
+def review4(s: str, t: str) -> bool:
+    """
+    Mochi 4-24-24
+    """
+    sCount = {}
+    for c in s:
+        sCount[c] = 1 + sCount.get(c, 0)
+
+    tCount = {}
+    for c in t:
+        if c not in sCount:
+            return False
+        tCount[c] = 1 + tCount.get(c, 0)
+
+    return sCount == tCount
