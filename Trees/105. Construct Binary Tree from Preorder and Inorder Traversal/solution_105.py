@@ -220,3 +220,16 @@ def review11(preorder: list[int], inorder: list[int]) -> TreeNode:
     root.left = review11(preorder[1:mid+1], inorder[:mid])
     root.right = review11(preorder[mid+1:], inorder[mid+1:])
     return root
+
+
+def review12(preorder: list[int], inorder: list[int]) -> TreeNode:
+    """
+    Mochi 4-24-24
+    """
+    if not preorder or not inorder:
+        return None
+    root = TreeNode(preorder[0])
+    mid = inorder.index(root.val)
+    root.left = review12(preorder[1:mid+1], inorder[:mid])
+    root.right = review12(preorder[mid+1:], inorder[mid+1:])
+    return root
