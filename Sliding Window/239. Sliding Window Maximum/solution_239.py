@@ -291,3 +291,25 @@ def review10(nums: list[int], k: int) -> list[int]:
             result.append(nums[q[0]])
 
     return result
+
+
+def review11(nums: list[int], k: int) -> list[int]:
+    """
+    Mochi 4-24-24
+    """
+    q = deque()
+    result = []
+    l = 0
+    for r in range(len(nums)):
+        while q and nums[q[-1]] < nums[r]:
+            q.pop()
+        q.append(r)
+
+        while l > q[0]:
+            q.popleft()
+
+        if r+1-l == k:
+            result.append(nums[q[0]])
+            l += 1
+
+    return result
