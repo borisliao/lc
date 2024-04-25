@@ -56,3 +56,23 @@ def review1(matrix: list[list[int]], target: int) -> bool:
             else:
                 j -= 1
     return False
+
+
+def review2(matrix: list[list[int]], target: int) -> bool:
+    """
+    Mochi 4-24-24
+    """
+
+    for r in range(len(matrix)):
+        i = 0
+        j = len(matrix[r]) - 1
+
+        while i <= j:
+            m = (i+j) // 2
+            if matrix[r][m] < target:
+                i = m + 1
+            elif matrix[r][m] > target:
+                j = m - 1
+            else:
+                return True
+    return False

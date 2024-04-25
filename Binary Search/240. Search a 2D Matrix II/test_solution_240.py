@@ -30,3 +30,26 @@ def test_example_2(f):
     output = False
 
     assert f(matrix, target) == output
+
+
+@pytest.mark.timeout(1)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_240, predicate=inspect.isfunction)])
+def test_lc_78(f):
+    """
+    Tests if it can check matrix of len 1
+    """
+    matrix = [[-5]]
+    target = -5
+    output = True
+
+    assert f(matrix, target) == output
+
+
+@pytest.mark.timeout(1)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_240, predicate=inspect.isfunction)])
+def test_lc_124(f):
+    matrix = [[1], [3], [5]]
+    target = 3
+    output = True
+
+    assert f(matrix, target) == output
