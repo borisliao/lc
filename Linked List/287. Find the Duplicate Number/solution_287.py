@@ -57,3 +57,24 @@ def review1(nums: list[int]) -> int:
         slow = nums[slow]
 
     return result
+
+
+def review2(nums: list[int]) -> int:
+    """
+    Mochi 4-24-24
+    """
+    slow, fast = 0, 0
+
+    while True:
+        slow = nums[slow]
+        fast = nums[nums[fast]]
+        if slow == fast:
+            break
+
+    head = 0
+    while True:
+        slow = nums[slow]
+        head = nums[head]
+
+        if slow == head:
+            return slow
