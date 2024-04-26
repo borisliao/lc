@@ -1,8 +1,5 @@
-from typing import List, Optional
-
-
 class TreeNode:
-    def __init__(self, val=0, left: Optional['TreeNode'] = None, right: Optional['TreeNode'] = None):
+    def __init__(self, val=0, left: 'TreeNode' = None, right: 'TreeNode' = None):
         self.val = val
         self.left = left
         self.right = right
@@ -43,7 +40,7 @@ class TreeNode:
         return id(self)
 
 
-def isValidBST(root: Optional[TreeNode]) -> bool:
+def isValidBST(root: TreeNode) -> bool:
     def dfs(n, l, r):
         if n is None:
             return True
@@ -124,4 +121,18 @@ def review5(root: TreeNode) -> bool:
             # s1
             return dfs(node.left, maxL, node.val) and dfs(node.right, node.val, maxR)
         return False  # s1
+    return dfs(root, float('-inf'), float('inf'))
+
+
+def review6(root: TreeNode) -> bool:
+    """
+    Mochi 4-25-24
+    """
+    def dfs(node: TreeNode, l, r):
+        if not node:
+            return True
+        if l < node.val < r:
+            return dfs(node.left, l, node.val) and dfs(node.right, node.val, r)
+        return False
+
     return dfs(root, float('-inf'), float('inf'))
