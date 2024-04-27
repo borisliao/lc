@@ -76,3 +76,36 @@ def review2(matrix: list[list[int]], target: int) -> bool:
             else:
                 return True
     return False
+
+
+def review3(matrix: list[list[int]], target: int) -> bool:
+    """
+    Mochi 4-27-24
+    Time: 12:18
+    """
+    l = 0
+    r = len(matrix) - 1
+
+    while l <= r:
+        m = (l + r)//2
+        if matrix[m][0] > target:
+            r = m - 1
+        elif matrix[m][0] < target:
+            l = m + 1
+        else:
+            return True
+
+    intersection = l
+    for i in range(intersection):
+        l = 0
+        r = len(matrix[i]) - 1
+
+        while l <= r:
+            m = (l+r)//2
+            if matrix[i][m] == target:
+                return True
+            if matrix[i][m] < target:
+                l = m + 1
+            else:
+                r = m - 1
+    return False

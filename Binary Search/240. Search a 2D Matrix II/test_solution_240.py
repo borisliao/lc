@@ -47,6 +47,19 @@ def test_lc_78(f):
 
 @pytest.mark.timeout(1)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_240, predicate=inspect.isfunction)])
+def test_lc_111(f):
+    """
+    Tests if you can check a martix of len 2
+    """
+    matrix = [[-1, 3]]
+    target = 3
+    output = True
+
+    assert f(matrix, target) == output
+
+
+@pytest.mark.timeout(1)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_240, predicate=inspect.isfunction)])
 def test_lc_124(f):
     matrix = [[1], [3], [5]]
     target = 3
