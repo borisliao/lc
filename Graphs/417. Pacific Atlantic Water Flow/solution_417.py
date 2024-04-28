@@ -99,3 +99,45 @@ def lc_darkTianTian(matrix: list[list[int]]) -> list[list[int]]:
         spread(0, j, p_land)
         spread(R-1, j, a_land)
     return list(p_land & a_land)
+
+
+def review2(heights: list[list[int]]) -> list[list[int]]:
+    """
+    Mochi 4-28-24
+    """
+    pacific = set()
+    both = set()
+    visited = set()
+
+    def find(ocean, r, c, largest):
+        if (r, c) in visited or r < 0 or c < 0 or r >= len(heights) or c >= len(heights[r]) or heights[r][c] < largest:
+            return
+
+        if ocean == 'pacific':
+            pacific.add((r, c))
+        elif ocean == 'alantic':
+            if (r, c) in pacific:
+                both.add((r, c))
+
+        visited.add((r, c))
+        find(ocean, r+1, c, heights[r][c])
+        find(ocean, r-1, c, heights[r][c])
+        find(ocean, r, c+1, heights[r][c])
+        find(ocean, r, c-1, heights[r][c])
+
+    ROW = len(heights)
+    COL = len(heights[0])
+    # Pacific
+    for r in range(ROW):
+        find('pacific', r, 0, 0)
+    for c in range(COL):
+        find('pacific', 0, c, 0)
+
+    visited = set()
+    # Alantic
+    for r in range(ROW):
+        find('alantic', r, COL-1, 0)
+    for c in range(COL):
+        find('alantic', ROW-1, c, 0)
+
+    return [[r, c] for r, c in both]
