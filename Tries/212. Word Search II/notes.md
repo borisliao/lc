@@ -1,6 +1,6 @@
-# [212\. Word Search II](https://leetcode.com/problems/word-search-ii/)
+### [212. Word Search II](https://leetcode.com/problems/word-search-ii/)
 
-Hard
+#Hard #Blind75 #NeetCode150
 
 Given an `m x n` `board` of characters and a list of strings `words`, return _all words on the board_.
 
@@ -13,8 +13,7 @@ Each word must be constructed from letters of sequentially adjacent cells, where
 **Input:**
 
 > board = \[\["o","a","a","n"\],\["e","t","a","e"\],\["i","h","k","r"\],\["i","f","l","v"\]\], words = \["oath","pea","eat","rain"\]  
-> **Output:**
-> \["eat","oath"\]
+> **Output:** > \["eat","oath"\]
 
 **Example 2:**
 
