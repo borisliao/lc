@@ -9,6 +9,6 @@ def test_example_1(f):
     medianFinder = f()
     medianFinder.addNum(1)  # arr = [1]
     medianFinder.addNum(2)  # arr = [1, 2]
-    assert f.findMedian() == 1.5  # return  (i.e., (1 + 2) / 2)
+    assert medianFinder.findMedian() == 1.5  # return  (i.e., (1 + 2) / 2)
     medianFinder.addNum(3)  # arr = [1, 2, 3]
-    assert f.findMedian() == 2.0
+    assert medianFinder.findMedian() == 2.0
