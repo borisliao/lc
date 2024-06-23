@@ -493,3 +493,37 @@ def review10(head: ListNode) -> None:
 
         l = ln
         r = rn
+
+
+def review11(head: ListNode) -> None:
+    """
+    Mochi 6-23-24
+    """
+    f = head
+    s = head
+    while f and f.next:
+        f = f.next.next
+        s = s.next
+
+    n = s.next
+    s.next = None
+    prev = None
+    while n:
+        next = n.next
+
+        n.next = prev
+        prev = n
+
+        n = next
+    r = prev
+
+    l = head
+    while r:
+        ln = l.next
+        rn = r.next
+
+        l.next = r
+        r.next = ln
+
+        l = ln
+        r = rn
