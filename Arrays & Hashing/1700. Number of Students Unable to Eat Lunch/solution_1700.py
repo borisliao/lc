@@ -75,3 +75,20 @@ def review3(students: list[int], sandwiches: list[int]) -> int:
             return count[1 - s]
 
     return 0
+
+
+def review4(students: list[int], sandwiches: list[int]) -> int:
+    """
+    Mochi 6-23-24
+    """
+    count = {}
+
+    for s in students:
+        count[s] = 1+count.get(s, 0)
+
+    for s in sandwiches:
+        count[s] = count.get(s, 0)-1
+        if count[s] < 0:
+            return count[1-s]
+
+    return 0
