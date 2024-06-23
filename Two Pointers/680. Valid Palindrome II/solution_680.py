@@ -67,3 +67,28 @@ def review2(s: str) -> bool:
         l += 1
         r -= 1
     return True
+
+
+def review3(s: str) -> bool:
+    """
+    Mochi 6-23-24
+    """
+    def is_pali(s):
+        l = 0
+        r = len(s) - 1
+
+        while l < r:
+            if s[l] != s[r]:
+                return False
+            l += 1
+            r -= 1
+        return True
+
+    l = 0
+    r = len(s) - 1
+    while l < r:
+        if s[l] != s[r]:
+            return is_pali(s[l:r]) or is_pali(s[l+1:r+1])
+        l += 1
+        r -= 1
+    return True
