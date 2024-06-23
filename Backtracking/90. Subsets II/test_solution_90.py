@@ -30,6 +30,9 @@ def test_example_2(f):
 @pytest.mark.timeout(3)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_90, predicate=inspect.isfunction)])
 def test_lc_15(f):
+    """
+    Did you sort the input array `nums`?
+    """
     nums = [4, 4, 4, 1, 4]
     output = [[], [1], [1, 4], [1, 4, 4], [1, 4, 4, 4], [
         1, 4, 4, 4, 4], [4], [4, 4], [4, 4, 4], [4, 4, 4, 4]]

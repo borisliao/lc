@@ -167,3 +167,28 @@ def review4(nums: list[int]) -> list[list[int]]:
 
     dfs(0)
     return result
+
+
+def review5(nums: list[int]) -> list[list[int]]:
+    """
+    Mochi 6-23-24
+    """
+    nums.sort()
+    subset = []
+    result = []
+
+    def dfs(i):
+        if i >= len(nums):
+            result.append(subset.copy())
+            return
+
+        subset.append(nums[i])
+        dfs(i+1)
+        subset.pop()
+        i += 1
+        while i < len(nums) and nums[i-1] == nums[i]:
+            i += 1
+        dfs(i)
+
+    dfs(0)
+    return result
