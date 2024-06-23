@@ -229,3 +229,31 @@ def review6(nums: list[int], target: int) -> bool:
             l += 1
 
     return False
+
+
+def review7(nums: list[int], target: int) -> bool:
+    """
+    Mochi 6-23-24
+    """
+    l = 0
+    r = len(nums)-1
+
+    while l <= r:
+        m = (l+r)//2
+
+        if nums[m] == target:
+            return True
+
+        if nums[l] < nums[m]:  # on the left side
+            if nums[l] <= target < nums[m]:
+                r = m - 1
+            else:
+                l = m + 1
+        elif nums[l] > nums[m]:
+            if nums[m] < target <= nums[r]:
+                l = m + 1
+            else:
+                r = m - 1
+        else:
+            l += 1
+    return False

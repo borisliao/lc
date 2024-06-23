@@ -1,6 +1,6 @@
 ### [81. Search in Rotated Sorted Array II](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/)
 
-Medium
+#Medium
 
 There is an integer array `nums` sorted in non-decreasing order (not necessarily with **distinct** values).
 
