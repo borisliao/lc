@@ -313,3 +313,30 @@ def review11(nums: list[int], k: int) -> list[int]:
             l += 1
 
     return result
+
+
+def review12(nums: list[int], k: int) -> list[int]:
+    """
+    Mochi 6-23-24
+    """
+    q = deque()
+    result = []
+
+    l = 0
+    for r in range(len(nums)):
+        # remove index if you were able to find a larger number
+        while q and nums[q[-1]] < nums[r]:
+            q.pop()
+        q.append(r)
+
+        # remove the left most value if we got out of the window
+        while l > q[0]:
+            q.popleft()
+
+        # if in window
+        if r+1-l == k:
+            # the largest value is in the beginning of the queue
+            result.append(nums[q[0]])
+            l += 1
+
+    return result
