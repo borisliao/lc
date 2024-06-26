@@ -55,3 +55,32 @@ def largestIsland(grid: list[list[int]]) -> int:
                     amountOfIslands, 1 + countIslands(r, c))
 
     return amountOfIslands
+
+
+# def review1(grid: list[list[int]]) -> int:
+#     """
+#     Mochi 6-26-24
+#     """
+#     seen = set()
+
+#     def get_size(r, c):
+#         if (r, c) not in seen or r < 0 or c < 0 or r >= len(grid) or c >= len(grid) or grid[r][c] == 0:
+#             return 0
+
+#         seen.add((r, c))
+#         return 1 + get_size(r+1, c) + get_size(r-1, c) + get_size(r, c+1) + get_size(r, c-1)
+
+#     largest = 0
+
+#     for r in range(len(grid)):
+#         for c in range(len(grid[r])):
+#             if grid[r][c] == 0:
+#                 grid[r][c] == 1
+#                 seen = set()
+#                 largest = max(get_size(r, c), largest)
+#                 grid[r][c] == 0
+#             else:
+#                 seen = set()
+#                 largest = max(get_size(r, c), largest)
+
+#     return largest
