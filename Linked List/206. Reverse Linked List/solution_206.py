@@ -142,3 +142,19 @@ def review3(head: ListNode | None) -> ListNode | None:
         head = next
 
     return prev
+
+
+def review4(head: ListNode | None) -> ListNode | None:
+    """
+    Mochi 6-26-24
+    """
+    prev = None
+
+    node = head
+    while node:
+        next = node.next
+        node.next = prev
+        prev = node  # d1
+        node = next
+
+    return prev
