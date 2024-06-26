@@ -332,3 +332,31 @@ def review10(nums: list[int]) -> list[list[int]]:
             else:
                 l += 1
     return result
+
+
+# def review11(nums: list[int]) -> list[list[int]]:
+#     """
+#     Mochi 6-26-24
+#     """
+#     nums.sort()
+
+#     subset = []
+#     result = []
+
+#     def dfs(i):
+#         if sum(subset) == 0:
+#             result.append(subset.copy())
+#             return
+#         if i >= len(nums):
+#             return
+
+#         subset.append(nums[i])
+#         dfs(i+1)
+#         subset.pop()
+#         i += 1
+#         while i >= len(nums) and nums[i-1] == nums[i]:
+#             i += 1
+#         dfs(i)
+
+#     dfs(0)
+#     return result
