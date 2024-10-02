@@ -300,3 +300,26 @@ def review7(lists: list[ListNode | None]) -> ListNode:
         if not lists[i]:
             del lists[i]
     return dummy.next
+
+
+# def review8(lists: list[ListNode | None]) -> ListNode:
+#     """
+#     Mochi 6-26-24
+#     """
+#     node = ListNode()
+#     dummy = node
+#     while lists:
+#         l = 0
+#         smallest = 0
+#         for i in range(len(lists)):
+#             if lists[i].val <= smallest:
+#                 smallest = lists[i].val
+#                 l = i
+#                 break
+
+#         lists[l] = lists[l].next
+#         if lists[l] == None:
+#             del lists[l]
+#         node.next = ListNode(smallest)
+#         node = node.next
+#     return dummy.next
