@@ -1,14 +1,3 @@
-# def attempt1(nums: list[int]) -> int:
-#     """using flynns tortise and hare algo"""
-#     fast, slow = 0, 0
-
-#     while True:
-#         fast = (fast + 2) % len(nums)
-#         slow = (slow + 1) % len(nums)
-
-#         if fast != slow and nums[fast] == nums[slow]:
-#             return nums[fast]
-
 def neetcode(nums: list[int]) -> int:
     """
     https://www.youtube.com/watch?v=wjYnzkAhcNk
@@ -93,6 +82,29 @@ def review3(nums: list[int]) -> int:
         if slow == fast:
             break
 
+    node = 0
+    while True:
+        slow = nums[slow]
+        node = nums[node]
+
+        if slow == node:
+            return node
+
+
+def review4(nums: list[int]) -> int:
+    slow, fast = 0, 0
+
+    # floyd is can find the beginning of a cycle
+
+    # find the distance between the end of the cycle
+    while True:
+        slow = nums[slow]  # move 1 in the cycle
+        fast = nums[nums[fast]]  # move 2 in the cycle
+
+        if slow == fast:
+            break
+
+    # race the slow and fast pointer by 1 to find the start of the cycle
     node = 0
     while True:
         slow = nums[slow]
