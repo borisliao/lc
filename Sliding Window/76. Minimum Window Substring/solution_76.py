@@ -2,41 +2,6 @@ from collections import Counter
 from functools import reduce
 
 
-# def minWindow(s: str, t: str) -> str:
-#     """
-#     Anki 1-19-24
-#     Used: [Minimum Window Substring - Airbnb Interview Question - Leetcode 76](https://www.youtube.com/watch?v=jSto0O4AJbM)
-#     """
-#     l = 0
-#     shortest = ""
-
-#     matches = 0
-#     s_count = Counter(s[:len(t)])
-#     t_count = Counter(t)
-
-#     for c, c_amount in s_count.items():
-#         matches += 1 if t_count[c] <= c_amount else 0
-
-#     if s_count == t_count:  # d5 len(t)
-#         return s[:len(t)]
-
-#     for r in range(len(t), len(s)):
-#         s_count[s[r]] += 1
-#         matches += 1 if s_count[s[r]] == t_count[s[r]] else 0  # d6 ==
-
-#         while matches >= len(t_count):  # d5 len(t)
-#             if shortest == "" or len(shortest) > r-l+1:
-#                 shortest = s[l:r+1]  # d1 ==
-
-#             matches -= 1 if s_count[s[l]] == t_count[s[l]] else 0  # d4 ^1
-#             s_count[s[l]] -= 1
-#             l += 1
-#             # d2 s_count[s[l]] += 1
-#             # d3 matches += 1 if s_count[s[l]] == t_count[s[l]] else 0
-
-#     return shortest
-
-
 def minWindow_neetcode(s: str, t: str) -> str:
     """
     Anki 1-19-24
@@ -337,22 +302,23 @@ def review8(s: str, t: str) -> str:
     return result
 
 
-# def review9(s: str, t: str) -> str:
-#     """
-#     Mochi 4-16-24
-#     """
-#     window = Counter()
-#     target = Counter(t)
+def review9(s: str, t: str) -> str:
+    """
+    Mochi 10-3-24
+    """
+    l = 0
+    substring = Counter(t)
+    window = Counter()
 
-#     l = 0
+    smallest = ''
 
-#     for r, c in enumerate(s):
-#         window[c] += 1
-#         if r+1-l > len(t):
-#             window[s[l]] -= 1
-#             l += 1
-#         if r+1-l == len(t):
-#             if window >= target:
-#                 return s[l:r+1]
+    for r in range(len(s)):
+        window[s[r]] += 1
 
-#     return ''
+        while window >= substring:
+            if smallest == '' or (r+1-l) <= len(smallest):
+                smallest = s[l:r+1]
+            window[s[l]] -= 1
+            l += 1
+
+    return smallest
