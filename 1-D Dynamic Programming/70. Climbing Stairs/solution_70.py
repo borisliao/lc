@@ -1,24 +1,3 @@
-# def climbStairs(n: int) -> int:
-#     """
-#     12-22-23
-#     Time: 7:21
-#     Brute force
-#     """
-#     result = [0]
-
-#     def dfs(steps_left):
-#         if steps_left == 0:
-#             result[0] += 1
-#             return
-#         if steps_left < 0:
-#             return
-
-#         dfs(steps_left-1)
-#         dfs(steps_left-2)
-
-#     dfs(n)
-#     return result[0]
-
 def climbStairs(n: int) -> int:
     """
     12-22-23
@@ -72,18 +51,6 @@ def review1(n: int) -> int:
             return i1 + i2  # d1 add memoization
 
     return dfs(0)
-
-
-# def review3(n: int) -> int:
-#     """
-#     Anki 12-29-23
-#     Used: solution, [Amazon Coding Interview Question - Recursive Staircase Problem](https://www.youtube.com/watch?v=5o-kdjv7FD0)
-#     Brute force solution, same as climbStairs()
-#     """
-#     if n == 0 or n == 1:
-#         return 1
-#     else:
-#         return review3(n-1) + review3(n-2)
 
 
 def review4(n: int) -> int:
@@ -160,3 +127,31 @@ def review7(n: int) -> int:
         one, two = one+two, one
 
     return one
+
+
+def review8(n: int) -> int:
+    """
+    Mochi 10-3-24
+    """
+    result = 0
+    subset = []
+
+    def dfs():
+        if sum(subset) > n:
+            return
+
+        if sum(subset) == n:
+            nonlocal result
+
+            result += 1
+            return
+
+        subset.append(1)
+        dfs()
+        subset.pop()
+        subset.append(2)
+        dfs()
+        subset.pop()
+
+    dfs()
+    return result
