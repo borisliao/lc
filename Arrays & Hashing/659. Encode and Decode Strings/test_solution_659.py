@@ -3,6 +3,8 @@ import inspect
 import solution_659
 
 
+# numStr += str[l] # IndexError: string index out of range
+# The main issue here is that the numStr is being reset to an empty string ('') after appending a decoded string to the result, but then immediately after, the current character (which is '#') is added to numStr. This leads to incorrect parsing of subsequent elements.
 @pytest.mark.timeout(3)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_659, predicate=inspect.isfunction)])
 def test_example_1(f):

@@ -31,81 +31,6 @@ def literal_eval(func_name):
         return decode
 
 
-# def numberDesc(func_name):
-#     def encode(strs: List[str]) -> str:
-#         numString = ''
-#         for s in strs:
-#             numString += str(len(s)) + '#' + s
-
-#         return numString
-
-#     def decode(str: str) -> List[str]:
-#         stringNum = []
-
-#         word = ''
-#         ignoreDelimitter = False
-#         amountOfChar = 0
-
-#         for i in range(len(str)):
-#             if ignoreDelimitter:
-#                 ignoreDelimitter = False
-#             elif amountOfChar > 0:
-#                 word += str[i]
-#                 amountOfChar -= 1
-#                 if amountOfChar == 0:
-#                     stringNum.append(word)
-#                     word = ''
-#             # might break because we are looking i+1
-#             elif str[i].isnumeric() and str[i+1] == '#':
-#                 amountOfChar = int(str[i])
-#                 ignoreDelimitter = True
-#             else:
-#                 raise ValueError('str is malformed')
-
-#         return stringNum
-
-#     if func_name == 'encode':
-#         return encode
-#     if func_name == 'decode':
-#         return decode
-
-
-# def review1(func_name):
-#     """
-#     Anki 11-16-23
-#     Used: debugger (4)
-#     """
-#     def encode(strs: List[str]) -> str:
-#         result = ''
-#         for s in strs:
-#             result += str(len(s)) + '#' + s  # debugger (1,4)
-
-#         return result  # debugger (2)
-
-#     def decode(str: str) -> List[str]:
-#         i = 0
-#         result = []
-#         while i < len(str)-1:  # debugger (3)
-#             amount = 0
-#             for s in str[i:]:
-#                 if s == "#":  # debugger (5)
-#                     break
-#                 amount += 1
-#             amount = int(str[i:amount])  # debugger (6)
-
-#             begining_of_word = i+amount  # debugger(7)
-#             end_of_word = i+2+amount
-#             result.append(str[begining_of_word:end_of_word])
-#             i = end_of_word
-
-#         return result  # debugger (2)
-
-#     if func_name == 'encode':
-#         return encode
-#     if func_name == 'decode':
-#         return decode
-
-
 def review1(func_name):
     """
     Anki 11-16-23
@@ -369,11 +294,53 @@ def review6(func_name):
     if func_name == 'decode':
         return decode
 
-# def review7(func_name):
+
+def review7(func_name):
+    """
+    Mochi 10-4-24
+    """
+
+    # issue is determining when a element ends
+    # put a delimiter: len(element)#
+    def encode(strs: list[str]) -> str:
+        result = ''
+
+        for e in strs:
+            result += str(len(e)) + '#' + e
+
+        return result
+
+    # identify the the number based on when you see the delimiter
+    # inc based on how the number in the str.
+    # make sure we skip the delimiter
+    def decode(str: str) -> list[str]:
+        result = []
+        numStr = ''
+
+        # l = 1
+        # r = 1+3+1
+        # 3#abc
+        l = 0
+        while l < len(str):
+            if str[l] == '#':
+                r = l+int(numStr)+1
+                result.append(str[l+1:r])
+                l = r
+                numStr = ''  # s1
+            else:  # gpt2
+                numStr += str[l]
+                l += 1
+
+        return result
+
+    if func_name == 'encode':
+        return encode
+    if func_name == 'decode':
+        return decode
+
+# def review8(func_name):
 #     """
-#     Anki 12-27-23
-#     Time: 16 min
-#     Used: debugger 4
+#     Anki 10-4-24
 #     """
 #     def encode(strs: list[str]) -> str:
 
