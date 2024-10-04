@@ -1,8 +1,7 @@
 from collections import defaultdict
-from typing import List
 
 
-def naive(nums: List[int], target: int) -> List[int]:
+def naive(nums: list[int], target: int) -> list[int]:
     for i in range(len(nums)):
         for j in range(len(nums)):
             if i != j:
@@ -10,7 +9,7 @@ def naive(nums: List[int], target: int) -> List[int]:
                     return [i, j]
 
 
-def complement(nums: List[int], target: int) -> List[int]:
+def complement(nums: list[int], target: int) -> list[int]:
     for i in range(len(nums)):
         idealNumber = target - nums[i]
         for j in range(len(nums)):
@@ -19,7 +18,7 @@ def complement(nums: List[int], target: int) -> List[int]:
                     return [i, j]
 
 
-def doubleItterate(nums: List[int], target: int) -> List[int]:
+def doubleItterate(nums: list[int], target: int) -> list[int]:
     indexArray = {}
 
     for i in range(len(nums)):
@@ -32,7 +31,7 @@ def doubleItterate(nums: List[int], target: int) -> List[int]:
                 return [i, indexArray[ideal_number]]
 
 
-def twoSum(nums: List[int], target: int) -> List[int]:
+def twoSum(nums: list[int], target: int) -> list[int]:
     """Hashmap and complement"""
     indexArray = {}
 
@@ -44,7 +43,7 @@ def twoSum(nums: List[int], target: int) -> List[int]:
         indexArray[nums[i]] = i
 
 
-def review1(nums: List[int], target: int) -> List[int]:
+def review1(nums: list[int], target: int) -> list[int]:
     """Anki Review 10/11/23"""
     history = {}
 
@@ -56,7 +55,7 @@ def review1(nums: List[int], target: int) -> List[int]:
             history[n] = i
 
 
-def review2(nums: List[int], target: int) -> List[int]:
+def review2(nums: list[int], target: int) -> list[int]:
     """Anki Review 10/27/23"""
 
     # key: number in nums
@@ -72,7 +71,7 @@ def review2(nums: List[int], target: int) -> List[int]:
         previous_nums[n] = i
 
 
-def review3(nums: List[int], target: int) -> List[int]:
+def review3(nums: list[int], target: int) -> list[int]:
     """
     Anki 12-3-23
     Time: 21:27
@@ -89,3 +88,31 @@ def review3(nums: List[int], target: int) -> List[int]:
             for c_index in nums_dict[complement]:
                 if c_index != i:
                     return [i, c_index]
+
+
+def review4(nums: list[int], target: int) -> list[int]:
+    """
+    Mochi 10-4-24
+    """
+    dictNums = {n: i for i, n in enumerate(nums)}
+
+    for i, n in enumerate(nums):
+        comp = target - n
+        if comp in dictNums:
+            if i != dictNums[comp]:
+                return [i, dictNums[comp]]
+
+
+def review5(nums: list[int], target: int) -> list[int]:
+    """
+    Mochi 10-4-24
+    continue from review4
+    """
+    dictNums = {}
+
+    for i, n in enumerate(nums):
+        comp = target - n
+        if comp in dictNums:
+            return [i, dictNums[comp]]
+
+        dictNums[n] = i
