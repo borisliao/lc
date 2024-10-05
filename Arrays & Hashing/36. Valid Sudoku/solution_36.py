@@ -2,27 +2,6 @@ from collections import defaultdict
 from typing import List
 
 
-# def onlyHoriAndVert(board: List[List[str]]) -> bool:
-#         vert = { i: {sudoku_num: 0 for sudoku_num in range(1,10)} for i in range(9)}
-#         hori = { i: {sudoku_num: 0 for sudoku_num in range(1,10)} for i in range(9)}
-
-#         for row in range(9):
-#             for col in range(9):
-#                 sudoku_num = board[row][col]
-#                 if sudoku_num != '.':
-#                     hori_count = hori[row][int(sudoku_num)]
-#                     if(hori_count >= 1): return False
-#                     # update internal hori count
-#                     hori[row][int(sudoku_num)] +=1
-
-#                     vert_count = vert[col][int(sudoku_num)]
-#                     if(vert_count >= 1): return False
-#                     # update internal veri count
-#                     vert[col][int(sudoku_num)] +=1
-
-#         return True
-
-
 def bruteForceHashMap(board: List[List[str]]) -> bool:
     vert = {i: {sudoku_num: 0 for sudoku_num in range(
         1, 10)} for i in range(9)}
@@ -201,5 +180,27 @@ def review5(board: list[list[str]]) -> bool:
             row[r].add(board[r][c])
             col[c].add(board[r][c])
             sqr[(r//3, c//3)].add(board[r][c])
+
+    return True
+
+
+def review6(board: list[list[str]]) -> bool:
+    hori = {r: set() for r in range(len(board))}
+    verti = {c: set() for c in range(len(board))}
+    cubic = {}
+    for r in range(3):
+        for c in range(3):
+            cubic[(r, c)] = set()
+
+    for r in range(len(board)):
+        for c in range(len(board[r])):
+            if board[r][c] == '.':
+                pass
+            elif board[r][c] in hori[r] or board[r][c] in verti[c] or board[r][c] in cubic[(r//3, c//3)]:
+                return False
+            else:
+                hori[r].add(board[r][c])
+                verti[c].add(board[r][c])
+                cubic[(r//3, c//3)].add(board[r][c])
 
     return True
