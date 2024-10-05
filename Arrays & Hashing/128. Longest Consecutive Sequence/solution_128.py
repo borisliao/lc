@@ -160,3 +160,22 @@ def review5(nums: list[int]) -> int:
             val += 1
         result = max(length, result)
     return result
+
+
+def review6(nums: list[int]) -> int:
+    """
+    Mochi 10-5-24
+    """
+    numsSet = set(nums)
+
+    longestSequence = 0
+    for n in numsSet:
+        if n-1 not in numsSet:
+            lookingForNumber = n
+            sequence = 0
+            while lookingForNumber in numsSet:
+                sequence += 1
+                longestSequence = max(longestSequence, sequence)
+                lookingForNumber += 1  # d1
+
+    return longestSequence
