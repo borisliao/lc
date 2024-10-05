@@ -224,9 +224,35 @@ def review7(nums: list[int], k: int) -> list[int]:
             if k == 0:
                 return result
 
-# def review8(nums: list[int], k: int) -> list[int]:
-#     """
-#     Anki 3-7-24
-#     Time: 10:44
-#     Used: solution 2, debugger 1
-#     """
+
+def review8(nums: list[int], k: int) -> list[int]:
+    """
+    Mochi 10-5-24
+    """
+    count = {}
+    # 1: 3
+    # 2: 2
+    # 3: 1
+    for n in nums:  # nums =  [1,1,1,2,2,3]
+        if n in count:
+            count[n] += 1
+        else:
+            count[n] = 1
+
+    instances = {}
+    # 1: [3]
+    # 2: [2]
+    # 3: [1]
+    for n, freq in count.items():  # d1 .items()
+        if freq in instances:
+            instances[freq].append(n)
+        else:
+            instances[freq] = [n]
+
+    result = []  # [1, 2]
+    for freq in range(len(nums), 0, -1):  # d2 reverse order
+        # d3 while loop to keep popping items
+        while freq in instances and instances[freq]:
+            result.append(instances[freq].pop())
+            if len(result) == k:
+                return result
