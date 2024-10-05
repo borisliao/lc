@@ -111,3 +111,17 @@ def review5(students: list[int], sandwiches: list[int]) -> int:
                 students = students[1:] + students[:1]  # d1 students[0]
 
     return len(students)
+
+
+def review6(students: list[int], sandwiches: list[int]) -> int:
+    count = [0, 0]
+    for s in students:
+        count[s] += 1
+
+    for f in sandwiches:
+        if count[f] == 0:
+            return count[abs(f-1)]
+        else:
+            count[f] -= 1
+
+    return 0
