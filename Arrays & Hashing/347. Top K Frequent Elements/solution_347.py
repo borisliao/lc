@@ -155,7 +155,7 @@ def review6(nums: List[int], k: int) -> List[int]:
     return result
 
 
-def review6(nums: List[int], k: int) -> List[int]:
+def review7(nums: List[int], k: int) -> List[int]:
     """
     Anki 12-19-23
     Time: 14:51
@@ -179,7 +179,7 @@ def review6(nums: List[int], k: int) -> List[int]:
     return result
 
 
-def review6(nums: list[int], k: int) -> list[int]:
+def review8(nums: list[int], k: int) -> list[int]:
     """
     Anki 1-26-24
     Time: 16 min
@@ -203,7 +203,7 @@ def review6(nums: list[int], k: int) -> list[int]:
                 return result
 
 
-def review7(nums: list[int], k: int) -> list[int]:
+def review9(nums: list[int], k: int) -> list[int]:
     """
     Anki 3-7-24
     Time: 10:44
@@ -225,7 +225,7 @@ def review7(nums: list[int], k: int) -> list[int]:
                 return result
 
 
-def review8(nums: list[int], k: int) -> list[int]:
+def review10(nums: list[int], k: int) -> list[int]:
     """
     Mochi 10-5-24
     """
@@ -256,3 +256,36 @@ def review8(nums: list[int], k: int) -> list[int]:
             result.append(instances[freq].pop())
             if len(result) == k:
                 return result
+
+
+def review11(nums: list[int], k: int) -> list[int]:
+    """
+    Mochi 10-5-24
+    """
+    count = {}
+    # 1: 3
+    # 2: 2
+    # 3: 1
+    for n in nums:
+        if n in count:
+            count[n] += 1
+        else:
+            count[n] = 1
+
+    incr = {}
+    # 1: [3]
+    # 2: [2]
+    # 3: [1]
+    for n, freq in count.items():
+        if freq in incr:
+            incr[freq].append(n)
+        else:
+            incr[freq] = [n]
+
+    res = []
+    for freq in range(len(nums), 0, -1):
+        if freq in incr:
+            for n in incr[freq]:
+                res.append(n)
+                if len(res) == k:
+                    return res
