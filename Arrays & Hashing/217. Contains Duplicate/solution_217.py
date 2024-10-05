@@ -21,14 +21,6 @@ def naive(nums: List[int]) -> bool:
             return True
     return False
 
-# Sorting Solution
-# def sorting(nums: List[int]) -> bool:
-#     pass
-
-
-# Hash Set Solution
-# def hashset(nums: List[int]) -> bool:
-#     pass
 
 def review1(nums):
     """
@@ -72,9 +64,13 @@ def review3(nums: List[int]) -> bool:
     return False
 
 
-# def review4(nums: List[int]) -> bool:
-#     """
-#     Anki 1-19-24
-#     Return true if any value appears at least twice in the array,
-#     and return false if every element is distinct.
-#     """
+def review4(nums: List[int]) -> bool:
+    """
+    Mochi 10-5-24
+    """
+    setN = set()
+    for n in nums:
+        if n in setN:
+            return True
+        setN.add(n)
+    return False
