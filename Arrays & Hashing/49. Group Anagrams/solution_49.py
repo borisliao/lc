@@ -1,5 +1,4 @@
 from collections import defaultdict
-from typing import List
 
 
 def groupAnagrams(strs):
@@ -58,7 +57,7 @@ def review3(strs):
     return groups.values()
 
 
-def review4(strs: List[str]) -> List[List[str]]:
+def review4(strs: list[str]) -> list[list[str]]:
     """
     Anki 11-12-23
     Time: 20 min
@@ -92,9 +91,25 @@ def review5(strs: list[str]) -> list[list[str]]:
 
     return anagrams.values()
 
-# def review5(strs: list[str]) -> list[list[str]]:
-#     """
-#     Anki 1-29-24
-#     Time: 20 min
-#     Used: Debugger 1
-#     """
+
+def review6(strs: list[str]) -> list[list[str]]:
+    """
+    Mochi 10-5-24
+    """
+    groups = {}
+    # (1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0): ["bat"]
+    # (1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0): ["nat","tan"]
+    # (1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0): ["ate","eat","tea"]
+    for word in strs:
+        ref = [0 for _ in range(26)]
+        for c in word:
+            i = ord(c.lower()) - ord('a')
+            ref[i] += 1
+
+        key = tuple(ref)
+        if key in groups:
+            groups[key].append(word)
+        else:
+            groups[key] = [word]
+
+    return groups.values()
