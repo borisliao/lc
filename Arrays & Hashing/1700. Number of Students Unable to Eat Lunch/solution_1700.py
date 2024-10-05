@@ -92,3 +92,22 @@ def review4(students: list[int], sandwiches: list[int]) -> int:
             return count[1-s]
 
     return 0
+
+
+def review5(students: list[int], sandwiches: list[int]) -> int:
+    """
+    Mochi 10-5-24
+    This solution is not optimal.
+    We do not need to do a full simulation, as only the order of the sandwiches matter, not the students.
+    """
+    prevStudents = []
+    while students != prevStudents:
+        prevStudents = students
+        if students:
+            if sandwiches[0] == students[0]:
+                sandwiches = sandwiches[1:]
+                students = students[1:]
+            else:
+                students = students[1:] + students[:1]  # d1 students[0]
+
+    return len(students)
