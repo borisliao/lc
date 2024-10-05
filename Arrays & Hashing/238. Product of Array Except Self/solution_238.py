@@ -20,27 +20,6 @@ def productExceptSelf(nums: list[int]) -> list[int]:
 
     return output
 
-# def naive(nums: list[int]) -> list[int]:
-#     """
-#     Time Complexity: O(n^2)
-#     Space Complexity: O(n)
-#     """
-#     arr = []
-#     for i in range(len(nums)):
-#         if i+1 > len(nums):
-#             maxrange = i
-#         else:
-#             maxrange = i+1
-#         x = nums[:i] + nums[maxrange:]
-
-
-#         product = 1
-#         for y in x:
-#             product *= y
-
-#         arr.append(product)
-
-#     return arr
 
 def review1(nums: list[int]) -> list[int]:
     """
@@ -279,3 +258,23 @@ def review10(nums: list[int]) -> list[int]:
         i -= 1
 
     return result
+
+
+def review11(nums: list[int]) -> list[int]:
+    """
+    Mochi 10-5-24
+    """
+    prod = 1
+    left = []
+    for n in nums:
+        left.append(prod)
+        prod *= n
+
+    prod = 1
+    right = []
+    for n in reversed(nums):
+        right.append(prod)
+        prod *= n
+    right = right[::-1]
+
+    return [left[i]*right[i] for i in range(len(left))]
