@@ -193,3 +193,19 @@ def review11(temperatures: list[int]) -> list[int]:
             result[s_i] = i-s_i
         stack.append((i, t))
     return result
+
+
+def review12(temperatures: list[int]) -> list[int]:
+    """
+    Mochi 10-6-24
+    """
+    temps = [0 for _ in range(len(temperatures))]
+    stack = []
+
+    for i, t in enumerate(temperatures):
+        while stack and temperatures[stack[-1]] < t:
+            temps[stack[-1]] = i - stack[-1]  # gpt1 temperatures[i]
+            stack.pop()
+        stack.append(i)
+
+    return temps

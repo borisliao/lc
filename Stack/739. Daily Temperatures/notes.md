@@ -1,8 +1,8 @@
-# [739\. Daily Temperatures](https://leetcode.com/problems/daily-temperatures/)
+### [739. Daily Temperatures](https://leetcode.com/problems/daily-temperatures/)
 
-Medium
+#Medium #NeetCode150
 
-Given an array of integers `temperatures` represents the daily temperatures, return _an array_ `answer` _such that_ `answer[i]` _is the number of days you have to wait after the_ `i<sup>th</sup>` _day to get a warmer temperature_. If there is no future day for which this is possible, keep `answer[i] == 0` instead.
+Given an array of integers `temperatures` represents the daily temperatures, return _an array_ `answer` _such that_ `answer[i]` _is the number of days you have to wait after the_ i<sup>th</sup> _day to get a warmer temperature_. If there is no future day for which this is possible, keep `answer[i] == 0` instead.
 
 **Example 1:**
 
@@ -21,5 +21,5 @@ Given an array of integers `temperatures` represents the daily temperatures, ret
 
 **Constraints:**
 
-- `1 <= temperatures.length <= 10<sup>5</sup>`
+- 1 <= temperatures.length <= 10<sup>5</sup>
 - `30 <= temperatures[i] <= 100`
