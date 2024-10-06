@@ -43,21 +43,6 @@ def review1(heights: list[int]) -> int:
     return largest
 
 
-# def review2(heights: list[int]) -> int:
-#     """
-#     Anki 1-21-24
-#     Brute force
-#     Time: 8:25
-#     """
-#     area = 0
-
-#     for l in range(len(heights)):
-#         for r in range(l, len(heights)):
-#             area = max(area, min(heights[l:r+1]) * (r+1-l))
-
-#     return area
-
-
 def review3(heights: list[int]) -> int:
     """
     Anki 1-21-24
@@ -195,3 +180,26 @@ def review8(heights: list[int]) -> int:
         area = max(area, h*(len(heights)-i))
 
     return area
+
+
+# def review9(heights: list[int]) -> int:
+#     res = 0
+#     stack = []
+
+#     for i in range(len(heights)):
+#         l = i
+#         while stack and heights[stack[-1]] > heights[i]:
+#             x = l - stack[-1]
+#             y = heights[stack[-1]]  # s2 heights[stack[-1]]
+
+#             res = max(x*y, res)  # s1
+#             l = stack.pop()  # s1
+
+#         stack.append(l)
+
+#     for i in stack:  # s1
+#         x = len(heights) - i  # s1
+#         y = heights[i]  # s1
+#         res = max(res, x*y)  # s1
+
+#     return res
