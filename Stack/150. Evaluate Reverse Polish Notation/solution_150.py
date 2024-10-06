@@ -121,3 +121,27 @@ def review4(tokens: list[str]) -> int:
             stack.append(int(t))
 
     return stack[0]
+
+
+def review5(tokens: list[str]) -> int:
+    """
+    Mochi 10-6-24
+    """
+    stack = []
+    for t in tokens:
+        if t == '+':
+            y, x = stack.pop(), stack.pop()
+            stack.append(x+y)
+        elif t == '-':
+            y, x = stack.pop(), stack.pop()
+            stack.append(x-y)
+        elif t == '*':
+            y, x = stack.pop(), stack.pop()
+            stack.append(x*y)
+        elif t == '/':
+            y, x = stack.pop(), stack.pop()
+            stack.append(int(x/y))
+        else:
+            stack.append(int(t))
+
+    return stack[0]

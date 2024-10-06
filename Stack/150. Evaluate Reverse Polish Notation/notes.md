@@ -41,5 +41,5 @@ Evaluate the expression. Return _an integer that represents the value of the exp
 
 **Constraints:**
 
-- `1 <= tokens.length <= 10<sup>4</sup>`
+- 1 <= tokens.length <= 10<sup>4</sup>
 - `tokens[i]` is either an operator: `"+"`, `"-"`, `"*"`, or `"/"`, or an integer in the range `[-200, 200]`.
