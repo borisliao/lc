@@ -1,39 +1,3 @@
-# from collections import defaultdict
-
-
-# def carFleet(target: int, position: list[int], speed: list[int]) -> int:
-#     """
-#     Anki 1-8-24
-#     Time: 2h
-#     Used: debugger 3
-#     """
-#     in_target = 0
-#     fleets = 0
-#     car = []
-#     for i in range(len(position)):
-#         if position[i] >= target:
-#             in_target += 1
-#         car.append([position[i], speed[i]])
-#     car.sort()
-
-#     while in_target < len(position):  # d3 len(car)
-#         i = len(car) - 1  # d1 moved in while loop
-#         while i >= 0:
-#             car[i][0] += 1
-#             if i != len(car) - 1:
-#                 car[i][0] = min(car[i][0], car[i+1][0])  # d3 car[i+1]
-#             i -= 1
-
-#         distance = set()
-#         while car and car[-1][0] >= target:  # d2 car and
-#             c = car.pop()
-#             distance.add(c[0])
-#             in_target += 1
-#         fleets += len(distance)
-
-#     return fleets
-
-
 def carFleet(target: int, position: list[int], speed: list[int]) -> int:
     # Sort cars by position in descending order
     cars = sorted(zip(position, speed), reverse=True)
@@ -154,7 +118,7 @@ def review5(target: int, position: list[int], speed: list[int]) -> int:
     return len(stack)
 
 
-def review5(target: int, position: list[int], speed: list[int]) -> int:
+def review6(target: int, position: list[int], speed: list[int]) -> int:
     """
     Anki 2-15-24
     Time: 20 min
@@ -171,31 +135,7 @@ def review5(target: int, position: list[int], speed: list[int]) -> int:
     return len(stack)
 
 
-# def review6(target: int, position: list[int], speed: list[int]) -> int:
-#     """
-#     Mochi 4-12-24
-#     """
-#     cars = [(p, s) for p, s in zip(position, speed)]
-#     cars.sort()
-
-#     result = 0
-
-#     while cars:
-#         finished = 0
-#         prev = float('inf')
-#         for i, (p, s) in enumerate(reversed(cars)):
-#             pos = min(p+s, prev)
-#             cars[len(cars)-1-i] = (pos, s)
-#             prev = pos
-#             if pos > target:
-#                 finished += 1
-#         if finished:
-#             result += 1
-#         for _ in range(finished):
-#             cars.pop()
-#     return result
-
-def review6(target: int, position: list[int], speed: list[int]) -> int:
+def review7(target: int, position: list[int], speed: list[int]) -> int:
     """
     Mochi 4-13-24
     """
@@ -209,5 +149,26 @@ def review6(target: int, position: list[int], speed: list[int]) -> int:
         # to the time it takes for the car ahead of it, pop
         if len(stack) >= 2 and stack[-2] >= stack[-1]:
             stack.pop()
+
+    return len(stack)
+
+
+def review8(target: int, position: list[int], speed: list[int]) -> int:
+    """
+    Mochi 10-6-24
+    """
+    # target   = 12
+    # position = [10,8,0,5,3]
+    # speed    = [ 2,4,1,1,3]
+    stack = []
+    cars = list(zip(position, speed))  # s1
+    cars.sort()  # s1
+
+    for p, s in reversed(cars):
+        t = (target-p)/s
+        if stack and t <= stack[-1]:
+            pass
+        else:
+            stack.append(t)
 
     return len(stack)

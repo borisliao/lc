@@ -1,6 +1,6 @@
-# [853\. Car Fleet](https://leetcode.com/problems/car-fleet/)
+### [853. Car Fleet](https://leetcode.com/problems/car-fleet/)
 
-Medium
+#Medium #Hard #NeetCode150
 
 There are `n` cars going to the same destination along a one-lane road. The destination is `target` miles away.
 
@@ -41,8 +41,8 @@ Return _the **number of car fleets** that will arrive at the destination_.
 **Constraints:**
 
 - `n == position.length == speed.length`
-- `1 <= n <= 10<sup>5</sup>`
-- `0 < target <= 10<sup>6</sup>`
+- 1 <= n <= 10<sup>5</sup>
+- 0 < target <= 10<sup>6</sup>
 - `0 <= position[i] < target`
 - All the values of `position` are **unique**.
-- `0 < speed[i] <= 10<sup>6</sup>`
+- 0 < speed[i] <= 10<sup>6</sup>
