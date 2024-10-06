@@ -35,6 +35,6 @@ You must implement a solution with `O(1)` time complexity for each function.
 
 **Constraints:**
 
-- `-2<sup>31</sup> <= val <= 2<sup>31</sup> - 1`
+- -2<sup>31</sup> <= val <= 2<sup>31</sup> - 1
 - Methods `pop`, `top` and `getMin` operations will always be called on **non-empty** stacks.
-- At most `3 * 10<sup>4</sup>` calls will be made to `push`, `pop`, `top`, and `getMin`.
+- At most 3 \* 10<sup>4</sup> calls will be made to `push`, `pop`, `top`, and `getMin`.

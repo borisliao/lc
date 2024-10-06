@@ -156,7 +156,34 @@ def review4():
     return MinStack()
 
 
-# def review5():
+def review5():
+    """
+    Mochi 10-6-24
+    """
+    class MinStack:
+
+        def __init__(self):
+            self.stack = []
+            self.min = [float('inf')]
+
+        def push(self, val: int) -> None:
+            self.stack.append(val)
+            self.min.append(min(val, self.min[-1]))
+
+        def pop(self) -> None:
+            self.stack.pop()
+            self.min.pop()
+
+        def top(self) -> int:
+            return self.stack[-1]
+
+        def getMin(self) -> int:
+            return self.min[-1]
+
+    return MinStack()
+
+
+# def review():
 #     """
 #     Mochi 4-17-24
 #     """
