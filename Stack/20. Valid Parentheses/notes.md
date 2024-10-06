@@ -1,6 +1,6 @@
-# [20\. Valid Parentheses](https://leetcode.com/problems/valid-parentheses/)
+### [20. Valid Parentheses](https://leetcode.com/problems/valid-parentheses/)
 
-Easy
+#Easy #Blind75 #NeetCode150
 
 Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.
 
@@ -27,5 +27,5 @@ An input string is valid if:
 
 **Constraints:**
 
-- `1 <= s.length <= 10<sup>4</sup>`
+- 1 <= s.length <= 10<sup>4</sup>
 - `s` consists of parentheses only `'()[]{}'`.
