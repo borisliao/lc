@@ -1,15 +1,3 @@
-# def nsquared(numbers: list[int], target: int) -> list[int]:
-#     """
-#     Time Complexity: O(n^2)
-#     Space Complexity: O(1)
-#     """
-#     for i in range(len(numbers)):
-#         for j in range(len(numbers)):
-#             if i != j:
-#                 if numbers[i] + numbers[j] == target:
-#                     return [i+1, j+1]
-
-
 def twoPointers(numbers: list[int], target: int) -> list[int]:
     """
     Time Complexity: O(n)
@@ -129,6 +117,23 @@ def review6(numbers: list[int], target: int) -> list[int]:
         if numbers[l] + numbers[r] == target:
             return [l+1, r+1]  # d2 +1, +1
         elif numbers[l] + numbers[r] < target:
+            l += 1
+        else:
+            r -= 1
+
+
+def review7(numbers: list[int], target: int) -> list[int]:
+    """
+    Mochi 10-7-24
+    """
+    l = 0
+    r = len(numbers) - 1
+
+    while l < r:
+        sum = numbers[l] + numbers[r]
+        if sum == target:
+            return [l+1, r+1]
+        elif sum < target:
             l += 1
         else:
             r -= 1

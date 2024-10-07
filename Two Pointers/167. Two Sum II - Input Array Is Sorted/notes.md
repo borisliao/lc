@@ -2,15 +2,9 @@
 
 #Medium #NeetCode150
 
-Given a **1-indexed** array of integers `numbers` that is already **_sorted in
-non-decreasing order_**, find two numbers such that they add up to a specific
-`target` number. Let these two numbers be `numbers[index<sub>1</sub>]` and
-`numbers[index<sub>2</sub>]` where
-`1 <= index<sub>1</sub> < index<sub>2</sub> < numbers.length`.
+Given a **1-indexed** array of integers `numbers` that is already **_sorted in non-decreasing order_**, find two numbers such that they add up to a specific `target` number. Let these two numbers be numbers[index<sub>1</sub>] and numbers[index<sub>2</sub>] where 1 <= index<sub>1</sub> < index<sub>2</sub> < numbers.length.
 
-Return _the indices of the two numbers,_ `index<sub>1</sub>` _and_
-`index<sub>2</sub>` _, **added by one** as an integer array_
-`[index<sub>1</sub>, index<sub>2</sub>]` _of length 2._
+Return _the indices of the two numbers,_ index<sub>1</sub> _and_ index<sub>2</sub> _, **added by one** as an integer array_ [index<sub>1</sub>, index<sub>2</sub>] _of length 2._
 
 The tests are generated such that there is **exactly one solution**. You **may
 not** use the same element twice.
@@ -37,7 +31,7 @@ Your solution must use only constant extra space.
 
 **Constraints:**
 
-- `2 <= numbers.length <= 3 * 10<sup>4</sup>`
+- 2 <= numbers.length <= 3 \* 10<sup>4</sup>
 - `-1000 <= numbers[i] <= 1000`
 - `numbers` is sorted in **non-decreasing order**.
 - `-1000 <= target <= 1000`
