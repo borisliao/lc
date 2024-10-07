@@ -26,5 +26,5 @@ Given a string `s`, return `true` _if it is a **palindrome**, or_ `false` _other
 
 **Constraints:**
 
-- `1 <= s.length <= 2 * 10<sup>5</sup>`
+- 1 <= s.length <= 2 \* 10<sup>5</sup>
 - `s` consists only of printable ASCII characters.
