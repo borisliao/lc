@@ -193,3 +193,29 @@ def review7(n: int) -> list[str]:
             subset.pop()
     dfs(0, 0)
     return result
+
+
+def review8(n: int) -> list[str]:
+    """
+    Mochi 10-6-24
+    """
+    res = []
+    stack = ''
+
+    def dfs(open, close):
+        nonlocal stack
+        if open == close == n:
+            res.append(stack)
+            return  # d1
+        if open < n:
+            stack += '('
+            dfs(open+1, close)
+            stack = stack[:-1]  # d1
+
+        if close < n and open > close:
+            stack += ')'
+            dfs(open, close+1)
+            stack = stack[:-1]  # d1
+
+    dfs(0, 0)
+    return res
