@@ -28,29 +28,6 @@ def trap3n(height: list[int]) -> int:
     return sum(result)
 
 
-# def trap(height: list[int]) -> int:
-#     """
-#     Anki 1-16-24
-#     Used: [Trapping Rain Water - Google Interview Question - Leetcode 42](https://www.youtube.com/watch?v=ZI2z5pq0TqA)
-#     Complexity: time O(n), space o(n)
-#     """
-#     l = 0
-#     r = len(height) - 1
-#     result = 0
-
-#     while l <= r:
-#         water = 0
-#         if height[l] <= height[r]:
-#             l += 1
-#             water = min(height[l], height[r]) - height[l]
-#             result += max(0, water)
-#         else:
-#             r -= 1
-#             water = min(height[l], height[r]) - height[r]
-#             result += max(0, water)
-
-#     return result
-
 def trap(height: list[int]) -> int:
     """
     Anki 1-16-24
@@ -314,3 +291,24 @@ def review10(height: list[int]) -> int:
             r -= 1
 
     return water
+
+
+def review11(height: list[int]) -> int:
+    """
+    Mochi 10-7-24
+    Monotonic Stack
+    https://medium.com/@w.zhang.pro/monotonic-stack-37e1fe1b0916
+    """
+    stack = []
+    rainWater = 0
+
+    for i, r in enumerate(height):
+        while stack and height[stack[-1]] < r:
+            bottomBound = stack.pop()
+            if stack:
+                h = min(r, height[stack[-1]]) - height[bottomBound]
+                w = i-stack[-1]-1
+                rainWater += h*w
+        stack.append(i)
+
+    return rainWater

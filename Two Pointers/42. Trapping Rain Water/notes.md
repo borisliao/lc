@@ -20,5 +20,5 @@ Given `n` non-negative integers representing an elevation map where the width of
 **Constraints:**
 
 - `n == height.length`
-- `1 <= n <= 2 * 10<sup>4</sup>`
-- `0 <= height[i] <= 10<sup>5</sup>`
+- 1 <= n <= 2 \* 10<sup>4</sup>
+- 0 <= height[i] <= 10<sup>5</sup>
