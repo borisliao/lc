@@ -1,27 +1,3 @@
-# def dictHashMap(s: str) -> int:
-# # does not work for edge case for test 291
-#     seenChar = {}
-#     runningLength = 0
-#     length = 0
-#     ignore_index = -1
-
-#     for i, char in enumerate(s):
-#         if char in seenChar:
-#             if ignore_index < seenChar[char]:
-#                 runningLength -= seenChar[char]+1
-#                 ignore_index = seenChar[char]
-
-#             if runningLength < -1:
-#                 runningLength = -1
-
-#         runningLength += 1
-#         if runningLength > length:
-#             length = runningLength
-
-#         seenChar[char] = i
-
-#     return length
-
 from collections import Counter
 
 
@@ -173,3 +149,26 @@ def review6(s: str) -> int:
         length = max(r+1-l, length)
 
     return length
+
+
+def review7(s: str) -> int:
+    """
+    Mochi 10-9-24
+    """
+    # Input: s = "pwwkew"
+    # Output: 3
+    count = {}
+    # p: 0
+    # w: 1
+    result = 0
+
+    l = 0
+    for r in range(len(s)):
+        count[s[r]] = count.get(s[r], 0) + 1
+
+        while max(count.values()) > 1:
+            count[s[l]] -= 1
+            l += 1
+        result = max(result, r+1-l)
+
+    return result

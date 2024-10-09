@@ -26,10 +26,9 @@ Given a string `s`, find the length of the **longest** **substring** without rep
 >
 > **Output:** 3
 >
-> **Explanation:** The answer is "wke", with the length of 3. Notice that the
-> answer must be a substring, "pwke" is a subsequence and not a substring.
+> **Explanation:** The answer is "wke", with the length of 3. Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
 
 **Constraints:**
 
-- `0 <= s.length <= 5 * 10<sup>4</sup>`
+- 0 <= s.length <= 5 \* 10<sup>4</sup>
 - `s` consists of English letters, digits, symbols and spaces.
