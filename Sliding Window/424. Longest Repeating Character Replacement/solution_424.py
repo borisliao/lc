@@ -39,38 +39,6 @@ def maxValue(s: str, k: int) -> int:
     return length
 
 
-# def review1(s: str, k: int) -> int:
-#     """
-#     Anki 12-21-23
-#     Time: 38:10
-#     Used: Debugger 4
-#     Not preformant
-#     """
-#     length = 0
-#     l = 0
-#     r = 1
-
-#     while r <= len(s):
-#         count = Counter(s[l:r])
-
-#         if len(count) <= 1:
-#             length = max(length, len(s[l:r]))  # d1
-#             r += 1
-#             continue
-
-#         most_count = 0
-#         for c, o in count.items():
-#             most_count = max(most_count, o)
-
-#         if r-l - most_count > k:
-#             l += 1
-#             continue
-
-#         length = max(length, len(s[l:r]))
-#         r += 1
-
-#     return length
-
 def review2(s: str, k: int) -> int:
     """
     12-21-23
@@ -139,7 +107,7 @@ def review4(s: str, k: int) -> int:
     return length
 
 
-def review4(s: str, k: int) -> int:
+def review5(s: str, k: int) -> int:
     """
     Anki 12-24-23
     Time: 8 min
@@ -159,28 +127,6 @@ def review4(s: str, k: int) -> int:
 
     return max_length
 
-
-# def review5(s: str, k: int) -> int:
-#     """
-#     Anki 12-31-23
-#     """
-#     l = 0
-#     r = 0
-#     count = defaultdict(lambda: 0)
-#     longest = 0
-
-#     while r <= len(s):
-#         occurances = max(count.values() if count else [0])
-#         if occurances + k >= r-l:
-#             longest = r-l
-#             r += 1
-#             if r < len(s):
-#                 count[s[r]] += 1
-#         else:
-#             count[s[l]] -= 1
-#             l += 1
-
-#     return longest
 
 def review6(s: str, k: int) -> int:
     """
@@ -202,27 +148,6 @@ def review6(s: str, k: int) -> int:
         largest = max(largest, r+1-l)
 
     return largest
-
-
-# def review6(s: str, k: int) -> int:
-#     """
-#     Anki 12-31-23
-#     Time: 4 min
-#     """
-#     count = {}
-#     l = 0
-#     longest = 0
-
-#     for r in range(len(s)):
-#         count[s[r]] = count.get(s[r], 0) + 1
-
-#         if max(count.values()) + k <= r+1-l: # you need to fix the l-r window range first before computing the longest
-#             longest = max(longest, r+1-l)
-#         else:
-#             count[s[l]] -= 1
-#             l += 1
-
-#     return longest
 
 
 def review7(s: str, k: int) -> int:
@@ -328,3 +253,32 @@ def review11(s: str, k: int) -> int:
             length = r+1-l
         chars = max(chars, length)
     return chars
+
+
+def review12(s: str, k: int) -> int:
+    """
+    Mochi 10-9-24
+    """
+#   Input: s = "AABABBA", k = 1
+#   Output: 4
+    window = {}
+    # A: 3
+    # B: 1
+    result = 0
+
+    l = 0
+    for r in range(len(s)):
+        c = s[r]
+        window[c] = window.get(c, 0) + 1
+
+        lenOfWindow = r+1-l  # 0 + 4 + 1 = 5
+        maxValue = max(window.values())  # 3
+        while lenOfWindow - maxValue > k:  # 5 - 3 <= 1
+            window[s[l]] -= 1
+            l += 1
+            maxValue = max(window.values())
+            lenOfWindow = r+1-l
+
+        result = max(lenOfWindow, result)
+
+    return result
