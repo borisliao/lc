@@ -74,42 +74,6 @@ def review2(s1: str, s2: str) -> bool:
     return False
 
 
-# def review3(s1: str, s2: str) -> bool:
-#     """
-#     Anki 12-22-23
-#     Time: 30 min
-#     """
-#     l = 0
-#     r = len(s1) - 1
-
-#     c1 = Counter(s1)
-#     c2 = Counter(s2[l:r+1])
-#     match = 26
-#     for s, c in c1.items():  # d1 values
-#         if s not in c2:
-#             match -= 1
-#         else:
-#             match -= abs(c2[s] - c)
-
-#     while r < len(s2):
-#         if match == 26:
-#             return True
-
-#         if s2[r] in c1:
-#             match += 1
-#         else:
-#             match -= 1
-#         r += 1  # d2
-
-#         if s2[l] in c1:
-#             match += 1
-#         else:
-#             match -= 1
-#         l += 1
-
-#     return False
-
-
 def review3(s1: str, s2: str) -> bool:
     """
     Anki 12-22-23
@@ -254,43 +218,6 @@ def review6(s1: str, s2: str) -> bool:
     return False
 
 
-# def review7(s1: str, s2: str) -> bool:
-#     """
-#     12-23-23
-#     """
-#     c1 = Counter(s1)
-#     c2 = Counter(s2[0:len(s1)])
-
-#     differences = 0
-#     for character, occurances in c2.items():
-#         if character in c1 and c1[character] == occurances:
-#             break
-#         else:
-#             differences += abs(c1[character]-occurances)
-#     l = 0
-
-#     if differences == 0:
-#         return True
-
-#     for r in range(len(s1), len(s2)):
-
-#         if c1[l] == c2[l]:
-#             differences -= 1
-#         elif c1[l] - 1 == c2[l]:
-#             differences += 1
-#         l += 1
-
-#         if c1[r] == c2[r]:
-#             differences -= 1
-#         elif c1[r] + 1 == c2[r]:
-#             differences += 1
-
-#         if differences == 0:
-#             return True
-
-#     return False
-
-
 def review8(s1: str, s2: str) -> bool:
     """
     Anki 12-28-23
@@ -320,37 +247,6 @@ def review8(s1: str, s2: str) -> bool:
 
     return False
 
-
-# def review9(s1: str, s2: str) -> bool:
-#     """
-#     12-28-23
-#     Time: 40 min
-#     """
-#     non_matches = 0
-
-#     c1 = Counter(s1)
-#     c2 = Counter(s2[0:len(s1)])  # d1
-#     for c in c1:
-#         non_matches += abs(c1[c] - c2[c])
-
-#     l = 0
-#     r = len(s1) - 1  # d2 - 1
-
-#     while r < len(s2) - 1:  # d2 <=, d3 - 1
-#         if non_matches == 0:
-#             return True
-
-#         if s2[l] in c1:  # d2 s1
-#             non_matches -= 1
-#         l += 1
-
-#         r += 1
-#         if s2[r] in c1:  # d2 s1
-#             non_matches -= 1
-#         else:
-#             non_matches += 1
-
-#     return False
 
 def review9(s1: str, s2: str) -> bool:
     """
@@ -433,24 +329,38 @@ def review12(s1: str, s2: str) -> bool:
     return False
 
 
-# def review13(s1: str, s2: str) -> bool:
-#     """
-#     Mochi 4-18-24
-#     """
-#     count = {}
-#     for c in s1:
-#         count[c] = 1 + count.get(c, 0)
+def review13(s1: str, s2: str) -> bool:
+    """
+    Mochi 10-8-24
+    """
+    count = {}
+    for c in s1:
+        if c in count:
+            count[c] += 1
+        else:
+            count[c] = 1
 
-#     l = 0
-#     for r, c in enumerate(s2):
-#         count[c] = 1 + count.get(c, 0)
-#         if r+1-l == len(s1):
-#             count[s2[l]] = 1 - count.get(s2[l], 0)
-#             if count[s2[l]] == 0:
-#                 del count[s2[l]]
-#         if count[c] == 0:
-#             del count[c]
+    window = {}
+    for i, c in enumerate(s2):
 
-#         if len(count) == 0:
-#             return True
-#     return False
+        if c in window:
+            window[c] += 1
+        else:
+            window[c] = 1
+
+        if sum(count.values()) == sum(window.values()):  # d2
+            allMatch = True
+            for c in window:
+                if c in count and count[c] == window[c]:
+                    pass
+                else:
+                    allMatch = False
+            if allMatch:
+                return allMatch
+
+            character = s2[i-len(count)+1]  # d1
+            window[character] -= 1
+            if window[character] == 0:
+                del window[character]
+
+    return False

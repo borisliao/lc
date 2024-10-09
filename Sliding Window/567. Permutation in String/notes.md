@@ -22,5 +22,5 @@ In other words, return `true` if one of `s1`'s permutations is the substring of 
 
 **Constraints:**
 
-- `1 <= s1.length, s2.length <= 10<sup>4</sup>`
+- 1 <= s1.length, s2.length <= 10<sup>4</sup>
 - `s1` and `s2` consist of lowercase English letters.
