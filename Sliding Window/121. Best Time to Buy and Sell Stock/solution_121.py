@@ -91,6 +91,7 @@ def review4(prices: list[int]) -> int:
 
     return max_profit
 
+
 def review5(prices: list[int]) -> int:
     """
     Mochi 4-18-24
@@ -102,7 +103,24 @@ def review5(prices: list[int]) -> int:
         if l == r:
             continue
         while l < r and prices[l] >= prices[r]:
-            l+=1
+            l += 1
         profit = max(prices[r]-prices[l], profit)
-    
+
     return profit
+
+
+def review6(prices: list[int]) -> int:
+    """
+    Mochi 10-9-24
+    """
+    result = 0
+    l = 0
+    for r in range(len(prices)):
+        if l != r:
+            profit = prices[r] - prices[l]
+            result = max(profit, result)
+
+        while l < r and prices[l] > prices[r]:
+            l += 1
+
+    return result
