@@ -114,6 +114,9 @@ def review5(students: list[int], sandwiches: list[int]) -> int:
 
 
 def review6(students: list[int], sandwiches: list[int]) -> int:
+    """
+    Mochi 10-5-24
+    """
     count = [0, 0]
     for s in students:
         count[s] += 1
@@ -125,3 +128,20 @@ def review6(students: list[int], sandwiches: list[int]) -> int:
             count[f] -= 1
 
     return 0
+
+
+def review7(students: list[int], sandwiches: list[int]) -> int:
+    """
+    Mochi 10-9-24
+    """
+    count = {0: 0, 1: 0}
+
+    for s in students:
+        count[s] += 1
+
+    for s in sandwiches:
+        if count[s]:
+            count[s] -= 1
+        else:
+            return count[abs(s-1)]
+    return max(count.values())
