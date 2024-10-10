@@ -368,9 +368,39 @@ def review8(func_name):
     if func_name == 'decode':
         return decode
 
-# def review9(func_name):
+
+def review9(func_name):
+    """
+    Mochi 10-9-24
+    """
+    def encode(strs: list[str]) -> str:
+        res = ''
+        for s in strs:
+            res += str(len(s)) + '#' + s
+        return res
+
+    def decode(str: str) -> list[str]:
+        res = []
+        num = ''
+        i = 0
+        while i < len(str):
+            if str[i] == '#':
+                res.append(str[i + 1: i + 1 + int(num)])
+                i += 1 + int(num)
+                num = ''
+            else:
+                num += str[i]
+                i += 1
+        return res
+
+    if func_name == 'encode':
+        return encode
+    if func_name == 'decode':
+        return decode
+
+# def review10(func_name):
 #     """
-#     Mochi 10-5-24
+#     Mochi 10-9-24
 #     """
 #     def encode(strs: list[str]) -> str:
 
