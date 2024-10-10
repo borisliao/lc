@@ -101,3 +101,26 @@ def review7(s: str) -> bool:
             stack.append(c)
 
     return True if len(stack) == 0 else False  # d1
+
+
+def review8(s: str) -> bool:
+    """
+    Mochi 10-9-24
+    """
+    stack = []
+    map = {
+        ')': '(',
+        ']': '[',
+        '}': '{'
+    }
+
+    for c in s:
+        if c in map:
+            if not stack:
+                return False
+            bracket = stack.pop()
+            if map[c] != bracket:
+                return False
+        else:
+            stack.append(c)
+    return True if len(stack) == 0 else False
