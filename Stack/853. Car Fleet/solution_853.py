@@ -172,3 +172,22 @@ def review8(target: int, position: list[int], speed: list[int]) -> int:
             stack.append(t)
 
     return len(stack)
+
+
+def review9(target: int, position: list[int], speed: list[int]) -> int:
+    """
+    Mochi 10-13-24
+    """
+    cars = [(p, s) for p, s in zip(position, speed)]
+    cars.sort()
+
+    stack = []
+
+    for i in range(len(cars)-1, -1, -1):
+        t = (target - cars[i][0])/cars[i][1]
+        if stack and t <= stack[-1]:
+            pass
+        else:
+            stack.append(t)
+
+    return len(stack)
