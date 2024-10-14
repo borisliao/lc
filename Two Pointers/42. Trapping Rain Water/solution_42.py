@@ -312,3 +312,24 @@ def review11(height: list[int]) -> int:
         stack.append(i)
 
     return rainWater
+
+
+def review12(height: list[int]) -> int:
+    """
+    Mochi 10-13-24
+    """
+    l, r = 0, len(height)-1
+    maxL = 0
+    maxR = 0
+    rainWater = 0
+
+    while l < r:
+        if height[l] < height[r]:
+            maxL = max(maxL, height[l])
+            rainWater += max(maxL-height[l], 0)
+            l += 1
+        else:
+            maxR = max(maxR, height[r])
+            rainWater += max(maxR-height[r], 0)
+            r -= 1
+    return rainWater
