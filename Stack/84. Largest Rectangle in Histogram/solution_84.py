@@ -182,24 +182,20 @@ def review8(heights: list[int]) -> int:
     return area
 
 
-# def review9(heights: list[int]) -> int:
-#     res = 0
-#     stack = []
+def review9(heights: list[int]) -> int:
+    """
+    Mochi 10-13-24
+    """
+    stack = []
+    result = 0
+    for i, h in enumerate(heights):
+        l = i
+        while stack and stack[-1][1] > h:
+            l, height = stack.pop()
+            result = max(result, height * (i-l))
+        stack.append((l, h))
 
-#     for i in range(len(heights)):
-#         l = i
-#         while stack and heights[stack[-1]] > heights[i]:
-#             x = l - stack[-1]
-#             y = heights[stack[-1]]  # s2 heights[stack[-1]]
+    for i, h in stack:
+        result = max(result, h*(len(heights)-i))
 
-#             res = max(x*y, res)  # s1
-#             l = stack.pop()  # s1
-
-#         stack.append(l)
-
-#     for i in stack:  # s1
-#         x = len(heights) - i  # s1
-#         y = heights[i]  # s1
-#         res = max(res, x*y)  # s1
-
-#     return res
+    return result
