@@ -27,7 +27,7 @@ def test_example_2(f):
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_567, predicate=inspect.isfunction)])
 def test_lc_56(f):
     """
-    Test if you checked the last 3 characters of s2 is a permutation
+    Test if you checked the last 3 characters of s2
     You are probably miscalculating your sliding window size.
     Make sure you are not checking the size of the window by len(window) where window is a dict
     """

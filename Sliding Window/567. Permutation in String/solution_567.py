@@ -364,3 +364,23 @@ def review13(s1: str, s2: str) -> bool:
                 del window[character]
 
     return False
+
+
+def review14(s1: str, s2: str) -> bool:
+    """
+    Mochi 10-14-24
+    """
+    count = Counter(s1)
+    window = Counter(s2[0:len(s1)])
+
+    if count == window:
+        return True
+
+    l = 0
+    for r in range(len(s1), len(s2)):
+        window[s2[l]] -= 1
+        l += 1
+        window[s2[r]] += 1
+        if count == window:
+            return True
+    return False
