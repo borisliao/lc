@@ -209,3 +209,18 @@ def review12(temperatures: list[int]) -> list[int]:
         stack.append(i)
 
     return temps
+
+
+def review13(temperatures: list[int]) -> list[int]:
+    """
+    Mochi 10-13-24
+    """
+    res = [0 for _ in range(len(temperatures))]
+    stack = []
+
+    for r in range(len(temperatures)):
+        while stack and temperatures[stack[-1]] < temperatures[r]:
+            l = stack.pop()
+            res[l] = r-l
+        stack.append(r)
+    return res
