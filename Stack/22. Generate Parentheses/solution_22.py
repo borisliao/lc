@@ -219,3 +219,27 @@ def review8(n: int) -> list[str]:
 
     dfs(0, 0)
     return res
+
+
+def review9(n: int) -> list[str]:
+    """
+    Mochi 10-13-24
+    """
+    result = []
+    subset = []
+
+    def dfs(open, close):
+        if open == close == n:
+            result.append(''.join(subset))
+            return
+        if open < n:
+            subset.append('(')
+            dfs(open+1, close)
+            subset.pop()
+        if open > close:
+            subset.append(')')
+            dfs(open, close+1)
+            subset.pop()
+
+    dfs(0, 0)
+    return result
