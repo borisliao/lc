@@ -282,3 +282,19 @@ def review12(s: str, k: int) -> int:
         result = max(lenOfWindow, result)
 
     return result
+
+
+def review13(s: str, k: int) -> int:
+    """
+    Mochi 10-13-24
+    """
+    window = Counter()
+    result = 0
+    l = 0
+    for r in range(len(s)):
+        window[s[r]] += 1
+        while r+1-l - max(window.values()) > k:
+            window[s[l]] -= 1
+            l += 1
+        result = max(result, r+1-l)
+    return result
