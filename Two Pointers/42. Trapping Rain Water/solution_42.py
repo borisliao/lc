@@ -333,3 +333,46 @@ def review12(height: list[int]) -> int:
             rainWater += max(maxR-height[r], 0)
             r -= 1
     return rainWater
+
+
+def review13(height: list[int]) -> int:
+    """
+    Mochi 10-15-24
+    """
+    l = 0
+    r = len(height) - 1
+    lMax = 0
+    rMax = 0
+    result = 0
+
+    while l < r:
+        lMax = max(lMax, height[l])
+        rMax = max(rMax, height[r])
+        if height[l] < height[r]:
+            result += min(lMax, rMax)-height[l]
+            l += 1
+        else:
+            result += min(lMax, rMax)-height[r]
+            r -= 1
+    return result
+
+
+def review14(height: list[int]) -> int:
+    """
+    Mochi 10-15-24
+    Monotonic Stack
+    """
+    stack = []
+    result = 0
+
+    for r, right_hill in enumerate(height):
+        while stack and height[stack[-1]] < right_hill:
+            valley = stack.pop()
+            if stack:
+                left_hill = stack[-1]
+                water_height = min(
+                    right_hill, height[left_hill]) - height[valley]
+                width = r - left_hill - 1
+                result += water_height*width
+        stack.append(r)
+    return result
