@@ -384,3 +384,31 @@ def review14(s1: str, s2: str) -> bool:
         if count == window:
             return True
     return False
+
+
+def review15(s1: str, s2: str) -> bool:
+    """
+    Mochi 10-15-24
+    """
+    compare = {}
+    for s in s1:
+        compare[s] = compare.get(s, 0) + 1
+
+    window = {}
+    l = 0
+    for r in range(len(s2)):
+        window[s2[r]] = window.get(s2[r], 0) + 1
+        if r+1-l == len(s1):
+            match = True
+            for c in compare:
+                if match == False:
+                    pass
+                if c not in window:
+                    match = False
+                elif window[c] != compare[c]:
+                    match = False
+            if match:
+                return True
+            window[s2[l]] -= 1
+            l += 1
+    return False
