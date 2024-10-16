@@ -1,38 +1,5 @@
 from collections import deque
-
-
-# def maxSlidingWindow(nums: list[int], k: int) -> list[int]:
-#     """
-#     Slow solution o(n*k)
-#     """
-#     l = 0
-#     r = k
-#     result = []
-
-#     while r <= len(nums):
-#         vals = nums[l:r]
-#         result.append(max(vals))
-#         l += 1
-#         r += 1
-#     return result
-
-# def maxSlidingWindow(nums: list[int], k: int) -> list[int]:
-#     l = 0
-#     r = k - 1
-#     stack = [max(nums[l:r+1])]
-#     result = [stack[-1]]
-
-#     while r < len(nums):
-#         if nums[l-1] == stack[-1]:
-#             stack.pop()
-#         if nums[r] > stack[-1]:
-#             stack.append(nums[r])
-
-#         result.append(stack[-1])
-#         l += 1
-#         r += 1
-
-#     return result
+import heapq
 
 
 def maxSlidingWindow(nums: list[int], k: int) -> list[int]:
@@ -88,23 +55,6 @@ def review1(nums: list[int], k: int) -> list[int]:
     return result
 
 
-# def review2(nums: list[int], k: int) -> list[int]:
-#     """
-#     Anki 1-21-24
-#     Brute force
-#     Time: 8 min
-#     Used: debugger 1
-#     """
-#     l = 0
-#     result = []
-
-#     for r in range(k, len(nums)+1):  # d1 +1
-#         result.append(max(nums[l:r]))
-#         l += 1
-
-#     return result
-
-
 def review3(nums: list[int], k: int) -> list[int]:
     """
     Anki 1-21-24
@@ -129,31 +79,6 @@ def review3(nums: list[int], k: int) -> list[int]:
             l += 1
 
     return result
-
-
-# def review4(nums: list[int], k: int) -> list[int]:
-#     """
-#     Anki 1-27-24
-#     Time: 20 min
-#     Used: Solution 1
-#     """
-#     q = deque()
-#     l = 0
-#     result = []
-#     for r in range(len(nums)):
-#         while q and nums[q[-1]] < nums[r]:  # s1 q[-1] < nums[r]
-#             q.pop()
-#         q.append(r)  # s1 r
-
-#         if r+1-l < k:
-#             continue
-
-#         result.append(nums[q[0]])  # s1 nums[q[-1]]
-#         if l > q[0]:  # s1 q[0] == nums[l]
-#             q.popleft()
-#         l += 1
-
-#     return result
 
 
 def review5(nums: list[int], k: int) -> list[int]:
@@ -230,24 +155,6 @@ def review7(nums: list[int], k: int) -> list[int]:
 
     return result
 
-
-# def review8(nums: list[int], k: int) -> list[int]:
-#     """
-#     Mochi 4-14-24
-#     """
-#     q = deque()
-#     l = 0
-#     result = []
-#     for r in range(len(nums)):
-#         if q and nums[q[-1]] > nums[r]:
-#             continue
-#         q.append(r)
-#         if r-l >= k:
-#             while q[0] <= l:
-#                 q.popleft()
-#             l += 1
-#             result.append(nums(q[0]))
-#     return result
 
 def review9(nums: list[int], k: int) -> list[int]:
     """
@@ -336,6 +243,29 @@ def review12(nums: list[int], k: int) -> list[int]:
         # if in window
         if r+1-l == k:
             # the largest value is in the beginning of the queue
+            result.append(nums[q[0]])
+            l += 1
+
+    return result
+
+
+def review13(nums: list[int], k: int) -> list[int]:
+    """
+    Mochi 10-16-24
+    """
+    q = deque()
+    result = []
+
+    l = 0
+    for r in range(len(nums)):
+        while q and nums[r] > nums[q[-1]]:
+            q.pop()
+        q.append(r)
+
+        while q[0] < l:
+            q.popleft()
+
+        if r+1-l == k:
             result.append(nums[q[0]])
             l += 1
 

@@ -45,7 +45,23 @@ def test_lc_20(f):
 
 @pytest.mark.timeout(2)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_239, predicate=inspect.isfunction)])
+def test_lc_20(f):
+    """
+    Check if your window is correctly getting the maximum value during the middle of the itterations 
+    """
+    k = 3
+    nums = [1, 3, 1, 2, 0, 5]
+    output = [3, 3, 2, 5]
+
+    assert f(nums, k) == output
+
+
+@pytest.mark.timeout(2)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_239, predicate=inspect.isfunction)])
 def test_lc_37(f):
+    """
+    Test the speed of your algorithm
+    """
     k = 50000
     nums = [randrange(0, 10000) for _ in range((k*2))]
     output = [max(nums)] * (k+1)
