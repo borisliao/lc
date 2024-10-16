@@ -172,3 +172,20 @@ def review7(s: str) -> int:
         result = max(result, r+1-l)
 
     return result
+
+
+def review8(s: str) -> int:
+    """
+    Mochi 10-15-24
+    """
+    occ = set()
+    res = 0
+
+    l = 0
+    for r in range(len(s)):
+        while s[r] in occ:
+            occ.remove(s[l])
+            l += 1
+        res = max(res, r+1-l)
+        occ.add(s[r])
+    return res
