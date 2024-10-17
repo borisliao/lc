@@ -316,3 +316,21 @@ def review14(s: str, k: int) -> int:
         res = max(res, r+1-l)
 
     return res
+
+
+def review15(s: str, k: int) -> int:
+    """
+    Mochi 10-17-24
+    """
+    res = 0
+    window = {}
+    l = 0
+
+    for r in range(len(s)):
+        window[s[r]] = window.get(s[r], 0) + 1
+        while r+1-l - max(window.values()) > k:
+            window[s[l]] -= 1
+            l += 1
+        res = max(res, r+1-l)
+
+    return res
