@@ -376,3 +376,26 @@ def review14(height: list[int]) -> int:
                 result += water_height*width
         stack.append(r)
     return result
+
+
+def review15(height: list[int]) -> int:
+    """
+    Mochi 10-21-24
+    """
+    l = 0
+    r = len(height) - 1
+    maxL = 0
+    maxR = 0
+    result = 0
+
+    while l < r:
+        maxL = max(maxL, height[l])
+        maxR = max(maxR, height[r])
+        if height[l] < height[r]:
+            result += min(maxL, maxR)-height[l]
+            l += 1
+        else:
+            result += min(maxL, maxR)-height[r]
+            r -= 1
+
+    return result

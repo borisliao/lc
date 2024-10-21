@@ -21,3 +21,14 @@ def test_example_2(f):
     output = 9
 
     assert f(height) == output
+
+
+@ pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_42, predicate=inspect.isfunction)])
+def test_lc_82(f):
+    """
+    Check if you are updating maxR
+    """
+    height = [4, 2, 3]
+    output = 1
+
+    assert f(height) == output
