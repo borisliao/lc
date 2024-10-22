@@ -6,6 +6,9 @@ import solution_76
 @pytest.mark.timeout(1)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_76, predicate=inspect.isfunction)])
 def test_example_1(f):
+    """
+    Check when all characters from t to be present with AT LEAST the same frequency, not exactly the same frequency.
+    """
     s = "ADOBECODEBANC"
     t = "ABC"
     output = "BANC"

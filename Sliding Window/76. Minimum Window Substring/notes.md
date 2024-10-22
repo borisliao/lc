@@ -1,5 +1,7 @@
 ### [76. Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)
 
+#Hard #Blind75 #NeetCode150
+
 Given two strings `s` and `t` of lengths `m` and `n` respectively, return _the **minimum window**_ **_substring_** _of_ `s` _such that every character in_ `t` _(**including duplicates**) is included in the window_. If there is no such substring, return _the empty string_ `""`.
 
 The testcases will be generated such that the answer is **unique**.
@@ -27,7 +29,7 @@ The testcases will be generated such that the answer is **unique**.
 
 - `m == s.length`
 - `n == t.length`
-- `1 <= m, n <= 10<sup>5</sup>`
+- 1 <= m, n <= 10<sup>5</sup>
 - `s` and `t` consist of uppercase and lowercase English letters.
 
 **Follow up:** Could you find an algorithm that runs in `O(m + n)` time?
