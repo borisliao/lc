@@ -26,7 +26,7 @@ Write an efficient algorithm that searches for a value `target` in an `m x n` in
 - `m == matrix.length`
 - `n == matrix[i].length`
 - `1 <= n, m <= 300`
-- `-10<sup>9</sup> <= matrix[i][j] <= 10<sup>9</sup>`
+- -10<sup>9</sup> <= matrix[i][j] <= 10<sup>9</sup>
 - All the integers in each row are **sorted** in ascending order.
 - All the integers in each column are **sorted** in ascending order.
-- `-10<sup>9</sup> <= target <= 10<sup>9</sup>`
+- -10<sup>9</sup> <= target <= 10<sup>9</sup>

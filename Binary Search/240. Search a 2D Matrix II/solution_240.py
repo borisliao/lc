@@ -109,3 +109,36 @@ def review3(matrix: list[list[int]], target: int) -> bool:
             else:
                 r = m - 1
     return False
+
+
+def review4(matrix: list[list[int]], target: int) -> bool:
+    """
+    Mochi 10-21-24
+    """
+    l = 0
+    r = len(matrix) - 1
+
+    while l < r:
+        if matrix[l][0] < target:
+            l += 1
+        else:
+            r -= 1
+
+    rowBound = r
+
+    l = 0
+    r = len(matrix[0]) - 1
+
+    while l < r:
+        if matrix[0][l] < target:
+            l += 1
+        else:
+            r -= 1
+
+    colBound = r
+
+    for r in range(rowBound+1):
+        for c in range(colBound+1):
+            if matrix[r][c] == target:
+                return True
+    return False
