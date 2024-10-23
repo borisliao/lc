@@ -56,47 +56,6 @@ def review1(nums: List[int], target: int) -> int:
     return -1
 
 
-# def review2(nums: List[int], target: int) -> int:
-#     """
-#     Review 11-13-23
-#     Use 2 binary searches to find the pivot
-#     Used: Peek at previous solution, [youtube comment](https://www.youtube.com/watch?v=U8XENwh8Oy8&lc=UgwnptiTyyTTP8Irovt4AaABAg.9JU-7X6GVtm9aKxL_x_m5w)
-#     """
-#     l = 0
-#     r = len(nums) - 1
-
-#     while l <= r:
-#         m = (r - l) // 2
-
-#         if nums[m] < nums[0]:
-#             # pivot on the left
-#             l += 1
-#         else:
-#             # pivot on the right
-#             r -= 1
-
-#     l_pivot = nums[r]
-#     r_pivot = nums[l]
-
-#     if nums[0] <= target <= l_pivot:
-#         l = 0
-#         r = l_pivot
-#     else:
-#         l = r_pivot
-#         r = len(nums) - 1
-
-#     while l <= r:
-#         m = (r-l) // 2
-#         if nums[m] == target:
-#             return m
-
-#         if nums[m] > target:
-#             l += 1
-#         else:
-#             r -= 1
-
-#     return -1
-
 def lc_TrentonO(nums: List[int], target: int) -> int:
     """
     # [Three Lines of Python](https://leetcode.com/problems/search-in-rotated-sorted-array/solutions/3879735/three-lines-of-python/)
@@ -338,6 +297,30 @@ def review9(nums: List[int], target: int) -> int:
             else:
                 l = m + 1
         else:
+            if nums[m] < target <= nums[r]:
+                l = m + 1
+            else:
+                r = m - 1
+    return -1
+
+
+def review10(nums: List[int], target: int) -> int:
+    """
+    Mochi 10-22-24
+    """
+    l = 0
+    r = len(nums) - 1
+
+    while l <= r:
+        m = (l+r)//2
+        if nums[m] == target:
+            return m
+        if nums[l] <= nums[m]:  # left side
+            if nums[l] <= target < nums[m]:
+                r = m - 1
+            else:
+                l = m + 1
+        else:  # right side
             if nums[m] < target <= nums[r]:
                 l = m + 1
             else:

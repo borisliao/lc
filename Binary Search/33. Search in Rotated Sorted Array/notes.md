@@ -1,6 +1,6 @@
-# [33\. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
+### [33. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
 
-Medium
+#Medium #Blind75 #NeetCode150
 
 There is an integer array `nums` sorted in ascending order (with **distinct** values).
 
@@ -28,7 +28,7 @@ You must write an algorithm with `O(log n)` runtime complexity.
 **Constraints:**
 
 - `1 <= nums.length <= 5000`
-- `-10<sup>4</sup> <= nums[i] <= 10<sup>4</sup>`
+- -10<sup>4</sup> <= nums[i] <= 10<sup>4</sup>
 - All values of `nums` are **unique**.
 - `nums` is an ascending array that is possibly rotated.
-- `-10<sup>4</sup> <= target <= 10<sup>4</sup>`
+- -10<sup>4</sup> <= target <= 10<sup>4</sup>
