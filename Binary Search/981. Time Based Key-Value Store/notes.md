@@ -1,6 +1,6 @@
-# [981\. Time Based Key-Value Store](https://leetcode.com/problems/time-based-key-value-store/)
+### [981. Time Based Key-Value Store](https://leetcode.com/problems/time-based-key-value-store/)
 
-Medium
+#Medium #NeetCode150
 
 Design a time-based key-value data structure that can store multiple values for the same key at different time stamps and retrieve the key's value at a certain timestamp.
 
@@ -42,6 +42,6 @@ Implement the `TimeMap` class:
 
 - `1 <= key.length, value.length <= 100`
 - `key` and `value` consist of lowercase English letters and digits.
-- `1 <= timestamp <= 10<sup>7</sup>`
+- 1 <= timestamp <= 10<sup>7</sup>
 - All the timestamps `timestamp` of `set` are strictly increasing.
-- At most `2 * 10<sup>5</sup>` calls will be made to `set` and `get`.
+- At most 2 \* 10<sup>5</sup> calls will be made to `set` and `get`.

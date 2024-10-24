@@ -1,106 +1,3 @@
-# def naive():
-#     class TimeMap:
-#         def __init__(self):
-#             self.k = {}
-
-#         def set(self, key: str, value: str, timestamp: int) -> None:
-#             self.k[key] = self.k.get(key, {}) | {timestamp: value}
-
-#         def get(self, key: str, timestamp: int) -> str:
-#             if key in self.k:
-#                 for i in range(timestamp, -1, -1):
-#                     if i in self.k[key]:
-#                         return self.k[key][i]
-
-#             return ''
-
-#     return TimeMap()
-
-# def halfBinarySearch():
-#     class TimeMap:
-#         def __init__(self):
-#             self.k = {}
-
-#         def set(self, key: str, value: str, timestamp: int) -> None:
-#             self.k[key] = self.k.get(key, {}) | {timestamp: value}
-
-#         def get(self, key: str, timestamp: int) -> str:
-#             if key in self.k:
-#                 ts = sorted(self.k[key].keys())
-
-#                 l, r = 0, len(ts) - 1
-#                 potential = -1
-#                 while l <= r:
-#                     m = (l + r) // 2
-
-#                     if ts[m] > timestamp:
-#                         r = m - 1
-#                     elif ts[m] < timestamp:
-#                         l = m + 1
-#                         potential = ts[m]
-#                     else:
-#                         return self.k[key][timestamp]
-
-#                 if potential != -1:
-#                     return self.k[key][potential]
-#             return ''
-
-#     return TimeMap()
-
-# def binarySearchAttempt():
-#     """
-#     This solution is still too slow for test_lc_44.py
-#     """
-#     class TimeMap:
-#         def __init__(self):
-#             self.k = {}
-#             self.ts = {}
-
-#         def set(self, key: str, value: str, timestamp: int) -> None:
-#             self.k[key] = self.k.get(key, {}) | {timestamp: value}
-#             self.ts[key] = self.ts.get(key, [])
-
-#             #  this binary insertion is broken
-#             # l, r = 0, len(self.ts[key]) - 1
-
-#             # while l <= r:
-#             #     m = (l + r) // 2
-
-#             #     if self.ts[key][m] > timestamp:
-#             #         l = m + 1
-#             #     elif self.ts[key][m] < timestamp:
-#             #         r = m - 1
-#             #     else:
-#             #         return
-
-#             # self.ts[key].insert(abs(l+r), timestamp)
-
-#             import bisect
-#             bisect.insort(self.ts[key], timestamp)
-
-#         def get(self, key: str, timestamp: int) -> str:
-#             if key in self.k:
-#                 ts = self.ts[key]
-
-#                 l, r = 0, len(ts) - 1
-#                 potential = -1
-#                 while l <= r:
-#                     m = (l + r) // 2
-
-#                     if ts[m] > timestamp:
-#                         r = m - 1
-#                     elif ts[m] < timestamp:
-#                         l = m + 1
-#                         potential = ts[m]
-#                     else:
-#                         return self.k[key][timestamp]
-
-#                 if potential != -1:
-#                     return self.k[key][potential]
-#             return ''
-
-#     return TimeMap()
-
 from collections import defaultdict
 
 
@@ -134,29 +31,6 @@ def neetCode():
 
     return TimeMap()
 
-
-# def binarySearchWithDict():
-#     class TimeMap:
-#         def __init__(self):
-#             self.k = {}
-
-#         def set(self, key: str, value: str, timestamp: int) -> None:
-#             self.k[key] = self.k.get(key, {}) | {timestamp: value}
-
-#         def get(self, key: str, timestamp: int) -> str:
-#             # converting to list is a o(n) opperation
-#             res, values = "", list(self.k.get(key, {}))
-#             l, r = 0, len(values) - 1
-#             while l <= r:
-#                 m = (l + r) // 2
-#                 if values[m] <= timestamp:
-#                     res = self.k[key][values[m]]
-#                     l = m + 1
-#                 else:
-#                     r = m - 1
-#             return res
-
-#     return TimeMap()
 
 def review1():
     """
@@ -225,7 +99,7 @@ def review2():
     return TimeMap()
 
 
-def review2():
+def review3():
     """
     Anki 12-3-23
     Time: 12:04
@@ -263,7 +137,7 @@ def review2():
     return TimeMap()
 
 
-def review3():
+def review4():
     """
     Anki 12-31-23
     Time: 20 min
@@ -288,42 +162,6 @@ def review3():
 
     return TimeMap()
 
-
-# def review4():
-#     """
-#     Anki 12-31-23
-#     Due to the nested dictionary instead of list, the time complexity is o(n) instead of o(log(n))
-#     Used: debugger 4
-#     Time: 35 min
-#     """
-#     class TimeMap:
-#         def __init__(self):
-#             self.store = defaultdict(lambda: {})
-
-#         def set(self, key: str, value: str, timestamp: int) -> None:
-#             self.store[key][timestamp] = value
-
-#         def get(self, key: str, timestamp: int) -> str:
-#             if key in self.store:
-#                 if timestamp in self.store[key]:
-#                     return self.store[key][timestamp]
-
-#             kv = list(self.store[key].items())  # d2, d4 conversion is slow
-#             l = 0  # d1 indent out of "if key"
-#             r = len(kv) - 1
-#             largest = None
-#             while l <= r:
-#                 m = (l+r)//2
-#                 # d2 self.store, d3 m in self.store[key]
-#                 if kv[m][0] < timestamp:
-#                     largest = kv[m][1]
-#                     l = m + 1  # d2 l = t
-#                 else:
-#                     r = m - 1
-
-#             return largest if largest else ''
-
-#     return TimeMap()
 
 def review5():
     """
@@ -391,9 +229,44 @@ def review6():
 
     return TimeMap()
 
-# def review7():
+
+def review7():
+    """
+    Mochi 10-23-24
+    """
+    class TimeMap:
+        def __init__(self):
+            self.store = {}
+
+        def set(self, key: str, value: str, timestamp: int) -> None:
+            if key not in self.store:
+                self.store[key] = []
+            self.store[key].append((value, timestamp))
+
+        def get(self, key: str, timestamp: int) -> str:
+            l = 0
+            r = len(self.store.get(key, [])) - 1
+
+            res = ""
+
+            while l <= r:
+                m = (l+r)//2
+                if self.store[key][m][1] == timestamp:
+                    return self.store[key][m][0]
+
+                if self.store[key][m][1] < timestamp:
+                    res = self.store[key][m][0]
+                    l = m + 1
+                else:
+                    r = m - 1
+
+            return res
+
+    return TimeMap()
+
+# def review():
 #     """
-#     Mochi 4-10-24
+#     Mochi 10-23-24
 #     """
 #     class TimeMap:
 #         def __init__(self):
