@@ -1,18 +1,5 @@
 import math
 
-# def bruteForce(piles: list[int], h: int) -> int:
-#     k = 0
-#     guess = float('inf')
-
-#     while guess <= h:
-#         k+=1
-#         guess = 0
-
-#         for bananas in piles:
-#             guess += bananas//k + (1 if bananas % k > 0 else 0)
-
-#     return k
-
 
 def neetcode(piles: list[int], h: int) -> int:
     l, r = 1, max(piles)
@@ -242,3 +229,21 @@ def review9(piles: list[int], h: int) -> int:
             l = k + 1
 
     return min_k
+
+
+def review10(piles: list[int], h: int) -> int:
+    """
+    Mochi 10-23-24
+    """
+    l = 1  # d1 0
+    r = max(piles)
+    res = r
+    while l <= r:
+        k = (l+r)//2
+        if sum([math.ceil(p/k) for p in piles]) > h:
+            l = k + 1
+        else:
+            res = min(res, k)
+            r = k - 1
+
+    return res
