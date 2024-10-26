@@ -374,3 +374,37 @@ def review10(nums1: list[int], nums2: list[int]) -> float:
             r = i - 1
         else:
             l = i + 1
+
+
+def review11(nums1: list[int], nums2: list[int]) -> float:
+    """
+    Mochi 10-26-24
+    """
+    A, B = nums1, nums2
+
+    if len(A) > len(B):
+        A, B = B, A
+
+    total = len(A) + len(B)
+    half = total // 2
+    l = 0
+    r = len(A)-1
+
+    while True:
+        i = (l+r)//2
+        j = half-2-i
+
+        aLeft = A[i] if i >= 0 else float('-inf')
+        aRight = A[i+1] if i+1 < len(A) else float('inf')
+        bLeft = B[j] if j >= 0 else float('-inf')
+        bRight = B[j+1] if j+1 < len(B) else float('inf')
+
+        if aLeft <= bRight and bLeft <= aRight:
+            if total % 2:
+                return min(aRight, bRight)
+            else:
+                return (max(aLeft, bLeft) + min(aRight, bRight))/2
+        if aLeft > bRight:
+            r = i-1
+        else:
+            l = i+1

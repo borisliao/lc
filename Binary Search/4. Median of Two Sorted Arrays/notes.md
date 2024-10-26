@@ -1,6 +1,6 @@
-# [4\. Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)
+### [4. Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)
 
-Hard
+#Hard #NeetCode150
 
 Given two sorted arrays `nums1` and `nums2` of size `m` and `n` respectively, return **the median** of the two sorted arrays.
 
@@ -25,4 +25,4 @@ The overall run time complexity should be `O(log (m+n))`.
 - `0 <= m <= 1000`
 - `0 <= n <= 1000`
 - `1 <= m + n <= 2000`
-- `-10<sup>6</sup> <= nums1[i], nums2[i] <= 10<sup>6</sup>`
+- -10<sup>6</sup> <= nums1[i], nums2[i] <= 10<sup>6</sup>
