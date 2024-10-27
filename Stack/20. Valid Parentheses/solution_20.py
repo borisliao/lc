@@ -124,3 +124,24 @@ def review8(s: str) -> bool:
         else:
             stack.append(c)
     return True if len(stack) == 0 else False
+
+
+def review9(s: str) -> bool:
+    """
+    Mochi 10-27-24
+    """
+    stack = []
+    map = {'}': '{',
+           ')': '(',
+           ']': '['}
+
+    for c in s:
+        if c in map:
+            if stack and stack[-1] == map[c]:
+                stack.pop()
+            else:
+                return False
+        else:
+            stack.append(c)
+
+    return True if len(stack) == 0 else False
