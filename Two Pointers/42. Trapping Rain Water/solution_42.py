@@ -399,3 +399,45 @@ def review15(height: list[int]) -> int:
             r -= 1
 
     return result
+
+
+def review16(height: list[int]) -> int:
+    """
+    Mochi 10-27-24
+    """
+    l, r = 0, len(height)-1
+    mL = mR = 0
+    res = 0
+
+    while l <= r:
+        mL = max(height[l], mL)
+        mR = max(height[r], mR)
+
+        if height[l] < height[r]:
+            res += max(min(mL, mR) - height[l], 0)
+            l += 1
+        else:
+            res += max(min(mL, mR) - height[r], 0)
+            r -= 1
+
+    return res
+
+
+def review17(height: list[int]) -> int:
+    """
+    Mochi 10-27-24
+    """
+    stack = []
+    result = 0
+
+    for r in range(len(height)):
+        while stack and height[stack[-1]] < height[r]:
+            valley = stack.pop()
+            if stack:
+                left_hill = stack[-1]
+                water_height = min(
+                    height[r], height[left_hill]) - height[valley]
+                width = r - left_hill - 1
+                result += water_height*width
+        stack.append(r)
+    return result
