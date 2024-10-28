@@ -238,3 +238,44 @@ def review5(list1: ListNode | None, list2: ListNode | None) -> ListNode | None:
         node.next = list2
 
     return dummy.next
+
+
+def review6(list1: ListNode | None, list2: ListNode | None) -> ListNode | None:
+    """
+    Mochi 10-27-24
+    """
+    dummy = ListNode()
+    node = dummy
+
+    while list1 and list2:
+        if list1.val > list2.val:
+            node.next = list2
+            list2 = list2.next
+        else:
+            node.next = list1
+            list1 = list1.next
+        node = node.next
+
+    if list1:
+        node.next = list1
+    else:
+        node.next = list2
+
+    return dummy.next
+
+
+def review7(l1, l2):
+    """
+    Mochi 10-27-24
+    """
+    if not l1:
+        return l2
+    if not l2:
+        return l1
+
+    if l1.val > l2.val:
+        l2.next = review7(l1, l2.next)
+        return l2
+    else:
+        l1.next = review7(l1.next, l2)
+        return l1
