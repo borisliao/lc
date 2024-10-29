@@ -18,7 +18,7 @@ An **Anagram** is a word or phrase formed by rearranging the letters of a differ
 
 **Constraints:**
 
-- `1 <= s.length, t.length <= 5 * 10<sup>4</sup>`
+- 1 <= s.length, t.length <= 5 \* 10<sup>4</sup>
 - `s` and `t` consist of lowercase English letters.
 
 **Follow up:** What if the inputs contain Unicode characters? How would you adapt your solution to such a case?

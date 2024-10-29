@@ -1,12 +1,3 @@
-# def naive(s: str, t: str) -> bool:
-#     if len(s) != len(t): return False
-
-#     for letter in t:
-#         if letter not in s:
-#             return False
-
-#     return True
-
 from collections import defaultdict
 
 
@@ -116,3 +107,26 @@ def review4(s: str, t: str) -> bool:
         tCount[c] = 1 + tCount.get(c, 0)
 
     return sCount == tCount
+
+
+def review5(s: str, t: str) -> bool:
+    """
+    Mochi 10-28-24
+    """
+    count = {}
+    for c in s:
+        count[c] = count.get(c, 0) + 1
+
+    view = {}
+    for c in t:
+        view[c] = view.get(c, 0) + 1
+
+    if len(count) != len(view):
+        return False
+
+    for c in count:
+        if c in view and view[c] == count[c]:
+            pass
+        else:
+            return False
+    return True
