@@ -22,40 +22,6 @@ class ListNode:
     def __eq__(self, __value: object) -> bool:
         return str(self) == str(__value)
 
-# def addTwoNumbers(l1: ListNode | None, l2: ListNode | None) -> ListNode | None:
-#     num1 = ''
-#     num2 = ''
-#     while True:
-#         num1+=str(l1.val)
-#         if(l1.next == None):
-#             break
-#         l1 = l1.next
-
-#     while True:
-#         num2+=str(l2.val)
-#         if(l2.next == None):
-#             break
-#         l2 = l2.next
-
-#     calc = int(num1) + int(num2)
-
-#     if len(str(calc)) == 1:
-#         return ListNode(val=int(calc))
-
-#     def f(ln, v) :
-#         print(ln.val)
-#         print(v)
-#         ln.val = int(v)
-#         if(len(v) == 1):
-#             return
-#         ln.next = ListNode()
-#         f(ln.next, v[1:])
-
-#     result = ListNode()
-#     f(result,str(calc)[::-1])
-
-#     return result
-
 
 def addTwoNumbers(l1: ListNode | None, l2: ListNode | None) -> ListNode | None:
     result = ListNode()
@@ -240,4 +206,31 @@ def review6(l1: ListNode, l2: ListNode) -> ListNode:
 
         l1 = l1.next if l1 else None
         l2 = l2.next if l2 else None
+    return dummy.next
+
+
+def review7(l1: ListNode, l2: ListNode) -> ListNode:
+    """
+    Mochi 10-29-24
+    """
+    dummy = ListNode()
+    node = dummy
+
+    carry = 0
+
+    while l1 or l2 or carry:
+        l = r = 0
+        if l1:
+            l = l1.val
+            l1 = l1.next
+        if l2:
+            r = l2.val
+            l2 = l2.next
+
+        val = (l+r+carry) % 10
+        carry = (l+r+carry)//10
+
+        node.next = ListNode(val)
+        node = node.next
+
     return dummy.next
