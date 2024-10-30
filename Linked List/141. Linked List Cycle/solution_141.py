@@ -29,40 +29,6 @@ class ListNode:
         return id(self)
 
 
-def hashSet(head: ListNode) -> bool:
-    """Naive solution, Space complexity O(n)"""
-    nodes = set()
-
-    while head:
-        if head in nodes:
-            return True
-
-        nodes.add(head)
-
-        head = head.next
-
-    return False
-
-
-def floyds(head: ListNode) -> bool:
-    """
-    Hint from neetcode https://www.youtube.com/watch?v=gBTe7lFR3vc
-    Floyd's Tortoise and Hare algorithm guarantees a solution
-    """
-    f, s = head, head
-
-    while f and f.next:
-        # start the race!
-        s = s.next
-        f = f.next.next
-
-        # check status of race
-        if f == s:
-            return True
-
-    return False
-
-
 def review1(head: ListNode | None) -> bool:
     """
     Anki 12-12-23
@@ -131,4 +97,19 @@ def review4(head: ListNode) -> bool:
         fast = fast.next.next
         if slow == fast:
             return True
+    return False
+
+
+def review5(head: ListNode) -> bool:
+    """
+    Mochi 10-29-24
+    """
+    slow, fast = head, head
+
+    while slow and fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            return True
+
     return False

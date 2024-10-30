@@ -34,8 +34,8 @@ Return `true` _if there is a cycle in the linked list_. Otherwise, return `fals
 
 **Constraints:**
 
-- The number of the nodes in the list is in the range `[0, 10<sup>4</sup>]`.
-- `-10<sup>5</sup> <= Node.val <= 10<sup>5</sup>`
+- The number of the nodes in the list is in the range [0, 10<sup>4</sup>].
+- -10<sup>5</sup> <= Node.val <= 10<sup>5</sup>
 - `pos` is `-1` or a **valid index** in the linked-list.
 
 **Follow up:** Can you solve it using `O(1)` (i.e. constant) memory?
