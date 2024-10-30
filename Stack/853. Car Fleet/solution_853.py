@@ -207,3 +207,21 @@ def review10(target: int, position: list[int], speed: list[int]) -> int:
             t = stack.pop()
         stack.append(t)
     return len(stack)
+
+
+def review11(target: int, position: list[int], speed: list[int]) -> int:
+    """
+    Mochi 10-29-24
+    """
+    cars = [(p, s) for p, s in zip(position, speed)]
+    cars.sort()
+
+    stack = []
+
+    for p, s in reversed(cars):
+        t = (target-p)/s
+        while stack and stack[-1] >= t:
+            t = stack.pop()
+        stack.append(t)
+
+    return len(stack)
