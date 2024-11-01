@@ -198,3 +198,29 @@ def review6(head: Node | None) -> Node | None:
         node = node.next
 
     return db[head]
+
+
+def review6(head: Node | None) -> Node | None:
+    """
+    Mochi 10-31-24
+    """
+    start = head
+    node = start
+
+    map = {None: None}
+    prev = None
+    while node:
+        map[node] = Node(node.val)
+        if prev:
+            prev.next = map[node]
+
+        prev = map[node]
+        node = node.next
+
+    node = start
+
+    while node:
+        map[node].random = map[node.random]
+        node = node.next
+
+    return map[head]

@@ -41,5 +41,5 @@ Your code will **only** be given the `head` of the original linked list.
 **Constraints:**
 
 - `0 <= n <= 1000`
-- `-10<sup>4</sup> <= Node.val <= 10<sup>4</sup>`
+- -10<sup>4</sup> <= Node.val <= 10<sup>4</sup>
 - `Node.random` is `null` or is pointing to some node in the linked list.
