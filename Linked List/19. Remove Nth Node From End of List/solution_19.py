@@ -22,33 +22,6 @@ class ListNode:
         return str(self) == str(__value)
 
 
-# def two_pass(head: ListNode | None, n: int) -> ListNode | None:
-#     """
-#     attempt1, Naive approach, 2 passes
-#     fails test case 2 due to flawed nth_from_beginning
-#     """
-#     original_head = head
-#     total = 0
-
-#     while head:
-#         total += 1
-#         head = head.next
-
-#     nth_from_beginning = total - n
-
-#     head = original_head
-
-#     # traverse to nth-1 element from beginning
-#     for _ in range(nth_from_beginning - 1):
-#         head = head.next
-
-#     # -----remove the nth element-----
-#     if head.next:
-#         head.next = head.next.next
-#     else:
-#         head.next = None
-#     return original_head
-
 def two_pointers(head: ListNode | None, n: int) -> ListNode | None:
     """
     Hint from Neetcode
@@ -178,3 +151,22 @@ def review5(head: ListNode | None, n: int) -> ListNode | None:
     slow.next = slow.next.next
 
     return dummy.next  # d1 head
+
+
+def review6(head: ListNode | None, n: int) -> ListNode | None:
+    """
+    Mochi 10-30-24
+    """
+    dummy = ListNode(0, next=head)
+    fast = head
+    slow = dummy
+    for _ in range(n):
+        fast = fast.next
+
+    while fast:
+        slow = slow.next
+        fast = fast.next
+
+    slow.next = slow.next.next
+
+    return dummy.next
