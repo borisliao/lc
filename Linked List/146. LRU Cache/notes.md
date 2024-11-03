@@ -35,6 +35,6 @@ The functions `get` and `put` must each run in `O(1)` average time complexity.
 **Constraints:**
 
 - `1 <= capacity <= 3000`
-- `0 <= key <= 10<sup>4</sup>`
-- `0 <= value <= 10<sup>5</sup>`
-- At most `2 * 10<sup>5</sup>` calls will be made to `get` and `put`.
+- 0 <= key <= 10<sup>4</sup>
+- 0 <= value <= 10<sup>5</sup>
+- At most 2 \* 10<sup>5</sup> calls will be made to `get` and `put`.
