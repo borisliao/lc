@@ -1,16 +1,12 @@
-import heapq
-from typing import List, Optional
-
-
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
     def __str__(self):
-        list = []
+        l = []
 
-        def addToList(ln: ListNode, list: List):
+        def addToList(ln: ListNode, l: list):
             list.append(ln.val)
             if (ln.next):
                 addToList(ln.next, list)
@@ -28,44 +24,6 @@ class ListNode:
     def __bool__(self):
         return bool(self.val or self.next)
 
-
-# def mergeKLists(lists: list[ListNode]) -> ListNode | None:
-#     h: list[tuple[tuple[int, int], ListNode]] = []
-#     t = 0
-#     for i in range(len(lists)):
-#         node = lists[i]
-#         while node:
-#             heapq.heappush(h, ((node.val, t), node))
-#             node = node.next
-#             t -= 1
-
-#     head = ListNode()
-#     node = head
-#     for n in h:
-#         node.next = ListNode(n[1].val)
-#         node = node.next
-
-#     return head.next
-
-# def mergeKLists(lists: list[ListNode | None]) -> ListNode | None:
-
-#     def merge(l: ListNode, r: ListNode):
-#         if not l and not r:
-#             return None
-#         if l and r:
-#             val = 0
-#             next = None
-#             if l.val > r.val:
-#                 val = r.val
-#                 next = merge(l, r.next)
-#             else:
-#                 val = l.val
-#                 next = merge(l.next, r)
-#             return ListNode(val, next)
-#         elif l:
-#             return l
-#         else:
-#             return r
 
 def mergeKLists(lists: list[ListNode | None]) -> ListNode | None:
     """
@@ -188,35 +146,6 @@ def review3(lists: list[ListNode | None]) -> ListNode | None:
     return lists[0]
 
 
-# def review4(lists: list[ListNode | None]) -> ListNode | None:
-#     """
-#     Anki 2-4-24
-#     Time: 6:41
-#     """
-#     def merge(l, r):
-#         if not l:
-#             return r
-#         if not r:
-#             return l
-#         if l.val < r.val:
-#             l.next = merge(l.next, r)
-#             return l
-#         else:
-#             r.next = merge(l, r.next)
-#             return r
-
-#     if not lists:  # s3
-#         return None  # s3
-
-#     interval = 1
-#     while interval < len(lists):  # s1
-#         for i in range(0, len(lists)-interval, 2*interval):
-#             lists[i] = merge(lists[i], lists[i+interval])  # s2 lists[i]
-#             interval *= 2
-
-#     return lists[0]
-
-
 def review5(lists: list[ListNode | None]) -> ListNode | None:
     """
     Anki 2-5-24
@@ -302,24 +231,58 @@ def review7(lists: list[ListNode | None]) -> ListNode:
     return dummy.next
 
 
-# def review8(lists: list[ListNode | None]) -> ListNode:
-#     """
-#     Mochi 6-26-24
-#     """
-#     node = ListNode()
-#     dummy = node
-#     while lists:
-#         l = 0
-#         smallest = 0
-#         for i in range(len(lists)):
-#             if lists[i].val <= smallest:
-#                 smallest = lists[i].val
-#                 l = i
-#                 break
+def review8(lists: list[ListNode | None]) -> ListNode:
+    """
+    Mochi 11-3-24
+    Does not take advantage of the sorted lists
+    """
+    dummy = ListNode()
+    head = dummy
 
-#         lists[l] = lists[l].next
-#         if lists[l] == None:
-#             del lists[l]
-#         node.next = ListNode(smallest)
-#         node = node.next
-#     return dummy.next
+    while lists:
+        s = 0
+        i = 0
+        while i < len(lists):
+            if lists[i].val == None:
+                del lists[i]
+            elif lists[i].val < lists[s].val:
+                s = i
+            else:
+                i += 1
+        if lists:
+
+            head.next = lists[s]
+            head = head.next
+            lists[s] = lists[s].next
+            if not lists[s] or lists[s].val == None:
+                del lists[s]
+
+    return dummy.next
+
+
+def review9(lists: list[ListNode | None]) -> ListNode:
+    """
+    Mochi 11-3-24
+    """
+    def merge(l, r):
+        if not l:
+            return r
+        if not r:
+            return l
+        if l.val < r.val:
+            l.next = merge(l.next, r)
+            return l
+        else:
+            r.next = merge(l, r.next)
+            return r
+
+    if not lists:
+        return None
+
+    interval = 1
+    while interval < len(lists):
+        for i in range(0, len(lists)-interval, 2*interval):
+            lists[i] = merge(lists[i], lists[i+interval])
+        interval *= 2
+
+    return lists[0]

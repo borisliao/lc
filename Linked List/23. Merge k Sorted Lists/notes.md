@@ -1,6 +1,6 @@
 ### [23. Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)
 
-#Hard
+#Hard #Blind75 #NeetCode150
 
 You are given an array of `k` linked-lists `lists`, each linked-list is sorted in ascending order.
 
@@ -32,8 +32,8 @@ _Merge all the linked-lists into one sorted linked-list and return it._
 **Constraints:**
 
 - `k == lists.length`
-- `0 <= k <= 10<sup>4</sup>`
+- 0 <= k <= 10<sup>4</sup>
 - `0 <= lists[i].length <= 500`
-- `-10<sup>4</sup> <= lists[i][j] <= 10<sup>4</sup>`
+- -10<sup>4</sup> <= lists[i][j] <= 10<sup>4</sup>
 - `lists[i]` is sorted in **ascending order**.
-- The sum of `lists[i].length` will not exceed `10<sup>4</sup>`.
+- The sum of `lists[i].length` will not exceed 10<sup>4</sup>.
