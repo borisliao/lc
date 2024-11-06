@@ -1,25 +1,3 @@
-# def combinationSum2(candidates: list[int], target: int) -> list[list[int]]:
-#     """
-#     12-5-23
-#     """
-#     result = set()
-#     combination = []
-
-#     def dfs(i):
-#         if sum(combination) == target:
-#             result.add(tuple(sorted(combination)))  # d2
-#             return
-#         if i > len(candidates) - 1 or sum(combination) > target:
-#             return
-
-#         combination.append(candidates[i])
-#         dfs(i+1)
-#         combination.pop()
-#         dfs(i+1)
-
-#     dfs(0)  # d1
-#     return [list(x) for x in result]
-
 def review1(candidates: list[int], target: int) -> list[list[int]]:
     """
     Anki 12-5-23
@@ -192,7 +170,7 @@ def review5(candidates: list[int], target: int) -> list[list[int]]:
     return result
 
 
-def review5(candidates: list[int], target: int) -> list[list[int]]:
+def review6(candidates: list[int], target: int) -> list[list[int]]:
     """
     Anki 12-25-23
     Time: 9:58
@@ -220,7 +198,7 @@ def review5(candidates: list[int], target: int) -> list[list[int]]:
     return result
 
 
-def review6(candidates: list[int], target: int) -> list[list[int]]:
+def review7(candidates: list[int], target: int) -> list[list[int]]:
     """
     Anki 1-28-24
     Time: 12 min
@@ -249,7 +227,7 @@ def review6(candidates: list[int], target: int) -> list[list[int]]:
     return result
 
 
-def review7(candidates: list[int], target: int) -> list[list[int]]:
+def review8(candidates: list[int], target: int) -> list[list[int]]:
     """
     Mochi 4-15-24
     Time: 27:32
@@ -273,6 +251,33 @@ def review7(candidates: list[int], target: int) -> list[list[int]]:
         while i < len(candidates) and candidates[i-1] == candidates[i]:
             i += 1
         dfs(i)
+
+    dfs(0)
+    return result
+
+
+def review9(candidates: list[int], target: int) -> list[list[int]]:
+    """
+    Mochi 11-6-24
+    """
+    candidates.sort()
+
+    result = []
+    subset = []
+
+    def dfs(i):
+        if sum(subset) == target:
+            result.append(subset.copy())
+            return
+        if i >= len(candidates) or sum(subset) > target:
+            return
+        subset.append(candidates[i])
+        dfs(i+1)
+        subset.pop()
+        j = i + 1
+        while j < len(candidates) and candidates[j-1] == candidates[j]:
+            j += 1
+        dfs(j)
 
     dfs(0)
     return result
