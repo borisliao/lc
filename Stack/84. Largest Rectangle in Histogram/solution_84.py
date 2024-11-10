@@ -219,3 +219,22 @@ def review10(heights: list[int]) -> int:
         result = max(result, h*(len(heights)-i))
 
     return result
+
+
+def review11(heights: list[int]) -> int:
+    """
+    Mochi 11-10-24
+    """
+    stack = []
+    result = 0
+    for i in range(len(heights)):
+        l = i
+        while stack and stack[-1][1] > heights[i]:
+            l, height = stack.pop()
+            result = max(result, height*(i-l))
+        stack.append((l, heights[i]))
+
+    for i, h in stack:
+        result = max(result, h*(len(heights)-i))
+
+    return result
