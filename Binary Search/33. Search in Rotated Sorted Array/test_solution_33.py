@@ -41,3 +41,13 @@ def test_lc_192(f):
     output = 1
 
     assert f(nums, target) == output
+
+
+@pytest.mark.timeout(3)
+@pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_33, predicate=inspect.isfunction)])
+def test_lc_159(f):
+    nums = [1, 3]
+    target = 3
+    output = 1
+
+    assert f(nums, target) == output
