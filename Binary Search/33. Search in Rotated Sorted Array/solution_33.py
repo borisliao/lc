@@ -1,8 +1,7 @@
 from bisect import bisect_left
-from typing import List
 
 
-def search(nums: List[int], target: int) -> int:
+def search(nums: list[int], target: int) -> int:
     l, r = 0, len(nums) - 1
 
     while l <= r:
@@ -25,7 +24,7 @@ def search(nums: List[int], target: int) -> int:
     return -1
 
 
-def review1(nums: List[int], target: int) -> int:
+def review1(nums: list[int], target: int) -> int:
     """
     Anki 11-13-23
     Used: Solution on [Youtube Comment](https://www.youtube.com/watch?v=U8XENwh8Oy8&lc=UgzE25qbCIdDk9JtL0B4AaABAg)
@@ -56,7 +55,7 @@ def review1(nums: List[int], target: int) -> int:
     return -1
 
 
-def lc_TrentonO(nums: List[int], target: int) -> int:
+def lc_TrentonO(nums: list[int], target: int) -> int:
     """
     # [Three Lines of Python](https://leetcode.com/problems/search-in-rotated-sorted-array/solutions/3879735/three-lines-of-python/)
 
@@ -77,7 +76,7 @@ def lc_TrentonO(nums: List[int], target: int) -> int:
     return idx if nums[idx] == target else -1
 
 
-def review3(nums: List[int], target: int) -> int:
+def review3(nums: list[int], target: int) -> int:
     """
     Anki 11-14-23
     Used: Debugging (5), Review solution
@@ -108,7 +107,7 @@ def review3(nums: List[int], target: int) -> int:
     return -1
 
 
-def review4(nums: List[int], target: int) -> int:
+def review4(nums: list[int], target: int) -> int:
     """
     Anki 11-14-23
     Used: debugger (1)
@@ -146,7 +145,7 @@ def review4(nums: List[int], target: int) -> int:
     return -1
 
 
-def review5(nums: List[int], target: int) -> int:
+def review5(nums: list[int], target: int) -> int:
     """
     Anki 11-14-23
     Used: debugger (2), peek solution (1)
@@ -178,7 +177,7 @@ def review5(nums: List[int], target: int) -> int:
     return -1
 
 
-def review6(nums: List[int], target: int) -> int:
+def review6(nums: list[int], target: int) -> int:
     """
     Anki 11-19-23
     Used: debugger (1)
@@ -210,7 +209,7 @@ def review6(nums: List[int], target: int) -> int:
     return -1
 
 
-def review7(nums: List[int], target: int) -> int:
+def review7(nums: list[int], target: int) -> int:
     """
     Anki 11-29-23
     Used: debugger (1)
@@ -248,7 +247,7 @@ def review7(nums: List[int], target: int) -> int:
     return -1
 
 
-def review8(nums: List[int], target: int) -> int:
+def review8(nums: list[int], target: int) -> int:
     """
     Anki 12-22-23
     Time: 18:33
@@ -279,7 +278,7 @@ def review8(nums: List[int], target: int) -> int:
     return -1
 
 
-def review9(nums: List[int], target: int) -> int:
+def review9(nums: list[int], target: int) -> int:
     """
     Mochi 4-8-23
     Time: 5 min
@@ -304,7 +303,7 @@ def review9(nums: List[int], target: int) -> int:
     return -1
 
 
-def review10(nums: List[int], target: int) -> int:
+def review10(nums: list[int], target: int) -> int:
     """
     Mochi 10-22-24
     """
@@ -328,7 +327,7 @@ def review10(nums: List[int], target: int) -> int:
     return -1
 
 
-def review11(nums: List[int], target: int) -> int:
+def review11(nums: list[int], target: int) -> int:
     """
     Mochi 11-10-24
     """
@@ -349,4 +348,29 @@ def review11(nums: List[int], target: int) -> int:
                 l = m + 1
             else:
                 r = m - 1
+    return -1
+
+
+def review12(nums: list[int], target: int) -> int:
+    """
+    Mochi 11-11-24
+    """
+    l, r = 0, len(nums) - 1
+
+    while l <= r:
+        m = (l+r)//2
+
+        if nums[m] == target:
+            return m
+
+        if nums[m] <= nums[r]:
+            if nums[m] < target <= nums[r]:
+                l = m + 1
+            else:
+                r = m - 1
+        else:
+            if nums[l] <= target < nums[m]:
+                r = m - 1
+            else:
+                l = m + 1
     return -1
