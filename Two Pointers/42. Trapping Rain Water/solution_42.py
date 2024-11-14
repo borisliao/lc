@@ -441,3 +441,21 @@ def review17(height: list[int]) -> int:
                 result += water_height*width
         stack.append(r)
     return result
+
+
+def review18(height: list[int]) -> int:
+    """
+    Mochi 11-14-24
+    """
+    stack = []
+    result = 0
+
+    for i in range(len(height)):
+        while stack and height[stack[-1]] < height[i]:
+            bottomBound = stack.pop()
+            if stack:
+                h = min(height[i], height[stack[-1]]) - height[bottomBound]
+                w = i-stack[-1]-1
+                result += h*w
+        stack.append(i)
+    return result
