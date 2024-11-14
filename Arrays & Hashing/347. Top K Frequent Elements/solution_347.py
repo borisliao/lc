@@ -1,9 +1,8 @@
 import heapq
-from typing import List
 from collections import Counter, defaultdict
 
 
-def topKFrequent(nums: List[int], k: int) -> List[int]:
+def topKFrequent(nums: list[int], k: int) -> list[int]:
     mapList = defaultdict(lambda: 0)
     for num in nums:
         mapList[num] += 1
@@ -17,7 +16,7 @@ def topKFrequent(nums: List[int], k: int) -> List[int]:
     return k_val
 
 
-def review1(nums: List[int], k: int) -> List[int]:
+def review1(nums: list[int], k: int) -> list[int]:
     """Anki Reviewed 10/29/23"""
     count = defaultdict(lambda: 0)
     buckets = [[] for _ in range(len(nums) + 1)]
@@ -38,7 +37,7 @@ def review1(nums: List[int], k: int) -> List[int]:
     return result
 
 
-def review2(nums: List[int], k: int) -> List[int]:
+def review2(nums: list[int], k: int) -> list[int]:
     """
     Anki 11-14-23
     Used: [heap docs](https://docs.python.org/3/library/heapq.html), [dict docs](https://realpython.com/iterate-through-dictionary-python/#looping-over-dictionary-items-the-items-method)
@@ -57,7 +56,7 @@ def review2(nums: List[int], k: int) -> List[int]:
     return [n for f, n in heapq.nlargest(k, values, lambda x: x[0])]
 
 
-def review3(nums: List[int], k: int) -> List[int]:
+def review3(nums: list[int], k: int) -> list[int]:
     """
     Anki 11-14-23
     Used: debugger (2)
@@ -81,7 +80,7 @@ def review3(nums: List[int], k: int) -> List[int]:
     return result
 
 
-def review4(nums: List[int], k: int) -> List[int]:
+def review4(nums: list[int], k: int) -> list[int]:
     """
     Anki 11-17-23
     Used: peak at solution (2), debugger (3)
@@ -105,7 +104,7 @@ def review4(nums: List[int], k: int) -> List[int]:
     return result
 
 
-def review5(nums: List[int], k: int) -> List[int]:
+def review5(nums: list[int], k: int) -> list[int]:
     """
     Anki 11-20-23
     Used: debugger (1)
@@ -130,7 +129,7 @@ def review5(nums: List[int], k: int) -> List[int]:
     return result
 
 
-def review6(nums: List[int], k: int) -> List[int]:
+def review6(nums: list[int], k: int) -> list[int]:
     """
     Anki 11-30-23
     Used: debugger (1), solution (1)
@@ -155,7 +154,7 @@ def review6(nums: List[int], k: int) -> List[int]:
     return result
 
 
-def review7(nums: List[int], k: int) -> List[int]:
+def review7(nums: list[int], k: int) -> list[int]:
     """
     Anki 12-19-23
     Time: 14:51
@@ -289,3 +288,31 @@ def review11(nums: list[int], k: int) -> list[int]:
                 res.append(n)
                 if len(res) == k:
                     return res
+
+
+def review12(nums: list[int], k: int) -> list[int]:
+    """
+    Mochi 11-13-24
+    """
+    count = {}
+    for n in nums:
+        count[n] = count.get(n, 0) + 1
+
+    topK = {}
+    i = 0
+    for n, c in count.items():
+        i = max(i, c)
+        arr = topK.get(c, [])
+        arr.append(n)
+        topK[c] = arr
+
+    result = []
+    while i > 0:
+        if len(result) == k:
+            return result
+        elif i in topK:
+            result.append(topK[i].pop())
+            if len(topK[i]) == 0:
+                del topK[i]
+        else:
+            i -= 1
