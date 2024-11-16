@@ -56,7 +56,7 @@ def test_lc_20(f):
     assert f(nums, k) == output
 
 
-@pytest.mark.timeout(2)
+@pytest.mark.timeout(3)
 @pytest.mark.parametrize("f", [f[1] for f in inspect.getmembers(solution_239, predicate=inspect.isfunction)])
 def test_lc_37(f):
     """

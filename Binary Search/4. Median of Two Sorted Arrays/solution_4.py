@@ -414,7 +414,8 @@ def review12(nums1: list[int], nums2: list[int]) -> float:
     """
     Mochi 11-15-24
     """
-    nums1, nums2 = nums2, nums1 if len(nums1) > len(nums2) else nums1, nums2
+    nums1, nums2 = (nums2, nums1) if len(
+        nums1) > len(nums2) else (nums1, nums2)
     total = len(nums1) + len(nums2)
     half = total // 2
     l = 0

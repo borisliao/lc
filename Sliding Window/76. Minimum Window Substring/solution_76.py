@@ -322,38 +322,3 @@ def review10(s: str, t: str) -> str:
             l += 1
 
     return smallest
-
-
-def review11(s: str, t: str) -> str:
-    """
-    Mochi 10-21-24
-    """
-    count = {}
-    for c in t:
-        count[c] = count.get(c, 0) + 1
-
-    result = ''
-
-    window = {}
-    l = 0
-    r = 0
-
-    while r < len(s):
-        window[s[r]] = window.get(s[r], 0) + 1
-
-        match = True
-        while match:
-            for c in count:
-                if c in window and window[c] == count[c]:
-                    pass
-                else:
-                    match = False
-                    break
-            if match:
-                if result == '' or len(result) > r+1-l:
-                    result = s[l:r+1]
-                window[s[l]] -= 1
-                l += 1
-        r += 1
-
-    return result

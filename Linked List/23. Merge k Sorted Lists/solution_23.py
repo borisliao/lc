@@ -7,13 +7,13 @@ class ListNode:
         l = []
 
         def addToList(ln: ListNode, l: list):
-            list.append(ln.val)
+            l.append(ln.val)
             if (ln.next):
-                addToList(ln.next, list)
+                addToList(ln.next, l)
 
-        addToList(self, list)
+        addToList(self, l)
 
-        return str(list)
+        return str(l)
 
     def __repr__(self):
         return f"({self.val}, {self.next})"
