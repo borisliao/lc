@@ -15,7 +15,8 @@ def neetCode(nums: list[int]) -> int:
         if nums[m] >= nums[l]:
             l = m + 1
         else:
-            r = m - 1
+            # We're in right sorted portion, minimum could be at mid
+            r = m
 
     return lowest
 
@@ -109,3 +110,22 @@ def review3(nums: list[int]) -> int:
             l = m + 1
 
     return smallest
+
+
+def review4(nums: list[int]) -> int:
+    """
+    Mochi 11-15-24
+    """
+    l = 0
+    r = len(nums) - 1
+
+    while l < r:
+        m = (l+r)//2
+
+        if nums[m] > nums[r]:
+            # We're in left sorted portion, minimum is to the right
+            l = m + 1
+        else:
+            # We're in right sorted portion, minimum could be at mid
+            r = m
+    return nums[l]
