@@ -178,3 +178,36 @@ def review4(matrix: list[list[int]], target: int) -> bool:
                 r = m - 1
 
     return result
+
+
+def review5(matrix: list[list[int]], target: int) -> bool:
+    """
+    Mochi 11-17-24
+    """
+    l, r = 0, len(matrix) - 1
+
+    row = None
+    while l <= r and not row:
+        m = (l+r) // 2
+        if matrix[m][0] <= target <= matrix[m][-1]:
+            row = matrix[m]
+        elif matrix[m][-1] < target:
+            l = m + 1
+        else:
+            r = m - 1
+
+    if not row:
+        return False
+
+    l, r = 0, len(row) - 1
+
+    while l <= r:
+        m = (l+r) // 2
+        if row[m] == target:
+            return True
+        elif row[m] < target:
+            l = m + 1
+        else:
+            r = m - 1
+
+    return False
