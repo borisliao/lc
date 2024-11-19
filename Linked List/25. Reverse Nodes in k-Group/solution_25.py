@@ -23,6 +23,10 @@ class ListNode:
 
 
 def reverseKGroup(head: ListNode | None, k: int) -> ListNode | None:
+    """
+    Cracking FAANG
+    https://www.youtube.com/watch?v=ug6nP_thrsw
+    """
     def reverse(head: ListNode, k: int):
         new_head, prev = None, head
 
@@ -116,39 +120,6 @@ def review2(head: ListNode | None, k: int) -> ListNode | None:
         r_tail.next = head
 
     return r_head
-
-# def review1(head: ListNode | None, k: int) -> ListNode | None:
-#     def reverse(head, k):
-#         prev = None
-#         while k:
-#             next = head.next
-#             head.next = prev
-#             prev = head
-#             head = next
-#             k -= 1
-
-#         return prev
-
-#     reversed_head = None
-#     traversed = 0
-#     reverse_start = None
-
-#     while head:
-#         if traversed == 0:
-#             reverse_start = head
-
-#         traversed += 1
-#         head = head.next
-
-#         if traversed == k:
-#             node = reverse(reverse_start, k)
-#             if not reversed_head:
-#                 reversed_head = node
-#             reverse_start.next = head
-#             reverse_start = None
-#             traversed = 0
-
-#     return reversed_head
 
 
 def review1(head: ListNode | None, k: int) -> ListNode | None:
@@ -277,36 +248,47 @@ def review4(head: ListNode | None, k: int) -> ListNode | None:
     return new_head
 
 
-# def review5(head: ListNode | None, k: int) -> ListNode | None:
-#     """
-#     Mochi 4-8-24
-#     """
-#     def reverse(node: ListNode, new_next: ListNode):
-#         prev = None
-#         current = node
-#         for _ in range(k):
-#             next = current.next
-#             current.next = prev
-#             prev = node
-#             current = next
+def review5(head: ListNode, k: int) -> ListNode:
+    """
+    Mochi 11-18-24
+    """
+    def reverse(head: ListNode, k: int):
+        prev = None
+        node = head
 
-#         current.next = new_next
+        while k:
+            next = node.next
+            node.next = prev
+            prev = node
+            node = next
+            k -= 1
+        return prev
 
-#     modified_list: ListNode = None
-#     n_tail: ListNode = head
+    prev = None
+    node = head
 
-#     while head:
-#         i = k - 1
-#         while head and i != 0:
-#             i -= 1
-#             n_tail = head.next
-#             head = head.next
+    new_head = None
 
-#         head = head.next
+    while node:
+        count = 0
+        node = head
 
-#         reverse(n_tail, head)
+        # check if we have k elements to reverse
+        while count < k and node:
+            node = node.next
+            count += 1
 
-#         if not modified_list:
-#             modified_list = n_tail
+        # if k elements do exist
+        if count == k:
+            rev_head = reverse(head, k)
 
-#     return modified_list
+            if not new_head:
+                new_head = rev_head
+            if prev:
+                prev.next = rev_head
+            prev = head
+            head = node
+    if prev:
+        prev.next = head
+
+    return new_head if new_head else head

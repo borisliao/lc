@@ -158,3 +158,33 @@ def review4(head: ListNode | None) -> ListNode | None:
         node = next
 
     return prev
+
+
+def review_lc25_1(head: ListNode):
+    """
+    Mochi 11-18-24
+    Reviewed as part of the solution of 25. Reverse Nodes in k-Group
+    """
+    prev = None
+    node = head
+
+    while node:
+        next = node.next
+        node.next = prev
+        prev = node
+        node = next
+    return prev
+
+
+def review_lc25_2(head: ListNode):
+    """
+    Mochi 11-18-24
+    Reviewed as part of the solution of 25. Reverse Nodes in k-Group
+    """
+    def reverse(head: ListNode, prev: ListNode):
+        if not head:
+            return prev
+        next = head.next
+        head.next = prev
+        return reverse(next, head)
+    return reverse(head, None)
