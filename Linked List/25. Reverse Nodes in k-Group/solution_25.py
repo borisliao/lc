@@ -264,10 +264,10 @@ def review5(head: ListNode, k: int) -> ListNode:
             k -= 1
         return prev
 
-    prev = None
+    prev_tail = None
     node = head
 
-    new_head = None
+    result = None
 
     while node:
         count = 0
@@ -282,13 +282,14 @@ def review5(head: ListNode, k: int) -> ListNode:
         if count == k:
             rev_head = reverse(head, k)
 
-            if not new_head:
-                new_head = rev_head
-            if prev:
-                prev.next = rev_head
-            prev = head
-            head = node
-    if prev:
-        prev.next = head
+            if not result:
+                result = rev_head
 
-    return new_head if new_head else head
+            if prev_tail:
+                prev_tail.next = rev_head
+            prev_tail = head
+            head = node
+    if prev_tail:
+        prev_tail.next = head
+
+    return result if result else head

@@ -1,6 +1,6 @@
-# [25\. Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/)
+### [25. Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/)
 
-Hard
+#Hard #NeetCode150
 
 Given the `head` of a linked list, reverse the nodes of the list `k` at a time, and return _the modified list_.
 
