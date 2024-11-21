@@ -473,3 +473,39 @@ def review17(s1: str, s2: str) -> bool:
                 del window[s2[i-len(s1)+1]]
 
     return match(window, check)  # Check the last window
+
+
+def review18(s1: str, s2: str) -> bool:
+    """
+    Mochi 11-21-24
+    """
+    count = {}
+    for c in s1:
+        count[c] = count.get(c, 0) + 1
+
+    l = r = 0
+
+    window = {}
+    while r < len(s2):
+        window[s2[r]] = window.get(s2[r], 0) + 1
+
+        if r >= len(s1) - 1:
+            match = True
+            for c in window:
+                if match and c in count and count[c] == window[c]:
+                    pass
+                else:
+                    match = False
+            for c in window:
+                if c not in count:
+                    match = False
+                    break
+            if match:
+                return True
+
+            window[s2[l]] -= 1
+            if window[s2[l]] == 0:
+                del window[s2[l]]
+            l += 1
+        r += 1
+    return False
