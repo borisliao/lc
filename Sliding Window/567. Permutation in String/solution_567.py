@@ -509,3 +509,29 @@ def review18(s1: str, s2: str) -> bool:
             l += 1
         r += 1
     return False
+
+
+def review19(s1: str, s2: str) -> bool:
+    """
+    Mochi 11-25-24
+    """
+    count = {}
+    for c in s1:
+        count[c] = count.get(c, 0) + 1
+
+    window = {}
+    l = r = 0
+
+    while r < len(s2):
+        window[s2[r]] = window.get(s2[r], 0) + 1
+
+        if r+1-l == len(s1):
+            if count == window:
+                return True
+
+            window[s2[l]] -= 1
+            if window[s2[l]] == 0:
+                del window[s2[l]]
+            l += 1
+        r += 1
+    return False
