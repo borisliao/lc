@@ -238,3 +238,63 @@ def review11(heights: list[int]) -> int:
         result = max(result, h*(len(heights)-i))
 
     return result
+
+
+def review12(heights: list[int]) -> int:
+    """
+    Mochi 11-25-24
+    """
+    stack = []
+    largest = 0
+
+    for r, h in enumerate(heights):
+        l = r
+        while stack and stack[-1][1] > h:
+            l, height = stack.pop()
+            largest = max(largest, (r-l) * height)
+        stack.append((l, h))
+
+    for l, h in stack:
+        largest = max(largest, (len(heights)-l)*h)
+    return largest
+
+
+def review13(heights: list[int]) -> int:
+    """
+    Mochi 11-25-24
+    """
+    stack = []
+    largest = 0
+
+    for r, h in enumerate(heights):
+        l = r
+        while stack and stack[-1][1] > h:
+            l, height = stack.pop()
+            largest = max(largest, (r-l) * height)
+        stack.append((l, h))
+
+    r = len(heights)
+    for l, height in stack:
+        largest = max(largest, (r-l) * height)
+
+    return largest
+
+
+def review14(heights: list[int]) -> int:
+    """
+    Mochi 11-25-24
+    """
+    stack = []
+    result = 0
+
+    for r, h in enumerate(heights):
+        l = r
+        while stack and stack[-1][1] > h:
+            l, l_height = stack.pop()
+            result = max(result, (r-l) * l_height)
+        stack.append((l, h))
+
+    r = len(heights)
+    for l, l_height in stack:
+        result = max(result, (r-l)*l_height)
+    return result
