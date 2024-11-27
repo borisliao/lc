@@ -459,3 +459,45 @@ def review18(height: list[int]) -> int:
                 result += h*w
         stack.append(i)
     return result
+
+
+def review19(height: list[int]) -> int:
+    """
+    Mochi 11-25-24
+    """
+    l = 0
+    l_height = 0
+    r = len(height) - 1
+    r_height = 0
+    result = 0
+
+    while l <= r:
+        l_height = max(l_height, height[l])
+        r_height = max(r_height, height[r])
+
+        if height[l] < height[r]:
+            result += min(l_height, r_height)-height[l]
+            l += 1
+        else:
+            result += min(l_height, r_height)-height[r]
+            r -= 1
+    return result
+
+
+def review20(height: list[int]) -> int:
+    """
+    Mochi 11-25-24
+    """
+    stack = []
+    result = 0
+
+    for r, h in enumerate(height):
+        while stack and height[stack[-1]] < h:
+            m = stack.pop()
+            if stack:
+                l = stack[-1]
+                hi = min(height[r], height[l]) - height[m]
+                w = r-l-1
+                result += hi*w
+        stack.append(r)
+    return result
