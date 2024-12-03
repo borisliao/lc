@@ -298,3 +298,23 @@ def review14(heights: list[int]) -> int:
     for l, l_height in stack:
         result = max(result, (r-l)*l_height)
     return result
+
+
+def review15(heights: list[int]) -> int:
+    """
+    Mochi 12-2-24
+    """
+    stack = []
+    result = 0
+
+    for i, h in enumerate(heights):
+        l = i
+        while stack and stack[-1][0] > h:
+            height, l = stack.pop()
+            result = max(result, (i-l)*height)
+        stack.append((h, l))
+
+    for h, l in stack:
+        result = max(result, (len(heights)-l)*h)
+
+    return result
