@@ -145,3 +145,20 @@ def review7(students: list[int], sandwiches: list[int]) -> int:
         else:
             return count[abs(s-1)]
     return max(count.values())
+
+
+def review8(students: list[int], sandwiches: list[int]) -> int:
+    """
+    Mochi 12-1-24
+    """
+    st = {0: 0, 1: 0}
+    for s in students:
+        st[s] += 1
+
+    for sw in sandwiches:
+        if st[sw] > 0:
+            st[sw] -= 1
+        else:
+            return st[abs(sw-1)]
+
+    return 0
